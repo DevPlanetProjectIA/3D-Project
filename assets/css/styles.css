@@ -95,6 +95,11 @@ html[data-theme="light"] {
 *, *::before, *::after { box-sizing: border-box; }
 * { margin: 0; }
 
+/* O `[hidden]` do navegador é `display:none` sem especificidade de classe, então
+   qualquer `.banner{display:flex}` ou `.toolbar{display:flex}` o derrota e o
+   elemento continua visível. Esta regra devolve ao atributo a palavra final. */
+[hidden] { display: none !important; }
+
 html, body { height: 100%; }
 
 body {

@@ -18,6 +18,7 @@
  */
 
 import { openZip } from './zip.js';
+import { readSliceInfo, normalizeHex } from './sliceinfo.js';
 
 /** Fatores de conversão para milímetro, conforme o atributo `unit` do modelo. */
 const UNIT_TO_MM = {
@@ -153,7 +154,13 @@ function readMesh(objectNode) {
   }
 
   const indices = new Uint32Array(triangleNodes.length * 3);
+  // Material por triangulo: `pid` identifica o grupo e `p1` o indice dentro
+  // dele. E assim que um 3MF multimaterial pinta faces individuais.
+  const triPid = new Array(triangleNodes.length);
+  const triIndex = new Int32Array(triangleNodes.length);
   let kept = 0;
+  let hasTriangleMaterial = false;
+
   for (const node of triangleNodes) {
     const v1 = Number(attr(node, 'v1'));
     const v2 = Number(attr(node, 'v2'));
@@ -164,11 +171,47 @@ function readMesh(objectNode) {
     indices[kept * 3] = v1;
     indices[kept * 3 + 1] = v2;
     indices[kept * 3 + 2] = v3;
+
+    const pid = attr(node, 'pid');
+    const p1 = attr(node, 'p1');
+    triPid[kept] = pid || '';
+    triIndex[kept] = p1 === null ? -1 : (Number(p1) || 0);
+    if (pid || p1 !== null) hasTriangleMaterial = true;
     kept++;
   }
   if (!kept) return null;
 
-  return { vertices, indices: indices.subarray(0, kept * 3), triangleCount: kept };
+  return {
+    vertices,
+    indices: indices.subarray(0, kept * 3),
+    triangleCount: kept,
+    triPid: hasTriangleMaterial ? triPid.slice(0, kept) : null,
+    triIndex: hasTriangleMaterial ? triIndex.subarray(0, kept) : null,
+  };
+}
+
+/**
+ * Grupos de cor da parte, indexados por `pid`.
+ *
+ * O core define `<basematerials>` com `displaycolor`; a extensao de materiais
+ * acrescenta `<colorgroup>` com `<color>`. Os dois aparecem em arquivos reais,
+ * entao os dois sao lidos para a mesma tabela.
+ */
+function readColorGroups(doc) {
+  const groups = new Map();
+  const root = el(doc, 'resources') || doc;
+
+  for (const node of els(root, 'basematerials')) {
+    const id = attr(node, 'id');
+    if (!id) continue;
+    groups.set(String(id), els(node, 'base').map((base) => normalizeHex(attr(base, 'displaycolor'))));
+  }
+  for (const node of els(root, 'colorgroup')) {
+    const id = attr(node, 'id');
+    if (!id) continue;
+    groups.set(String(id), els(node, 'color').map((color) => normalizeHex(attr(color, 'color'))));
+  }
+  return groups;
 }
 
 /** Objetos de uma parte, indexados por id. */
@@ -196,7 +239,13 @@ function readObjects(doc) {
       }
     }
 
-    objects.set(String(id), { id: String(id), mesh: readMesh(node), components });
+    objects.set(String(id), {
+      id: String(id),
+      mesh: readMesh(node),
+      components,
+      pid: attr(node, 'pid') || '',
+      pindex: Number(attr(node, 'pindex')) || 0,
+    });
   }
 
   return objects;
@@ -222,27 +271,38 @@ function readBuildItems(doc) {
  * referências a partes externas.
  */
 async function collectMeshes(zip, mainPart, items, partCache) {
-  const objectCache = new Map();
+  const partCacheByPath = new Map();
   const out = [];
 
-  const objectsOf = async (partPath) => {
+  const partOf = async (partPath) => {
     const key = partPath.toLowerCase();
-    if (objectCache.has(key)) return objectCache.get(key);
+    if (partCacheByPath.has(key)) return partCacheByPath.get(key);
     const doc = await loadPart(zip, partPath, partCache);
-    const map = doc ? readObjects(doc) : new Map();
-    objectCache.set(key, map);
-    return map;
+    const entry = doc
+      ? { objects: readObjects(doc), colors: readColorGroups(doc) }
+      : { objects: new Map(), colors: new Map() };
+    partCacheByPath.set(key, entry);
+    return entry;
   };
 
   const visit = async (partPath, objectId, transform, depth, chain) => {
     const key = `${partPath.toLowerCase()}#${objectId}`;
     if (depth > MAX_DEPTH || chain.has(key)) return;
 
-    const objects = await objectsOf(partPath);
+    const { objects, colors } = await partOf(partPath);
     const object = objects.get(String(objectId));
     if (!object) return;
 
-    if (object.mesh) out.push({ mesh: object.mesh, transform });
+    if (object.mesh) {
+      out.push({
+        mesh: object.mesh,
+        transform,
+        objectId: String(objectId),
+        colorGroups: colors,
+        pid: object.pid,
+        pindex: object.pindex,
+      });
+    }
 
     if (object.components.length) {
       const nextChain = new Set(chain).add(key);
@@ -275,11 +335,95 @@ async function collectEveryMesh(zip, partCache) {
     if (!/\.model$/i.test(entry.name)) continue;
     const doc = await loadPart(zip, entry.name, partCache);
     if (!doc) continue;
+    const colorGroups = readColorGroups(doc);
     for (const object of readObjects(doc).values()) {
-      if (object.mesh) out.push({ mesh: object.mesh, transform: null });
+      if (object.mesh) {
+        out.push({
+          mesh: object.mesh,
+          transform: null,
+          objectId: object.id,
+          colorGroups,
+          pid: object.pid,
+          pindex: object.pindex,
+        });
+      }
     }
   }
   return out;
+}
+
+/* ---------- Cores ---------- */
+
+const DEFAULT_RGB = [0.56, 0.62, 0.78];
+
+/** `#rrggbb` para um trio 0..1 em espaco linear aproximado. */
+function hexToRgb(hex) {
+  const value = normalizeHex(hex);
+  if (!value) return null;
+  return [1, 3, 5].map((i) => parseInt(value.slice(i, i + 2), 16) / 255);
+}
+
+/**
+ * Resolve a cor de cada malha e, quando houver, de cada triangulo.
+ *
+ * Tres fontes, em ordem de confianca:
+ *  1. `pid`/`p1` do triangulo — pintura por face, do proprio padrao 3MF.
+ *  2. `pid`/`pindex` do objeto — cor unica da parte.
+ *  3. Extrusora da parte, lida de `model_settings.config`, cruzada com as
+ *     cores dos filamentos do fatiador. E o unico caminho para um 3MF do
+ *     Bambu Studio, que nao usa os grupos de cor do padrao.
+ */
+function resolveColors(meshes, slice) {
+  const filamentColors = (slice?.filaments || []).map((f) => f.color);
+  const extruderByObject = slice?.extruderByObject || null;
+  const used = new Map();
+
+  const register = (hex) => {
+    const value = normalizeHex(hex);
+    if (value) used.set(value, (used.get(value) || 0) + 1);
+    return value;
+  };
+
+  const plans = meshes.map((entry) => {
+    const groups = entry.colorGroups || new Map();
+    const lookup = (pid, index) => {
+      const list = groups.get(String(pid || ''));
+      if (!list || !list.length) return '';
+      return list[Math.max(0, Math.min(index, list.length - 1))] || '';
+    };
+
+    let objectHex = lookup(entry.pid, entry.pindex);
+
+    if (!objectHex && extruderByObject) {
+      const extruder = extruderByObject.get(entry.objectId);
+      if (Number.isFinite(extruder) && extruder > 0) {
+        objectHex = filamentColors[extruder - 1] || '';
+      }
+    }
+    register(objectHex);
+
+    const { triPid, triIndex, triangleCount } = entry.mesh;
+    let triangleHex = null;
+    if (triPid && triIndex) {
+      triangleHex = new Array(triangleCount);
+      let distinct = false;
+      for (let t = 0; t < triangleCount; t++) {
+        const pid = triPid[t] || entry.pid;
+        const index = triIndex[t] >= 0 ? triIndex[t] : entry.pindex;
+        const hex = lookup(pid, index) || objectHex;
+        triangleHex[t] = hex;
+        if (hex && hex !== objectHex) distinct = true;
+        register(hex);
+      }
+      // Sem variacao real entre faces, a cor do objeto basta.
+      if (!distinct) triangleHex = null;
+    }
+
+    return { objectHex, triangleHex };
+  });
+
+  const hasColor = [...used.keys()].length > 0;
+  return { plans, hasColor, palette: [...used.keys()] };
 }
 
 /* ---------- Entrada ---------- */
@@ -288,6 +432,9 @@ async function collectEveryMesh(zip, partCache) {
 export async function parse3MF(arrayBuffer, onProgress) {
   const zip = openZip(arrayBuffer);
   const partCache = new Map();
+
+  // Metadados do fatiador e geometria sao independentes: le os dois de uma vez.
+  const slicePromise = readSliceInfo(zip).catch(() => null);
 
   const mainPart = await locateModelPart(zip);
   onProgress?.(0.15);
@@ -318,13 +465,20 @@ export async function parse3MF(arrayBuffer, onProgress) {
     );
   }
 
+  const slice = await slicePromise;
+  const { plans, hasColor, palette } = resolveColors(meshes, slice);
+
   const triangles = meshes.reduce((sum, m) => sum + m.mesh.triangleCount, 0);
   const positions = new Float32Array(triangles * 9);
   const normals = new Float32Array(triangles * 9);
+  const colors = hasColor ? new Float32Array(triangles * 9) : null;
   const bounds = { min: [Infinity, Infinity, Infinity], max: [-Infinity, -Infinity, -Infinity] };
 
   let writeIndex = 0;
-  for (const { mesh, transform } of meshes) {
+  for (let meshIndex = 0; meshIndex < meshes.length; meshIndex++) {
+    const { mesh, transform } = meshes[meshIndex];
+    const plan = plans[meshIndex];
+    const objectRgb = hexToRgb(plan.objectHex) || DEFAULT_RGB;
     const { vertices, indices, triangleCount } = mesh;
     for (let t = 0; t < triangleCount; t++) {
       const corners = [];
@@ -341,6 +495,10 @@ export async function parse3MF(arrayBuffer, onProgress) {
       const len = Math.hypot(nx, ny, nz);
       if (len > 1e-12) { nx /= len; ny /= len; nz /= len; } else { nx = 0; ny = 0; nz = 1; }
 
+      const rgb = colors
+        ? (plan.triangleHex ? (hexToRgb(plan.triangleHex[t]) || objectRgb) : objectRgb)
+        : null;
+
       const o = writeIndex * 9;
       for (let k = 0; k < 3; k++) {
         positions[o + k * 3] = corners[k][0];
@@ -349,6 +507,11 @@ export async function parse3MF(arrayBuffer, onProgress) {
         normals[o + k * 3] = nx;
         normals[o + k * 3 + 1] = ny;
         normals[o + k * 3 + 2] = nz;
+        if (colors) {
+          colors[o + k * 3] = rgb[0];
+          colors[o + k * 3 + 1] = rgb[1];
+          colors[o + k * 3 + 2] = rgb[2];
+        }
 
         for (let axis = 0; axis < 3; axis++) {
           if (corners[k][axis] < bounds.min[axis]) bounds.min[axis] = corners[k][axis];
@@ -363,9 +526,12 @@ export async function parse3MF(arrayBuffer, onProgress) {
   return {
     positions: positions.subarray(0, writeIndex * 9),
     normals: normals.subarray(0, writeIndex * 9),
+    colors: colors ? colors.subarray(0, writeIndex * 9) : null,
     triangles: writeIndex,
     bounds,
     unit,
+    palette,
+    slice: slice || null,
   };
 }
 

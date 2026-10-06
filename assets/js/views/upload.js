@@ -6,14 +6,12 @@ import * as auth from '../auth.js';
 import * as gh from '../github.js';
 import { parseModel, measure, formatOf } from '../parsers/index.js';
 import { Viewer, renderThumbnail } from '../viewer.js';
+import { analyze, toCatalogFields } from '../production.js';
+import { printersByBrand, getPrinter, printerLabel, exceedsBed } from '../printers.js';
+import { MATERIALS } from '../filaments.js';
+import { filaments as stockFilaments } from '../inventory.js';
+import { formatMoney, formatHours, getSettings } from '../costing.js';
 import { esc, icon, qs, qsa, on, toast, formatBytes, formatNumber, formatMm, setBusy } from '../util.js';
-
-const LICENSES = [
-  'CC BY 4.0', 'CC BY-SA 4.0', 'CC BY-NC 4.0', 'CC0 1.0 (domínio público)',
-  'MIT', 'Uso interno', 'Não especificada',
-];
-
-const MATERIALS = ['', 'PLA', 'PETG', 'ABS', 'ASA', 'TPU', 'Resina', 'Nylon'];
 
 const STEPS = [
   ['file', 'Enviando arquivo do modelo'],
@@ -89,6 +87,8 @@ export default async function uploadView(container, ctx) {
           </div>
         </div>
 
+        <div id="production"></div>
+
         <div class="panel" id="progress-panel" hidden>
           <div class="panel__head">${icon('github', 14)} Publicação</div>
           <div class="panel__body">
@@ -124,17 +124,23 @@ export default async function uploadView(container, ctx) {
           <p class="field__hint">Até 10 etiquetas. Elas alimentam a busca e os filtros.</p>
         </div>
 
+        <div class="field">
+          <label for="printer">Ajustado para</label>
+          <select class="select" id="printer" name="printer">
+            <option value="">Nenhuma impressora específica</option>
+            ${printersByBrand().map(([brand, list]) => `
+              <optgroup label="${esc(brand)}">
+                ${list.map((p) => `<option value="${esc(p.id)}">${esc(p.brand)} ${esc(p.model)} — ${p.bed[0]}×${p.bed[1]}×${p.bed[2]} mm${p.ams ? ` · ${esc(p.ams)}` : ''}</option>`).join('')}
+              </optgroup>`).join('')}
+          </select>
+          <p class="field__hint">A impressora define a potência usada no custo de energia e avisa se a peça não cabe na mesa.</p>
+        </div>
+
         <div class="grid-2">
           <div class="field">
-            <label for="license">Licença</label>
-            <select class="select" id="license" name="license">
-              ${LICENSES.map((l) => `<option value="${esc(l)}">${esc(l)}</option>`).join('')}
-            </select>
-          </div>
-          <div class="field">
-            <label for="material">Material sugerido</label>
+            <label for="material">Material</label>
             <select class="select" id="material" name="material">
-              ${MATERIALS.map((m) => `<option value="${esc(m)}">${m ? esc(m) : '—'}</option>`).join('')}
+              ${MATERIALS.map((m) => `<option value="${esc(m.id)}"${m.id === 'PLA' ? ' selected' : ''}>${esc(m.label)}</option>`).join('')}
             </select>
           </div>
           <div class="field">
@@ -142,8 +148,16 @@ export default async function uploadView(container, ctx) {
             <input class="input" type="text" id="layerHeight" name="layerHeight" placeholder="0.2 mm">
           </div>
           <div class="field">
-            <label for="infill">Preenchimento</label>
-            <input class="input" type="text" id="infill" name="infill" placeholder="20%">
+            <label for="infill">Preenchimento (%)</label>
+            <input class="input" type="number" id="infill" name="infill" min="0" max="100" placeholder="20">
+            <p class="field__hint">Usado só quando o arquivo não traz o consumo real.</p>
+          </div>
+          <div class="field">
+            <label for="printTime">Tempo de impressão</label>
+            <div class="inline">
+              <input class="input" type="number" id="printHours" min="0" placeholder="h" style="width:72px">
+              <input class="input" type="number" id="printMinutes" min="0" max="59" placeholder="min" style="width:80px">
+            </div>
           </div>
         </div>
 
@@ -277,6 +291,7 @@ export default async function uploadView(container, ctx) {
       }
 
       renderPreview();
+      renderProduction();
       publishButton.disabled = false;
       dropzone.innerHTML = `${icon('refresh', 28)}<strong>Trocar arquivo</strong>
         <small>${esc(file.name)} — ${formatBytes(file.size)}</small>`;
@@ -324,6 +339,147 @@ export default async function uploadView(container, ctx) {
         <span>WebGL indisponível neste navegador: a pré-visualização foi desativada.
         O envio continua funcionando.</span></div>`;
     }
+  }
+
+  /* ---------- Produção e custo ---------- */
+
+  const productionSlot = qs('#production', container);
+
+  /** Linha de filamento: o que o arquivo pede × o que existe no estoque. */
+  function usageRow(row) {
+    const swatch = row.color
+      ? `<i style="display:inline-block;width:14px;height:14px;border-radius:50%;border:1px solid var(--border);background:${esc(row.color)}"></i>`
+      : icon('palette', 14);
+
+    const stock = row.filament
+      ? `<span class="small">${esc(row.filament.name)}${row.exactMaterial ? '' : ` <span class="chip chip--static" style="color:var(--warning)">material difere</span>`}</span>`
+      : `<span class="small" style="color:var(--danger)">sem filamento no estoque</span>`;
+
+    return `
+      <div class="row" style="align-items:flex-start">
+        <span class="row__thumb" style="width:34px;height:34px;display:grid;place-items:center;background:none">${swatch}</span>
+        <span class="row__main">
+          <span class="row__title">${esc(row.material)}${row.colorLabel ? ` · ${esc(row.colorLabel)}` : ''}</span>
+          <span class="row__sub">${row.grams.toFixed(1)} g${row.meters ? ` · ${row.meters.toFixed(2)} m` : ''} · ${stock}</span>
+          ${row.shortage > 0 ? `<span class="row__sub" style="color:var(--warning)">faltam ${row.shortage.toFixed(0)} g no estoque</span>` : ''}
+        </span>
+        <span class="nowrap mono small">${row.cost > 0 ? esc(formatMoney(row.cost)) : '—'}</span>
+      </div>`;
+  }
+
+  function renderProduction() {
+    if (!state.geometry) { productionSlot.innerHTML = ''; return; }
+
+    const printerId = qs('#printer', container)?.value || '';
+    const analysis = analyze(state.geometry, {
+      printerId,
+      material: qs('#material', container)?.value,
+      infillPercent: qs('#infill', container)?.value,
+      hours: qs('#printHours', container)?.value,
+      minutes: qs('#printMinutes', container)?.value,
+    });
+    state.analysis = analysis;
+
+    const { cost, blockers } = analysis;
+    const measured = analysis.source === 'fatiador';
+    const printer = getPrinter(printerId);
+    const tooBig = printer && exceedsBed(printer, analysis.metrics.size);
+
+    const avisos = [];
+    if (blockers.noFilamentRegistered) {
+      avisos.push(`
+        <div class="banner banner--warn">${icon('alert', 18)}
+          <div><strong>Nenhum filamento cadastrado</strong>
+            <div class="small">Sem filamento no estoque não há preço por grama, e o custo de fabricação
+              fica zerado. Cadastre o filamento que você usa para este modelo.</div></div>
+          <div class="banner__actions"><a class="btn btn--sm btn--primary" href="#/estoque">
+            ${icon('package', 15)} Cadastrar</a></div>
+        </div>`);
+    } else if (blockers.missing.length) {
+      avisos.push(`
+        <div class="banner banner--warn">${icon('alert', 18)}
+          <div class="small">${blockers.missing.length} filamento(s) do arquivo não têm equivalente no
+            estoque. O custo abaixo cobre apenas os que foram encontrados.</div>
+          <div class="banner__actions"><a class="btn btn--sm" href="#/estoque">Abrir estoque</a></div>
+        </div>`);
+    }
+    if (blockers.shortages.length) {
+      avisos.push(`
+        <div class="banner banner--warn">${icon('alert', 18)}
+          <div class="small">Saldo insuficiente em
+            ${esc(blockers.shortages.map((r) => r.filament.name).join(', '))}.</div>
+        </div>`);
+    }
+    if (tooBig) {
+      avisos.push(`
+        <div class="banner banner--danger">${icon('alert', 18)}
+          <div class="small">A peça (${analysis.metrics.size.x.toFixed(0)}×${analysis.metrics.size.y.toFixed(0)}×${analysis.metrics.size.z.toFixed(0)} mm)
+            não cabe na mesa da ${esc(printerLabel(printer))}
+            (${printer.bed.join('×')} mm).</div>
+        </div>`);
+    }
+    if (!measured) {
+      avisos.push(`
+        <div class="banner banner--info">${icon('info', 18)}
+          <div class="small"><strong>Peso estimado</strong> pelo volume da malha
+            (${analysis.volumeCm3.toFixed(1)} cm³ a ${esc(String(analysis.infill))}% de preenchimento).
+            O arquivo não foi fatiado, então não traz o consumo real. Fatie no seu slicer e
+            reenvie o 3MF salvo por ele para ter gramas medidos.</div>
+        </div>`);
+    }
+
+    productionSlot.innerHTML = `
+      ${avisos.join('')}
+      <div class="panel">
+        <div class="panel__head">${icon('coins', 14)} Produção e custo
+          <span class="toolbar__spacer"></span>
+          <span class="chip chip--static">${measured ? 'medido pelo fatiador' : 'estimado'}</span>
+        </div>
+        <div class="panel__body">
+          <dl class="dl">
+            <div class="dl__row"><dt>Filamento nas peças</dt>
+              <dd class="mono">${analysis.partsGrams.toFixed(1)} g</dd></div>
+            ${analysis.filamentCount > 1 ? `
+              <div class="dl__row"><dt>Purga e troca de cor${analysis.purgeEstimated ? ' (estimada)' : ''}</dt>
+                <dd class="mono">${analysis.purgeGrams.toFixed(1)} g</dd></div>` : ''}
+            <div class="dl__row"><dt><strong>Total de filamento</strong></dt>
+              <dd class="mono"><strong>${analysis.totalGrams.toFixed(1)} g</strong></dd></div>
+            ${analysis.hours > 0 ? `
+              <div class="dl__row"><dt>Tempo de impressão</dt>
+                <dd>${esc(formatHours(analysis.hours))}</dd></div>` : ''}
+            ${analysis.slicer ? `
+              <div class="dl__row"><dt>Fatiado em</dt><dd>${esc(analysis.slicer)}</dd></div>` : ''}
+            ${analysis.printerFromFile ? `
+              <div class="dl__row"><dt>Perfil no arquivo</dt><dd>${esc(analysis.printerFromFile)}</dd></div>` : ''}
+            ${analysis.plateCount > 1 ? `
+              <div class="dl__row"><dt>Mesas no projeto</dt><dd>${analysis.plateCount}</dd></div>` : ''}
+          </dl>
+
+          ${analysis.usage.length ? `
+            <div class="stack stack--sm">
+              <p class="small faint">Filamentos ${measured ? 'usados' : 'previstos'} e correspondência no estoque</p>
+              ${analysis.usage.map(usageRow).join('')}
+            </div>` : ''}
+
+          <dl class="dl" style="border-top:1px solid var(--border);padding-top:12px">
+            <div class="dl__row"><dt>Material${analysis.purgeGrams > 0 ? ' + purga' : ''}</dt>
+              <dd>${esc(formatMoney(analysis.materialCost))}</dd></div>
+            <div class="dl__row"><dt>Energia</dt><dd>${esc(formatMoney(cost.energy))}</dd></div>
+            ${cost.machine > 0 ? `<div class="dl__row"><dt>Máquina</dt>
+              <dd>${esc(formatMoney(cost.machine))}</dd></div>` : ''}
+            <div class="dl__row"><dt>Risco de falha</dt><dd>${esc(formatMoney(cost.risk))}</dd></div>
+            <div class="dl__row"><dt><strong>Custo de fabricação</strong></dt>
+              <dd><strong>${esc(formatMoney(cost.production))}</strong></dd></div>
+            <div class="dl__row"><dt>Preço sugerido (markup ${esc(String(getSettings().markup))}%)</dt>
+              <dd style="color:var(--success)"><strong>${esc(formatMoney(cost.price))}</strong></dd></div>
+          </dl>
+
+          <div class="btn-row">
+            <a class="btn btn--sm" href="#/calculadora">${icon('calculator', 15)} Abrir na calculadora</a>
+            <a class="btn btn--sm" href="#/config">${icon('settings', 15)} Ajustar parâmetros</a>
+          </div>
+        </div>
+      </div>`;
   }
 
   /* ---------- Publicação ---------- */
@@ -374,7 +530,6 @@ export default async function uploadView(container, ctx) {
         size: state.file.size,
         tags: state.tags,
         author: user.username,
-        license: qs('#license', container).value,
         triangles: state.geometry.triangles,
         dimensions: {
           x: Number(state.metrics.size.x.toFixed(3)),
@@ -388,6 +543,7 @@ export default async function uploadView(container, ctx) {
           supports: qs('#supports', container).checked,
           notes: qs('#notes', container).value.trim(),
         },
+        ...(state.analysis ? toCatalogFields(state.analysis) : {}),
       };
 
       await catalog.publish({ entry, fileBytes: state.bytes, thumbBytes }, markStep);
@@ -403,6 +559,32 @@ export default async function uploadView(container, ctx) {
       setBusy(publishButton, false);
     }
   });
+
+  // Qualquer parâmetro que entre no custo refaz a análise.
+  ['#printer', '#material', '#infill', '#printHours', '#printMinutes'].forEach((selector) => {
+    const field = qs(selector, container);
+    field?.addEventListener('change', renderProduction);
+    field?.addEventListener('input', renderProduction);
+  });
+
+  // Pré-seleciona a última impressora usada.
+  const lastPrinter = ctx.store.get('lastPrinter', '');
+  if (lastPrinter) {
+    const select = qs('#printer', container);
+    if (select && [...select.options].some((o) => o.value === lastPrinter)) select.value = lastPrinter;
+  }
+  qs('#printer', container)?.addEventListener('change', (event) => {
+    ctx.store.set('lastPrinter', event.target.value);
+  });
+
+  if (!stockFilaments().length) {
+    qs('#meta', container).insertAdjacentHTML('afterbegin', `
+      <div class="banner banner--info">${icon('package', 18)}
+        <div class="small">Seu estoque de filamentos está vazio. Cadastre ao menos um para que o
+          custo de fabricação seja calculado no envio.</div>
+        <div class="banner__actions"><a class="btn btn--sm" href="#/estoque">Cadastrar filamento</a></div>
+      </div>`);
+  }
 
   renderTags();
   return () => viewer?.dispose();

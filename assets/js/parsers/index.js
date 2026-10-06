@@ -43,9 +43,53 @@ export async function parseModel(arrayBuffer, format, onProgress) {
   if (kind === 'stl') {
     const geometry = parseSTL(arrayBuffer, onProgress);
     onProgress?.(1);
-    return { ...geometry, format: 'stl' };
+    return { ...geometry, format: 'stl', colors: null, palette: [], slice: null };
   }
   throw new Error('Formato não suportado. Use .stl ou .3mf.');
+}
+
+/**
+ * Volume fechado da malha, em mm³.
+ *
+ * Soma o volume assinado dos tetraedros formados por cada triângulo e a
+ * origem. Vale para malhas fechadas e orientadas; em malhas abertas o número
+ * perde sentido, por isso o valor absoluto e a checagem de sanidade contra a
+ * caixa envolvente em `estimateWeight`.
+ */
+export function volumeOf(geometry) {
+  const p = geometry.positions;
+  let total = 0;
+  for (let i = 0; i < p.length; i += 9) {
+    const ax = p[i], ay = p[i + 1], az = p[i + 2];
+    const bx = p[i + 3], by = p[i + 4], bz = p[i + 5];
+    const cx = p[i + 6], cy = p[i + 7], cz = p[i + 8];
+    total += ax * (by * cz - bz * cy)
+      - ay * (bx * cz - bz * cx)
+      + az * (bx * cy - by * cx);
+  }
+  return Math.abs(total) / 6;
+}
+
+/**
+ * Estima o peso impresso a partir do volume da malha.
+ *
+ * Só é usada quando o arquivo não traz os dados do fatiador. O fator sólido
+ * aproxima paredes, topo e base somados ao preenchimento: a 100% de
+ * preenchimento a peça é maciça; a 20%, cerca de 45% do volume vira material.
+ * É uma heurística — a interface sempre rotula o resultado como estimativa.
+ */
+export function estimateWeight({ volumeMm3, boxVolumeMm3 = 0, density = 1.24, infillPercent = 20 }) {
+  // Volume maior que a caixa envolvente denuncia malha aberta ou invertida.
+  const sane = boxVolumeMm3 > 0 && volumeMm3 > boxVolumeMm3 * 1.02 ? 0 : volumeMm3;
+  const volumeCm3 = sane / 1000;
+  const infill = Math.min(100, Math.max(0, infillPercent)) / 100;
+  const solidRatio = Math.min(1, infill + 0.25);
+  return {
+    volumeCm3,
+    solidRatio,
+    grams: volumeCm3 * density * solidRatio,
+    reliable: sane > 0,
+  };
 }
 
 /** Dimensões (mm), centro e volume da caixa envolvente. */

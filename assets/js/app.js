@@ -45,6 +45,9 @@ const ROUTES = [
   { pattern: '/meus-envios', load: () => import('./views/library.js') },
   { pattern: '/modelo/:id', load: () => import('./views/model.js') },
   { pattern: '/enviar', load: () => import('./views/upload.js') },
+  { pattern: '/estoque', load: () => import('./views/inventory.js') },
+  { pattern: '/calculadora', load: () => import('./views/calculator.js') },
+  { pattern: '/orcamento', load: () => import('./views/quote.js') },
   { pattern: '/perfil', load: () => import('./views/profile.js') },
   { pattern: '/config', load: () => import('./views/settings.js') },
 ];
@@ -131,6 +134,14 @@ function shellMarkup(user, activeRoute, counts, tags) {
             ${user ? `
               <a class="nav__item${activeRoute === '/enviar' ? ' is-active' : ''}" href="#/enviar">
                 ${icon('plus', 17)}<span>Enviar modelo</span></a>` : ''}
+
+            <div class="nav__label">Produção</div>
+            <a class="nav__item${activeRoute === '/estoque' ? ' is-active' : ''}" href="#/estoque">
+              ${icon('package', 17)}<span>Estoque</span></a>
+            <a class="nav__item${activeRoute === '/calculadora' ? ' is-active' : ''}" href="#/calculadora">
+              ${icon('calculator', 17)}<span>Calculadora 3D</span></a>
+            <a class="nav__item${activeRoute === '/orcamento' ? ' is-active' : ''}" href="#/orcamento">
+              ${icon('fileText', 17)}<span>Orçamento</span></a>
 
             <div class="nav__label">Conta</div>
             ${user ? `

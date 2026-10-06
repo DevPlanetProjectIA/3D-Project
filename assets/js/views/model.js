@@ -4,6 +4,9 @@ import * as catalog from '../catalog.js';
 import * as auth from '../auth.js';
 import * as gh from '../github.js';
 import { parseModel, measure } from '../parsers/index.js';
+import { analyze } from '../production.js';
+import { printerLabel, getPrinter } from '../printers.js';
+import { formatMoney, formatHours } from '../costing.js';
 import { Viewer } from '../viewer.js';
 import {
   esc, icon, qs, qsa, on, toast, formatBytes, formatNumber, formatDate, formatMm,
@@ -39,6 +42,7 @@ async function fetchWithProgress(url, onProgress) {
 
 const TOOLS = [
   ['autoRotate', 'rotate', 'Rotação automática'],
+  ['showColors', 'palette', 'Cores do arquivo'],
   ['wireframe', 'triangle', 'Malha de arame'],
   ['showGrid', 'grid', 'Grade de referência'],
   ['boundingBox', 'box', 'Caixa envolvente'],
@@ -94,7 +98,6 @@ function detailPanel(model, user) {
             ${hasDims ? `<div class="dl__row"><dt>Dimensões</dt>
               <dd class="mono" id="dim-text">${formatMm(dims.x)} × ${formatMm(dims.y)} × ${formatMm(dims.z)}</dd></div>` : ''}
             <div class="dl__row"><dt>Tamanho</dt><dd>${formatBytes(model.size)}</dd></div>
-            <div class="dl__row"><dt>Licença</dt><dd>${esc(model.license)}</dd></div>
             <div class="dl__row"><dt>Publicado</dt><dd>${esc(formatDate(model.createdAt))}</dd></div>
           </dl>
         </div>
@@ -134,6 +137,95 @@ function detailPanel(model, user) {
           </button>
         </div>
       </div>` : ''}
+    </div>`;
+}
+
+/** Dados de produção: peso, purga, filamentos e custo com o estoque atual. */
+function renderProduction(geometry, model, container) {
+  const slot = qs('#production', container);
+  if (!slot) return;
+
+  const analysis = analyze(geometry, {
+    printerId: model.printerId || '',
+    material: model.print?.material,
+    infillPercent: parseFloat(model.print?.infill) || 20,
+    hours: model.printSeconds ? model.printSeconds / 3600 : 0,
+  });
+
+  const measured = analysis.source === 'fatiador';
+  const printer = getPrinter(model.printerId);
+  const palette = analysis.usage.filter((row) => row.color);
+
+  slot.innerHTML = `
+    <div>
+      <div class="panel">
+        <div class="panel__head">${icon('coins', 14)} Produção
+          <span class="toolbar__spacer"></span>
+          <span class="chip chip--static">${measured ? 'medido pelo fatiador' : 'estimado pelo volume'}</span>
+        </div>
+        <div class="panel__body">
+          <div class="stats" style="margin:0">
+            <div class="stat"><div class="stat__value">${analysis.totalGrams.toFixed(0)} g</div>
+              <div class="stat__label">Filamento total</div></div>
+            ${analysis.purgeGrams > 0 ? `<div class="stat">
+              <div class="stat__value">${analysis.purgeGrams.toFixed(0)} g</div>
+              <div class="stat__label">Purga / troca</div></div>` : ''}
+            ${analysis.hours > 0 ? `<div class="stat">
+              <div class="stat__value" style="font-size:19px">${esc(formatHours(analysis.hours))}</div>
+              <div class="stat__label">Tempo</div></div>` : ''}
+            <div class="stat"><div class="stat__value" style="font-size:19px">${esc(formatMoney(analysis.cost.production))}</div>
+              <div class="stat__label">Custo de fabricação</div></div>
+            <div class="stat"><div class="stat__value" style="font-size:19px;color:var(--success)">${esc(formatMoney(analysis.cost.price))}</div>
+              <div class="stat__label">Preço sugerido</div></div>
+          </div>
+
+          ${analysis.blockers.noFilamentRegistered ? `
+            <div class="banner banner--warn" style="margin:0">${icon('alert', 18)}
+              <div class="small">Nenhum filamento cadastrado no estoque: o custo acima não inclui material.</div>
+              <div class="banner__actions"><a class="btn btn--sm btn--primary" href="#/estoque">Cadastrar</a></div>
+            </div>` : ''}
+
+          ${palette.length ? `
+            <div class="stack stack--sm">
+              <p class="small faint">Filamentos</p>
+              <div class="inline">
+                ${palette.map((row) => `
+                  <span class="chip chip--static">
+                    <i style="display:inline-block;width:11px;height:11px;border-radius:50%;border:1px solid var(--border);background:${esc(row.color)}"></i>
+                    ${esc(row.material)} · ${row.grams.toFixed(1)} g
+                  </span>`).join('')}
+              </div>
+            </div>` : ''}
+
+          <div class="btn-row">
+            <a class="btn btn--sm" href="#/calculadora">${icon('calculator', 15)} Calculadora</a>
+            <a class="btn btn--sm" href="#/orcamento">${icon('fileText', 15)} Gerar orçamento</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="panel">
+        <div class="panel__head">${icon('printer', 14)} Impressão</div>
+        <div class="panel__body">
+          <dl class="dl">
+            ${printer ? `<div class="dl__row"><dt>Ajustado para</dt>
+              <dd>${esc(printerLabel(printer))}</dd></div>` : ''}
+            ${analysis.slicer ? `<div class="dl__row"><dt>Fatiador</dt>
+              <dd>${esc(analysis.slicer)}</dd></div>` : ''}
+            ${analysis.nozzle ? `<div class="dl__row"><dt>Bico</dt>
+              <dd class="mono">${esc(analysis.nozzle)} mm</dd></div>` : ''}
+            ${analysis.layerHeight ? `<div class="dl__row"><dt>Camada</dt>
+              <dd class="mono">${esc(analysis.layerHeight)} mm</dd></div>` : ''}
+            <div class="dl__row"><dt>Preenchimento</dt>
+              <dd class="mono">${esc(String(analysis.infill))}%</dd></div>
+            <div class="dl__row"><dt>Volume da malha</dt>
+              <dd class="mono">${analysis.volumeCm3.toFixed(1)} cm³</dd></div>
+            <div class="dl__row"><dt>Filamentos</dt><dd>${analysis.filamentCount}</dd></div>
+          </dl>
+        </div>
+      </div>
     </div>`;
 }
 
@@ -187,7 +279,8 @@ export default async function modelView(container, ctx) {
         </p>
       </div>
       ${detailPanel(model, user)}
-    </div>`;
+    </div>
+    <div id="production" class="detail" style="margin-top:24px"></div>`;
 
   /* ---------- Favorito / compartilhar ---------- */
 
@@ -292,6 +385,8 @@ export default async function modelView(container, ctx) {
         button.classList.toggle('is-active', !!viewer.options[button.dataset.tool]);
       });
     };
+    // Sem cor no arquivo o botão não tem o que alternar.
+    if (!viewer.hasVertexColor) qs('[data-tool="showColors"]', tools)?.remove();
     syncTools();
 
     on(tools, '[data-tool]', 'click', (_ev, button) => {
@@ -309,6 +404,8 @@ export default async function modelView(container, ctx) {
       syncTools();
     });
     on(tools, '[data-action="reset"]', 'click', () => viewer.resetView());
+
+    renderProduction(geometry, model, container);
   } catch (error) {
     fail(error?.message || 'Não foi possível exibir este modelo.');
   }

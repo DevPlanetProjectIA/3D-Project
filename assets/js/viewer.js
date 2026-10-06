@@ -15,15 +15,18 @@ import { measure } from './parsers/index.js';
 const VERT_SURFACE = `
 attribute vec3 aPosition;
 attribute vec3 aNormal;
+attribute vec3 aColor;
 uniform mat4 uProjection;
 uniform mat4 uViewModel;
 uniform mat3 uNormalMatrix;
 varying vec3 vNormal;
 varying vec3 vViewPos;
+varying vec3 vColor;
 void main() {
   vec4 viewPos = uViewModel * vec4(aPosition, 1.0);
   vViewPos = viewPos.xyz;
   vNormal = uNormalMatrix * aNormal;
+  vColor = aColor;
   gl_Position = uProjection * viewPos;
 }`;
 
@@ -31,9 +34,12 @@ const FRAG_SURFACE = `
 precision mediump float;
 varying vec3 vNormal;
 varying vec3 vViewPos;
+varying vec3 vColor;
 uniform vec3 uColor;
 uniform float uOpacity;
+uniform float uUseVertexColor;
 void main() {
+  vec3 base = mix(uColor, vColor, uUseVertexColor);
   vec3 n = normalize(vNormal);
   if (!gl_FrontFacing) n = -n;
   vec3 v = normalize(-vViewPos);
@@ -47,7 +53,7 @@ void main() {
   float spec = pow(max(dot(n, halfDir), 0.0), 40.0) * 0.3;
   float rim = pow(1.0 - max(dot(n, v), 0.0), 2.8) * 0.25;
 
-  vec3 color = uColor * (0.2 + key * 0.8 + fill) + spec + rim * vec3(0.55, 0.68, 1.0);
+  vec3 color = base * (0.2 + key * 0.8 + fill) + spec + rim * vec3(0.55, 0.68, 1.0);
   gl_FragColor = vec4(color, uOpacity);
 }`;
 
@@ -131,11 +137,13 @@ export class Viewer {
       surface: {
         aPosition: gl.getAttribLocation(this.programs.surface, 'aPosition'),
         aNormal: gl.getAttribLocation(this.programs.surface, 'aNormal'),
+        aColor: gl.getAttribLocation(this.programs.surface, 'aColor'),
         uProjection: gl.getUniformLocation(this.programs.surface, 'uProjection'),
         uViewModel: gl.getUniformLocation(this.programs.surface, 'uViewModel'),
         uNormalMatrix: gl.getUniformLocation(this.programs.surface, 'uNormalMatrix'),
         uColor: gl.getUniformLocation(this.programs.surface, 'uColor'),
         uOpacity: gl.getUniformLocation(this.programs.surface, 'uOpacity'),
+        uUseVertexColor: gl.getUniformLocation(this.programs.surface, 'uUseVertexColor'),
       },
       line: {
         aPosition: gl.getAttribLocation(this.programs.line, 'aPosition'),
@@ -145,14 +153,15 @@ export class Viewer {
       },
     };
 
-    this.buffers = { position: null, normal: null, wire: null, box: null, grid: null };
+    this.buffers = { position: null, normal: null, color: null, wire: null, box: null, grid: null };
     this.counts = { vertices: 0, wire: 0, box: 0, grid: 0 };
+    this.hasVertexColor = false;
     this.geometry = null;
     this.metrics = null;
 
     this.view = { theta: Math.PI * 0.32, phi: Math.PI * 0.34, radius: 4, target: [0, 0, 0] };
     this.home = null;
-    this.options = { autoRotate, showGrid, wireframe: false, boundingBox: false };
+    this.options = { autoRotate, showGrid, wireframe: false, boundingBox: false, showColors: true };
     this.projection = mat4.create();
     this.viewMatrix = mat4.create();
     this.modelMatrix = mat4.create();
@@ -180,6 +189,7 @@ export class Viewer {
 
     this._deleteBuffer('position');
     this._deleteBuffer('normal');
+    this._deleteBuffer('color');
     this._deleteBuffer('wire');
     this._deleteBuffer('box');
 
@@ -187,6 +197,10 @@ export class Viewer {
     this.buffers.normal = this._upload(geometry.normals);
     this.counts.vertices = geometry.positions.length / 3;
     this.counts.wire = 0;
+
+    const vertexColors = geometry.colors;
+    this.hasVertexColor = !!(vertexColors && vertexColors.length === geometry.positions.length);
+    if (this.hasVertexColor) this.buffers.color = this._upload(vertexColors);
 
     // Centraliza o modelo na origem para orbitar em torno do próprio centro.
     const [cx, cy, cz] = this.metrics.center;
@@ -258,22 +272,42 @@ export class Viewer {
     this.counts.box = edges.length * 2;
   }
 
-  /** Grade no plano Z = base do modelo, com passo em potências de 10. */
+  /**
+   * Grade de referência no plano da base do modelo.
+   *
+   * O retângulo acompanha a pegada da peça com uma folga pequena, e o passo é
+   * arredondado para 1/2/5 × potência de dez. Uma grade dimensionada por
+   * potências de dez puras dava saltos de 10× e fazia uma peça achatada
+   * aparecer sob uma placa enorme.
+   */
   _buildGrid() {
     this._deleteBuffer('grid');
+    this.counts.grid = 0;
     if (!this.metrics) return;
-    const span = Math.max(this.metrics.size.x, this.metrics.size.y, 1);
-    const step = 10 ** clamp(Math.round(Math.log10(span / 8)), -3, 4);
+
+    const { x: sizeX, y: sizeY } = this.metrics.size;
+    const span = Math.max(sizeX, sizeY, 1);
+
+    // Passo "bonito" mirando cerca de 10 divisões na maior dimensão.
+    const raw = span / 10;
+    const magnitude = 10 ** Math.floor(Math.log10(raw));
+    const normalized = raw / magnitude;
+    const step = (normalized < 1.5 ? 1 : normalized < 3.5 ? 2 : normalized < 7.5 ? 5 : 10) * magnitude;
     if (!Number.isFinite(step) || step <= 0) return;
-    const half = Math.min(Math.ceil((span * 0.9) / step) * step, step * 200);
+
+    // Folga de 15% da maior dimensão, limitada a dois passos.
+    const pad = Math.min(span * 0.15, step * 2);
+    const halfX = Math.ceil((sizeX / 2 + pad) / step) * step;
+    const halfY = Math.ceil((sizeY / 2 + pad) / step) * step;
+
     const z = this.geometry.bounds.min[2];
     const lines = [];
-    for (let v = -half; v <= half + 1e-6; v += step) {
-      lines.push(-half, v, z, half, v, z);
-      lines.push(v, -half, z, v, half, z);
-    }
+    for (let v = -halfY; v <= halfY + 1e-6; v += step) lines.push(-halfX, v, z, halfX, v, z);
+    for (let v = -halfX; v <= halfX + 1e-6; v += step) lines.push(v, -halfY, z, v, halfY, z);
+
     this.buffers.grid = this._upload(new Float32Array(lines));
     this.counts.grid = lines.length / 3;
+    this.gridStep = step;
   }
 
   /* ---------- Câmera ---------- */
@@ -523,12 +557,29 @@ export class Viewer {
     gl.uniform3fv(surface.uColor, this.color);
     gl.uniform1f(surface.uOpacity, 1);
 
+    const useVertexColor = this.hasVertexColor && this.options.showColors;
+    gl.uniform1f(surface.uUseVertexColor, useVertexColor ? 1 : 0);
+
     gl.bindBuffer(gl.ARRAY_BUFFER, this.buffers.position);
     gl.enableVertexAttribArray(surface.aPosition);
     gl.vertexAttribPointer(surface.aPosition, 3, gl.FLOAT, false, 0, 0);
     gl.bindBuffer(gl.ARRAY_BUFFER, this.buffers.normal);
     gl.enableVertexAttribArray(surface.aNormal);
     gl.vertexAttribPointer(surface.aNormal, 3, gl.FLOAT, false, 0, 0);
+
+    if (surface.aColor >= 0) {
+      if (useVertexColor) {
+        gl.bindBuffer(gl.ARRAY_BUFFER, this.buffers.color);
+        gl.enableVertexAttribArray(surface.aColor);
+        gl.vertexAttribPointer(surface.aColor, 3, gl.FLOAT, false, 0, 0);
+      } else {
+        // Sem buffer de cor o atributo precisa de um valor constante, senão
+        // fica lendo o ponteiro antigo e pinta lixo.
+        gl.disableVertexAttribArray(surface.aColor);
+        gl.vertexAttrib3fv(surface.aColor, this.color);
+      }
+    }
+
     gl.drawArrays(gl.TRIANGLES, 0, this.counts.vertices);
 
     if (this.options.wireframe && this.buffers.wire) {

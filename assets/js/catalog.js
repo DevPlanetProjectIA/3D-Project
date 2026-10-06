@@ -36,7 +36,6 @@ function normalizeModel(raw, index) {
     size: Number(raw.size) || 0,
     tags: Array.isArray(raw.tags) ? raw.tags.map((t) => String(t).trim()).filter(Boolean) : [],
     author: String(raw.author || 'desconhecido'),
-    license: String(raw.license || 'Não especificada'),
     triangles: Number(raw.triangles) || 0,
     dimensions: {
       x: Number(raw.dimensions?.x) || 0,
@@ -51,6 +50,22 @@ function normalizeModel(raw, index) {
       notes: String(raw.print?.notes || ''),
     },
     createdAt: raw.createdAt || null,
+
+    /* Dados de produção apurados no envio. */
+    printerId: String(raw.printerId || ''),
+    weightGrams: Number(raw.weightGrams) || 0,
+    purgeGrams: Number(raw.purgeGrams) || 0,
+    printSeconds: Number(raw.printSeconds) || 0,
+    costBRL: Number(raw.costBRL) || 0,
+    priceBRL: Number(raw.priceBRL) || 0,
+    weightSource: raw.weightSource === 'fatiador' ? 'fatiador' : 'estimativa',
+    filaments: Array.isArray(raw.filaments)
+      ? raw.filaments.map((f) => ({
+          material: String(f.material || ''),
+          color: String(f.color || ''),
+          grams: Number(f.grams) || 0,
+        }))
+      : [],
   };
 }
 

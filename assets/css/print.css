@@ -1,0 +1,133 @@
+/*
+ * Folha exclusiva do orçamento impresso (tela de Orçamento → "Gerar PDF").
+ *
+ * O documento é montado em `#orcamento-print`, fora de `#view`. Na tela ele não
+ * aparece; na impressão escondemos a interface e deixamos só ele, em A4 sóbrio,
+ * preto no branco, para o usuário salvar como PDF pelo diálogo do navegador.
+ */
+
+#orcamento-print { display: none; }
+
+@media print {
+  @page { size: A4; margin: 14mm; }
+
+  /* Esconde a interface do aplicativo. */
+  .topbar,
+  .sidebar,
+  .toasts,
+  #modal-root,
+  #boot,
+  #view > * { display: none !important; }
+
+  html, body {
+    background: #fff !important;
+    color: #000 !important;
+    margin: 0;
+    padding: 0;
+  }
+
+  #app, #view { display: block !important; padding: 0 !important; margin: 0 !important; }
+
+  #orcamento-print {
+    display: block !important;
+    background: #fff;
+    color: #000;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.45;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  #orcamento-print .p-sheet { width: 100%; }
+
+  /* Cabeçalho: logo e dados do vendedor à esquerda, título e datas à direita. */
+  #orcamento-print .p-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10mm;
+    padding-bottom: 4mm;
+    border-bottom: 1.5pt solid #000;
+  }
+
+  #orcamento-print .p-brand { display: flex; gap: 4mm; align-items: flex-start; }
+  #orcamento-print .p-logo { max-height: 22mm; max-width: 42mm; object-fit: contain; }
+  #orcamento-print .p-seller { font-weight: 700; font-size: 12pt; }
+  #orcamento-print .p-faint { color: #444; font-size: 9.5pt; }
+
+  #orcamento-print .p-meta { text-align: right; font-size: 9.5pt; color: #333; }
+  #orcamento-print .p-meta h1 {
+    margin: 0 0 1mm;
+    font-size: 20pt;
+    letter-spacing: 1.5pt;
+    color: #000;
+  }
+
+  /* Partes envolvidas. */
+  #orcamento-print .p-party {
+    display: flex;
+    gap: 10mm;
+    margin: 6mm 0;
+  }
+  #orcamento-print .p-party > div { flex: 1; }
+  #orcamento-print .p-party h2 {
+    margin: 0 0 1.5mm;
+    font-size: 9pt;
+    text-transform: uppercase;
+    letter-spacing: .8pt;
+    color: #555;
+    border-bottom: .5pt solid #bbb;
+    padding-bottom: 1mm;
+  }
+
+  /* Tabela de itens. */
+  #orcamento-print .p-items {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 5mm;
+  }
+  #orcamento-print .p-items th {
+    text-align: left;
+    font-size: 9pt;
+    text-transform: uppercase;
+    letter-spacing: .5pt;
+    padding: 2mm 1.5mm;
+    border-bottom: 1pt solid #000;
+  }
+  #orcamento-print .p-items td {
+    padding: 2mm 1.5mm;
+    border-bottom: .5pt solid #ccc;
+    vertical-align: top;
+  }
+  #orcamento-print .p-items tr { page-break-inside: avoid; }
+  #orcamento-print .p-items .p-desc { color: #444; font-size: 9pt; }
+  #orcamento-print .p-num { text-align: right; white-space: nowrap; }
+
+  /* Totais alinhados à direita. */
+  #orcamento-print .p-totals {
+    margin-left: auto;
+    border-collapse: collapse;
+    min-width: 70mm;
+    page-break-inside: avoid;
+  }
+  #orcamento-print .p-totals td { padding: 1.2mm 1.5mm; }
+  #orcamento-print .p-totals td.p-num { text-align: right; }
+  #orcamento-print .p-totals .p-grand td {
+    font-weight: 700;
+    font-size: 13pt;
+    border-top: 1pt solid #000;
+    padding-top: 2mm;
+  }
+
+  /* Prazo, PIX e observações. */
+  #orcamento-print .p-foot {
+    margin-top: 8mm;
+    padding-top: 3mm;
+    border-top: .5pt solid #999;
+    font-size: 9.5pt;
+    color: #222;
+    page-break-inside: avoid;
+  }
+  #orcamento-print .p-notes { margin-top: 3mm; white-space: pre-wrap; }
+}
