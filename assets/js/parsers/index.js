@@ -14,11 +14,28 @@ export function formatOf(filename) {
 }
 
 /**
+ * Deduz o formato pelo conteúdo. Um 3MF é um ZIP, portanto começa com "PK\x03\x04";
+ * nenhum STL começa assim. Útil porque arquivos renomeados são comuns.
+ */
+export function sniffFormat(arrayBuffer) {
+  if (!arrayBuffer || arrayBuffer.byteLength < 4) return '';
+  const head = new Uint8Array(arrayBuffer, 0, 4);
+  const isZip = head[0] === 0x50 && head[1] === 0x4b
+    && (head[2] === 0x03 || head[2] === 0x05 || head[2] === 0x07);
+  return isZip ? '3mf' : 'stl';
+}
+
+/**
  * Interpreta um arquivo de modelo.
  * Devolve `{ positions, normals, triangles, bounds, format }`.
+ *
+ * O conteúdo tem precedência sobre a extensão: um `.stl` que é de fato um
+ * container 3MF (ou o contrário) é interpretado pelo que realmente é.
  */
 export async function parseModel(arrayBuffer, format, onProgress) {
-  const kind = format || '';
+  const sniffed = sniffFormat(arrayBuffer);
+  const kind = sniffed || format || '';
+
   if (kind === '3mf') {
     const geometry = await parse3MF(arrayBuffer, onProgress);
     return { ...geometry, format: '3mf' };

@@ -250,7 +250,7 @@ export default async function uploadView(container, ctx) {
     setFormError('');
     const format = formatOf(file.name);
     if (!format) {
-      setFormError('Formato não suportado. Envie um arquivo .stl ou .3mf.');
+      setFormError('Extensão não suportada. Envie um arquivo .stl ou .3mf.');
       return;
     }
     if (file.size > CONFIG.upload.maxBytes) {
@@ -268,7 +268,9 @@ export default async function uploadView(container, ctx) {
       state.bytes = new Uint8Array(buffer);
       state.geometry = geometry;
       state.metrics = metrics;
-      state.format = format;
+      // O formato vem do conteúdo, não da extensão: arquivos renomeados são
+      // publicados com a extensão correta.
+      state.format = geometry.format;
 
       if (!nameInput.value.trim()) {
         nameInput.value = file.name.replace(/\.(stl|3mf)$/i, '').replace(/[_-]+/g, ' ').trim();

@@ -1,10 +1,20 @@
 /*
  * Leitor de 3MF (3D Manufacturing Format).
  *
- * Um .3mf é um container OPC (ZIP) cujo modelo fica tipicamente em
- * `3D/3dmodel.model`, um XML com malhas, componentes e a lista de montagem
- * (`<build>`). Este leitor achata tudo em uma sopa de triângulos já
- * transformada, convertida para milímetros.
+ * Um .3mf é um container OPC (ZIP). O modelo principal costuma ser
+ * `3D/3dmodel.model`, mas a forma como a geometria é guardada varia bastante
+ * entre fatiadores, e este leitor cobre os três casos encontrados na prática:
+ *
+ *  1. Malha dentro do próprio `3dmodel.model` (PrusaSlicer simples, Cura).
+ *  2. Malha em partes externas `3D/Objects/*.model`, referenciadas pelo
+ *     atributo `path` da extensão de produção (Bambu Studio, Orca Slicer e
+ *     PrusaSlicer com vários objetos). Sem seguir essas referências, o modelo
+ *     principal contém apenas componentes e nenhuma geometria.
+ *  3. Elementos do core com prefixo de namespace (`<m:object>`), o que torna
+ *     a busca por nome qualificado inútil.
+ *
+ * Por isso toda consulta a elementos e atributos é feita por nome local,
+ * ignorando prefixos e namespaces.
  */
 
 import { openZip } from './zip.js';
@@ -19,29 +29,73 @@ const UNIT_TO_MM = {
   meter: 1000,
 };
 
-const REL_TYPE_MODEL = '3dmodel';
+const MAX_DEPTH = 24;
+
+/* ---------- Acesso ao XML, imune a prefixos ---------- */
+
+/** Descendentes com este nome local, em qualquer namespace. */
+const els = (root, local) => Array.from(root.getElementsByTagNameNS('*', local));
+
+/** Primeiro descendente com este nome local. */
+const el = (root, local) => root.getElementsByTagNameNS('*', local)[0] || null;
+
+/** Atributo por nome local: resolve tanto `path` quanto `p:path`. */
+function attr(node, local) {
+  const direct = node.getAttribute(local);
+  if (direct !== null) return direct;
+  for (const candidate of node.attributes) {
+    if (candidate.localName === local) return candidate.value;
+  }
+  return null;
+}
+
+/* ---------- Caminhos e partes ---------- */
+
+/** Caminhos da extensão de produção são absolutos no pacote: `/3D/Objects/a.model`. */
+const normalizePath = (path) => String(path || '').replace(/^\/+/, '');
+
+/** Carrega e interpreta uma parte XML do pacote, com cache por caminho. */
+async function loadPart(zip, path, cache) {
+  const key = normalizePath(path).toLowerCase();
+  if (!key) return null;
+  if (cache.has(key)) return cache.get(key);
+
+  const entry = zip.find((candidate) => normalizePath(candidate.name).toLowerCase() === key);
+  let doc = null;
+  if (entry) {
+    try {
+      const xml = await zip.readEntryText(entry);
+      const parsed = new DOMParser().parseFromString(xml, 'application/xml');
+      doc = parsed.getElementsByTagName('parsererror')[0] ? null : parsed;
+    } catch {
+      doc = null;
+    }
+  }
+  cache.set(key, doc);
+  return doc;
+}
 
 /** Descobre a parte principal via `_rels/.rels`, com fallback por convenção. */
 async function locateModelPart(zip) {
   try {
     const relsText = await zip.text('_rels/.rels');
     const doc = new DOMParser().parseFromString(relsText, 'application/xml');
-    for (const rel of doc.getElementsByTagName('Relationship')) {
-      const type = (rel.getAttribute('Type') || '').toLowerCase();
-      if (type.endsWith(REL_TYPE_MODEL)) {
-        const target = (rel.getAttribute('Target') || '').replace(/^\/+/, '');
-        if (target) return target;
-      }
+    for (const rel of els(doc, 'Relationship')) {
+      const type = (attr(rel, 'Type') || '').toLowerCase();
+      const target = normalizePath(attr(rel, 'Target'));
+      if (type.endsWith('3dmodel') && target) return target;
     }
   } catch {
-    // Sem .rels legível: cai no fallback.
+    // Sem .rels legível: cai no fallback por convenção.
   }
 
-  const byConvention = zip.find((e) => /^3d\/3dmodel\.model$/i.test(e.name))
+  const byConvention = zip.find((e) => /^3d\/3dmodel\.model$/i.test(normalizePath(e.name)))
     || zip.find((e) => /\.model$/i.test(e.name));
-  if (!byConvention) throw new Error('Nenhuma parte de modelo encontrada no 3MF.');
-  return byConvention.name;
+  if (!byConvention) throw new Error('Nenhuma parte de modelo (.model) encontrada dentro do 3MF.');
+  return normalizePath(byConvention.name);
 }
+
+/* ---------- Transformações ---------- */
 
 function parseTransform(value) {
   if (!value) return null;
@@ -80,121 +134,189 @@ function applyTransform(t, x, y, z) {
   ];
 }
 
-/** Extrai malha e componentes de cada `<object>` do documento. */
+/* ---------- Leitura de objetos ---------- */
+
+function readMesh(objectNode) {
+  const meshNode = el(objectNode, 'mesh');
+  if (!meshNode) return null;
+
+  const vertexNodes = els(meshNode, 'vertex');
+  const triangleNodes = els(meshNode, 'triangle');
+  if (!vertexNodes.length || !triangleNodes.length) return null;
+
+  const vertices = new Float64Array(vertexNodes.length * 3);
+  for (let i = 0; i < vertexNodes.length; i++) {
+    const node = vertexNodes[i];
+    vertices[i * 3] = Number(attr(node, 'x')) || 0;
+    vertices[i * 3 + 1] = Number(attr(node, 'y')) || 0;
+    vertices[i * 3 + 2] = Number(attr(node, 'z')) || 0;
+  }
+
+  const indices = new Uint32Array(triangleNodes.length * 3);
+  let kept = 0;
+  for (const node of triangleNodes) {
+    const v1 = Number(attr(node, 'v1'));
+    const v2 = Number(attr(node, 'v2'));
+    const v3 = Number(attr(node, 'v3'));
+    const limit = vertexNodes.length;
+    if (!(Number.isInteger(v1) && Number.isInteger(v2) && Number.isInteger(v3))) continue;
+    if (v1 < 0 || v2 < 0 || v3 < 0 || v1 >= limit || v2 >= limit || v3 >= limit) continue;
+    indices[kept * 3] = v1;
+    indices[kept * 3 + 1] = v2;
+    indices[kept * 3 + 2] = v3;
+    kept++;
+  }
+  if (!kept) return null;
+
+  return { vertices, indices: indices.subarray(0, kept * 3), triangleCount: kept };
+}
+
+/** Objetos de uma parte, indexados por id. */
 function readObjects(doc) {
   const objects = new Map();
+  const resources = el(doc, 'resources') || doc;
 
-  for (const node of doc.getElementsByTagName('object')) {
-    const id = node.getAttribute('id');
+  for (const node of els(resources, 'object')) {
+    const id = attr(node, 'id');
     if (!id) continue;
 
-    const meshNode = node.getElementsByTagName('mesh')[0];
-    let mesh = null;
-    if (meshNode) {
-      const vertexNodes = meshNode.getElementsByTagName('vertex');
-      const triangleNodes = meshNode.getElementsByTagName('triangle');
-      const vertices = new Float64Array(vertexNodes.length * 3);
-      for (let i = 0; i < vertexNodes.length; i++) {
-        const v = vertexNodes[i];
-        vertices[i * 3] = Number(v.getAttribute('x')) || 0;
-        vertices[i * 3 + 1] = Number(v.getAttribute('y')) || 0;
-        vertices[i * 3 + 2] = Number(v.getAttribute('z')) || 0;
-      }
-      const indices = new Uint32Array(triangleNodes.length * 3);
-      let kept = 0;
-      for (let i = 0; i < triangleNodes.length; i++) {
-        const t = triangleNodes[i];
-        const v1 = Number(t.getAttribute('v1'));
-        const v2 = Number(t.getAttribute('v2'));
-        const v3 = Number(t.getAttribute('v3'));
-        const limit = vertexNodes.length;
-        if (!(v1 >= 0 && v2 >= 0 && v3 >= 0 && v1 < limit && v2 < limit && v3 < limit)) continue;
-        indices[kept * 3] = v1;
-        indices[kept * 3 + 1] = v2;
-        indices[kept * 3 + 2] = v3;
-        kept++;
-      }
-      mesh = { vertices, indices: indices.subarray(0, kept * 3), triangleCount: kept };
-    }
-
     const components = [];
-    const componentsNode = node.getElementsByTagName('components')[0];
+    const componentsNode = el(node, 'components');
     if (componentsNode) {
-      for (const comp of componentsNode.getElementsByTagName('component')) {
-        const objectId = comp.getAttribute('objectid');
-        if (objectId) components.push({ objectId, transform: parseTransform(comp.getAttribute('transform')) });
+      for (const component of els(componentsNode, 'component')) {
+        const objectId = attr(component, 'objectid');
+        if (!objectId) continue;
+        components.push({
+          objectId,
+          // `path` só existe na extensão de produção, e é o que aponta para
+          // a parte externa onde a malha realmente está.
+          path: normalizePath(attr(component, 'path')),
+          transform: parseTransform(attr(component, 'transform')),
+        });
       }
     }
 
-    objects.set(id, { id, mesh, components });
+    objects.set(String(id), { id: String(id), mesh: readMesh(node), components });
   }
 
   return objects;
 }
 
-/** Itens de montagem; na ausência de `<build>`, usa todo objeto com malha. */
-function readBuildItems(doc, objects) {
-  const items = [];
-  const buildNode = doc.getElementsByTagName('build')[0];
-  if (buildNode) {
-    for (const item of buildNode.getElementsByTagName('item')) {
-      const objectId = item.getAttribute('objectid');
-      if (objectId && objects.has(objectId)) {
-        items.push({ objectId, transform: parseTransform(item.getAttribute('transform')) });
-      }
-    }
-  }
-  if (!items.length) {
-    for (const [id, obj] of objects) {
-      if (obj.mesh?.triangleCount) items.push({ objectId: id, transform: null });
-    }
-  }
-  return items;
+/* ---------- Montagem ---------- */
+
+/** Itens de `<build>` da parte principal. */
+function readBuildItems(doc) {
+  const buildNode = el(doc, 'build');
+  if (!buildNode) return [];
+  return els(buildNode, 'item')
+    .map((item) => ({
+      objectId: attr(item, 'objectid'),
+      path: normalizePath(attr(item, 'path')),
+      transform: parseTransform(attr(item, 'transform')),
+    }))
+    .filter((item) => item.objectId);
 }
 
-/** Percorre a árvore de objetos acumulando transformações. */
-function collectMeshes(objects, items) {
+/**
+ * Percorre a árvore de objetos acumulando transformações e atravessando
+ * referências a partes externas.
+ */
+async function collectMeshes(zip, mainPart, items, partCache) {
+  const objectCache = new Map();
   const out = [];
-  const visit = (objectId, transform, depth, chain) => {
-    if (depth > 24 || chain.has(objectId)) return;
-    const obj = objects.get(objectId);
-    if (!obj) return;
-    if (obj.mesh?.triangleCount) out.push({ mesh: obj.mesh, transform });
-    if (obj.components.length) {
-      const nextChain = new Set(chain).add(objectId);
-      for (const comp of obj.components) {
-        visit(comp.objectId, composeTransform(comp.transform, transform), depth + 1, nextChain);
+
+  const objectsOf = async (partPath) => {
+    const key = partPath.toLowerCase();
+    if (objectCache.has(key)) return objectCache.get(key);
+    const doc = await loadPart(zip, partPath, partCache);
+    const map = doc ? readObjects(doc) : new Map();
+    objectCache.set(key, map);
+    return map;
+  };
+
+  const visit = async (partPath, objectId, transform, depth, chain) => {
+    const key = `${partPath.toLowerCase()}#${objectId}`;
+    if (depth > MAX_DEPTH || chain.has(key)) return;
+
+    const objects = await objectsOf(partPath);
+    const object = objects.get(String(objectId));
+    if (!object) return;
+
+    if (object.mesh) out.push({ mesh: object.mesh, transform });
+
+    if (object.components.length) {
+      const nextChain = new Set(chain).add(key);
+      for (const component of object.components) {
+        await visit(
+          component.path || partPath,
+          component.objectId,
+          composeTransform(component.transform, transform),
+          depth + 1,
+          nextChain,
+        );
       }
     }
   };
-  for (const item of items) visit(item.objectId, item.transform, 0, new Set());
+
+  for (const item of items) {
+    await visit(item.path || mainPart, item.objectId, item.transform, 0, new Set());
+  }
   return out;
 }
+
+/**
+ * Último recurso: varre todas as partes `.model` do pacote e aceita qualquer
+ * malha encontrada, sem transformações. Cobre arquivos cuja lista de montagem
+ * está ausente, vazia ou aponta para ids que não existem.
+ */
+async function collectEveryMesh(zip, partCache) {
+  const out = [];
+  for (const entry of zip.entries) {
+    if (!/\.model$/i.test(entry.name)) continue;
+    const doc = await loadPart(zip, entry.name, partCache);
+    if (!doc) continue;
+    for (const object of readObjects(doc).values()) {
+      if (object.mesh) out.push({ mesh: object.mesh, transform: null });
+    }
+  }
+  return out;
+}
+
+/* ---------- Entrada ---------- */
 
 /** Interpreta um ArrayBuffer de 3MF. Mesma forma de saída do leitor de STL. */
 export async function parse3MF(arrayBuffer, onProgress) {
   const zip = openZip(arrayBuffer);
-  const partName = await locateModelPart(zip);
-  onProgress?.(0.2);
+  const partCache = new Map();
 
-  const xml = await zip.text(partName);
-  onProgress?.(0.45);
+  const mainPart = await locateModelPart(zip);
+  onProgress?.(0.15);
 
-  const doc = new DOMParser().parseFromString(xml, 'application/xml');
-  const parseError = doc.getElementsByTagName('parsererror')[0];
-  if (parseError) throw new Error('XML do 3MF inválido.');
+  const mainDoc = await loadPart(zip, mainPart, partCache);
+  if (!mainDoc) throw new Error(`A parte "${mainPart}" não é um XML válido.`);
+  onProgress?.(0.35);
 
-  const modelNode = doc.getElementsByTagName('model')[0];
-  const unit = (modelNode?.getAttribute('unit') || 'millimeter').toLowerCase();
+  const modelNode = el(mainDoc, 'model');
+  const unit = (attr(modelNode || mainDoc.documentElement, 'unit') || 'millimeter').toLowerCase();
   const scale = UNIT_TO_MM[unit] ?? 1;
 
-  const objects = readObjects(doc);
-  if (!objects.size) throw new Error('3MF sem objetos.');
+  const items = readBuildItems(mainDoc);
+  let meshes = await collectMeshes(zip, mainPart, items, partCache);
+  onProgress?.(0.55);
 
-  const items = readBuildItems(doc, objects);
-  const meshes = collectMeshes(objects, items);
-  if (!meshes.length) throw new Error('3MF sem malhas na lista de montagem.');
-  onProgress?.(0.6);
+  if (!meshes.length) {
+    // A montagem não levou a nenhuma malha: tenta o pacote inteiro.
+    meshes = await collectEveryMesh(zip, partCache);
+  }
+
+  if (!meshes.length) {
+    const parts = zip.entries.filter((e) => /\.model$/i.test(e.name)).length;
+    const objects = readObjects(mainDoc).size;
+    throw new Error(
+      `3MF sem geometria utilizável: ${parts} parte(s) .model, ${objects} objeto(s) e `
+      + `${items.length} item(ns) de montagem, nenhum com malha legível.`,
+    );
+  }
 
   const triangles = meshes.reduce((sum, m) => sum + m.mesh.triangleCount, 0);
   const positions = new Float32Array(triangles * 9);
@@ -228,16 +350,14 @@ export async function parse3MF(arrayBuffer, onProgress) {
         normals[o + k * 3 + 1] = ny;
         normals[o + k * 3 + 2] = nz;
 
-        if (corners[k][0] < bounds.min[0]) bounds.min[0] = corners[k][0];
-        if (corners[k][1] < bounds.min[1]) bounds.min[1] = corners[k][1];
-        if (corners[k][2] < bounds.min[2]) bounds.min[2] = corners[k][2];
-        if (corners[k][0] > bounds.max[0]) bounds.max[0] = corners[k][0];
-        if (corners[k][1] > bounds.max[1]) bounds.max[1] = corners[k][1];
-        if (corners[k][2] > bounds.max[2]) bounds.max[2] = corners[k][2];
+        for (let axis = 0; axis < 3; axis++) {
+          if (corners[k][axis] < bounds.min[axis]) bounds.min[axis] = corners[k][axis];
+          if (corners[k][axis] > bounds.max[axis]) bounds.max[axis] = corners[k][axis];
+        }
       }
       writeIndex++;
     }
-    onProgress?.(0.6 + 0.4 * (writeIndex / triangles));
+    onProgress?.(0.55 + 0.45 * (writeIndex / triangles));
   }
 
   return {

@@ -34,9 +34,12 @@ export const CONFIG = {
     models: 'models',
   },
 
-  /** Limites de upload. 100 MB é o teto da API de conteúdo do GitHub; 25 MB é o limite prático. */
+  /**
+   * Limites de upload. A API de conteúdo do GitHub aceita até 100 MB, mas o
+   * corpo vai em base64 (+33%), então o limite prático fica bem abaixo disso.
+   */
   upload: {
-    maxBytes: 25 * 1024 * 1024,
+    maxBytes: 45 * 1024 * 1024,
     accept: ['.stl', '.3mf'],
   },
 

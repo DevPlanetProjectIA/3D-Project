@@ -130,12 +130,32 @@ function parseAscii(text, onProgress) {
   };
 }
 
-/** Interpreta um ArrayBuffer de STL (detecta binário ou ASCII automaticamente). */
+/**
+ * Interpreta um ArrayBuffer de STL.
+ *
+ * A heurística binário/ASCII erra em arquivos reais: há exportadores que
+ * escrevem "solid <nome>" nos 80 bytes de cabeçalho de um STL binário, e há
+ * arquivos binários com bytes de contagem inconsistentes. Por isso, quando o
+ * dialeto escolhido falha, o outro é tentado antes de desistir.
+ */
 export function parseSTL(buffer, onProgress) {
   if (!buffer || buffer.byteLength < 15) throw new Error('Arquivo STL vazio ou truncado.');
-  if (isBinarySTL(buffer)) return parseBinary(buffer, onProgress);
-  const text = new TextDecoder('utf-8', { fatal: false }).decode(buffer);
-  return parseAscii(text, onProgress);
+
+  const binaryFirst = isBinarySTL(buffer);
+  const asText = () => new TextDecoder('utf-8', { fatal: false }).decode(buffer);
+  const attempts = binaryFirst
+    ? [['binário', () => parseBinary(buffer, onProgress)], ['ASCII', () => parseAscii(asText(), onProgress)]]
+    : [['ASCII', () => parseAscii(asText(), onProgress)], ['binário', () => parseBinary(buffer, onProgress)]];
+
+  const failures = [];
+  for (const [label, run] of attempts) {
+    try {
+      return run();
+    } catch (error) {
+      failures.push(`${label}: ${error.message}`);
+    }
+  }
+  throw new Error(`Não foi possível interpretar o STL (${failures.join('; ')}).`);
 }
 
 export default parseSTL;
