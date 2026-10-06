@@ -7,6 +7,7 @@ import * as gh from '../github.js';
 import { parseModel, measure, formatOf } from '../parsers/index.js';
 import { Viewer, renderThumbnail } from '../viewer.js';
 import { analyze, toCatalogFields } from '../production.js';
+import { parseSlicedFile, isSlicedFilename } from '../parsers/gcode.js';
 import { printersByBrand, getPrinter, printerLabel, exceedsBed } from '../printers.js';
 import { MATERIALS } from '../filaments.js';
 import { filaments as stockFilaments } from '../inventory.js';
@@ -53,6 +54,9 @@ export default async function uploadView(container, ctx) {
     metrics: null,
     tags: [],
     thumb: null,
+    /** Fatiamento medido, quando um G-code é enviado junto. */
+    slice: null,
+    sliceName: '',
   };
   let viewer = null;
 
@@ -76,6 +80,29 @@ export default async function uploadView(container, ctx) {
           <small>.stl ou .3mf — até ${formatBytes(CONFIG.upload.maxBytes)}</small>
         </div>
         <input type="file" id="file" accept=".stl,.3mf,model/stl,model/3mf" hidden>
+
+        <div class="panel" id="sliced-panel">
+          <div class="panel__head">${icon('layers', 14)} Dados do fatiamento
+            <span class="toolbar__spacer"></span>
+            <span class="chip chip--static">opcional</span>
+          </div>
+          <div class="panel__body">
+            <p class="small faint">Envie também o <strong>G-code fatiado</strong> e o peso, o tempo
+              e a purga passam a ser os <strong>medidos pelo seu fatiador</strong>, não estimados.
+              Aceita <span class="mono">.gcode</span>, <span class="mono">.gcode.3mf</span> e
+              projeto já fatiado. O arquivo só é lido aqui — não vai para o repositório.</p>
+            <input type="file" id="sliced-file" accept=".gcode,.gco,.g,.3mf" hidden>
+            <div class="btn-row">
+              <button class="btn btn--sm" type="button" id="pick-sliced">
+                ${icon('upload', 15)} Escolher G-code
+              </button>
+              <button class="btn btn--sm" type="button" id="clear-sliced" hidden>
+                ${icon('x', 15)} Remover
+              </button>
+            </div>
+            <div id="sliced-status"></div>
+          </div>
+        </div>
 
         <div id="preview" hidden>
           <div class="viewer" id="preview-stage"></div>
@@ -377,11 +404,12 @@ export default async function uploadView(container, ctx) {
       infillPercent: qs('#infill', container)?.value,
       hours: qs('#printHours', container)?.value,
       minutes: qs('#printMinutes', container)?.value,
+      slice: state.slice,
     });
     state.analysis = analysis;
 
     const { cost, blockers } = analysis;
-    const measured = analysis.source === 'fatiador';
+    const measured = analysis.measured;
     const printer = getPrinter(printerId);
     const tooBig = printer && exceedsBed(printer, analysis.metrics.size);
 
@@ -421,10 +449,16 @@ export default async function uploadView(container, ctx) {
     if (!measured) {
       avisos.push(`
         <div class="banner banner--info">${icon('info', 18)}
-          <div class="small"><strong>Peso estimado</strong> pelo volume da malha
-            (${analysis.volumeCm3.toFixed(1)} cm³ a ${esc(String(analysis.infill))}% de preenchimento).
-            O arquivo não foi fatiado, então não traz o consumo real. Fatie no seu slicer e
-            reenvie o 3MF salvo por ele para ter gramas medidos.</div>
+          <div>
+            <strong>Peso estimado</strong>, não medido
+            <div class="small">Calculado pela geometria: ${analysis.volumeCm3.toFixed(1)} cm³ de
+              volume, casca de ${analysis.shellCm3.toFixed(1)} cm³ e núcleo a
+              ${esc(String(analysis.infill))}% — ${Math.round(analysis.solidRatio * 100)}% do volume
+              vira material. Serve para ordem de grandeza, não para fechar preço.</div>
+            <div class="small" style="margin-top:6px"><strong>Para ter o número exato:</strong>
+              fatie no seu slicer, exporte o G-code e envie no campo
+              <em>Dados do fatiamento</em> acima.</div>
+          </div>
         </div>`);
     }
 
@@ -433,7 +467,10 @@ export default async function uploadView(container, ctx) {
       <div class="panel">
         <div class="panel__head">${icon('coins', 14)} Produção e custo
           <span class="toolbar__spacer"></span>
-          <span class="chip chip--static">${measured ? 'medido pelo fatiador' : 'estimado'}</span>
+          <span class="chip chip--static">${
+            analysis.source === 'gcode' ? 'medido no G-code'
+            : analysis.source === 'fatiador' ? 'medido pelo fatiador'
+            : 'estimado'}</span>
         </div>
         <div class="panel__body">
           <dl class="dl">
@@ -559,6 +596,79 @@ export default async function uploadView(container, ctx) {
       setBusy(publishButton, false);
     }
   });
+
+  /* ---------- Arquivo fatiado ---------- */
+
+  const slicedInput = qs('#sliced-file', container);
+  const slicedStatus = qs('#sliced-status', container);
+  const clearSliced = qs('#clear-sliced', container);
+
+  function renderSlicedStatus(error) {
+    if (error) {
+      slicedStatus.innerHTML = `<div class="banner banner--danger" style="margin:8px 0 0">
+        ${icon('alert', 18)}<div class="small">${esc(error)}</div></div>`;
+      clearSliced.hidden = true;
+      return;
+    }
+    if (!state.slice) { slicedStatus.innerHTML = ''; clearSliced.hidden = true; return; }
+
+    const s = state.slice;
+    slicedStatus.innerHTML = `
+      <div class="banner banner--info" style="margin:8px 0 0">${icon('checkCircle', 18)}
+        <div class="small">
+          <strong>${esc(state.sliceName)}</strong> lido${s.slicer ? ` (${esc(s.slicer)})` : ''}.
+          ${s.grams ? `${s.grams.toFixed(1)} g` : 'sem peso declarado'}${
+            s.seconds ? ` · ${esc(formatHours(s.seconds / 3600))}` : ''}${
+            s.filaments.length > 1 ? ` · ${s.filaments.length} filamentos` : ''}${
+            s.purge?.grams ? ` · purga ${s.purge.grams.toFixed(1)} g` : ''}
+        </div>
+      </div>`;
+    clearSliced.hidden = false;
+  }
+
+  qs('#pick-sliced', container).addEventListener('click', () => slicedInput.click());
+
+  slicedInput.addEventListener('change', async () => {
+    const file = slicedInput.files?.[0];
+    if (!file) return;
+    slicedStatus.innerHTML = `<p class="small faint" style="margin-top:8px">Lendo ${esc(file.name)}…</p>`;
+    try {
+      const slice = await parseSlicedFile(file);
+      if (!slice.sliced) {
+        throw new Error('O arquivo não traz consumo nem tempo. Confirme que é o G-code gerado após '
+          + 'fatiar, e não o projeto apenas salvo.');
+      }
+      state.slice = slice;
+      state.sliceName = file.name;
+      renderSlicedStatus();
+      renderProduction();
+      toast(`Fatiamento lido: ${slice.grams.toFixed(1)} g medidos.`, { type: 'success' });
+    } catch (error) {
+      state.slice = null;
+      state.sliceName = '';
+      renderSlicedStatus(error?.message || 'Não foi possível ler o arquivo.');
+      renderProduction();
+    }
+  });
+
+  clearSliced.addEventListener('click', () => {
+    state.slice = null;
+    state.sliceName = '';
+    slicedInput.value = '';
+    renderSlicedStatus();
+    renderProduction();
+  });
+
+  // Arrastar um G-code sobre a área do arquivo também funciona.
+  dropzone.addEventListener('drop', async (event) => {
+    const file = event.dataTransfer?.files?.[0];
+    if (file && isSlicedFilename(file.name)) {
+      event.preventDefault();
+      event.stopPropagation();
+      slicedInput.files = event.dataTransfer.files;
+      slicedInput.dispatchEvent(new Event('change'));
+    }
+  }, true);
 
   // Qualquer parâmetro que entre no custo refaz a análise.
   ['#printer', '#material', '#infill', '#printHours', '#printMinutes'].forEach((selector) => {

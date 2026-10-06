@@ -152,7 +152,7 @@ function renderProduction(geometry, model, container) {
     hours: model.printSeconds ? model.printSeconds / 3600 : 0,
   });
 
-  const measured = analysis.source === 'fatiador';
+  const measured = analysis.measured;
   const printer = getPrinter(model.printerId);
   const palette = analysis.usage.filter((row) => row.color);
 
@@ -161,7 +161,10 @@ function renderProduction(geometry, model, container) {
       <div class="panel">
         <div class="panel__head">${icon('coins', 14)} Produção
           <span class="toolbar__spacer"></span>
-          <span class="chip chip--static">${measured ? 'medido pelo fatiador' : 'estimado pelo volume'}</span>
+          <span class="chip chip--static">${
+            analysis.source === 'gcode' ? 'medido no G-code'
+            : analysis.source === 'fatiador' ? 'medido pelo fatiador'
+            : 'estimado pelo volume'}</span>
         </div>
         <div class="panel__body">
           <div class="stats" style="margin:0">

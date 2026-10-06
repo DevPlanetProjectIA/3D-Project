@@ -70,24 +70,65 @@ export function volumeOf(geometry) {
   return Math.abs(total) / 6;
 }
 
+/** Área total da superfície da malha, em mm². */
+export function surfaceAreaOf(geometry) {
+  const p = geometry.positions;
+  let total = 0;
+  for (let i = 0; i < p.length; i += 9) {
+    const ux = p[i + 3] - p[i], uy = p[i + 4] - p[i + 1], uz = p[i + 5] - p[i + 2];
+    const vx = p[i + 6] - p[i], vy = p[i + 7] - p[i + 1], vz = p[i + 8] - p[i + 2];
+    total += Math.hypot(
+      uy * vz - uz * vy,
+      uz * vx - ux * vz,
+      ux * vy - uy * vx,
+    );
+  }
+  return total / 2;
+}
+
 /**
- * Estima o peso impresso a partir do volume da malha.
+ * Estima o peso impresso a partir da geometria.
  *
- * Só é usada quando o arquivo não traz os dados do fatiador. O fator sólido
- * aproxima paredes, topo e base somados ao preenchimento: a 100% de
- * preenchimento a peça é maciça; a 20%, cerca de 45% do volume vira material.
- * É uma heurística — a interface sempre rotula o resultado como estimativa.
+ * Modelo de casca e núcleo: a casca consome `área × espessura de parede` — e a
+ * área da malha já conta as duas faces, o que é exatamente o volume da casca de
+ * um sólido fechado. O que sobra por dentro é preenchido na densidade escolhida:
+ *
+ *     material = casca + (volume − casca) × preenchimento
+ *
+ * A casca é limitada ao volume total, e é isso que faz o modelo acertar as peças
+ * finas. Uma bola de natal de 2,3 mm de espessura é quase toda parede, topo e
+ * base: a casca estoura o volume, o resultado vira maciço, e é o que a impressora
+ * realmente faz. O fator único anterior (preenchimento + 0,25) subestimava essas
+ * peças pela metade.
+ *
+ * Continua sendo estimativa: não substitui fatiar.
  */
-export function estimateWeight({ volumeMm3, boxVolumeMm3 = 0, density = 1.24, infillPercent = 20 }) {
+export function estimateWeight({
+  volumeMm3,
+  areaMm2 = 0,
+  boxVolumeMm3 = 0,
+  density = 1.24,
+  infillPercent = 20,
+  wallThickness = 0.8,
+}) {
   // Volume maior que a caixa envolvente denuncia malha aberta ou invertida.
   const sane = boxVolumeMm3 > 0 && volumeMm3 > boxVolumeMm3 * 1.02 ? 0 : volumeMm3;
-  const volumeCm3 = sane / 1000;
   const infill = Math.min(100, Math.max(0, infillPercent)) / 100;
-  const solidRatio = Math.min(1, infill + 0.25);
+
+  const shell = areaMm2 > 0 ? Math.min(sane, areaMm2 * Math.max(0.1, wallThickness)) : 0;
+  const core = Math.max(0, sane - shell);
+  const materialMm3 = areaMm2 > 0
+    ? shell + core * infill
+    // Sem área (não deveria acontecer): cai no fator antigo.
+    : sane * Math.min(1, infill + 0.25);
+
   return {
-    volumeCm3,
-    solidRatio,
-    grams: volumeCm3 * density * solidRatio,
+    volumeCm3: sane / 1000,
+    areaCm2: areaMm2 / 100,
+    shellCm3: shell / 1000,
+    /** Fração do volume que vira material — útil para explicar o número. */
+    solidRatio: sane > 0 ? materialMm3 / sane : 0,
+    grams: (materialMm3 / 1000) * density,
     reliable: sane > 0,
   };
 }
