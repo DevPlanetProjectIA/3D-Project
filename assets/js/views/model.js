@@ -145,7 +145,7 @@ function detailPanel(model, user) {
 }
 
 /** Dados de produção: peso, purga, filamentos e custo com o estoque atual. */
-function renderProduction(geometry, model, container) {
+function renderProduction(geometry, model, container, excludeSlots = []) {
   const slot = qs('#production', container);
   if (!slot) return;
 
@@ -154,11 +154,15 @@ function renderProduction(geometry, model, container) {
     material: model.print?.material,
     infillPercent: parseFloat(model.print?.infill) || 20,
     hours: model.printSeconds ? model.printSeconds / 3600 : 0,
+    excludeSlots,
   });
 
   const measured = analysis.measured;
   const printer = getPrinter(model.printerId);
   const palette = analysis.usage.filter((row) => row.color);
+  const fora = new Set(analysis.excludedSlots);
+  const removidos = analysis.declaredFilaments.filter((f) => fora.has(f.slot));
+  const redesenha = (lista) => renderProduction(geometry, model, container, lista);
 
   slot.innerHTML = `
     <div>
@@ -200,8 +204,19 @@ function renderProduction(geometry, model, container) {
                   <span class="chip chip--static">
                     <i style="display:inline-block;width:11px;height:11px;border-radius:50%;border:1px solid var(--border);background:${esc(row.color)}"></i>
                     ${esc(row.material)} · ${row.grams.toFixed(1)} g
+                    <button class="btn btn--ghost btn--icon btn--sm" type="button" data-drop="${row.slot}"
+                            title="Tirar este filamento do projeto"
+                            aria-label="Tirar ${esc(row.material)} do projeto">${icon('x', 13)}</button>
                   </span>`).join('')}
               </div>
+              ${removidos.length ? `
+                <p class="small faint">Fora do projeto:
+                  ${removidos.map((f) => `
+                    <button class="chip" type="button" data-restore="${f.slot}" title="Devolver ao projeto">
+                      <i style="display:inline-block;width:10px;height:10px;border-radius:50%;border:1px solid var(--border);background:${esc(f.color || '#ffffff')}"></i>
+                      ${esc(f.material)} ${icon('plus', 12)}
+                    </button>`).join(' ')}
+                </p>` : ''}
             </div>` : ''}
 
           <div class="btn-row">
@@ -242,8 +257,27 @@ function renderProduction(geometry, model, container) {
   // o saldo mudou, e com ele o custo e os avisos de falta.
   qs('#print-now', slot)?.addEventListener('click', async () => {
     const done = await openPrintDialog(analysis, { title: `Imprimir ${model.name}` });
-    if (done) renderProduction(geometry, model, container);
+    if (done) redesenha(analysis.excludedSlots);
   });
+
+  // A lista de filamentos do arquivo é o que estava carregado na impressora;
+  // um slot pode não entrar nesta peça.
+  //
+  // Os ouvintes vão nos próprios botões, não delegados no painel: este painel é
+  // redesenhado por recursão, e um ouvinte delegado sobreviveria a cada ciclo
+  // carregando uma análise já velha.
+  qsa('[data-drop]', slot).forEach((botao) => botao.addEventListener('click', () => {
+    if (analysis.usage.length <= 1) {
+      toast('A peça precisa de pelo menos um filamento.', { type: 'warn' });
+      return;
+    }
+    redesenha([...new Set([...analysis.excludedSlots, Number(botao.dataset.drop)])]);
+  }));
+
+  qsa('[data-restore]', slot).forEach((botao) => botao.addEventListener('click', () => {
+    const ignorado = Number(botao.dataset.restore);
+    redesenha(analysis.excludedSlots.filter((s) => s !== ignorado));
+  }));
 }
 
 export default async function modelView(container, ctx) {

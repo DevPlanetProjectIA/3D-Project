@@ -427,6 +427,10 @@ function resolveColors(meshes, slice) {
   const filamentColors = (slice?.filaments || []).map((f) => f.color);
   const extruderByObject = slice?.extruderByObject || null;
   const used = new Map();
+  // Slots de filamento que a geometria realmente usa. A lista de filamentos do
+  // projeto é o que está carregado na impressora, não o que a peça consome: um
+  // 3MF do Bambu costuma declarar os quatro slots do AMS e usar três.
+  const usedSlots = new Set();
 
   const register = (hex) => {
     const value = normalizeHex(hex);
@@ -444,10 +448,14 @@ function resolveColors(meshes, slice) {
 
     let objectHex = lookup(entry.pid, entry.pindex);
 
-    if (!objectHex && extruderByObject) {
+    if (extruderByObject) {
       const extruder = extruderByObject.get(entry.objectId);
       if (Number.isFinite(extruder) && extruder > 0) {
-        objectHex = filamentColors[extruder - 1] || '';
+        usedSlots.add(extruder);
+        if (!objectHex) objectHex = filamentColors[extruder - 1] || '';
+      } else {
+        // Sem atribuição explícita a parte sai no primeiro filamento.
+        usedSlots.add(1);
       }
     }
     register(objectHex);
@@ -462,6 +470,7 @@ function resolveColors(meshes, slice) {
         // A pintura manual tem precedência: é a decisão mais recente de quem
         // preparou a peça, e sobrepõe a cor herdada da extrusora da parte.
         const slot = triPaint ? triPaint[t] : 0;
+        if (slot > 0) usedSlots.add(slot);
         let hex = slot > 0 ? (filamentColors[slot - 1] || '') : '';
 
         if (!hex && triPid && triIndex) {
@@ -483,7 +492,30 @@ function resolveColors(meshes, slice) {
   });
 
   const hasColor = [...used.keys()].length > 0;
-  return { plans, hasColor, palette: [...used.keys()] };
+  return { plans, hasColor, palette: [...used.keys()], usedSlots };
+}
+
+/**
+ * Reduz a lista de filamentos ao que a peça consome.
+ *
+ * Num 3MF só de projeto, `filament_colour` lista o que está carregado na
+ * impressora. Orçar por essa lista cobra material que não entra na peça — e foi
+ * de onde vinha o vermelho que ninguém usava.
+ *
+ * Num 3MF fatiado quem manda são as gramas medidas: slot sem consumo não é
+ * filamento da peça, é slot carregado.
+ */
+function narrowFilaments(slice, usedSlots) {
+  const lista = slice?.filaments;
+  if (!lista?.length) return slice;
+
+  const medido = slice.sliced && lista.some((f) => f.grams > 0);
+  const manter = medido
+    ? lista.filter((f) => f.grams > 0)
+    : (usedSlots.size ? lista.filter((f) => usedSlots.has(f.slot + 1)) : lista);
+
+  if (!manter.length || manter.length === lista.length) return slice;
+  return { ...slice, filaments: manter };
 }
 
 /* ---------- Entrada ---------- */
@@ -538,8 +570,9 @@ export async function parse3MF(arrayBuffer, onProgress) {
     );
   }
 
-  const slice = await slicePromise;
-  const { plans, hasColor, palette } = resolveColors(meshes, slice);
+  const sliceBruto = await slicePromise;
+  const { plans, hasColor, palette, usedSlots } = resolveColors(meshes, sliceBruto);
+  const slice = narrowFilaments(sliceBruto, usedSlots);
 
   const triangles = meshes.reduce((sum, m) => sum + m.mesh.triangleCount, 0);
   const positions = new Float32Array(triangles * 9);

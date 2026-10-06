@@ -28,7 +28,14 @@ export function analyze(geometry, opts = {}) {
   const metrics = measure(geometry);
   // `opts.slice` permite injetar o fatiamento vindo de um G-code enviado à
   // parte, que é mais preciso que o embutido no 3MF: inclui a purga real.
-  const slice = opts.slice || geometry.slice || null;
+  const bruto = opts.slice || geometry.slice || null;
+  // `excludeSlots` deixa a tela tirar um filamento do projeto à mão. A lista do
+  // arquivo descreve o que está carregado na impressora; só quem está olhando a
+  // peça sabe se um slot realmente entra nela.
+  const excluidos = new Set((opts.excludeSlots || []).map(Number));
+  const slice = bruto && excluidos.size && bruto.filaments?.length
+    ? { ...bruto, filaments: bruto.filaments.filter((f) => !excluidos.has(Number(f.slot))) }
+    : bruto;
   const sliced = !!slice?.sliced;
 
   /* ---------- Filamentos e gramas ---------- */
@@ -66,7 +73,7 @@ export function analyze(geometry, opts = {}) {
     // Cores do perfil sem consumo ainda ajudam: distribui o peso igualmente.
     const slots = slice?.filaments?.length || 1;
     usage = Array.from({ length: slots }, (_, i) => ({
-      slot: i,
+      slot: slice?.filaments?.[i]?.slot ?? i,
       material,
       rawMaterial: slice?.filaments?.[i]?.material || material,
       color: slice?.filaments?.[i]?.color || (geometry.palette || [])[i] || '',
@@ -170,6 +177,15 @@ export function analyze(geometry, opts = {}) {
 
     printer,
     cost,
+
+    /** Filamentos do arquivo, antes de qualquer exclusão da tela. */
+    declaredFilaments: (bruto?.filaments || []).map((f) => ({
+      slot: Number(f.slot),
+      material: normalizeMaterial(f.material),
+      color: f.color || '',
+      grams: f.grams || 0,
+    })),
+    excludedSlots: [...excluidos],
 
     /** Pendências que impedem um custo confiável. */
     blockers: {

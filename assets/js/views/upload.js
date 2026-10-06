@@ -76,6 +76,8 @@ export default async function uploadView(container, ctx) {
     thumb: null,
     /** Fatiamento medido, quando um G-code é enviado junto. */
     slice: null,
+    /** Slots de filamento que o usuário tirou do projeto nesta tela. */
+    excludeSlots: [],
     sliceName: '',
   };
   let viewer = null;
@@ -338,6 +340,8 @@ export default async function uploadView(container, ctx) {
       state.bytes = new Uint8Array(buffer);
       state.geometry = geometry;
       state.metrics = metrics;
+      // Outro arquivo, outros slots: a exclusão feita à mão não se transfere.
+      state.excludeSlots = [];
       // O formato vem do conteúdo, não da extensão: arquivos renomeados são
       // publicados com a extensão correta.
       state.format = geometry.format;
@@ -367,6 +371,7 @@ export default async function uploadView(container, ctx) {
   function resetDropzone() {
     state.file = null;
     state.geometry = null;
+    state.excludeSlots = [];
     publishButton.disabled = true;
     preview.hidden = true;
     dropzone.innerHTML = `${icon('upload', 32)}<strong>Arraste um arquivo ou clique para escolher</strong>
@@ -440,6 +445,24 @@ export default async function uploadView(container, ctx) {
 
   const productionSlot = qs('#production', container);
 
+  // Tirar e devolver filamento do projeto. A lista do arquivo descreve o que
+  // está carregado na impressora, e um slot pode não entrar nesta peça.
+  // Delegado uma única vez: renderProduction refaz o HTML a cada campo mexido.
+  on(productionSlot, '[data-drop]', 'click', (ev, botao) => {
+    if ((state.analysis?.usage.length || 0) <= 1) {
+      toast('A peça precisa de pelo menos um filamento.', { type: 'warn' });
+      return;
+    }
+    state.excludeSlots = [...new Set([...state.excludeSlots, Number(botao.dataset.drop)])];
+    renderProduction();
+  });
+
+  on(productionSlot, '[data-restore]', 'click', (ev, botao) => {
+    const slot = Number(botao.dataset.restore);
+    state.excludeSlots = state.excludeSlots.filter((s) => s !== slot);
+    renderProduction();
+  });
+
   /** Linha de filamento: o que o arquivo pede × o que existe no estoque. */
   function usageRow(row) {
     const swatch = row.color
@@ -459,6 +482,9 @@ export default async function uploadView(container, ctx) {
           ${row.shortage > 0 ? `<span class="row__sub" style="color:var(--warning)">faltam ${row.shortage.toFixed(0)} g no estoque</span>` : ''}
         </span>
         <span class="nowrap mono small">${row.cost > 0 ? esc(formatMoney(row.cost)) : '—'}</span>
+        <button class="btn btn--ghost btn--icon btn--sm" type="button" data-drop="${row.slot}"
+                title="Tirar este filamento do projeto"
+                aria-label="Tirar ${esc(row.material)} do projeto">${icon('x', 15)}</button>
       </div>`;
   }
 
@@ -472,12 +498,15 @@ export default async function uploadView(container, ctx) {
       infillPercent: qs('#infill', container)?.value,
       hours: qs('#printHours', container)?.value,
       minutes: qs('#printMinutes', container)?.value,
+      excludeSlots: state.excludeSlots,
       slice: state.slice,
     });
     state.analysis = analysis;
 
     const { cost, blockers } = analysis;
     const measured = analysis.measured;
+    const fora = new Set(analysis.excludedSlots);
+    const removidos = analysis.declaredFilaments.filter((f) => fora.has(f.slot));
     const printer = getPrinter(printerId);
     const tooBig = printer && exceedsBed(printer, analysis.metrics.size);
 
@@ -564,6 +593,16 @@ export default async function uploadView(container, ctx) {
             <div class="stack stack--sm">
               <p class="small faint">Filamentos ${measured ? 'usados' : 'previstos'} e correspondência no estoque</p>
               ${analysis.usage.map(usageRow).join('')}
+              ${removidos.length ? `
+                <p class="small faint">
+                  Fora do projeto: ${removidos.map((f) => `
+                    <button class="chip" type="button" data-restore="${f.slot}"
+                            title="Devolver ao projeto">
+                      <i style="display:inline-block;width:10px;height:10px;border-radius:50%;
+                         border:1px solid var(--border);background:${esc(f.color || '#ffffff')}"></i>
+                      ${esc(f.material)} ${icon('plus', 12)}
+                    </button>`).join(' ')}
+                </p>` : ''}
             </div>` : ''}
 
           <dl class="dl" style="border-top:1px solid var(--border);padding-top:12px">
