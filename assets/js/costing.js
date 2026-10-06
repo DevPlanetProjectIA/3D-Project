@@ -22,8 +22,13 @@
 
 import store from './store.js';
 import { num } from './inventory.js';
+import * as supabase from './supabase.js';
 
 const SETTINGS_KEY = 'costSettings';
+/* Cópia das configurações locais de antes da primeira hidratação. */
+const LOCAL_BACKUP_KEY = 'costSettingsLocal';
+const PENDING_KEY = 'costSettingsPending';
+const TABLE = 'cost_settings';
 
 /** Taxas dos canais de venda: [rótulo, comissão %, taxa fixa]. */
 export const CHANNELS = [
@@ -60,14 +65,134 @@ export const DEFAULTS = {
   phone: '',
 };
 
+/*
+ * Configurações em dois backends, mantendo a leitura síncrona.
+ *
+ * `getSettings()` sai do cache em memória (ou do `localStorage`, no modo local)
+ * e `saveSettings()` grava na hora e só depois espelha a linha do usuário em
+ * `cost_settings`. Falha de rede fica marcada como pendência e é reenviada na
+ * próxima `hydrateSettings()`.
+ */
+
+let cache = null;
+let hydrated = false;
+let hydrating = null;
+let syncError = '';
+
+const cloudMode = () => supabase.isConfigured() && !!supabase.getSession();
+
+export const lastSettingsError = () => syncError;
+
 export function getSettings() {
-  return { ...DEFAULTS, ...(store.get(SETTINGS_KEY, {}) || {}) };
+  const stored = hydrated && cache ? cache : (store.get(SETTINGS_KEY, {}) || {});
+  return { ...DEFAULTS, ...stored };
 }
 
 export function saveSettings(patch) {
   const next = { ...getSettings(), ...patch };
   store.set(SETTINGS_KEY, next);
+  if (hydrated) cache = next;
+  pushSettings(next);
   return next;
+}
+
+/** Envia em segundo plano; nunca rejeita para quem chamou `saveSettings`. */
+function pushSettings(settings) {
+  if (!cloudMode()) return;
+  sendSettings(settings).then(
+    () => { syncError = ''; store.remove(PENDING_KEY); },
+    (error) => {
+      syncError = error?.message || String(error);
+      store.set(PENDING_KEY, true);
+    },
+  );
+}
+
+async function sendSettings(settings) {
+  const userId = supabase.sessionUser()?.id;
+  if (!userId) throw new Error('Sem usuário na sessão para gravar as configurações.');
+  // Uma linha por usuário: o conflito é no `user_id`, não no `id`.
+  await supabase.upsert(TABLE, [{ user_id: userId, settings }], 'user_id');
+}
+
+export const settingsPending = () => (supabase.isConfigured() ? !!store.get(PENDING_KEY, false) : false);
+
+export const settingsSyncState = () => ({
+  mode: cloudMode() ? 'nuvem' : 'local',
+  hydrated,
+  pending: settingsPending() ? 1 : 0,
+  error: syncError,
+});
+
+/**
+ * Busca as configurações do servidor e atualiza o cache local.
+ * Segura para chamar várias vezes e nunca lança: em caso de falha mantém o que
+ * havia no `localStorage` e expõe o motivo em `lastSettingsError()`.
+ */
+export async function hydrateSettings() {
+  if (hydrating) return hydrating;
+
+  hydrating = (async () => {
+    if (!cloudMode()) {
+      hydrated = false;
+      return getSettings();
+    }
+
+    try {
+      // Uma gravação pendente vai antes, senão a leitura do servidor a descarta.
+      if (settingsPending()) {
+        await sendSettings(getSettings());
+        store.remove(PENDING_KEY);
+      }
+
+      const row = await supabase.select(TABLE, {
+        select: 'settings',
+        eq: { user_id: supabase.sessionUser()?.id },
+        limit: 1,
+      });
+      const remote = (Array.isArray(row) ? row[0] : row)?.settings;
+
+      if (store.get(LOCAL_BACKUP_KEY, null) === null) {
+        store.set(LOCAL_BACKUP_KEY, store.get(SETTINGS_KEY, {}) || {});
+      }
+
+      hydrated = true;
+      syncError = '';
+      if (remote && typeof remote === 'object') {
+        cache = { ...DEFAULTS, ...remote };
+        store.set(SETTINGS_KEY, cache);
+      } else {
+        // Primeiro acesso deste usuário: o que havia aqui passa a ser o dele.
+        cache = getSettings();
+        pushSettings(cache);
+      }
+    } catch (error) {
+      syncError = error?.message || String(error);
+    }
+
+    return getSettings();
+  })().finally(() => { hydrating = null; });
+
+  return hydrating;
+}
+
+/** Logout: descarta as configurações do servidor e volta às locais. */
+function resetSettingsToLocal() {
+  const backup = store.get(LOCAL_BACKUP_KEY, null);
+  if (backup && typeof backup === 'object') {
+    store.set(SETTINGS_KEY, backup);
+    store.remove(LOCAL_BACKUP_KEY);
+  }
+  hydrated = false;
+  cache = null;
+}
+
+// No modo local nada é observado: o comportamento é o de sempre.
+if (supabase.isConfigured()) {
+  supabase.onAuthChange((session) => {
+    if (session) hydrateSettings();
+    else resetSettingsToLocal();
+  });
 }
 
 export const formatMoney = (value, currency = getSettings().currency) =>

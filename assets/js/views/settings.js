@@ -4,6 +4,7 @@ import CONFIG from '../../../config.js';
 import * as auth from '../auth.js';
 import * as gh from '../github.js';
 import * as catalog from '../catalog.js';
+import * as sb from '../supabase.js';
 import { esc, icon, qs, toast, setBusy, confirmDialog, copyText } from '../util.js';
 
 const TOKEN_HELP = `
@@ -15,6 +16,128 @@ const TOKEN_HELP = `
       <strong>Contents: Read and write</strong>.</li>
     <li>Defina uma validade curta, gere o token e cole no campo acima.</li>
   </ol>`;
+
+/**
+ * Estado das contas e da sincronização.
+ *
+ * Em modo local, explica a limitação de frente: a conta não existe em outro
+ * computador. Em modo nuvem, mostra a saúde do projeto — a causa mais comum de
+ * falha é o schema não ter sido aplicado, e vale dizer isso em vez de deixar a
+ * pessoa adivinhar.
+ */
+async function renderCloudPanel(container) {
+  const slot = qs('#cloud-panel', container);
+  if (!slot) return;
+
+  if (!auth.isCloud()) {
+    slot.innerHTML = `
+      <div class="banner banner--warn" style="margin:0">${icon('alert', 18)}
+        <div>
+          <strong>Modo local: a conta vale só neste navegador</strong>
+          <div class="small">Não há servidor para validar credenciais, então a mesma conta
+            não abre em outro computador, e o estoque também fica preso aqui. Para contas
+            de verdade e dados sincronizados, configure o Supabase: o passo a passo está em
+            <span class="mono">docs/SUPABASE.md</span> e são dois valores no
+            <span class="mono">config.js</span>.</div>
+        </div>
+      </div>
+      <dl class="dl">
+        <div class="dl__row"><dt>Contas</dt><dd>${listUsersCount()} neste navegador</dd></div>
+        <div class="dl__row"><dt>Senhas</dt><dd>PBKDF2-SHA256, nunca em texto claro</dd></div>
+      </dl>`;
+    return;
+  }
+
+  const user = auth.currentUser();
+  slot.innerHTML = `
+    <dl class="dl">
+      <div class="dl__row"><dt>Modo</dt><dd>Supabase (nuvem)</dd></div>
+      ${user ? `
+        <div class="dl__row"><dt>Conta</dt><dd>${esc(user.email || user.username)}</dd></div>
+        <div class="dl__row"><dt>Entrou por</dt>
+          <dd>${user.provider === 'google' ? 'Google' : 'e-mail e senha'}</dd></div>` : `
+        <div class="dl__row"><dt>Sessão</dt><dd>nenhuma</dd></div>`}
+      <div class="dl__row"><dt>Projeto</dt>
+        <dd class="mono small break-all">${esc(projectRef())}</dd></div>
+      <div class="dl__row"><dt>Estado</dt><dd id="cloud-health">verificando…</dd></div>
+      <div class="dl__row"><dt>Pendentes de envio</dt><dd id="cloud-pending">—</dd></div>
+    </dl>
+    <div id="cloud-alert"></div>
+    <div class="btn-row">
+      <button class="btn btn--sm" type="button" id="cloud-recheck">${icon('refresh', 15)} Reverificar</button>
+      <button class="btn btn--sm" type="button" id="cloud-sync">${icon('upload', 15)} Sincronizar agora</button>
+    </div>`;
+
+  const check = async () => {
+    const health = qs('#cloud-health', container);
+    const alert = qs('#cloud-alert', container);
+    if (health) health.textContent = 'verificando…';
+    const result = await sb.healthCheck();
+
+    if (health) {
+      health.textContent = !result.reachable ? 'projeto inacessível'
+        : !result.schema ? 'schema ausente'
+        : 'conectado';
+      health.style.color = result.reachable && result.schema ? 'var(--success)' : 'var(--danger)';
+    }
+    if (alert) {
+      alert.innerHTML = result.reachable && result.schema ? '' : `
+        <div class="banner banner--danger">${icon('alert', 18)}
+          <div class="small">${esc(result.error || 'Falha ao consultar o projeto.')}
+            ${!result.schema && result.reachable
+              ? ' Rode <span class="mono">supabase/schema.sql</span> no editor SQL do projeto.'
+              : ''}</div>
+        </div>`;
+    }
+    await updatePending(container);
+  };
+
+  qs('#cloud-recheck', container)?.addEventListener('click', check);
+  qs('#cloud-sync', container)?.addEventListener('click', async (event) => {
+    setBusy(event.currentTarget, true);
+    try {
+      const inventory = await import('../inventory.js');
+      const costing = await import('../costing.js');
+      await Promise.allSettled([
+        inventory.flush?.(),
+        inventory.hydrate?.(),
+        costing.hydrateSettings?.(),
+      ]);
+      await updatePending(container);
+      toast('Sincronização concluída.', { type: 'success', timeout: 2400 });
+    } catch (error) {
+      toast(error?.message || 'Falha ao sincronizar.', { type: 'error' });
+    } finally {
+      setBusy(event.currentTarget, false);
+    }
+  });
+
+  check();
+}
+
+async function updatePending(container) {
+  const slot = qs('#cloud-pending', container);
+  if (!slot) return;
+  try {
+    const inventory = await import('../inventory.js');
+    const count = inventory.pendingCount?.() ?? 0;
+    slot.textContent = count ? `${count} operação(ões)` : 'nenhuma';
+    slot.style.color = count ? 'var(--warning)' : '';
+  } catch {
+    slot.textContent = '—';
+  }
+}
+
+const listUsersCount = () => auth.listUsers().length;
+
+/** Referência do projeto, extraída da URL — é o que identifica no painel. */
+function projectRef() {
+  try {
+    return new URL(CONFIG.supabase.url).hostname;
+  } catch {
+    return CONFIG.supabase.url || '—';
+  }
+}
 
 export default async function settingsView(container, ctx) {
   const user = auth.currentUser();
@@ -42,6 +165,13 @@ export default async function settingsView(container, ctx) {
                 Sistema</button>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel__head">${icon('shield', 14)} Contas e sincronização</div>
+        <div class="panel__body" id="cloud-panel">
+          <p class="small faint">Carregando estado…</p>
         </div>
       </div>
 
@@ -206,6 +336,8 @@ export default async function settingsView(container, ctx) {
     auth.signOut();
     ctx.navigate('/entrar');
   });
+
+  renderCloudPanel(container);
 
   catalog.load().then(({ models }) => {
     const slot = qs('#count', container);

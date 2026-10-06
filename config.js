@@ -51,6 +51,25 @@ export const CONFIG = {
 
   /** Política de senha para contas locais. */
   password: { minLength: 8, iterations: 150000 },
+
+  /**
+   * Supabase — contas e dados compartilhados entre computadores.
+   *
+   * Deixe os dois campos vazios para o modo local (contas e estoque apenas no
+   * navegador, como antes). Preenchidos, o login passa a ser do Supabase
+   * (Google ou e-mail/senha) e o estoque, orçamentos e clientes sincronizam
+   * entre todos os PCs.
+   *
+   * A `anonKey` é pública por projeto: ela só dá acesso ao que as políticas de
+   * RLS permitirem, e o schema em `supabase/schema.sql` restringe cada linha ao
+   * seu dono. Nunca coloque aqui a `service_role`.
+   *
+   * Passo a passo em README.md, seção "Contas compartilhadas".
+   */
+  supabase: {
+    url: '',
+    anonKey: '',
+  },
 };
 
 export default CONFIG;

@@ -10,6 +10,7 @@ import CONFIG from '../../config.js';
 import store from './store.js';
 import * as auth from './auth.js';
 import * as catalog from './catalog.js';
+import { onAuthChange as sbOnAuthChange } from './supabase.js';
 import { esc, icon, qs, qsa, toast, debounce, initials } from './util.js';
 
 /* ---------- Tema ---------- */
@@ -395,16 +396,61 @@ async function render() {
 
 window.addEventListener('hashchange', render);
 
+// Sessão encerrada em outra aba, ou token expirado: a casca precisa acompanhar.
+if (auth.isCloud()) {
+  let lastUserId = auth.currentUser()?.id || null;
+  sbOnAuthChange(() => {
+    const nextId = auth.currentUser()?.id || null;
+    if (nextId === lastUserId) return;
+    lastUserId = nextId;
+    lastShellKey = '';
+    if (!nextId) navigate('/entrar');
+    else render();
+  });
+}
+
 async function boot() {
+  // O provedor OAuth devolve os tokens no fragmento da URL, que é onde este
+  // aplicativo guarda a rota. Tratar isso antes de qualquer leitura de rota é
+  // obrigatório: do contrário o roteador vê "#access_token=..." e cai no 404.
+  const oauth = await auth.completeOAuth();
+
   if (!location.hash) {
     const landing = (auth.currentUser() || auth.isGuest()) ? 'biblioteca' : 'entrar';
     history.replaceState(null, '', `${location.pathname}${location.search}#/${landing}`);
   }
+
   // Pré-carrega o catálogo para que a casca já exiba as contagens.
   catalog.load().catch(() => {});
+
+  // Dados de produção vêm do servidor no modo nuvem; sem isso a primeira tela
+  // mostraria estoque vazio e custo zero por um instante.
+  if (auth.isCloud() && auth.currentUser()) {
+    await Promise.allSettled([auth.hydrateProfile(), hydrateData()]);
+  }
+
   await render();
   qs('#boot')?.remove();
   qs('#app').hidden = false;
+
+  if (oauth?.ok) toast('Conectado pelo Google.', { type: 'success', timeout: 2600 });
+  if (oauth && !oauth.ok) toast(oauth.error, { type: 'error', title: 'Entrada pelo Google' });
+}
+
+/** Hidrata estoque e configurações, quando a camada de sincronização existir. */
+async function hydrateData() {
+  try {
+    const [inventory, costing] = await Promise.all([
+      import('./inventory.js'),
+      import('./costing.js'),
+    ]);
+    await Promise.allSettled([
+      inventory.hydrate?.(),
+      costing.hydrateSettings?.(),
+    ]);
+  } catch {
+    // Sem rede o aplicativo segue com o cache local.
+  }
 }
 
 boot().catch((error) => {

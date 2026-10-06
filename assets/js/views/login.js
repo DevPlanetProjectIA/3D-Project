@@ -7,6 +7,14 @@ import { Viewer } from '../viewer.js';
 
 const BRAND_MARK = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 22 7.5v9L12 22 2 16.5v-9z"/><path d="M2 7.5 12 13l10-5.5M12 13v9"/></svg>`;
 
+/* Marca do Google em SVG inline: o site não carrega imagem de terceiros. */
+const GOOGLE_MARK = `<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+  <path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.4a5.5 5.5 0 0 1-2.4 3.6v3h3.9c2.3-2.1 3.6-5.2 3.6-8.8z"/>
+  <path fill="#34A853" d="M12 24c3.2 0 5.9-1.1 7.9-2.9l-3.9-3a7.2 7.2 0 0 1-10.7-3.8H1.3v3.1A12 12 0 0 0 12 24z"/>
+  <path fill="#FBBC05" d="M5.3 14.3a7.2 7.2 0 0 1 0-4.6V6.6H1.3a12 12 0 0 0 0 10.8z"/>
+  <path fill="#EA4335" d="M12 4.8c1.8 0 3.4.6 4.6 1.8l3.5-3.5A12 12 0 0 0 1.3 6.6l4 3.1A7.2 7.2 0 0 1 12 4.8z"/>
+</svg>`;
+
 /* ---------- Geometria decorativa ---------- */
 
 /** Nó tórico procedural usado como ilustração animada do painel lateral. */
@@ -133,8 +141,9 @@ function loginMarkup() {
   return `
     <form class="form" id="form-login" novalidate>
       <div class="field" data-field="identifier">
-        <label for="identifier">Usuário ou e-mail</label>
-        <input class="input" type="text" id="identifier" name="identifier" autocomplete="username"
+        <label for="identifier">${auth.isCloud() ? 'E-mail' : 'Usuário ou e-mail'}</label>
+        <input class="input" type="${auth.isCloud() ? 'email' : 'text'}" id="identifier" name="identifier"
+               autocomplete="${auth.isCloud() ? 'email' : 'username'}"
                autocapitalize="none" spellcheck="false" required autofocus>
         <p class="field__error" hidden></p>
       </div>
@@ -195,7 +204,9 @@ function signupMarkup() {
         ${icon('user', 18)} Criar conta
       </button>
       <p class="small faint center">
-        As contas ficam neste navegador. Os arquivos enviados são públicos no repositório.
+        ${auth.isCloud()
+          ? 'Os arquivos enviados são públicos no repositório.'
+          : 'As contas ficam neste navegador. Os arquivos enviados são públicos no repositório.'}
       </p>
     </form>`;
 }
@@ -307,6 +318,15 @@ export default async function loginView(container, ctx) {
               ? `Já tem uma conta? <a href="#/entrar">Entrar</a>`
               : `Ainda não tem conta? <a href="#/criar-conta">Criar conta</a>`}
           </p>
+          ${auth.isCloud() ? `
+            <div class="auth__divider">ou</div>
+            <button class="btn btn--block btn--lg" type="button" id="google">
+              ${GOOGLE_MARK} Entrar com Google
+            </button>
+            <p class="small faint center" style="margin-top:8px">
+              Sua conta abre em qualquer computador, com estoque e orçamentos sincronizados.
+            </p>` : ''}
+
           ${CONFIG.allowGuestBrowsing ? `
             <div class="auth__divider">ou</div>
             <button class="btn btn--block" type="button" id="guest">
@@ -326,6 +346,12 @@ export default async function loginView(container, ctx) {
   qs('#guest', container)?.addEventListener('click', () => {
     auth.enterAsGuest();
     ctx.navigate('/biblioteca');
+  });
+
+  qs('#google', container)?.addEventListener('click', (event) => {
+    setBusy(event.currentTarget, true);
+    // Sai da página: o retorno é tratado em app.js, antes do roteador.
+    auth.signInWithGoogle();
   });
 
   const form = qs('form', container);

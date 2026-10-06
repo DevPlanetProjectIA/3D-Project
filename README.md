@@ -18,11 +18,43 @@ Sem backend, sem build e sem dependências: `index.html` mais módulos ES nativo
 
 O arquivo `.nojekyll` na raiz impede que o Jekyll reprocesse o conteúdo.
 
-## 2. Primeiro acesso
+## 2. Contas compartilhadas
+
+O site funciona em dois modos, escolhidos pelo `config.js`.
+
+| | Modo local (padrão) | Modo nuvem (Supabase) |
+|---|---|---|
+| Login | e-mail e senha, só neste navegador | Google ou e-mail e senha |
+| Quem valida | ninguém — não há servidor | o Supabase, no servidor |
+| Mesma conta em outro PC | **não** | sim |
+| Estoque, orçamentos, clientes | presos a cada navegador | sincronizados |
+| Configuração | nenhuma | um projeto gratuito + 2 chaves |
+
+**O modo local não serve para mais de um computador.** A conta criada em uma
+máquina não existe na outra, e o custo de fabricação sai zerado no segundo PC
+porque o filamento cadastrado também ficou para trás.
+
+Para ativar o modo nuvem, siga **[docs/SUPABASE.md](docs/SUPABASE.md)**: criar o
+projeto, rodar `supabase/schema.sql`, ligar o provedor Google e preencher
+`config.js`:
+
+```js
+supabase: {
+  url: 'https://SEU-PROJETO.supabase.co',
+  anonKey: 'eyJhbGci...',
+},
+```
+
+A `anonKey` é pública por projeto — quem protege os dados são as políticas de
+RLS do schema, que amarram cada linha ao seu dono. Nunca coloque a chave
+`service_role` aqui.
+
+### Primeiro acesso
 
 1. Abra o site. A tela inicial é o login.
-2. Clique em **Criar conta**. A primeira conta é marcada como mantenedora.
-3. As contas ficam no `localStorage` do navegador — veja [Modelo de segurança](#modelo-de-seguranca).
+2. No modo nuvem, clique em **Entrar com Google**. No modo local, em **Criar conta**.
+3. Em **Configurações → Contas e sincronização** você vê em que modo está, se o
+   projeto responde e se o schema foi aplicado.
 
 ## 3. Habilitar o envio de modelos
 
@@ -44,12 +76,14 @@ Use validade curta e remova-o em computadores compartilhados.
 | Camada | Implementação |
 |---|---|
 | Hospedagem | GitHub Pages servindo a raiz do repositório |
+| Contas | Supabase Auth (Google ou e-mail), ou `localStorage` + PBKDF2 no modo local |
+| Dados de produção | Supabase/PostgREST no modo nuvem, `localStorage` no modo local |
 | Roteamento | Hash router (`#/biblioteca`, `#/modelo/:id`, …), sem necessidade de fallback 404 |
 | Catálogo | `data/catalog.json` versionado; lido por `fetch` relativo, sem consumir cota de API |
 | Arquivos | `models/<id>/<id>.stl` ou `.3mf`, mais `thumb.png` gerada no navegador |
 | Leitura | `fetch` direto no site publicado |
 | Escrita | API de conteúdo do GitHub (`PUT /repos/:owner/:repo/contents/:path`) |
-| Contas | `localStorage` + PBKDF2-SHA256 (150 000 iterações) via WebCrypto |
+| Cliente Supabase | `fetch` direto em `/auth/v1` e `/rest/v1` — sem SDK e sem CDN |
 | Visualizador | WebGL puro — shaders, controle de órbita e grade escritos à mão |
 | Parsers | STL binário e ASCII; 3MF via leitor ZIP próprio + `DecompressionStream('deflate-raw')` |
 
@@ -62,8 +96,16 @@ config.js               Owner, repo, branch, limites — único arquivo a ajusta
 data/catalog.json       Índice dos modelos
 models/                 Arquivos publicados
 assets/css/styles.css   Folha de estilo única, com tema claro e escuro
+supabase/schema.sql     Tabelas, RLS e gatilhos (rodar no editor SQL)
+docs/SUPABASE.md        Passo a passo da configuração
 assets/js/
   app.js                Roteador, casca, tema, guarda de acesso
+  supabase.js           Cliente REST de auth e dados, sem SDK
+  inventory.js          Estoque com cache em memória e escrita atrasada
+  costing.js            Motor de custo e preço
+  production.js         Cruza o arquivo enviado com o estoque
+  printers.js           Catálogo de impressoras
+  filaments.js          Materiais, densidades e paleta
   auth.js               Contas locais, sessão, favoritos, token
   store.js              localStorage/sessionStorage tolerante a falhas
   github.js             Cliente da API de conteúdo
@@ -99,12 +141,15 @@ Leia antes de usar com conteúdo sensível.
 - **O repositório é a fonte dos arquivos.** Se ele for público, todo modelo enviado é público,
   independente do login. Para acervo restrito, use um repositório privado — nesse caso o Pages
   exige plano pago e a leitura passa a precisar de token.
-- **O login é um controle de interface.** Não existe servidor para validar credenciais: as contas
-  vivem no `localStorage` do navegador. A senha nunca é guardada em texto claro (PBKDF2-SHA256),
-  o que protege a senha em si, mas não impede que alguém com acesso ao navegador limpe o
-  armazenamento e crie outra conta.
-- **Contas não são compartilhadas entre navegadores.** Cada pessoa cria a sua no próprio dispositivo.
-  O que é compartilhado é o acervo — ele vem do repositório.
+- **No modo local, o login é um controle de interface.** Não existe servidor para validar
+  credenciais: as contas vivem no `localStorage`. A senha nunca é guardada em texto claro
+  (PBKDF2-SHA256), o que protege a senha em si, mas não impede que alguém com acesso ao
+  navegador limpe o armazenamento e crie outra conta. E a conta não existe em outro PC.
+- **No modo nuvem, o login é verificação real.** O Supabase valida a credencial no servidor e
+  as políticas de RLS impedem que um usuário leia os dados de outro. É o modo recomendado
+  para mais de uma pessoa ou mais de um computador.
+- **Em nenhum dos modos o login autoriza escrita no Git.** Publicar e remover modelos continua
+  exigindo o token do GitHub — é ele a credencial que o GitHub reconhece.
 - **O token do GitHub é a credencial real.** Quem tem token grava no repositório; quem não tem,
   apenas lê. Trate o token como senha: escopo mínimo, validade curta, remoção após o uso.
 
