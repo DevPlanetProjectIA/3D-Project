@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Política de Privacidade — 3D Library</title>
+<meta name="description" content="Quais dados a 3D Library coleta, onde eles ficam e como removê-los.">
+<meta name="color-scheme" content="dark light">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2 29 9.5v13L16 30 3 22.5v-13z' fill='none' stroke='%236d8cff' stroke-width='2.5' stroke-linejoin='round'/%3E%3Cpath d='M3 9.5 16 17l13-7.5M16 17v13' fill='none' stroke='%236d8cff' stroke-width='2.5' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="./assets/css/styles.css">
+<style>
+  .doc { max-width: 760px; margin: 0 auto; padding: 48px 20px 96px; }
+  .doc h1 { font-size: 28px; margin-bottom: 8px; }
+  .doc h2 { font-size: 17px; margin: 36px 0 10px; }
+  .doc h3 { font-size: 14.5px; margin: 20px 0 6px; }
+  .doc p, .doc li { color: var(--text-muted); font-size: 14.5px; line-height: 1.7; }
+  .doc ul { margin: 10px 0; padding-left: 20px; list-style: disc; }
+  .doc li { margin-bottom: 6px; }
+  .doc li::marker { color: var(--text-faint); }
+  .doc strong { color: var(--text); }
+  .doc table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 13.5px; }
+  .doc th, .doc td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .doc th { color: var(--text-faint); font-size: 11.5px; text-transform: uppercase; letter-spacing: .05em; }
+  .doc td { color: var(--text-muted); }
+  .doc__head { display: flex; align-items: center; gap: 10px; margin-bottom: 36px; }
+  .doc__head svg { width: 26px; height: 26px; fill: none; stroke: var(--accent); stroke-width: 2.2; stroke-linejoin: round; }
+  .doc__head a { color: var(--text); font-weight: 700; font-size: 15px; text-decoration: none; }
+  .doc__date { color: var(--text-faint); font-size: 13px; }
+</style>
+</head>
+<body>
+<main class="doc">
+  <div class="doc__head">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 22 7.5v9L12 22 2 16.5v-9z"/><path d="M2 7.5 12 13l10-5.5M12 13v9"/></svg>
+    <a href="./">3D Library</a>
+  </div>
+
+  <h1>Política de Privacidade</h1>
+  <p class="doc__date">Vigente desde 6 de outubro de 2026.</p>
+
+  <p>A 3D Library é uma biblioteca compartilhada de modelos 3D para impressão, com
+  controle de estoque de filamento, cálculo de custo e geração de orçamentos. Esta
+  página descreve, sem rodeios, quais dados o sistema coleta, onde eles ficam e como
+  removê-los.</p>
+
+  <h2>1. Quem é o responsável</h2>
+  <p>Esta instância é operada por quem administra o repositório
+  <strong>DevPlanetProjectIA/3D-Project</strong>. Contato para qualquer questão sobre
+  dados: <strong>brnolato@gmail.com</strong>.</p>
+
+  <h2>2. O ponto mais importante desta política</h2>
+  <p><strong>Os arquivos de modelo que você envia são públicos.</strong> Eles são
+  gravados no repositório Git do projeto, que é público no GitHub. Qualquer pessoa na
+  internet pode baixá-los, junto com o nome, a descrição, as etiquetas e o nome de
+  usuário de quem publicou.</p>
+  <p>O login <em>não</em> torna esses arquivos privados — ele controla quem pode
+  enviar e a quem pertencem os dados de produção. Não envie nada que você não queira
+  tornar público.</p>
+
+  <h2>3. Dados coletados</h2>
+
+  <h3>3.1 Identificação</h3>
+  <table>
+    <tr><th>Dado</th><th>Origem</th><th>Por quê</th></tr>
+    <tr><td>Endereço de e-mail</td><td>você, ou sua conta Google</td><td>identificar a conta e permitir o acesso</td></tr>
+    <tr><td>Nome e foto de perfil</td><td>sua conta Google, quando você entra por ela</td><td>exibir quem está conectado</td></tr>
+    <tr><td>Nome de usuário, descrição e cor do avatar</td><td>você</td><td>identificar a autoria dos modelos que publica</td></tr>
+  </table>
+  <p>Ao entrar com o Google, o sistema recebe apenas <strong>e-mail, nome e foto de
+  perfil</strong>. Não há acesso a Gmail, Drive, Agenda, contatos ou qualquer outro
+  serviço da sua conta Google.</p>
+
+  <h3>3.2 Dados de produção</h3>
+  <p>Ficam vinculados à sua conta e visíveis só para você: filamentos cadastrados
+  (material, cor, marca, peso e preço do rolo, saldo), insumos, produtos, clientes,
+  orçamentos e os parâmetros de cálculo de custo.</p>
+
+  <h3>3.3 Dados no seu navegador</h3>
+  <p>Guardados localmente, nunca enviados a terceiros: preferência de tema, a aba e
+  os filtros em que você estava, rascunhos de orçamento, uma cópia do estoque para
+  funcionar sem rede, e o <strong>token de acesso ao GitHub</strong>, se você
+  configurar um.</p>
+  <p>O token do GitHub fica apenas neste navegador e é enviado exclusivamente para
+  <strong>api.github.com</strong>, para publicar ou remover arquivos em seu nome. Em
+  computador compartilhado, remova-o em Configurações ao terminar.</p>
+
+  <h3>3.4 O que o sistema não faz</h3>
+  <ul>
+    <li>Não há analytics, rastreadores, cookies de publicidade nem pixels de terceiros.</li>
+    <li>Nenhum dado é vendido, alugado ou compartilhado para fins comerciais.</li>
+    <li>Não há perfilamento automatizado nem decisões automatizadas sobre você.</li>
+    <li>Não coletamos endereço, telefone, documento ou dado de pagamento. Se você
+      digitar esses dados de um <em>cliente seu</em> num orçamento, eles são seus
+      registros, guardados na sua conta.</li>
+  </ul>
+
+  <h2>4. Onde os dados ficam</h2>
+  <table>
+    <tr><th>Onde</th><th>O que</th><th>Quem acessa</th></tr>
+    <tr><td><strong>Supabase</strong> (infraestrutura do banco)</td><td>conta, perfil, estoque, orçamentos, clientes, configurações</td><td>apenas você — o banco aplica isolamento por linha (<em>row level security</em>) amarrado à sua conta</td></tr>
+    <tr><td><strong>GitHub</strong></td><td>arquivos .stl e .3mf, miniaturas e catálogo</td><td>qualquer pessoa: o repositório é público</td></tr>
+    <tr><td><strong>Seu navegador</strong></td><td>preferências, cache e o token do GitHub</td><td>apenas você, naquele computador</td></tr>
+  </table>
+  <p>O site em si é um conjunto de arquivos estáticos servidos pelo GitHub Pages. Não
+  existe servidor próprio processando seus dados: o navegador fala direto com o
+  Supabase e com o GitHub.</p>
+
+  <h2>5. Por quanto tempo</h2>
+  <p>Os dados da sua conta ficam enquanto a conta existir. Arquivos publicados no
+  repositório permanecem no histórico do Git mesmo após a remoção do catálogo —
+  é da natureza do controle de versão, e é por isso que o aviso da seção 2 importa.</p>
+
+  <h2>6. Seus direitos</h2>
+  <p>Conforme a Lei Geral de Proteção de Dados (Lei 13.709/2018), você pode pedir
+  confirmação de tratamento, acesso, correção, portabilidade, anonimização ou
+  eliminação dos seus dados, e revogar o consentimento. Na prática:</p>
+  <ul>
+    <li><strong>Ver e corrigir</strong> — tudo o que o sistema guarda sobre você está
+      visível e editável nas telas de Perfil, Estoque, Orçamento e Configurações.</li>
+    <li><strong>Exportar</strong> — peça por e-mail e enviaremos seus registros em
+      formato legível por máquina.</li>
+    <li><strong>Apagar</strong> — peça por e-mail a remoção da conta e dos dados de
+      produção. Para arquivos já publicados, diga quais: eles podem ser removidos do
+      catálogo e do repositório, com a ressalva do histórico na seção 5.</li>
+    <li><strong>Revogar o acesso do Google</strong> — a qualquer momento, em
+      <a href="https://myaccount.google.com/connections" target="_blank" rel="noopener">myaccount.google.com/connections</a>.</li>
+    <li><strong>Limpar este navegador</strong> — sair da conta remove a sessão; remover
+      o token do GitHub é feito em Configurações.</li>
+  </ul>
+  <p>Pedidos são respondidos pelo e-mail da seção 1.</p>
+
+  <h2>7. Segurança, com honestidade</h2>
+  <ul>
+    <li>Todo o tráfego usa HTTPS.</li>
+    <li>Senhas nunca são guardadas em texto claro. No modo com servidor, quem as
+      valida é o Supabase; no modo apenas local, a senha é guardada como derivação
+      PBKDF2-SHA256 no próprio navegador.</li>
+    <li>O isolamento entre contas é aplicado pelo banco, não pela interface.</li>
+    <li><strong>Limite conhecido:</strong> o repositório é público, logo os arquivos de
+      modelo também são. Nenhuma configuração de login muda isso.</li>
+  </ul>
+
+  <h2>8. Menores de idade</h2>
+  <p>O sistema é voltado a uso profissional e não é destinado a menores de 13 anos.</p>
+
+  <h2>9. Mudanças</h2>
+  <p>Alterações nesta política são publicadas nesta mesma página, com nova data de
+  vigência. O histórico completo de versões fica visível no repositório público do
+  projeto.</p>
+
+  <p style="margin-top:40px"><a href="./">← Voltar para a 3D Library</a> ·
+    <a href="./termos.html">Termos de Uso</a></p>
+</main>
+</body>
+</html>
