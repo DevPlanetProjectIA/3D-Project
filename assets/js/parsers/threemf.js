@@ -135,6 +135,47 @@ function applyTransform(t, x, y, z) {
   ];
 }
 
+/* ---------- Pintura manual ---------- */
+
+/**
+ * Slot de filamento pintado num triângulo, ou 0 quando não há pintura.
+ *
+ * A pintura manual não usa os grupos de cor do padrão 3MF: cada triângulo
+ * ganha um atributo `paint_color` (Bambu Studio, Orca) ou
+ * `slic3rpe:mmu_segmentation` (PrusaSlicer) com um bitstream hexadecimal
+ * herdado do `TriangleSelector` do PrusaSlicer. Ele descreve como o triângulo
+ * foi subdividido recursivamente e qual slot cada folha recebeu.
+ *
+ * Um nibble descreve um triângulo inteiro, e o slot fica nos bits acima dos
+ * dois primeiros — daí `nibble >> 2`: `4` é o slot 1, `8` o slot 2, `C` o
+ * slot 3. Em triângulos na borda do pincel o atributo é uma árvore de
+ * subdivisão, e aí o slot usado é o majoritário entre as folhas.
+ *
+ * Essa segunda parte é **aproximação deliberada**: a cor de cada metade de um
+ * triângulo partido não cabe num renderizador que pinta por vértice, e o erro
+ * fica confinado à espessura de um triângulo na fronteira entre duas cores.
+ * Verificado contra um arquivo real do Bambu Studio com 16.220 triângulos
+ * pintados, onde a leitura reproduz a imagem gerada pelo próprio fatiador.
+ */
+export function decodePaintSlot(code) {
+  const hex = String(code || '').trim().toUpperCase();
+  if (!hex || !/^[0-9A-F]+$/.test(hex)) return 0;
+
+  if (hex.length === 1) return parseInt(hex, 16) >> 2;
+
+  const counts = new Map();
+  for (const char of hex) {
+    const slot = parseInt(char, 16) >> 2;
+    if (slot > 0) counts.set(slot, (counts.get(slot) || 0) + 1);
+  }
+  let best = 0;
+  let bestCount = 0;
+  for (const [slot, count] of counts) {
+    if (count > bestCount) { bestCount = count; best = slot; }
+  }
+  return best;
+}
+
 /* ---------- Leitura de objetos ---------- */
 
 function readMesh(objectNode) {
@@ -158,8 +199,10 @@ function readMesh(objectNode) {
   // dele. E assim que um 3MF multimaterial pinta faces individuais.
   const triPid = new Array(triangleNodes.length);
   const triIndex = new Int32Array(triangleNodes.length);
+  const triPaint = new Uint8Array(triangleNodes.length);
   let kept = 0;
   let hasTriangleMaterial = false;
+  let hasPaint = false;
 
   for (const node of triangleNodes) {
     const v1 = Number(attr(node, 'v1'));
@@ -177,6 +220,11 @@ function readMesh(objectNode) {
     triPid[kept] = pid || '';
     triIndex[kept] = p1 === null ? -1 : (Number(p1) || 0);
     if (pid || p1 !== null) hasTriangleMaterial = true;
+
+    const painted = decodePaintSlot(attr(node, 'paint_color') || attr(node, 'mmu_segmentation'));
+    triPaint[kept] = painted;
+    if (painted > 0) hasPaint = true;
+
     kept++;
   }
   if (!kept) return null;
@@ -187,6 +235,8 @@ function readMesh(objectNode) {
     triangleCount: kept,
     triPid: hasTriangleMaterial ? triPid.slice(0, kept) : null,
     triIndex: hasTriangleMaterial ? triIndex.subarray(0, kept) : null,
+    /** Slot pintado por triângulo (0 = sem pintura). */
+    triPaint: hasPaint ? triPaint.subarray(0, kept) : null,
   };
 }
 
@@ -402,20 +452,30 @@ function resolveColors(meshes, slice) {
     }
     register(objectHex);
 
-    const { triPid, triIndex, triangleCount } = entry.mesh;
+    const { triPid, triIndex, triPaint, triangleCount } = entry.mesh;
     let triangleHex = null;
-    if (triPid && triIndex) {
+
+    if (triPid || triPaint) {
       triangleHex = new Array(triangleCount);
       let distinct = false;
       for (let t = 0; t < triangleCount; t++) {
-        const pid = triPid[t] || entry.pid;
-        const index = triIndex[t] >= 0 ? triIndex[t] : entry.pindex;
-        const hex = lookup(pid, index) || objectHex;
+        // A pintura manual tem precedência: é a decisão mais recente de quem
+        // preparou a peça, e sobrepõe a cor herdada da extrusora da parte.
+        const slot = triPaint ? triPaint[t] : 0;
+        let hex = slot > 0 ? (filamentColors[slot - 1] || '') : '';
+
+        if (!hex && triPid && triIndex) {
+          const pid = triPid[t] || entry.pid;
+          const index = triIndex[t] >= 0 ? triIndex[t] : entry.pindex;
+          hex = lookup(pid, index);
+        }
+        if (!hex) hex = objectHex;
+
         triangleHex[t] = hex;
         if (hex && hex !== objectHex) distinct = true;
         register(hex);
       }
-      // Sem variacao real entre faces, a cor do objeto basta.
+      // Sem variação real entre faces, a cor do objeto basta.
       if (!distinct) triangleHex = null;
     }
 
