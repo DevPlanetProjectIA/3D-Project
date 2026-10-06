@@ -145,16 +145,18 @@ function detailPanel(model, user) {
 }
 
 /** Dados de produção: peso, purga, filamentos e custo com o estoque atual. */
-function renderProduction(geometry, model, container, excludeSlots = []) {
+function renderProduction(geometry, model, container, estado = {}) {
   const slot = qs('#production', container);
   if (!slot) return;
 
+  const { excludeSlots = [], plateId = 0 } = estado;
   const analysis = analyze(geometry, {
     printerId: model.printerId || '',
     material: model.print?.material,
     infillPercent: parseFloat(model.print?.infill) || 20,
     hours: model.printSeconds ? model.printSeconds / 3600 : 0,
     excludeSlots,
+    plateId,
   });
 
   const measured = analysis.measured;
@@ -162,7 +164,8 @@ function renderProduction(geometry, model, container, excludeSlots = []) {
   const palette = analysis.usage.filter((row) => row.color);
   const fora = new Set(analysis.excludedSlots);
   const removidos = analysis.declaredFilaments.filter((f) => fora.has(f.slot));
-  const redesenha = (lista) => renderProduction(geometry, model, container, lista);
+  const redesenha = (mudanca) => renderProduction(geometry, model, container,
+    { excludeSlots: analysis.excludedSlots, plateId: analysis.plateId, ...mudanca });
 
   slot.innerHTML = `
     <div>
@@ -248,7 +251,21 @@ function renderProduction(geometry, model, container, excludeSlots = []) {
             <div class="dl__row"><dt>Volume da malha</dt>
               <dd class="mono">${analysis.volumeCm3.toFixed(1)} cm³</dd></div>
             <div class="dl__row"><dt>Filamentos</dt><dd>${analysis.filamentCount}</dd></div>
+            ${analysis.plateCount > 1 ? `<div class="dl__row"><dt>Mesas no projeto</dt>
+              <dd>${analysis.plateCount}</dd></div>` : ''}
           </dl>
+
+          ${analysis.plates.length > 1 ? `
+            <div class="field" style="margin-top:12px">
+              <label for="plate">Mesa analisada</label>
+              <select class="select" id="plate">
+                <option value="0"${analysis.plateId ? '' : ' selected'}>Todas as ${analysis.plates.length} mesas juntas</option>
+                ${analysis.plates.map((pl) => `
+                  <option value="${pl.id}"${analysis.plateId === pl.id ? ' selected' : ''}>
+                    Prato ${pl.id} — ${pl.size.x.toFixed(0)}×${pl.size.y.toFixed(0)}×${pl.size.z.toFixed(0)} mm</option>`).join('')}
+              </select>
+              <p class="field__hint">Cada mesa é uma impressão separada.</p>
+            </div>` : ''}
         </div>
       </div>
     </div>`;
@@ -257,7 +274,7 @@ function renderProduction(geometry, model, container, excludeSlots = []) {
   // o saldo mudou, e com ele o custo e os avisos de falta.
   qs('#print-now', slot)?.addEventListener('click', async () => {
     const done = await openPrintDialog(analysis, { title: `Imprimir ${model.name}` });
-    if (done) redesenha(analysis.excludedSlots);
+    if (done) redesenha({});
   });
 
   // A lista de filamentos do arquivo é o que estava carregado na impressora;
@@ -271,13 +288,17 @@ function renderProduction(geometry, model, container, excludeSlots = []) {
       toast('A peça precisa de pelo menos um filamento.', { type: 'warn' });
       return;
     }
-    redesenha([...new Set([...analysis.excludedSlots, Number(botao.dataset.drop)])]);
+    redesenha({ excludeSlots: [...new Set([...analysis.excludedSlots, Number(botao.dataset.drop)])] });
   }));
 
   qsa('[data-restore]', slot).forEach((botao) => botao.addEventListener('click', () => {
     const ignorado = Number(botao.dataset.restore);
-    redesenha(analysis.excludedSlots.filter((s) => s !== ignorado));
+    redesenha({ excludeSlots: analysis.excludedSlots.filter((s) => s !== ignorado) });
   }));
+
+  qs('#plate', slot)?.addEventListener('change', (ev) => {
+    redesenha({ plateId: Number(ev.target.value) || 0 });
+  });
 }
 
 export default async function modelView(container, ctx) {

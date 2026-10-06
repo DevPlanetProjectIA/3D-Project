@@ -518,6 +518,48 @@ function narrowFilaments(slice, usedSlots) {
   return { ...slice, filaments: manter };
 }
 
+/**
+ * Agrupa as malhas por prato.
+ *
+ * Um projeto do Bambu guarda varias mesas no mesmo arquivo, e cada mesa e uma
+ * impressao separada: o G-code fatia uma por vez. Sem isso a caixa delimitadora
+ * do arquivo e a dos pratos espalhados na mesa, nao a da peca -- e qualquer
+ * verificacao de tamanho acusa um excesso que nao existe.
+ *
+ * Devolve `[]` quando o arquivo nao declara pratos: ai o arquivo inteiro e uma
+ * impressao, que e o caso de todo STL e da maioria dos 3MF.
+ */
+function buildPlates(faixas, slice, positions, triangleCount) {
+  const plateOfObject = slice?.plateOfObject;
+  if (!plateOfObject?.size) return [];
+
+  const porPrato = new Map();
+  for (const faixa of faixas) {
+    if (faixa.end <= faixa.start) continue;
+    const id = plateOfObject.get(String(faixa.objectId)) || 0;
+    if (!id) continue;
+    if (!porPrato.has(id)) porPrato.set(id, []);
+    porPrato.get(id).push([faixa.start, faixa.end]);
+  }
+  if (porPrato.size < 1) return [];
+
+  return [...porPrato.entries()].sort((a, b) => a[0] - b[0]).map(([id, ranges]) => {
+    const bounds = { min: [Infinity, Infinity, Infinity], max: [-Infinity, -Infinity, -Infinity] };
+    let tris = 0;
+    for (const [start, end] of ranges) {
+      tris += end - start;
+      for (let i = start * 9; i < end * 9; i += 3) {
+        for (let axis = 0; axis < 3; axis++) {
+          const v = positions[i + axis];
+          if (v < bounds.min[axis]) bounds.min[axis] = v;
+          if (v > bounds.max[axis]) bounds.max[axis] = v;
+        }
+      }
+    }
+    return { id, ranges, triangles: tris, bounds, share: triangleCount ? tris / triangleCount : 0 };
+  });
+}
+
 /* ---------- Entrada ---------- */
 
 /** Interpreta um ArrayBuffer de 3MF. Mesma forma de saída do leitor de STL. */
@@ -580,8 +622,12 @@ export async function parse3MF(arrayBuffer, onProgress) {
   const colors = hasColor ? new Float32Array(triangles * 9) : null;
   const bounds = { min: [Infinity, Infinity, Infinity], max: [-Infinity, -Infinity, -Infinity] };
 
+  // Faixa de triângulos de cada malha no buffer final: é o que permite medir um
+  // prato isolado depois, sem reinterpretar o arquivo.
+  const faixas = [];
   let writeIndex = 0;
   for (let meshIndex = 0; meshIndex < meshes.length; meshIndex++) {
+    const inicioMalha = writeIndex;
     const { mesh, transform } = meshes[meshIndex];
     const plan = plans[meshIndex];
     const objectRgb = hexToRgb(plan.objectHex) || DEFAULT_RGB;
@@ -626,10 +672,12 @@ export async function parse3MF(arrayBuffer, onProgress) {
       }
       writeIndex++;
     }
+    faixas.push({ objectId: meshes[meshIndex].objectId, start: inicioMalha, end: writeIndex });
     onProgress?.(0.55 + 0.45 * (writeIndex / triangles));
   }
 
   return {
+    plates: buildPlates(faixas, slice, positions, writeIndex),
     positions: positions.subarray(0, writeIndex * 9),
     normals: normals.subarray(0, writeIndex * 9),
     colors: colors ? colors.subarray(0, writeIndex * 9) : null,

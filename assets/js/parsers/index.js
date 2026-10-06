@@ -89,32 +89,47 @@ export async function parseModel(arrayBuffer, format, onProgress) {
  * perde sentido, por isso o valor absoluto e a checagem de sanidade contra a
  * caixa envolvente em `estimateWeight`.
  */
-export function volumeOf(geometry) {
+/**
+ * Faixas de triângulos a considerar. `null`/vazio significa a malha inteira.
+ *
+ * Num 3MF com várias mesas cada prato é uma impressão separada, e medir o
+ * arquivo todo mistura o que nunca sai junto da impressora.
+ */
+function rangesOf(geometry, ranges) {
+  if (ranges?.length) return ranges;
+  return [[0, (geometry.positions.length / 9) | 0]];
+}
+
+export function volumeOf(geometry, ranges = null) {
   const p = geometry.positions;
   let total = 0;
-  for (let i = 0; i < p.length; i += 9) {
-    const ax = p[i], ay = p[i + 1], az = p[i + 2];
-    const bx = p[i + 3], by = p[i + 4], bz = p[i + 5];
-    const cx = p[i + 6], cy = p[i + 7], cz = p[i + 8];
-    total += ax * (by * cz - bz * cy)
-      - ay * (bx * cz - bz * cx)
-      + az * (bx * cy - by * cx);
+  for (const [ini, fim] of rangesOf(geometry, ranges)) {
+    for (let i = ini * 9; i < fim * 9; i += 9) {
+      const ax = p[i], ay = p[i + 1], az = p[i + 2];
+      const bx = p[i + 3], by = p[i + 4], bz = p[i + 5];
+      const cx = p[i + 6], cy = p[i + 7], cz = p[i + 8];
+      total += ax * (by * cz - bz * cy)
+        - ay * (bx * cz - bz * cx)
+        + az * (bx * cy - by * cx);
+    }
   }
   return Math.abs(total) / 6;
 }
 
 /** Área total da superfície da malha, em mm². */
-export function surfaceAreaOf(geometry) {
+export function surfaceAreaOf(geometry, ranges = null) {
   const p = geometry.positions;
   let total = 0;
-  for (let i = 0; i < p.length; i += 9) {
-    const ux = p[i + 3] - p[i], uy = p[i + 4] - p[i + 1], uz = p[i + 5] - p[i + 2];
-    const vx = p[i + 6] - p[i], vy = p[i + 7] - p[i + 1], vz = p[i + 8] - p[i + 2];
-    total += Math.hypot(
-      uy * vz - uz * vy,
-      uz * vx - ux * vz,
-      ux * vy - uy * vx,
-    );
+  for (const [ini, fim] of rangesOf(geometry, ranges)) {
+    for (let i = ini * 9; i < fim * 9; i += 9) {
+      const ux = p[i + 3] - p[i], uy = p[i + 4] - p[i + 1], uz = p[i + 5] - p[i + 2];
+      const vx = p[i + 6] - p[i], vy = p[i + 7] - p[i + 1], vz = p[i + 8] - p[i + 2];
+      total += Math.hypot(
+        uy * vz - uz * vy,
+        uz * vx - ux * vz,
+        ux * vy - uy * vx,
+      );
+    }
   }
   return total / 2;
 }
@@ -167,8 +182,8 @@ export function estimateWeight({
 }
 
 /** Dimensões (mm), centro e volume da caixa envolvente. */
-export function measure(geometry) {
-  const { min, max } = geometry.bounds;
+export function measure(geometry, bounds = null) {
+  const { min, max } = bounds || geometry.bounds;
   const finite = min.every(Number.isFinite) && max.every(Number.isFinite);
   const size = finite ? [max[0] - min[0], max[1] - min[1], max[2] - min[2]] : [0, 0, 0];
   return {

@@ -21,11 +21,19 @@ import { getPrinter } from './printers.js';
  * Monta a análise.
  *
  * @param {object} geometry saída de `parseModel`
- * @param {object} opts `{ printerId, infillPercent, material, hours, minutes }`
+ * @param {object} opts `{ printerId, infillPercent, material, hours, minutes,
+ *   excludeSlots, plateId }`
  */
 export function analyze(geometry, opts = {}) {
   const settings = getSettings();
-  const metrics = measure(geometry);
+
+  // Prato escolhido. Num projeto do Bambu com várias mesas cada prato é uma
+  // impressão separada: medir o arquivo todo soma o que nunca sai junto, e a
+  // caixa delimitadora do conjunto acusa um tamanho que nenhuma peça tem.
+  const plates = geometry.plates || [];
+  const plate = opts.plateId ? plates.find((pl) => pl.id === Number(opts.plateId)) : null;
+  const ranges = plate ? plate.ranges : null;
+  const metrics = measure(geometry, plate ? plate.bounds : null);
   // `opts.slice` permite injetar o fatiamento vindo de um G-code enviado à
   // parte, que é mais preciso que o embutido no 3MF: inclui a purga real.
   const bruto = opts.slice || geometry.slice || null;
@@ -36,7 +44,13 @@ export function analyze(geometry, opts = {}) {
   const slice = bruto && excluidos.size && bruto.filaments?.length
     ? { ...bruto, filaments: bruto.filaments.filter((f) => !excluidos.has(Number(f.slot))) }
     : bruto;
-  const sliced = !!slice?.sliced;
+
+  // O peso medido vale para a mesa que o fatiador exportou. Pedir outra mesa e
+  // receber aquele numero seria mentir com precisao: ali a estimativa e mais
+  // honesta que uma medicao de outra peca.
+  const medeEstePrato = !plate || !slice?.measuredPlateId
+    || Number(slice.measuredPlateId) === plate.id;
+  const sliced = !!slice?.sliced && medeEstePrato;
 
   /* ---------- Filamentos e gramas ---------- */
 
@@ -58,8 +72,8 @@ export function analyze(geometry, opts = {}) {
     }));
   } else {
     source = 'estimativa';
-    const volumeMm3 = volumeOf(geometry);
-    const areaMm2 = surfaceAreaOf(geometry);
+    const volumeMm3 = volumeOf(geometry, ranges);
+    const areaMm2 = surfaceAreaOf(geometry, ranges);
     const material = normalizeMaterial(opts.material || slice?.filaments?.[0]?.material || 'PLA');
     const infillPercent = num(opts.infillPercent) || num(slice?.infill) || 20;
     estimate = estimateWeight({
@@ -153,10 +167,31 @@ export function analyze(geometry, opts = {}) {
     nozzle: slice?.nozzle || '',
     layerHeight: slice?.layerHeight || '',
     infill: infillPercent,
-    plateCount: slice?.plateCount || 0,
+    plateCount: Math.max(slice?.plateCount || 0, plates.length),
+    /** Mesa a que o peso medido do arquivo se refere, quando há mais de uma. */
+    measuredPlateId: slice?.measuredPlateId || 0,
+    /** `true` quando a mesa pedida não é a que o fatiador mediu. */
+    plateNotMeasured: !!plate && !!slice?.sliced && !medeEstePrato,
+
+    /** Pratos do arquivo, quando há mais de uma mesa no projeto. */
+    plates: plates.map((pl) => ({
+      id: pl.id,
+      triangles: pl.triangles,
+      share: pl.share,
+      size: measure(geometry, pl.bounds).size,
+    })),
+    /** Prato em análise, ou `0` quando a análise cobre o arquivo todo. */
+    plateId: plate?.id || 0,
+    /**
+     * `true` quando o peso medido cobre menos pratos do que o projeto tem.
+     * O fatiador exporta um G-code por mesa, então medir um projeto de três
+     * mesas por um G-code só subestima o total.
+     */
+    partialSlice: sliced && !plate
+      && (slice?.slicedPlateCount || 1) < Math.max(slice?.plateCount || 0, plates.length),
 
     metrics,
-    volumeCm3: estimate ? estimate.volumeCm3 : volumeOf(geometry) / 1000,
+    volumeCm3: estimate ? estimate.volumeCm3 : volumeOf(geometry, ranges) / 1000,
     estimateReliable: estimate ? estimate.reliable : true,
     /** Quanto do volume vira material, segundo o modelo de casca e núcleo. */
     solidRatio: estimate ? estimate.solidRatio : 1,

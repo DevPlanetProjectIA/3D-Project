@@ -78,6 +78,8 @@ export default async function uploadView(container, ctx) {
     slice: null,
     /** Slots de filamento que o usuário tirou do projeto nesta tela. */
     excludeSlots: [],
+    /** Prato escolhido num projeto de várias mesas. `0` = o arquivo todo. */
+    plateId: 0,
     sliceName: '',
   };
   let viewer = null;
@@ -340,8 +342,9 @@ export default async function uploadView(container, ctx) {
       state.bytes = new Uint8Array(buffer);
       state.geometry = geometry;
       state.metrics = metrics;
-      // Outro arquivo, outros slots: a exclusão feita à mão não se transfere.
+      // Outro arquivo, outros slots e outras mesas: nada disso se transfere.
       state.excludeSlots = [];
+      state.plateId = 0;
       // O formato vem do conteúdo, não da extensão: arquivos renomeados são
       // publicados com a extensão correta.
       state.format = geometry.format;
@@ -372,6 +375,7 @@ export default async function uploadView(container, ctx) {
     state.file = null;
     state.geometry = null;
     state.excludeSlots = [];
+    state.plateId = 0;
     publishButton.disabled = true;
     preview.hidden = true;
     dropzone.innerHTML = `${icon('upload', 32)}<strong>Arraste um arquivo ou clique para escolher</strong>
@@ -499,6 +503,7 @@ export default async function uploadView(container, ctx) {
       hours: qs('#printHours', container)?.value,
       minutes: qs('#printMinutes', container)?.value,
       excludeSlots: state.excludeSlots,
+      plateId: state.plateId,
       slice: state.slice,
     });
     state.analysis = analysis;
@@ -508,7 +513,13 @@ export default async function uploadView(container, ctx) {
     const fora = new Set(analysis.excludedSlots);
     const removidos = analysis.declaredFilaments.filter((f) => fora.has(f.slot));
     const printer = getPrinter(printerId);
-    const tooBig = printer && exceedsBed(printer, analysis.metrics.size);
+    // Com várias mesas, a caixa do arquivo é a dos pratos espalhados: o que
+    // precisa caber é cada prato, não o conjunto.
+    const aferir = analysis.plateId || !analysis.plates.length
+      ? [{ id: analysis.plateId, size: analysis.metrics.size }]
+      : analysis.plates;
+    const foraDaMesa = printer ? aferir.filter((pl) => exceedsBed(printer, pl.size)) : [];
+    const tooBig = foraDaMesa.length > 0;
 
     const avisos = [];
     if (blockers.noFilamentRegistered) {
@@ -538,9 +549,27 @@ export default async function uploadView(container, ctx) {
     if (tooBig) {
       avisos.push(`
         <div class="banner banner--danger">${icon('alert', 18)}
-          <div class="small">A peça (${analysis.metrics.size.x.toFixed(0)}×${analysis.metrics.size.y.toFixed(0)}×${analysis.metrics.size.z.toFixed(0)} mm)
+          <div class="small">${foraDaMesa.map((pl) => `${pl.id ? `Prato ${pl.id}: ` : 'A peça '}`
+            + `(${pl.size.x.toFixed(0)}×${pl.size.y.toFixed(0)}×${pl.size.z.toFixed(0)} mm)`).join(', ')}
             não cabe na mesa da ${esc(printerLabel(printer))}
             (${printer.bed.join('×')} mm).</div>
+        </div>`);
+    }
+    if (analysis.plateNotMeasured) {
+      avisos.push(`
+        <div class="banner banner--warn">${icon('alert', 18)}
+          <div class="small">O fatiamento enviado mede a mesa ${analysis.measuredPlateId}, não a
+            ${analysis.plateId}. Os números abaixo voltaram a ser estimados pela geometria desta
+            mesa — envie o G-code dela para medir.</div>
+        </div>`);
+    }
+    if (analysis.partialSlice) {
+      avisos.push(`
+        <div class="banner banner--warn">${icon('alert', 18)}
+          <div><strong>O fatiamento cobre uma mesa só</strong>
+            <div class="small">O projeto tem ${analysis.plateCount} mesas e o fatiador exporta um
+              G-code por mesa, então o peso e o tempo abaixo valem para a mesa fatiada — não para o
+              projeto inteiro. Escolha o prato correspondente, ou envie cada mesa em separado.</div></div>
         </div>`);
     }
     if (!measured) {
@@ -589,6 +618,19 @@ export default async function uploadView(container, ctx) {
               <div class="dl__row"><dt>Mesas no projeto</dt><dd>${analysis.plateCount}</dd></div>` : ''}
           </dl>
 
+          ${analysis.plates.length > 1 ? `
+            <div class="field">
+              <label for="plate">Mesa analisada</label>
+              <select class="select" id="plate">
+                <option value="0"${analysis.plateId ? '' : ' selected'}>Todas as ${analysis.plates.length} mesas juntas</option>
+                ${analysis.plates.map((pl) => `
+                  <option value="${pl.id}"${analysis.plateId === pl.id ? ' selected' : ''}>
+                    Prato ${pl.id} — ${pl.size.x.toFixed(0)}×${pl.size.y.toFixed(0)}×${pl.size.z.toFixed(0)} mm,
+                    ${formatNumber(pl.triangles)} triângulos</option>`).join('')}
+              </select>
+              <p class="field__hint">Cada mesa é uma impressão separada. "Juntas" soma o projeto inteiro.</p>
+            </div>` : ''}
+
           ${analysis.usage.length ? `
             <div class="stack stack--sm">
               <p class="small faint">Filamentos ${measured ? 'usados' : 'previstos'} e correspondência no estoque</p>
@@ -627,6 +669,11 @@ export default async function uploadView(container, ctx) {
           </div>
         </div>
       </div>`;
+
+    qs('#plate', container)?.addEventListener('change', (ev) => {
+      state.plateId = Number(ev.target.value) || 0;
+      renderProduction();
+    });
 
     // Debita o filamento desta peça e redesenha: o saldo mudou.
     qs('#print-now', container)?.addEventListener('click', async () => {

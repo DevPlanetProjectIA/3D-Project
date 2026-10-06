@@ -123,6 +123,21 @@ async function readBambuModelSettings(zip) {
   const doc = new DOMParser().parseFromString(xml, 'application/xml');
   if (doc.getElementsByTagName('parsererror')[0]) return null;
 
+  // Prato de cada objeto. Um projeto do Bambu guarda varias mesas no mesmo
+  // arquivo, e cada mesa e uma impressao separada: o G-code fatia uma por vez.
+  const plateOfObject = new Map();
+  const plateIds = [];
+  for (const plateNode of doc.getElementsByTagNameNS('*', 'plate')) {
+    const meta = metadataMap(plateNode);
+    const plateId = Number(meta.plater_id || meta.plate_id || 0);
+    if (!Number.isFinite(plateId) || plateId <= 0) continue;
+    plateIds.push(plateId);
+    for (const inst of plateNode.getElementsByTagNameNS('*', 'model_instance')) {
+      const objectId = metadataMap(inst).object_id;
+      if (objectId) plateOfObject.set(String(objectId), plateId);
+    }
+  }
+
   const byObjectId = new Map();
   for (const objectNode of doc.getElementsByTagNameNS('*', 'object')) {
     const objectId = objectNode.getAttribute('id');
@@ -136,9 +151,17 @@ async function readBambuModelSettings(zip) {
       if (partId && Number.isFinite(extruder) && extruder > 0) {
         byObjectId.set(String(partId), extruder);
       }
+      // A peca herda o prato do objeto que a contem.
+      const plate = plateOfObject.get(String(objectId));
+      if (partId && plate) plateOfObject.set(String(partId), plate);
     }
   }
-  return byObjectId.size ? byObjectId : null;
+  if (!byObjectId.size && !plateOfObject.size) return null;
+  return {
+    extruderByObject: byObjectId.size ? byObjectId : null,
+    plateOfObject: plateOfObject.size ? plateOfObject : null,
+    plateIds: [...new Set(plateIds)].sort((a, b) => a - b),
+  };
 }
 
 /* ---------- PrusaSlicer ---------- */
@@ -220,15 +243,24 @@ export async function readSliceInfo(zip) {
     filaments: [],
     purge: { grams: 0, estimated: false, changes: 0 },
     extruderByObject: null,
+    plateOfObject: null,
+    plateIds: [],
     plateCount: 0,
+    slicedPlateCount: 0,
+    slicedPlateIds: [],
+    measuredPlateId: 0,
   };
 
-  const [bambu, project, modelSettings, prusa] = await Promise.all([
+  const [bambu, project, settings, prusa] = await Promise.all([
     readBambuSliceInfo(zip).catch(() => null),
     readBambuProjectSettings(zip).catch(() => null),
     readBambuModelSettings(zip).catch(() => null),
     readPrusaConfig(zip).catch(() => null),
   ]);
+
+  const modelSettings = settings?.extruderByObject || null;
+  const plateOfObject = settings?.plateOfObject || null;
+  const plateIds = settings?.plateIds || [];
 
   // Cores do perfil servem de reserva quando o slice_info não traz a cor.
   const profileColors = project?.colors || prusa?.colors || [];
@@ -266,7 +298,14 @@ export async function readSliceInfo(zip) {
         filamentCount: filaments.length,
       }),
       extruderByObject: modelSettings,
-      plateCount: bambu.plates.length,
+      plateOfObject,
+      plateIds,
+      // O fatiamento cobre a mesa representativa; o projeto pode ter outras.
+      plateCount: Math.max(bambu.plates.length, plateIds.length),
+      slicedPlateCount: bambu.plates.length,
+      /** Mesa a que o peso medido se refere, para não atribuí-lo a outra. */
+      slicedPlateIds: bambu.plates.map((pl) => Number(pl.index) || 0).filter(Boolean),
+      measuredPlateId: Number(plate.index) || 0,
     };
   }
 
@@ -290,10 +329,14 @@ export async function readSliceInfo(zip) {
       infill: source.infill || '',
       filaments,
       extruderByObject: modelSettings,
+      plateOfObject,
+      plateIds,
+      plateCount: plateIds.length,
     };
   }
 
-  return { ...empty, extruderByObject: modelSettings };
+  return { ...empty, extruderByObject: modelSettings, plateOfObject, plateIds,
+    plateCount: plateIds.length };
 }
 
 export default readSliceInfo;
