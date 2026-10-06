@@ -457,6 +457,19 @@ export async function parse3MF(arrayBuffer, onProgress) {
   }
 
   if (!meshes.length) {
+    // Um .gcode.3mf do Bambu é o projeto FATIADO: traz o G-code e, muitas vezes,
+    // um modelo vazio. Reclamar de malha ilegível manda procurar no lugar errado.
+    const hasGcode = zip.entries.some((e) => /\.(gcode|gco)$/i.test(e.name));
+    if (hasGcode) {
+      const error = new Error(
+        'Este 3MF é a exportação fatiada: contém o G-code, não a geometria. '
+        + 'Ele serve no campo "Dados do fatiamento", para medir peso e tempo. '
+        + 'Para a biblioteca, envie o projeto 3MF salvo antes de fatiar.',
+      );
+      error.isSlicedFile = true;
+      throw error;
+    }
+
     const parts = zip.entries.filter((e) => /\.model$/i.test(e.name)).length;
     const objects = readObjects(mainDoc).size;
     throw new Error(

@@ -78,8 +78,9 @@ export default async function uploadView(container, ctx) {
           ${icon('upload', 32)}
           <strong>Arraste um arquivo ou clique para escolher</strong>
           <small>.stl ou .3mf — até ${formatBytes(CONFIG.upload.maxBytes)}</small>
+          <small class="faint">G-code cai automaticamente em “Dados do fatiamento”.</small>
         </div>
-        <input type="file" id="file" accept=".stl,.3mf,model/stl,model/3mf" hidden>
+        <input type="file" id="file" accept=".stl,.3mf,.gcode,.gco,.g,model/stl,model/3mf" hidden>
 
         <div class="panel" id="sliced-panel">
           <div class="panel__head">${icon('layers', 14)} Dados do fatiamento
@@ -289,6 +290,14 @@ export default async function uploadView(container, ctx) {
 
   async function handleFile(file) {
     setFormError('');
+
+    // Arquivo fatiado no campo do modelo: em vez de recusar, encaminha para o
+    // campo certo. Saber em qual caixa cada arquivo vai é problema da interface.
+    if (isSlicedFilename(file.name)) {
+      await adoptSlicedFile(file, 'pelo nome do arquivo');
+      return;
+    }
+
     const format = formatOf(file.name);
     if (!format) {
       setFormError('Extensão não suportada. Envie um arquivo .stl ou .3mf.');
@@ -323,13 +332,52 @@ export default async function uploadView(container, ctx) {
       dropzone.innerHTML = `${icon('refresh', 28)}<strong>Trocar arquivo</strong>
         <small>${esc(file.name)} — ${formatBytes(file.size)}</small>`;
     } catch (error) {
-      state.file = null;
-      state.geometry = null;
-      publishButton.disabled = true;
-      preview.hidden = true;
-      dropzone.innerHTML = `${icon('upload', 32)}<strong>Arraste um arquivo ou clique para escolher</strong>
-        <small>.stl ou .3mf — até ${formatBytes(CONFIG.upload.maxBytes)}</small>`;
+      resetDropzone();
+
+      // O parser reconheceu um G-code ou um 3MF fatiado: aproveita o arquivo.
+      if (error?.isSlicedFile) {
+        await adoptSlicedFile(file, 'pelo conteúdo');
+        return;
+      }
+
       setFormError(error?.message || 'Não foi possível interpretar o arquivo.');
+    }
+  }
+
+  function resetDropzone() {
+    state.file = null;
+    state.geometry = null;
+    publishButton.disabled = true;
+    preview.hidden = true;
+    dropzone.innerHTML = `${icon('upload', 32)}<strong>Arraste um arquivo ou clique para escolher</strong>
+      <small>.stl ou .3mf — até ${formatBytes(CONFIG.upload.maxBytes)}</small>`;
+  }
+
+  /** Aceita um arquivo fatiado que chegou pelo campo do modelo. */
+  async function adoptSlicedFile(file, motivo) {
+    resetDropzone();
+    try {
+      const slice = await parseSlicedFile(file);
+      if (!slice.sliced) {
+        throw new Error('O arquivo não traz consumo nem tempo declarados.');
+      }
+      state.slice = slice;
+      state.sliceName = file.name;
+      renderSlicedStatus();
+      renderProduction();
+      setFormError('');
+      qs('#sliced-panel', container)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      toast(
+        `${file.name} é um arquivo fatiado (reconhecido ${motivo}) e foi usado como dados de `
+        + `fatiamento: ${slice.grams.toFixed(1)} g medidos. Envie também o modelo .stl ou .3mf `
+        + 'para a biblioteca.',
+        { type: 'info', title: 'Arquivo no campo certo', timeout: 9000 },
+      );
+    } catch (error) {
+      setFormError(
+        `${file.name} parece ser um arquivo fatiado, mas não foi possível aproveitá-lo: `
+        + `${error?.message || 'formato não reconhecido'}`,
+      );
     }
   }
 
