@@ -35,16 +35,15 @@ async function renderCloudPanel(container) {
         <div>
           <strong>Modo local: a conta vale só neste navegador</strong>
           <div class="small">Não há servidor para validar credenciais, então a mesma conta
-            não abre em outro computador, e o estoque também fica preso aqui. Para contas
-            de verdade e dados sincronizados, configure o Supabase: o passo a passo está em
-            <span class="mono">docs/SUPABASE.md</span> e são dois valores no
-            <span class="mono">config.js</span>.</div>
+            não abre em outro computador, e o estoque também fica preso aqui.</div>
         </div>
       </div>
       <dl class="dl">
         <div class="dl__row"><dt>Contas</dt><dd>${listUsersCount()} neste navegador</dd></div>
         <div class="dl__row"><dt>Senhas</dt><dd>PBKDF2-SHA256, nunca em texto claro</dd></div>
-      </dl>`;
+      </dl>
+      ${connectFormMarkup()}`;
+    wireConnectForm(container);
     return;
   }
 
@@ -59,6 +58,10 @@ async function renderCloudPanel(container) {
         <div class="dl__row"><dt>Sessão</dt><dd>nenhuma</dd></div>`}
       <div class="dl__row"><dt>Projeto</dt>
         <dd class="mono small break-all">${esc(projectRef())}</dd></div>
+      <div class="dl__row"><dt>Credenciais</dt>
+        <dd>${sb.credentialSource() === 'config'
+          ? 'config.js (valem para todos)'
+          : 'salvas neste navegador'}</dd></div>
       <div class="dl__row"><dt>Estado</dt><dd id="cloud-health">verificando…</dd></div>
       <div class="dl__row"><dt>Pendentes de envio</dt><dd id="cloud-pending">—</dd></div>
     </dl>
@@ -66,7 +69,18 @@ async function renderCloudPanel(container) {
     <div class="btn-row">
       <button class="btn btn--sm" type="button" id="cloud-recheck">${icon('refresh', 15)} Reverificar</button>
       <button class="btn btn--sm" type="button" id="cloud-sync">${icon('upload', 15)} Sincronizar agora</button>
-    </div>`;
+      ${sb.credentialSource() === 'navegador'
+        ? `<button class="btn btn--sm btn--danger" type="button" id="cloud-forget">
+             ${icon('trash', 15)} Desconectar projeto</button>`
+        : ''}
+    </div>
+
+    ${sb.credentialSource() === 'navegador' ? `
+      <div class="banner banner--info" style="margin:0">${icon('info', 18)}
+        <div class="small">Esta conexão está salva <strong>apenas neste navegador</strong>. Para que
+          todo computador que abrir o site já venha conectado, os mesmos dois valores precisam estar
+          no <span class="mono">config.js</span> do repositório.</div>
+      </div>` : ''}`;
 
   const check = async () => {
     const health = qs('#cloud-health', container);
@@ -93,6 +107,19 @@ async function renderCloudPanel(container) {
   };
 
   qs('#cloud-recheck', container)?.addEventListener('click', check);
+
+  qs('#cloud-forget', container)?.addEventListener('click', async () => {
+    const confirmed = await confirmDialog({
+      title: 'Desconectar projeto',
+      message: 'Este navegador volta ao modo local. A conta e os dados continuam no Supabase; só esta máquina para de usá-los.',
+      confirmLabel: 'Desconectar',
+      danger: true,
+    });
+    if (!confirmed) return;
+    auth.signOut();
+    sb.setConnection(null);
+    location.reload();
+  });
   qs('#cloud-sync', container)?.addEventListener('click', async (event) => {
     setBusy(event.currentTarget, true);
     try {
@@ -113,6 +140,76 @@ async function renderCloudPanel(container) {
   });
 
   check();
+}
+
+/**
+ * Formulário de conexão.
+ *
+ * Existe para que dar o primeiro passo não exija editar o repositório: cola-se
+ * a URL e a chave pública, o site testa contra o projeto de verdade e só então
+ * salva. É o caminho para testar antes de tornar a conexão oficial no
+ * `config.js`.
+ */
+function connectFormMarkup() {
+  return `
+    <form class="form" id="connect-form" novalidate style="border-top:1px solid var(--border);padding-top:16px">
+      <div>
+        <strong class="small">Conectar um projeto do Supabase</strong>
+        <p class="small faint">Os dois valores estão no painel do projeto, no botão
+          <strong>Connect</strong> ou em <strong>Settings → API Keys</strong>. O passo a passo
+          completo está em <span class="mono">docs/SUPABASE.md</span>.</p>
+      </div>
+      <div class="field" data-field="url">
+        <label for="sb-url">Project URL</label>
+        <input class="input mono" type="url" id="sb-url" placeholder="https://seu-projeto.supabase.co"
+               autocomplete="off" spellcheck="false">
+        <p class="field__error" hidden></p>
+      </div>
+      <div class="field" data-field="key">
+        <label for="sb-key">Chave pública (anon / publishable)</label>
+        <textarea class="textarea mono" id="sb-key" rows="3" placeholder="eyJhbGciOi..."
+                  autocomplete="off" spellcheck="false" style="min-height:70px;font-size:11px"></textarea>
+        <p class="field__hint">Nunca use a chave <span class="mono">service_role</span>: ela ignora
+          todas as políticas de segurança do banco.</p>
+        <p class="field__error" hidden></p>
+      </div>
+      <div id="connect-result"></div>
+      <div class="btn-row">
+        <button class="btn btn--primary" type="submit">${icon('shield', 16)} Testar e conectar</button>
+      </div>
+    </form>`;
+}
+
+function wireConnectForm(container) {
+  const form = qs('#connect-form', container);
+  if (!form) return;
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const submit = qs('button[type="submit"]', form);
+    const result = qs('#connect-result', form);
+    const url = qs('#sb-url', form).value;
+    const key = qs('#sb-key', form).value;
+
+    setBusy(submit, true);
+    result.innerHTML = '';
+    try {
+      const test = await sb.testConnection({ url, anonKey: key });
+      if (!test.ok) {
+        result.innerHTML = `<div class="banner banner--danger" style="margin:0">${icon('alert', 18)}
+          <div class="small">${esc(test.error)}</div></div>`;
+        return;
+      }
+      sb.setConnection({ url, anonKey: key });
+      result.innerHTML = `<div class="banner banner--info" style="margin:0">${icon('checkCircle', 18)}
+        <div class="small">Projeto <strong>${esc(test.projectRef)}</strong> conectado.
+          Recarregando…</div></div>`;
+      toast('Projeto conectado. O login agora é do Supabase.', { type: 'success' });
+      setTimeout(() => location.reload(), 900);
+    } finally {
+      setBusy(submit, false);
+    }
+  });
 }
 
 async function updatePending(container) {

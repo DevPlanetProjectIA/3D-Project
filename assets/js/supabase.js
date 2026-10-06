@@ -29,12 +29,92 @@ export class SupabaseError extends Error {
   }
 }
 
-/** `true` quando o projeto está configurado; `false` mantém o modo local. */
-export const isConfigured = () =>
-  !!(CONFIG.supabase?.url && CONFIG.supabase?.anonKey);
+/*
+ * Credenciais: `config.js` vale para todo mundo que abre o site; a conexão
+ * salva pelo navegador vale só aqui. A segunda existe para quem ainda não quer
+ * (ou não pode) editar o repositório conseguir testar o projeto na hora — e
+ * tem precedência, porque é a escolha explícita de quem está na máquina.
+ */
+const OVERRIDE_KEY = 'supabaseConnection';
 
-const baseUrl = () => String(CONFIG.supabase.url || '').replace(/\/+$/, '');
-const anonKey = () => String(CONFIG.supabase.anonKey || '');
+const override = () => {
+  const saved = store.get(OVERRIDE_KEY, null);
+  return saved?.url && saved?.anonKey ? saved : null;
+};
+
+/** De onde vêm as credenciais em uso: `'config'`, `'navegador'` ou `''`. */
+export function credentialSource() {
+  if (override()) return 'navegador';
+  if (CONFIG.supabase?.url && CONFIG.supabase?.anonKey) return 'config';
+  return '';
+}
+
+/** Guarda a conexão neste navegador. Passe `null` para descartar. */
+export function setConnection(connection) {
+  if (!connection) { store.remove(OVERRIDE_KEY); return null; }
+  const url = String(connection.url || '').trim().replace(/\/+$/, '');
+  const key = String(connection.anonKey || '').trim();
+  if (!url || !key) return null;
+  const saved = { url, anonKey: key };
+  store.set(OVERRIDE_KEY, saved);
+  return saved;
+}
+
+/** `true` quando o projeto está configurado; `false` mantém o modo local. */
+export const isConfigured = () => !!credentialSource();
+
+const baseUrl = () => String(override()?.url || CONFIG.supabase?.url || '').replace(/\/+$/, '');
+const anonKey = () => String(override()?.anonKey || CONFIG.supabase?.anonKey || '');
+
+/**
+ * Valida um par URL + chave sem salvar nada.
+ *
+ * Checa a forma, depois bate no projeto de verdade: uma chave trocada ou um
+ * schema ausente só aparecem na resposta do servidor.
+ */
+export async function testConnection({ url, anonKey: key }) {
+  const cleanUrl = String(url || '').trim().replace(/\/+$/, '');
+  const cleanKey = String(key || '').trim();
+
+  if (!/^https:\/\/[a-z0-9-]+\.supabase\.(co|in)$/i.test(cleanUrl)) {
+    return { ok: false, error: 'A URL deve ser como https://seu-projeto.supabase.co (sem barra no fim).' };
+  }
+  if (cleanKey.length < 40) {
+    return { ok: false, error: 'A chave parece curta demais. Copie a chave pública inteira (anon / publishable).' };
+  }
+  // Duas gerações de chave secreta: o JWT com role service_role e o formato
+  // novo com prefixo sb_secret_. Nenhuma das duas pode chegar ao navegador.
+  const isSecret = /^sb_secret_/i.test(cleanKey)
+    || /service_role/.test(cleanKey)
+    || /"role"\s*:\s*"service_role"/.test(safeDecodeJwt(cleanKey));
+  if (isSecret) {
+    return { ok: false, error: 'Esta é uma chave secreta (service_role / sb_secret_): ela ignora todas as políticas de segurança e não pode ir para o navegador. Use a chave pública (anon / sb_publishable_).' };
+  }
+
+  try {
+    const response = await fetch(`${cleanUrl}/rest/v1/filaments?select=id&limit=1`, {
+      headers: { apikey: cleanKey, Authorization: `Bearer ${cleanKey}` },
+    });
+    if (response.status === 401) return { ok: false, error: 'Chave recusada pelo projeto. Confirme que copiou a chave pública deste projeto.' };
+    if (response.status === 404) return { ok: false, error: 'Projeto encontrado, mas a tabela "filaments" não existe. Rode supabase/schema.sql no editor SQL.' };
+    if (!response.ok && response.status !== 200) {
+      const body = await response.json().catch(() => null);
+      return { ok: false, error: translate(body?.message || `HTTP ${response.status}`, response.status) };
+    }
+    return { ok: true, projectRef: new URL(cleanUrl).hostname.split('.')[0] };
+  } catch (cause) {
+    return { ok: false, error: `Não foi possível alcançar o projeto. Verifique a URL e sua conexão. (${cause})` };
+  }
+}
+
+/** Payload de um JWT, sem validar assinatura — só para detectar service_role. */
+function safeDecodeJwt(token) {
+  try {
+    return atob(String(token).split('.')[1].replace(/-/g, '+').replace(/_/g, '/'));
+  } catch {
+    return '';
+  }
+}
 
 /* ---------- Sessão ---------- */
 
@@ -233,15 +313,21 @@ function translateOAuthError(code, description) {
 const redirectTarget = () => `${location.origin}${location.pathname}`;
 
 /**
+ * URL de entrada por provedor externo.
+ *
+ * Separada da navegação para poder ser verificada sem sair da página.
+ */
+export function authorizeUrl(provider = 'google') {
+  const params = new URLSearchParams({ provider, redirect_to: redirectTarget() });
+  return `${baseUrl()}/auth/v1/authorize?${params}`;
+}
+
+/**
  * Redireciona para o Google. Não retorna — a página é substituída.
  * O `redirect_to` precisa estar na lista de URLs permitidas do projeto.
  */
 export function signInWithGoogle() {
-  const params = new URLSearchParams({
-    provider: 'google',
-    redirect_to: redirectTarget(),
-  });
-  location.assign(`${baseUrl()}/auth/v1/authorize?${params}`);
+  location.assign(authorizeUrl('google'));
 }
 
 export async function signUpWithPassword({ email, password, username }) {
@@ -353,23 +439,33 @@ export async function remove(table, { eq = {} } = {}) {
   await request(`/rest/v1/${table}?${buildQuery({ select: 'id', eq })}`, { method: 'DELETE' });
 }
 
-/** Verifica se o projeto responde e se o schema foi aplicado. */
+/**
+ * Verifica se o projeto responde e se o schema foi aplicado.
+ *
+ * A sonda é uma tabela do schema, não a raiz `/rest/v1/`: no sistema novo de
+ * chaves do Supabase, a raiz só aceita chave secreta, e usá-la aqui dava um
+ * falso "projeto inacessível" em todo projeto com chave `sb_publishable_`.
+ * O código de status distingue os três casos que interessam.
+ */
 export async function healthCheck() {
   const result = { reachable: false, schema: false, authenticated: !!getSession(), error: '' };
   try {
-    await request('/rest/v1/', { auth: false, raw: true });
+    await select('filaments', { select: 'id', limit: 1 });
     result.reachable = true;
+    result.schema = true;
+    return result;
   } catch (error) {
+    const status = error instanceof SupabaseError ? error.status : 0;
     result.error = error.message;
+    // Status HTTP qualquer significa que o projeto respondeu; só a ausência de
+    // resposta (status 0) é de fato inacessível.
+    result.reachable = status > 0;
+    result.schema = false;
+    if (status === 404) {
+      result.error = 'O projeto responde, mas as tabelas não existem. Rode supabase/schema.sql no editor SQL.';
+    }
     return result;
   }
-  try {
-    await select('filaments', { select: 'id', limit: 1 });
-    result.schema = true;
-  } catch (error) {
-    result.error = error.message;
-  }
-  return result;
 }
 
 export default {

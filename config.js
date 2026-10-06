@@ -67,8 +67,8 @@ export const CONFIG = {
    * Passo a passo em README.md, seção "Contas compartilhadas".
    */
   supabase: {
-    url: '',
-    anonKey: '',
+    url: 'https://eqhxwpgpzseprcmiuaww.supabase.co',
+    anonKey: 'sb_publishable_P_uamf5YKN2AFGyTJP3QTA_VrijCGgw',
   },
 };
 
