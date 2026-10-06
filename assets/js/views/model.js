@@ -5,6 +5,7 @@ import * as auth from '../auth.js';
 import * as gh from '../github.js';
 import { parseModel, measure } from '../parsers/index.js';
 import { analyze } from '../production.js';
+import { openPrintDialog } from '../print-dialog.js';
 import { printerLabel, getPrinter } from '../printers.js';
 import { formatMoney, formatHours } from '../costing.js';
 import { Viewer } from '../viewer.js';
@@ -204,6 +205,9 @@ function renderProduction(geometry, model, container) {
             </div>` : ''}
 
           <div class="btn-row">
+            <button class="btn btn--sm btn--primary" type="button" id="print-now"
+                    ${analysis.blockers.noFilamentRegistered ? 'disabled' : ''}>
+              ${icon('printer', 15)} Imprimir</button>
             <a class="btn btn--sm" href="#/calculadora">${icon('calculator', 15)} Calculadora</a>
             <a class="btn btn--sm" href="#/orcamento">${icon('fileText', 15)} Gerar orçamento</a>
           </div>
@@ -233,6 +237,13 @@ function renderProduction(geometry, model, container) {
         </div>
       </div>
     </div>`;
+
+  // Imprimir só baixa gramas do estoque. Depois o painel é redesenhado porque
+  // o saldo mudou, e com ele o custo e os avisos de falta.
+  qs('#print-now', slot)?.addEventListener('click', async () => {
+    const done = await openPrintDialog(analysis, { title: `Imprimir ${model.name}` });
+    if (done) renderProduction(geometry, model, container);
+  });
 }
 
 export default async function modelView(container, ctx) {

@@ -214,7 +214,7 @@ export function toast(message, { type = 'info', title = '', timeout = 4800 } = {
  * Abre um modal. `render(close)` recebe o fechador e devolve o markup interno.
  * Retorna uma promessa resolvida com o valor passado a `close()`.
  */
-export function openModal(render, { wide = false, dismissable = true } = {}) {
+export function openModal(render, { wide = false, dismissable = true, ready = null } = {}) {
   const root = qs('#modal-root');
   return new Promise((resolve) => {
     const overlay = fromHTML(`<div class="modal" role="dialog" aria-modal="true"><div class="modal__box${wide ? ' modal__box--wide' : ''}"></div></div>`);
@@ -235,6 +235,9 @@ export function openModal(render, { wide = false, dismissable = true } = {}) {
     box.querySelectorAll('[data-close]').forEach((btn) => {
       btn.addEventListener('click', () => close(btn.dataset.close || undefined));
     });
+    // `ready` recebe a caixa já montada: é onde um modal interativo liga seus
+    // ouvintes, já que `render` só devolve markup.
+    if (ready) ready(box, close);
     const focusTarget = box.querySelector('[autofocus], input, button');
     if (focusTarget) focusTarget.focus();
     overlay.dispatchEvent(new CustomEvent('modal:ready', { detail: { box, close } }));

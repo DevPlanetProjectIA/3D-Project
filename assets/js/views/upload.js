@@ -7,6 +7,7 @@ import * as gh from '../github.js';
 import { parseModel, measure, formatOf } from '../parsers/index.js';
 import { Viewer, renderThumbnail } from '../viewer.js';
 import { analyze, toCatalogFields } from '../production.js';
+import { openPrintDialog } from '../print-dialog.js';
 import { parseSlicedFile, isSlicedFilename } from '../parsers/gcode.js';
 import { printersByBrand, getPrinter, printerLabel, exceedsBed } from '../printers.js';
 import { MATERIALS } from '../filaments.js';
@@ -579,11 +580,22 @@ export default async function uploadView(container, ctx) {
           </dl>
 
           <div class="btn-row">
+            <button class="btn btn--sm btn--primary" type="button" id="print-now"
+                    ${blockers.noFilamentRegistered ? 'disabled' : ''}>
+              ${icon('printer', 15)} Imprimir</button>
             <a class="btn btn--sm" href="#/calculadora">${icon('calculator', 15)} Abrir na calculadora</a>
             <a class="btn btn--sm" href="#/config">${icon('settings', 15)} Ajustar parâmetros</a>
           </div>
         </div>
       </div>`;
+
+    // Debita o filamento desta peça e redesenha: o saldo mudou.
+    qs('#print-now', container)?.addEventListener('click', async () => {
+      const done = await openPrintDialog(analysis, {
+        title: `Imprimir ${state.file?.name || 'a peça'}`,
+      });
+      if (done) renderProduction();
+    });
   }
 
   /* ---------- Publicação ---------- */

@@ -17,7 +17,7 @@
  */
 
 import { openZip } from './zip.js';
-import { normalizeHex } from './sliceinfo.js';
+import { normalizeHex, readSliceInfo } from './sliceinfo.js';
 
 /** Quanto ler de cada ponta do arquivo. O bloco de metadados cabe folgado. */
 const EDGE_BYTES = 512 * 1024;
@@ -132,9 +132,21 @@ export function parseGcodeText(text) {
     return '';
   };
 
-  const gramsList = numberList(get('filament used [g]', 'filament used [grams]'));
-  const lengthMm = numberList(get('filament used [mm]'));
-  const volumeCm3 = numberList(get('filament used [cm3]'));
+  // Dois vocabulários no mundo real. PrusaSlicer escreve
+  // `; filament used [g] = 23.45`; o Bambu Studio escreve
+  // `; total filament weight [g] : 5.15,6.81` — lista por extrusora, com
+  // dois-pontos e `cm^3` em vez de `cm3`. Ler só o primeiro formato fazia o
+  // total virar o consumo de uma extrusora só.
+  const gramsList = numberList(get(
+    'filament used [g]', 'filament used [grams]', 'total filament weight [g]', 'total filament weight',
+  ));
+  const lengthMm = numberList(get(
+    'filament used [mm]', 'total filament length [mm]', 'total filament length',
+  ));
+  const volumeCm3 = numberList(get(
+    'filament used [cm3]', 'filament used [cm^3]', 'total filament volume [cm3]',
+    'total filament volume [cm^3]', 'total filament volume',
+  ));
   const materials = textList(get('filament_type', 'filament type'));
   const colors = textList(get('filament_colour', 'filament_color')).map(normalizeHex);
 
@@ -170,15 +182,20 @@ export function parseGcodeText(text) {
     });
   }
 
-  const declaredTotal = toNumber(get(
-    'total filament used [g]', 'total filament weight [g]', 'total filament weight',
-  ));
-  const grams = declaredTotal || filaments.reduce((sum, f) => sum + f.grams, 0);
+  // `total filament weight [g]` é por extrusora, não o total: somar é o total.
+  const somaFilamentos = filaments.reduce((sum, f) => sum + f.grams, 0);
+  const declaredTotal = toNumber(get('total filament used [g]'));
+  const grams = somaFilamentos || declaredTotal;
 
-  const seconds = parseDuration(get(
+  // O Bambu põe os dois tempos na mesma linha:
+  // `; model printing time: 51m 30s; total estimated time: 57m 34s`.
+  // O que interessa para custo é o total, então ele é extraído de dentro do valor.
+  const tempoBruto = get(
     'estimated printing time (normal mode)', 'estimated printing time',
-    'total estimated time', 'time', 'print_time',
-  ));
+    'model printing time', 'total estimated time', 'time', 'print_time',
+  );
+  const totalNaLinha = /total estimated time\s*[:=]\s*([^;]+)/i.exec(tempoBruto);
+  const seconds = parseDuration(totalNaLinha ? totalNaLinha[1] : tempoBruto);
 
   // Purga declarada pelo fatiador: é o desperdício real da troca de cor.
   const flushPerChange = numberList(get('filament_flush_volume', 'flush_volume'));
@@ -259,9 +276,23 @@ const looksLikeZip = (buffer) => {
 
 async function parseGcodeFrom3mf(buffer) {
   const zip = openZip(buffer);
+
+  // `slice_info.config` é a mesma informação em XML estruturado, com gramas e
+  // metros por filamento já separados. Preferir isso a reparsear 3 MB de
+  // comentários de G-code é mais rápido e menos sujeito a dialeto.
+  try {
+    const info = await readSliceInfo(zip);
+    if (info?.sliced && info.grams > 0) return { ...info, source: 'gcode' };
+  } catch {
+    // Sem slice_info legível: segue para o G-code.
+  }
+
   const entry = zip.find((e) => /\.(gcode|gco)$/i.test(e.name))
     || zip.find((e) => /plate_\d+\.gcode/i.test(e.name));
-  if (!entry) throw new Error('Este 3MF não contém G-code. Exporte o G-code pelo fatiador, ou salve o projeto já fatiado.');
+  if (!entry) {
+    throw new Error('Este 3MF não traz dados de fatiamento nem G-code. '
+      + 'Exporte o G-code pelo fatiador, ou salve o projeto depois de fatiar.');
+  }
   const text = await zip.readEntryText(entry);
   return parseGcodeText(text);
 }

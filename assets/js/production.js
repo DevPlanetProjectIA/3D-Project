@@ -13,7 +13,7 @@
 
 import { measure, volumeOf, surfaceAreaOf, estimateWeight } from './parsers/index.js';
 import { densityOf, normalizeMaterial, colorName } from './filaments.js';
-import { matchUsage, available, pricePerGram, num } from './inventory.js';
+import { matchUsage, available, pricePerGram, consume, num } from './inventory.js';
 import { compute, getSettings } from './costing.js';
 import { getPrinter } from './printers.js';
 
@@ -179,6 +179,79 @@ export function analyze(geometry, opts = {}) {
       wrongMaterial,
     },
   };
+}
+
+/**
+ * Projeta uma impressão sem tocar no estoque: quanto sai de cada rolo.
+ *
+ * O rateio da purga segue a proporção de gramas de cada filamento, porque a
+ * troca de cor descarta material dos dois lados e cobrar tudo de um só
+ * distorceria o saldo.
+ *
+ * Serve para a tela mostrar o débito antes de confirmar.
+ */
+export function planPrint(analysis, { copies = 1 } = {}) {
+  const vezes = Math.max(1, Math.floor(num(copies)) || 1);
+
+  const comEstoque = (analysis.usage || []).filter((row) => row.filament);
+  if (!comEstoque.length) {
+    return {
+      ok: false,
+      copies: vezes,
+      linhas: [],
+      semSaldo: [],
+      totalGrams: 0,
+      custo: 0,
+      error: 'Nenhum filamento desta peça está cadastrado no estoque.',
+    };
+  }
+
+  const totalPecas = comEstoque.reduce((sum, row) => sum + row.grams, 0);
+  const linhas = comEstoque.map((row) => {
+    const purga = totalPecas > 0 ? analysis.purgeGrams * (row.grams / totalPecas) : 0;
+    const gramas = (row.grams + purga) * vezes;
+    const disponivel = available(row.filament);
+    return {
+      filament: row.filament,
+      material: row.material,
+      color: row.color,
+      grams: gramas,
+      purgeShare: purga * vezes,
+      disponivel,
+      falta: Math.max(0, gramas - disponivel),
+      custo: gramas * pricePerGram(row.filament),
+    };
+  });
+
+  const semSaldo = linhas.filter((l) => l.falta > 0.01);
+  return {
+    ok: !semSaldo.length,
+    copies: vezes,
+    linhas,
+    semSaldo,
+    totalGrams: linhas.reduce((sum, l) => sum + l.grams, 0),
+    custo: linhas.reduce((sum, l) => sum + l.custo, 0),
+    error: semSaldo.length
+      ? `Saldo insuficiente em ${semSaldo.map((l) => l.filament.name).join(', ')}.`
+      : '',
+  };
+}
+
+/**
+ * Registra a impressão: desconta do estoque o que a peça consome.
+ *
+ * Nada é descontado pela metade: se faltar saldo, recusa antes de mexer em
+ * qualquer registro, a menos que `force`. Um estoque meio debitado é pior que
+ * nenhum.
+ */
+export function registerPrint(analysis, { copies = 1, force = false } = {}) {
+  const plano = planPrint(analysis, { copies });
+  if (!plano.linhas.length) return { ...plano, ok: false };
+  if (!plano.ok && !force) return plano;
+
+  for (const linha of plano.linhas) consume(linha.filament.id, linha.grams);
+
+  return { ...plano, ok: true, forced: !plano.ok };
 }
 
 /** Resumo de uma linha para gravar no catálogo, sem objetos pesados. */

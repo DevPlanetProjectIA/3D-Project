@@ -404,8 +404,14 @@ if (auth.isCloud()) {
     if (nextId === lastUserId) return;
     lastUserId = nextId;
     lastShellKey = '';
-    if (!nextId) navigate('/entrar');
-    else render();
+    if (!nextId) {
+      navigate('/entrar');
+      return;
+    }
+    // Entrar depois do boot (tela de login, ou volta do Google) tem de carregar
+    // o estoque: sem isto o cache fica vazio a sessão inteira e nenhuma peça
+    // casa com filamento nenhum, mesmo havendo rolo cadastrado.
+    hydrateData().finally(render);
   });
 }
 
