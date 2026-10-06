@@ -37,7 +37,7 @@ const EMPTY_STATES = {
 
 function thumbMarkup(model) {
   if (model.thumb) {
-    return `<img src="${esc(catalog.assetUrl(model.thumb))}" alt="" loading="lazy" decoding="async"
+    return `<img src="${esc(catalog.fileUrl(model, 'thumb'))}" alt="" loading="lazy" decoding="async"
             onerror="this.remove()">`;
   }
   return `<span class="placeholder">${icon('box', 44)}</span>`;

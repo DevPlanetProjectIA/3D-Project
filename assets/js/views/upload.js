@@ -22,8 +22,15 @@ const STEPS = [
 
 /** Aviso de como a publicação vai (ou não vai) acontecer. */
 function writeBanner() {
-  const mode = gh.writeMode();
+  const mode = catalog.publishMode() === 'storage' ? 'storage' : gh.writeMode();
 
+  if (mode === 'storage') {
+    return `
+      <div class="banner banner--info">${icon('shield', 18)}
+        <div class="small">Publicação no acervo do Supabase: sem token, sem espera. O arquivo vai
+          direto do seu navegador para o projeto, na sua conta.</div>
+      </div>`;
+  }
   if (mode === 'funcao') {
     return `
       <div class="banner banner--info">${icon('shield', 18)}
@@ -599,9 +606,9 @@ export default async function uploadView(container, ctx) {
     const name = nameInput.value.trim();
     if (!name) { setFormError('Dê um nome ao modelo.'); nameInput.focus(); return; }
     if (!state.geometry) { setFormError('Escolha um arquivo .stl ou .3mf.'); return; }
-    if (!gh.canWrite()) {
-      setFormError('Sem credencial para publicar: implante a função de publicação no Supabase, '
-        + 'ou cadastre um token do GitHub em Configurações.');
+    if (!catalog.publishMode()) {
+      setFormError('Sem destino para publicar: entre na sua conta com o Supabase configurado '
+        + '(acervo no Storage), ou cadastre um token do GitHub em Configurações.');
       return;
     }
 

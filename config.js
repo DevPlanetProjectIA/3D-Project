@@ -70,6 +70,18 @@ export const CONFIG = {
     url: 'https://eqhxwpgpzseprcmiuaww.supabase.co',
     anonKey: 'sb_publishable_P_uamf5YKN2AFGyTJP3QTA_VrijCGgw',
   },
+
+  /**
+   * Onde os arquivos de modelo são gravados.
+   *
+   * `'auto'`  usa o Supabase Storage quando há projeto e sessão, e cai no Git
+   *           quando não há. É o padrão: publicar não pede token nem espera.
+   * `'storage'` força o Storage.
+   * `'git'`   força o repositório, com o histórico de versões que ele dá.
+   *
+   * As duas fontes são lidas sempre: trocar isto não esconde o que já existe.
+   */
+  acervo: 'auto',
 };
 
 export default CONFIG;

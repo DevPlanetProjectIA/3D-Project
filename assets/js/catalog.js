@@ -8,6 +8,8 @@
 
 import CONFIG from '../../config.js';
 import * as gh from './github.js';
+import * as sb from './supabase.js';
+import * as storage from './storage.js';
 import { slugify } from './util.js';
 
 /** Base do site publicado — resolve corretamente em subdiretórios do Pages. */
@@ -15,6 +17,18 @@ export const BASE = new URL('.', document.baseURI).href;
 
 /** URL pública de um arquivo do repositório servido pelo Pages. */
 export const assetUrl = (path) => new URL(String(path).replace(/^\/+/, ''), BASE).href;
+
+/**
+ * URL para baixar um arquivo do modelo, qualquer que seja a origem.
+ *
+ * Existe porque metade da interface só quer o endereço e não deveria precisar
+ * saber se a peça veio do Git ou do Storage.
+ */
+export function fileUrl(model, which = 'file') {
+  const path = which === 'thumb' ? model.thumb : model.file;
+  if (!path) return '';
+  return model.storage === 'storage' ? storage.publicUrl(path) : assetUrl(path);
+}
 
 const EMPTY = { version: 1, updated: null, models: [] };
 
@@ -28,6 +42,8 @@ function normalizeModel(raw, index) {
   const format = String(raw.format || raw.file?.split('.').pop() || 'stl').toLowerCase();
   return {
     id,
+    /** Onde os bytes moram: `'git'` ou `'storage'`. Decide como baixar e remover. */
+    storage: raw.storage === 'storage' ? 'storage' : 'git',
     name: String(raw.name || id),
     description: String(raw.description || ''),
     format: format === '3mf' ? '3mf' : 'stl',
@@ -75,6 +91,54 @@ function normalizeCatalog(raw) {
   return { version: Number(raw.version) || 1, updated: raw.updated || null, models };
 }
 
+/* ---------- Fonte: Supabase ---------- */
+
+/** Converte uma linha da tabela `models` no formato interno. */
+function fromRow(row) {
+  return normalizeModel({
+    id: row.id,
+    storage: 'storage',
+    name: row.name,
+    description: row.description,
+    format: row.format,
+    file: row.file_path,
+    thumb: row.thumb_path,
+    size: row.size,
+    tags: row.tags,
+    author: row.author,
+    triangles: row.triangles,
+    dimensions: { x: row.dim_x, y: row.dim_y, z: row.dim_z },
+    print: row.print_settings,
+    createdAt: row.created_at,
+    printerId: row.printer_id,
+    weightGrams: row.weight_grams,
+    purgeGrams: row.purge_grams,
+    printSeconds: row.print_seconds,
+    costBRL: row.cost_brl,
+    priceBRL: row.price_brl,
+    weightSource: row.weight_source,
+    filaments: row.filaments,
+    userId: row.user_id,
+  }, 0);
+}
+
+/**
+ * Modelos publicados no Storage.
+ *
+ * A leitura é pública por política de RLS, então funciona para visitante sem
+ * conta — esconder a listagem não protegeria nada, já que o bucket é público.
+ * Falha de rede devolve lista vazia: a biblioteca do Git ainda aparece.
+ */
+async function loadFromSupabase() {
+  if (!sb.isConfigured()) return [];
+  try {
+    const rows = await sb.select('models', { order: 'created_at.desc', limit: 1000 });
+    return (rows || []).map(fromRow);
+  } catch {
+    return [];
+  }
+}
+
 /* ---------- Leitura ---------- */
 
 /** Carrega o catálogo (com cache em memória). `force` ignora o cache e o do HTTP. */
@@ -84,14 +148,31 @@ export async function load({ force = false } = {}) {
 
   const url = assetUrl(CONFIG.paths.catalog) + (force ? `?t=${Date.now()}` : '');
   inFlight = (async () => {
-    try {
-      const response = await fetch(url, { cache: force ? 'reload' : 'default' });
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      cache = normalizeCatalog(await response.json());
-    } catch {
-      // Catálogo ausente é um estado válido: repositório recém-criado.
-      cache = { ...EMPTY };
-    }
+    // As duas fontes são independentes: uma fora do ar não derruba a outra.
+    const [doGit, doStorage] = await Promise.all([
+      (async () => {
+        try {
+          const response = await fetch(url, { cache: force ? 'reload' : 'default' });
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          return normalizeCatalog(await response.json()).models;
+        } catch {
+          // Catálogo ausente é um estado válido: repositório recém-criado.
+          return [];
+        }
+      })(),
+      loadFromSupabase(),
+    ]);
+
+    // O Storage vence em caso de id repetido: é a publicação mais recente.
+    const porId = new Map();
+    for (const model of doGit) porId.set(model.id, model);
+    for (const model of doStorage) porId.set(model.id, model);
+
+    cache = {
+      version: 1,
+      updated: new Date().toISOString(),
+      models: [...porId.values()].sort((a, b) => (b.createdAt || '').localeCompare(a.createdAt || '')),
+    };
     return cache;
   })();
 
@@ -190,7 +271,92 @@ export function modelDir(id) {
  * Publica um modelo: grava o arquivo, a miniatura e atualiza o catálogo.
  * `onStep(key, status, extra)` reporta o progresso para a interface.
  */
-export async function publish({ entry, fileBytes, thumbBytes }, onStep = () => {}) {
+/** Como a publicação vai acontecer: `'storage'`, `'git'` ou `''`. */
+export function publishMode() {
+  const escolha = CONFIG.acervo || 'auto';
+  if (escolha === 'git') return gh.canWrite() ? 'git' : '';
+  if (escolha === 'storage') return storage.isAvailable() ? 'storage' : '';
+  if (storage.isAvailable()) return 'storage';
+  return gh.canWrite() ? 'git' : '';
+}
+
+/**
+ * Publica no Supabase Storage.
+ *
+ * Caminho preferido quando o projeto está configurado: nada de token, de função
+ * no servidor nem de espera pelo Pages — o arquivo sobe direto e o catálogo é
+ * uma linha no banco.
+ */
+async function publishToStorage({ entry, fileBytes, thumbBytes }, onStep) {
+  const user = sb.sessionUser();
+  if (!user) throw new Error('Entre na sua conta para publicar.');
+
+  const folder = storage.modelFolder(entry.id);
+  const filePath = `${folder}/${entry.id}.${entry.format}`;
+  const thumbPath = thumbBytes ? `${folder}/thumb.png` : '';
+
+  onStep('file', 'active');
+  await storage.upload({
+    path: filePath,
+    bytes: fileBytes,
+    contentType: entry.format === '3mf' ? 'model/3mf' : 'model/stl',
+    onProgress: (ratio) => onStep('file', 'active', { ratio }),
+  });
+  onStep('file', 'done');
+
+  if (thumbBytes) {
+    onStep('thumb', 'active');
+    try {
+      await storage.upload({ path: thumbPath, bytes: thumbBytes, contentType: 'image/png' });
+      onStep('thumb', 'done');
+    } catch {
+      // Miniatura é enfeite: a peça vale sem ela.
+      onStep('thumb', 'error');
+    }
+  }
+
+  onStep('catalog', 'active');
+  await sb.upsert('models', [{
+    id: entry.id,
+    user_id: user.id,
+    author: entry.author,
+    name: entry.name,
+    description: entry.description,
+    format: entry.format,
+    tags: entry.tags,
+    file_path: filePath,
+    thumb_path: thumbPath,
+    size: entry.size,
+    triangles: entry.triangles,
+    dim_x: entry.dimensions.x,
+    dim_y: entry.dimensions.y,
+    dim_z: entry.dimensions.z,
+    printer_id: entry.printerId || '',
+    weight_grams: entry.weightGrams || 0,
+    purge_grams: entry.purgeGrams || 0,
+    print_seconds: entry.printSeconds || 0,
+    cost_brl: entry.costBRL || 0,
+    price_brl: entry.priceBRL || 0,
+    weight_source: entry.weightSource || 'estimativa',
+    filaments: entry.filaments || [],
+    print_settings: entry.print || {},
+  }], 'id');
+  onStep('catalog', 'done');
+
+  const record = {
+    ...entry, storage: 'storage', file: filePath, thumb: thumbPath,
+    createdAt: new Date().toISOString(),
+  };
+  primeLocal(record);
+  return record;
+}
+
+export async function publish(payload, onStep = () => {}) {
+  if (publishMode() === 'storage') return publishToStorage(payload, onStep);
+  return publishToGit(payload, onStep);
+}
+
+async function publishToGit({ entry, fileBytes, thumbBytes }, onStep = () => {}) {
   const dir = modelDir(entry.id);
   const filePath = `${dir}/${entry.id}.${entry.format}`;
   const thumbPath = thumbBytes ? `${dir}/thumb.png` : '';
@@ -236,8 +402,17 @@ export async function publish({ entry, fileBytes, thumbBytes }, onStep = () => {
   return record;
 }
 
-/** Remove um modelo do catálogo e apaga seus arquivos. */
+/** Remove um modelo do catálogo e apaga seus arquivos, na origem correta. */
 export async function remove(model) {
+  if (model.storage === 'storage') {
+    await sb.remove('models', { eq: { id: model.id } });
+    for (const path of [model.file, model.thumb].filter(Boolean)) {
+      try { await storage.remove(path); } catch { /* arquivo já ausente */ }
+    }
+    dropLocal(model.id);
+    return;
+  }
+
   await gh.putJsonWithRetry({
     path: CONFIG.paths.catalog,
     message: `chore(catalogo): remove ${model.name}`,

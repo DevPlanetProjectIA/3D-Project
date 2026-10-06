@@ -66,7 +66,7 @@ function detailPanel(model, user) {
     <div>
       <div class="panel">
         <div class="panel__body">
-          <a class="btn btn--primary btn--block" href="${esc(catalog.assetUrl(model.file))}"
+          <a class="btn btn--primary btn--block" href="${esc(catalog.fileUrl(model))}"
              download="${esc(model.id)}.${esc(model.format)}">
             ${icon('download', 18)} Baixar ${esc(model.format.toUpperCase())} · ${formatBytes(model.size)}
           </a>
@@ -75,9 +75,10 @@ function detailPanel(model, user) {
               ${icon('star', 15)} <span>Favorito</span>
             </button>
             <button class="btn btn--sm" type="button" id="share">${icon('copy', 15)} Link</button>
-            <a class="btn btn--sm" href="${esc(gh.links.tree(model.file))}" target="_blank" rel="noopener">
-              ${icon('github', 15)} Git
-            </a>
+            ${model.storage === 'git' ? `
+              <a class="btn btn--sm" href="${esc(gh.links.tree(model.file))}" target="_blank" rel="noopener">
+                ${icon('github', 15)} Git
+              </a>` : ''}
           </div>
         </div>
       </div>
@@ -130,8 +131,10 @@ function detailPanel(model, user) {
       <div class="panel">
         <div class="panel__head">${icon('trash', 14)} Administração</div>
         <div class="panel__body">
-          <p class="small faint">Remove o registro do catálogo e apaga os arquivos do repositório.
-            Requer token do GitHub com permissão de escrita.</p>
+          <p class="small faint">${model.storage === 'storage'
+            ? 'Remove o registro do catálogo e apaga os arquivos do acervo. Só o autor pode remover.'
+            : 'Remove o registro do catálogo e apaga os arquivos do repositório Git, em commits. '
+              + 'Requer credencial de escrita.'}</p>
           <button class="btn btn--danger btn--block" type="button" id="delete">
             ${icon('trash', 16)} Remover modelo
           </button>
@@ -313,7 +316,7 @@ export default async function modelView(container, ctx) {
 
   qs('#delete', container)?.addEventListener('click', async (event) => {
     const button = event.currentTarget;
-    if (!gh.canWrite()) {
+    if (model.storage !== 'storage' && !gh.canWrite()) {
       const go = await confirmDialog({
         title: 'Falta credencial',
         message: 'Remover arquivos do repositório exige a função de publicação no Supabase ou um '
@@ -325,7 +328,9 @@ export default async function modelView(container, ctx) {
     }
     const confirmed = await confirmDialog({
       title: 'Remover modelo',
-      message: `"${model.name}" será apagado do catálogo e do repositório. A ação cria commits e não pode ser desfeita pela interface.`,
+      message: model.storage === 'storage'
+        ? `"${model.name}" será apagado do catálogo e do acervo. A ação não pode ser desfeita.`
+        : `"${model.name}" será apagado do catálogo e do repositório. A ação cria commits e não pode ser desfeita pela interface.`,
       confirmLabel: 'Remover',
       danger: true,
     });
@@ -358,12 +363,12 @@ export default async function modelView(container, ctx) {
 
   const fail = (message) => {
     overlay.innerHTML = `${icon('alert', 28)}<span>${esc(message)}</span>
-      <a class="btn btn--sm" href="${esc(catalog.assetUrl(model.file))}" download>
+      <a class="btn btn--sm" href="${esc(catalog.fileUrl(model))}" download>
         ${icon('download', 15)} Baixar arquivo</a>`;
   };
 
   try {
-    const buffer = await fetchWithProgress(catalog.assetUrl(model.file), (ratio) => setProgress(ratio === null ? null : ratio * 0.6));
+    const buffer = await fetchWithProgress(catalog.fileUrl(model), (ratio) => setProgress(ratio === null ? null : ratio * 0.6));
     phase.textContent = 'interpretando geometria';
     const geometry = await parseModel(buffer, model.format, (ratio) => setProgress(0.6 + ratio * 0.4));
 
