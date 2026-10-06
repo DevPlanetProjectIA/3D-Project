@@ -103,6 +103,8 @@ function pushProfile(patch) {
 /* ---------- Entrada pelo Google ---------- */
 
 export const signInWithGoogle = () => sb.signInWithGoogle();
+export const authSettings = (options) => sb.authSettings(options);
+export const cachedAuthSettings = () => sb.cachedAuthSettings();
 
 /**
  * Trata o retorno do provedor OAuth. Precisa rodar antes do roteador, porque os

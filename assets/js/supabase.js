@@ -322,11 +322,74 @@ export function authorizeUrl(provider = 'google') {
   return `${baseUrl()}/auth/v1/authorize?${params}`;
 }
 
+/* ---------- Capacidades do projeto ---------- */
+
+const SETTINGS_CACHE_KEY = 'authSettings';
+let settingsPromise = null;
+
 /**
- * Redireciona para o Google. Não retorna — a página é substituída.
- * O `redirect_to` precisa estar na lista de URLs permitidas do projeto.
+ * O que este projeto aceita: provedores externos, e-mail, cadastro aberto e
+ * confirmação de e-mail.
+ *
+ * Serve para a interface não oferecer o que não existe. Sem isso, um projeto
+ * com o Google desligado manda a pessoa para uma página de JSON com
+ * "provider is not enabled" — erro de configuração do dono do projeto
+ * apresentado como se fosse falha de quem só quis entrar.
+ *
+ * A resposta é cacheada no navegador para a tela de login não esperar rede.
  */
-export function signInWithGoogle() {
+export async function authSettings({ force = false } = {}) {
+  const cached = store.get(SETTINGS_CACHE_KEY, null);
+  if (cached && !force) {
+    // Devolve o cache agora e revalida em segundo plano.
+    if (!settingsPromise) settingsPromise = fetchAuthSettings().catch(() => null);
+    return cached;
+  }
+  if (!settingsPromise || force) settingsPromise = fetchAuthSettings();
+  try {
+    return await settingsPromise;
+  } catch {
+    return cached;
+  } finally {
+    settingsPromise = null;
+  }
+}
+
+async function fetchAuthSettings() {
+  const data = await request('/auth/v1/settings', { auth: false });
+  const external = data?.external || {};
+  const settings = {
+    providers: Object.entries(external)
+      .filter(([, enabled]) => enabled === true)
+      .map(([name]) => name),
+    google: external.google === true,
+    email: external.email === true,
+    signupEnabled: data?.disable_signup !== true,
+    /** `true` quando o projeto já considera o e-mail confirmado no cadastro. */
+    autoConfirm: data?.mailer_autoconfirm === true,
+    fetchedAt: Date.now(),
+  };
+  store.set(SETTINGS_CACHE_KEY, settings);
+  return settings;
+}
+
+/** Leitura sincrona do cache, para a primeira pintura da tela. */
+export const cachedAuthSettings = () => store.get(SETTINGS_CACHE_KEY, null);
+
+/**
+ * Redireciona para o Google.
+ *
+ * Confere o provedor antes de sair da página: é a diferença entre uma
+ * explicação acionável e uma página de erro em JSON.
+ */
+export async function signInWithGoogle() {
+  const settings = await authSettings();
+  if (settings && !settings.google) {
+    throw new SupabaseError(
+      'O provedor Google não está habilitado neste projeto do Supabase.',
+      { code: 'provider_disabled' },
+    );
+  }
   location.assign(authorizeUrl('google'));
 }
 

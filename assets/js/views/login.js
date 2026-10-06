@@ -162,6 +162,7 @@ function loginMarkup() {
 function signupMarkup() {
   return `
     <form class="form" id="form-signup" novalidate>
+      <div id="signup-notice"></div>
       <div class="field" data-field="username">
         <label for="username">Nome de usuário</label>
         <input class="input" type="text" id="username" name="username" autocomplete="username"
@@ -209,6 +210,40 @@ function signupMarkup() {
           : 'As contas ficam neste navegador. Os arquivos enviados são públicos no repositório.'}
       </p>
     </form>`;
+}
+
+/**
+ * Bloco do Google: botão quando o provedor está ligado, explicação quando não.
+ *
+ * Com `null` (nada em cache ainda) mostra o botão — o caso normal é o provedor
+ * estar ligado, e a correção chega em milissegundos se não estiver.
+ */
+function googleSlotMarkup(settings) {
+  if (settings && settings.google === false) {
+    // Sem separador: o bloco seguinte já traz o seu, e dois "ou" seguidos ficam estranhos.
+    return `
+      <div class="banner banner--warn" style="margin:16px 0 0">
+        ${icon('alert', 18)}
+        <div class="small">
+          <strong>Entrada pelo Google ainda não habilitada</strong>
+          <div>Quem administra o projeto precisa ligar o provedor em
+            <span class="mono">Authentication → Sign In / Providers → Google</span> no painel do
+            Supabase, com o Client ID e o Client Secret do Google Cloud. O passo a passo está em
+            <span class="mono">docs/SUPABASE.md</span>.</div>
+          <div style="margin-top:6px">Por enquanto, use e-mail e senha acima — funciona em
+            qualquer computador do mesmo jeito.</div>
+        </div>
+      </div>`;
+  }
+
+  return `
+    <div class="auth__divider">ou</div>
+    <button class="btn btn--block btn--lg" type="button" id="google">
+      ${GOOGLE_MARK} Entrar com Google
+    </button>
+    <p class="small faint center" style="margin-top:8px">
+      Sua conta abre em qualquer computador, com estoque e orçamentos sincronizados.
+    </p>`;
 }
 
 /* ---------- Comportamento ---------- */
@@ -318,14 +353,7 @@ export default async function loginView(container, ctx) {
               ? `Já tem uma conta? <a href="#/entrar">Entrar</a>`
               : `Ainda não tem conta? <a href="#/criar-conta">Criar conta</a>`}
           </p>
-          ${auth.isCloud() ? `
-            <div class="auth__divider">ou</div>
-            <button class="btn btn--block btn--lg" type="button" id="google">
-              ${GOOGLE_MARK} Entrar com Google
-            </button>
-            <p class="small faint center" style="margin-top:8px">
-              Sua conta abre em qualquer computador, com estoque e orçamentos sincronizados.
-            </p>` : ''}
+          ${auth.isCloud() ? `<div id="google-slot">${googleSlotMarkup(auth.cachedAuthSettings())}</div>` : ''}
 
           ${CONFIG.allowGuestBrowsing ? `
             <div class="auth__divider">ou</div>
@@ -348,11 +376,59 @@ export default async function loginView(container, ctx) {
     ctx.navigate('/biblioteca');
   });
 
-  qs('#google', container)?.addEventListener('click', (event) => {
-    setBusy(event.currentTarget, true);
-    // Sai da página: o retorno é tratado em app.js, antes do roteador.
-    auth.signInWithGoogle();
-  });
+  // O botão do Google só vale se o provedor estiver habilitado no projeto.
+  // A primeira pintura usa o cache; a confirmação chega da rede e corrige.
+  if (auth.isCloud()) {
+    const slot = qs('#google-slot', container);
+    const wireGoogle = () => {
+      qs('#google', slot)?.addEventListener('click', async (event) => {
+        const button = event.currentTarget;
+        setBusy(button, true);
+        try {
+          // Sai da página: o retorno é tratado em app.js, antes do roteador.
+          await auth.signInWithGoogle();
+        } catch (error) {
+          setBusy(button, false);
+          slot.innerHTML = googleSlotMarkup({ google: false });
+          toast(error.message, { type: 'error', title: 'Google indisponível' });
+        }
+      });
+    };
+    wireGoogle();
+
+    auth.authSettings().then((settings) => {
+      if (!settings || !slot.isConnected) return;
+      slot.innerHTML = googleSlotMarkup(settings);
+      wireGoogle();
+    });
+  }
+
+  // Confirmação de e-mail é opção do projeto; avisar antes evita a pessoa
+  // criar a conta, tentar entrar e não entender por que foi recusada.
+  if (isSignup && auth.isCloud()) {
+    const notice = qs('#signup-notice', container);
+    const render = (settings) => {
+      if (!settings || !notice?.isConnected) return;
+      if (!settings.signupEnabled) {
+        notice.innerHTML = `
+          <div class="banner banner--warn" style="margin:0">${icon('alert', 18)}
+            <div class="small">O cadastro por e-mail está desativado neste projeto. Peça a quem
+              administra para liberá-lo em <span class="mono">Authentication → Sign In /
+              Providers → Email</span>, ou entre pelo Google.</div>
+          </div>`;
+        return;
+      }
+      if (!settings.autoConfirm) {
+        notice.innerHTML = `
+          <div class="banner banner--info" style="margin:0">${icon('info', 18)}
+            <div class="small">Depois de criar a conta, o Supabase envia um e-mail de confirmação.
+              É preciso clicar no link antes do primeiro acesso.</div>
+          </div>`;
+      }
+    };
+    render(auth.cachedAuthSettings());
+    auth.authSettings().then(render);
+  }
 
   const form = qs('form', container);
   form?.addEventListener('submit', async (event) => {
