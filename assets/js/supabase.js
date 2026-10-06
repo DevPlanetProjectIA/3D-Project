@@ -303,9 +303,35 @@ export function captureOAuthRedirect() {
   return { ok: true };
 }
 
+/**
+ * Traduz o erro que o provedor devolve no retorno do OAuth.
+ *
+ * `server_error` aqui quase sempre significa uma coisa só: o Client Secret
+ * guardado no Supabase não pertence ao Client ID configurado. O Google aceita
+ * iniciar o fluxo (o ID e o URI de retorno são válidos) e só recusa na troca
+ * do código pelo token, que é onde o segredo entra. Dizer isso economiza horas
+ * de procura no lugar errado.
+ */
 function translateOAuthError(code, description) {
   if (/access_denied/i.test(code)) return 'Entrada pelo Google cancelada.';
-  if (/server_error/i.test(code)) return 'O Supabase recusou a resposta do Google. Confira o provedor no painel.';
+
+  const detail = description ? ` O provedor informou: "${description}".` : '';
+
+  if (/server_error/i.test(code)) {
+    return 'O Supabase não conseguiu concluir a troca de credenciais com o Google. '
+      + 'A causa mais comum é o Client Secret não corresponder ao Client ID: '
+      + 'confira se os dois vêm do MESMO cliente OAuth, no mesmo projeto do Google Cloud. '
+      + 'Um segredo antigo, ou de outro cliente, produz exatamente este erro.' + detail;
+  }
+  if (/invalid_client/i.test(code)) {
+    return 'O Google recusou o Client ID ou o Client Secret configurados no Supabase.' + detail;
+  }
+  if (/redirect_uri_mismatch/i.test(code)) {
+    return 'O URI de retorno não está registrado no cliente OAuth do Google Cloud.' + detail;
+  }
+  if (/bad_oauth_state|invalid_request/i.test(code)) {
+    return 'A resposta do Google não bateu com a solicitação. Tente entrar novamente.' + detail;
+  }
   return description || `Falha na entrada pelo Google (${code}).`;
 }
 
