@@ -1,0 +1,367 @@
+/* Tela de entrada: login e criação de conta na mesma superfície. */
+
+import CONFIG from '../../../config.js';
+import * as auth from '../auth.js';
+import { esc, icon, qs, qsa, toast, setBusy } from '../util.js';
+import { Viewer } from '../viewer.js';
+
+const BRAND_MARK = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 22 7.5v9L12 22 2 16.5v-9z"/><path d="M2 7.5 12 13l10-5.5M12 13v9"/></svg>`;
+
+/* ---------- Geometria decorativa ---------- */
+
+/** Nó tórico procedural usado como ilustração animada do painel lateral. */
+function torusKnot({ radius = 1, tube = 0.3, segments = 160, sides = 20, p = 2, q = 3 } = {}) {
+  const positions = [];
+  const normals = [];
+  const bounds = { min: [Infinity, Infinity, Infinity], max: [-Infinity, -Infinity, -Infinity] };
+
+  const curve = (t) => {
+    const u = t * p * Math.PI * 2;
+    const v = t * q * Math.PI * 2;
+    const r = radius * (2 + Math.cos(v));
+    return [r * Math.cos(u) / 2, r * Math.sin(u) / 2, radius * Math.sin(v) / 2];
+  };
+
+  const grid = [];
+  for (let i = 0; i <= segments; i++) {
+    const t = i / segments;
+    const point = curve(t);
+    const next = curve((i + 1) / segments);
+    const prev = curve((i - 1 + segments) / segments);
+
+    const tangent = [next[0] - prev[0], next[1] - prev[1], next[2] - prev[2]];
+    const tl = Math.hypot(...tangent) || 1;
+    const T = tangent.map((c) => c / tl);
+    let N = [T[1], -T[0], 0];
+    if (Math.hypot(...N) < 1e-6) N = [1, 0, 0];
+    const nl = Math.hypot(...N) || 1;
+    N = N.map((c) => c / nl);
+    const B = [
+      T[1] * N[2] - T[2] * N[1],
+      T[2] * N[0] - T[0] * N[2],
+      T[0] * N[1] - T[1] * N[0],
+    ];
+
+    const ring = [];
+    for (let j = 0; j <= sides; j++) {
+      const angle = (j / sides) * Math.PI * 2;
+      const cos = Math.cos(angle);
+      const sin = Math.sin(angle);
+      const normal = [
+        N[0] * cos + B[0] * sin,
+        N[1] * cos + B[1] * sin,
+        N[2] * cos + B[2] * sin,
+      ];
+      ring.push({
+        position: [
+          point[0] + tube * normal[0],
+          point[1] + tube * normal[1],
+          point[2] + tube * normal[2],
+        ],
+        normal,
+      });
+    }
+    grid.push(ring);
+  }
+
+  const push = (vertex) => {
+    positions.push(...vertex.position);
+    normals.push(...vertex.normal);
+    for (let k = 0; k < 3; k++) {
+      if (vertex.position[k] < bounds.min[k]) bounds.min[k] = vertex.position[k];
+      if (vertex.position[k] > bounds.max[k]) bounds.max[k] = vertex.position[k];
+    }
+  };
+
+  for (let i = 0; i < segments; i++) {
+    for (let j = 0; j < sides; j++) {
+      const a = grid[i][j], b = grid[i + 1][j], c = grid[i + 1][j + 1], d = grid[i][j + 1];
+      push(a); push(b); push(c);
+      push(a); push(c); push(d);
+    }
+  }
+
+  return {
+    positions: new Float32Array(positions),
+    normals: new Float32Array(normals),
+    triangles: positions.length / 9,
+    bounds,
+  };
+}
+
+/* ---------- Markup ---------- */
+
+const FEATURES = [
+  ['box', 'Visualizador 3D integrado para .stl e .3mf, direto no navegador.'],
+  ['layers', 'Arquivos versionados no repositório Git — histórico completo de cada modelo.'],
+  ['tag', 'Busca, etiquetas e favoritos para encontrar o modelo certo em segundos.'],
+  ['shield', 'Hospedagem estática no GitHub Pages: sem servidor para manter.'],
+];
+
+function asideMarkup() {
+  return `
+    <aside class="auth__aside">
+      <canvas id="auth-art" aria-hidden="true"></canvas>
+      <div class="auth__brand">${BRAND_MARK}<span>${esc(CONFIG.siteName)}</span></div>
+      <div class="auth__pitch">
+        <h2>Biblioteca compartilhada de modelos 3D</h2>
+        <p>Um acervo único para a equipe: envie, visualize e baixe peças prontas para impressão sem sair do navegador.</p>
+        <ul class="auth__features">
+          ${FEATURES.map(([ico, text]) => `<li>${icon(ico, 17)}<span>${esc(text)}</span></li>`).join('')}
+        </ul>
+      </div>
+      <p class="small faint">${esc(CONFIG.owner)}/${esc(CONFIG.repo)}</p>
+    </aside>`;
+}
+
+function passwordField({ id, label, hint = '', autocomplete = 'current-password' }) {
+  return `
+    <div class="field" data-field="${esc(id)}">
+      <label for="${esc(id)}">${esc(label)}</label>
+      <div class="input-group">
+        <input class="input" type="password" id="${esc(id)}" name="${esc(id)}"
+               autocomplete="${esc(autocomplete)}" required>
+        <button class="input-group__btn" type="button" data-toggle-password="${esc(id)}"
+                aria-label="Mostrar senha">${icon('eye', 17)}</button>
+      </div>
+      ${hint ? `<p class="field__hint">${esc(hint)}</p>` : ''}
+      <p class="field__error" hidden></p>
+    </div>`;
+}
+
+function loginMarkup() {
+  return `
+    <form class="form" id="form-login" novalidate>
+      <div class="field" data-field="identifier">
+        <label for="identifier">Usuário ou e-mail</label>
+        <input class="input" type="text" id="identifier" name="identifier" autocomplete="username"
+               autocapitalize="none" spellcheck="false" required autofocus>
+        <p class="field__error" hidden></p>
+      </div>
+      ${passwordField({ id: 'password', label: 'Senha' })}
+      <label class="check">
+        <input type="checkbox" name="remember" checked>
+        <span>Manter sessão neste navegador</span>
+      </label>
+      <p class="field__error" data-form-error hidden></p>
+      <button class="btn btn--primary btn--lg btn--block" type="submit">
+        ${icon('login', 18)} Entrar
+      </button>
+    </form>`;
+}
+
+function signupMarkup() {
+  return `
+    <form class="form" id="form-signup" novalidate>
+      <div class="field" data-field="username">
+        <label for="username">Nome de usuário</label>
+        <input class="input" type="text" id="username" name="username" autocomplete="username"
+               autocapitalize="none" spellcheck="false" placeholder="ex.: bruno.toledo" required autofocus>
+        <p class="field__hint">3 a 24 caracteres. Letras, números, ponto, hífen ou sublinhado.</p>
+        <p class="field__error" hidden></p>
+      </div>
+      <div class="field" data-field="email">
+        <label for="email">E-mail</label>
+        <input class="input" type="email" id="email" name="email" autocomplete="email"
+               autocapitalize="none" spellcheck="false" required>
+        <p class="field__error" hidden></p>
+      </div>
+      <div class="field" data-field="password">
+        <label for="password">Senha</label>
+        <div class="input-group">
+          <input class="input" type="password" id="password" name="password" autocomplete="new-password" required>
+          <button class="input-group__btn" type="button" data-toggle-password="password"
+                  aria-label="Mostrar senha">${icon('eye', 17)}</button>
+        </div>
+        <div class="meter" id="strength">
+          <div class="meter__track">
+            ${[0, 1, 2, 3].map(() => '<i class="meter__seg"></i>').join('')}
+          </div>
+          <span class="meter__label">Mínimo de ${CONFIG.password.minLength} caracteres.</span>
+        </div>
+        <p class="field__error" hidden></p>
+      </div>
+      <div class="field" data-field="confirm">
+        <label for="confirm">Confirmar senha</label>
+        <div class="input-group">
+          <input class="input" type="password" id="confirm" name="confirm" autocomplete="new-password" required>
+          <button class="input-group__btn" type="button" data-toggle-password="confirm"
+                  aria-label="Mostrar senha">${icon('eye', 17)}</button>
+        </div>
+        <p class="field__error" hidden></p>
+      </div>
+      <p class="field__error" data-form-error hidden></p>
+      <button class="btn btn--primary btn--lg btn--block" type="submit">
+        ${icon('user', 18)} Criar conta
+      </button>
+      <p class="small faint center">
+        As contas ficam neste navegador. Os arquivos enviados são públicos no repositório.
+      </p>
+    </form>`;
+}
+
+/* ---------- Comportamento ---------- */
+
+const SEG_COLORS = ['var(--danger)', 'var(--danger)', 'var(--warning)', 'var(--success)', 'var(--success)'];
+
+function showErrors(root, errors) {
+  qsa('[data-field]', root).forEach((field) => {
+    field.classList.remove('field--invalid');
+    const slot = qs('.field__error', field);
+    if (slot) { slot.hidden = true; slot.textContent = ''; }
+  });
+  const formSlot = qs('[data-form-error]', root);
+  if (formSlot) { formSlot.hidden = true; formSlot.textContent = ''; }
+
+  let firstInvalid = null;
+  for (const [key, message] of Object.entries(errors || {})) {
+    if (key === 'form') {
+      if (formSlot) { formSlot.textContent = message; formSlot.hidden = false; }
+      continue;
+    }
+    const field = qs(`[data-field="${key}"]`, root);
+    if (!field) continue;
+    field.classList.add('field--invalid');
+    const slot = qs('.field__error', field);
+    if (slot) { slot.textContent = message; slot.hidden = false; }
+    firstInvalid = firstInvalid || qs('input', field);
+  }
+  firstInvalid?.focus();
+}
+
+function wirePasswordToggles(root) {
+  qsa('[data-toggle-password]', root).forEach((button) => {
+    button.addEventListener('click', () => {
+      const input = qs(`#${button.dataset.togglePassword}`, root);
+      if (!input) return;
+      const show = input.type === 'password';
+      input.type = show ? 'text' : 'password';
+      button.innerHTML = icon(show ? 'eyeOff' : 'eye', 17);
+      button.setAttribute('aria-label', show ? 'Ocultar senha' : 'Mostrar senha');
+    });
+  });
+}
+
+function wireStrengthMeter(root) {
+  const input = qs('#password', root);
+  const meter = qs('#strength', root);
+  if (!input || !meter) return;
+  const segments = qsa('.meter__seg', meter);
+  const label = qs('.meter__label', meter);
+  input.addEventListener('input', () => {
+    const value = input.value;
+    if (!value) {
+      segments.forEach((s) => { s.classList.remove('is-on'); s.style.removeProperty('--level'); });
+      label.textContent = `Mínimo de ${CONFIG.password.minLength} caracteres.`;
+      return;
+    }
+    const { score, label: text, hints } = auth.passwordStrength(value);
+    segments.forEach((segment, i) => {
+      const on = i < score;
+      segment.classList.toggle('is-on', on);
+      segment.style.setProperty('--level', SEG_COLORS[score]);
+    });
+    label.textContent = hints.length ? `${text} — ${hints[0]}.` : `${text}.`;
+  });
+}
+
+function mountArt(root) {
+  const canvas = qs('#auth-art', root);
+  if (!canvas) return null;
+  try {
+    const viewer = new Viewer(canvas, { autoRotate: true, showGrid: false, color: [0.42, 0.52, 0.95] });
+    viewer.setGeometry(torusKnot());
+    viewer.view.radius *= 1.1;
+    viewer.invalidate();
+    return viewer;
+  } catch {
+    canvas.remove();
+    return null;
+  }
+}
+
+/* ---------- Entrada da view ---------- */
+
+export default async function loginView(container, ctx) {
+  const mode = ctx.route === '/criar-conta' ? 'signup' : 'login';
+  const isSignup = mode === 'signup';
+  const firstAccount = !auth.usersExist();
+
+  container.innerHTML = `
+    <div class="auth">
+      ${asideMarkup()}
+      <main class="auth__main">
+        <div class="auth__card">
+          <div class="auth__mobile-brand">${BRAND_MARK}<span>${esc(CONFIG.siteName)}</span></div>
+          <header>
+            <h1>${isSignup ? 'Criar conta' : 'Entrar'}</h1>
+            <p>${isSignup
+              ? (firstAccount
+                ? 'Esta será a primeira conta da biblioteca.'
+                : 'Preencha os dados para começar a usar a biblioteca.')
+              : 'Acesse a biblioteca compartilhada de modelos 3D.'}</p>
+          </header>
+          ${isSignup ? signupMarkup() : loginMarkup()}
+          <p class="auth__switch">
+            ${isSignup
+              ? `Já tem uma conta? <a href="#/entrar">Entrar</a>`
+              : `Ainda não tem conta? <a href="#/criar-conta">Criar conta</a>`}
+          </p>
+          ${CONFIG.allowGuestBrowsing ? `
+            <div class="auth__divider">ou</div>
+            <button class="btn btn--block" type="button" id="guest">
+              ${icon('eye', 18)} Entrar como visitante
+            </button>
+            <p class="small faint center" style="margin-top:8px">
+              Visitantes navegam e baixam, mas não enviam modelos.
+            </p>` : ''}
+        </div>
+      </main>
+    </div>`;
+
+  const viewer = mountArt(container);
+  wirePasswordToggles(container);
+  if (isSignup) wireStrengthMeter(container);
+
+  qs('#guest', container)?.addEventListener('click', () => {
+    auth.enterAsGuest();
+    ctx.navigate('/biblioteca');
+  });
+
+  const form = qs('form', container);
+  form?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const submit = qs('button[type="submit"]', form);
+    const data = Object.fromEntries(new FormData(form).entries());
+    setBusy(submit, true);
+    try {
+      const result = isSignup
+        ? await auth.signUp({
+            username: data.username,
+            email: data.email,
+            password: data.password,
+            confirm: data.confirm,
+          })
+        : await auth.signIn({
+            identifier: data.identifier,
+            password: data.password,
+            remember: 'remember' in data,
+          });
+
+      if (!result.ok) {
+        showErrors(form, result.errors);
+        return;
+      }
+      auth.leaveGuest();
+      toast(isSignup ? `Conta criada. Bem-vindo, ${result.user.username}.` : `Olá, ${result.user.username}.`,
+        { type: 'success' });
+      ctx.navigate('/biblioteca');
+    } catch (error) {
+      showErrors(form, { form: error?.message || 'Falha inesperada. Tente novamente.' });
+    } finally {
+      setBusy(submit, false);
+    }
+  });
+
+  return () => viewer?.dispose();
+}
