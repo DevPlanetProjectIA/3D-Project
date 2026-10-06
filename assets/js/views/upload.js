@@ -20,14 +20,26 @@ const STEPS = [
   ['catalog', 'Atualizando catálogo'],
 ];
 
-function tokenBanner() {
+/** Aviso de como a publicação vai (ou não vai) acontecer. */
+function writeBanner() {
+  const mode = gh.writeMode();
+
+  if (mode === 'funcao') {
+    return `
+      <div class="banner banner--info">${icon('shield', 18)}
+        <div class="small">Publicação pela função do servidor: o token do GitHub não passa por este
+          navegador. O commit registra o seu e-mail como autor da publicação.</div>
+      </div>`;
+  }
+  if (mode === 'token') return '';
+
   return `
     <div class="banner banner--warn">${icon('key', 18)}
       <div>
-        <strong>Token do GitHub necessário</strong>
-        <div class="small">Publicar grava arquivos no repositório
-          <span class="mono">${esc(CONFIG.owner)}/${esc(CONFIG.repo)}</span>, e isso exige um token pessoal
-          com permissão de escrita em conteúdo.</div>
+        <strong>Falta uma credencial para publicar</strong>
+        <div class="small">Gravar em <span class="mono">${esc(CONFIG.owner)}/${esc(CONFIG.repo)}</span>
+          exige a função de publicação implantada no Supabase — e aí ninguém precisa de token — ou um
+          token pessoal do GitHub neste navegador.</div>
       </div>
       <div class="banner__actions">
         <a class="btn btn--sm btn--primary" href="#/config">${icon('settings', 15)} Configurar</a>
@@ -69,7 +81,7 @@ export default async function uploadView(container, ctx) {
       <a class="btn" href="#/biblioteca">${icon('library', 17)} Biblioteca</a>
     </div>
 
-    ${auth.hasToken() ? '' : tokenBanner()}
+    ${writeBanner()}
 
     <div class="upload">
       <div class="stack">
@@ -587,8 +599,9 @@ export default async function uploadView(container, ctx) {
     const name = nameInput.value.trim();
     if (!name) { setFormError('Dê um nome ao modelo.'); nameInput.focus(); return; }
     if (!state.geometry) { setFormError('Escolha um arquivo .stl ou .3mf.'); return; }
-    if (!auth.hasToken()) {
-      setFormError('Configure um token do GitHub em Configurações antes de publicar.');
+    if (!gh.canWrite()) {
+      setFormError('Sem credencial para publicar: implante a função de publicação no Supabase, '
+        + 'ou cadastre um token do GitHub em Configurações.');
       return;
     }
 

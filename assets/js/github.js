@@ -8,6 +8,7 @@
 
 import CONFIG from '../../config.js';
 import { getToken } from './auth.js';
+import * as sb from './supabase.js';
 
 const API = 'https://api.github.com';
 
@@ -21,6 +22,80 @@ export class GitHubError extends Error {
 }
 
 const repoSlug = () => `${CONFIG.owner}/${CONFIG.repo}`;
+
+/* ---------- Dois caminhos de escrita ---------- */
+
+/*
+ * Ler é público e direto. Gravar precisa de credencial, e há duas formas:
+ *
+ *  1. **Função de publicação** (preferida): o token do GitHub fica como segredo
+ *     no servidor do Supabase e ninguém o manuseia. O navegador só manda o
+ *     arquivo e a sessão de quem está logado. É o caminho para equipe.
+ *  2. **Token pessoal**: cada pessoa cadastra o seu. Continua valendo, dá
+ *     autoria real em cada commit, e tem precedência quando configurado —
+ *     quem se deu o trabalho de criar um token quis usá-lo.
+ */
+
+/** URL da função de publicação, quando o projeto Supabase estiver configurado. */
+function publishFunctionUrl() {
+  if (CONFIG.publishFunction === false) return '';
+  const base = sb.projectUrl();
+  if (!base) return '';
+  const name = typeof CONFIG.publishFunction === 'string' ? CONFIG.publishFunction : 'publish';
+  return `${base}/functions/v1/${name}`;
+}
+
+/** `true` quando a escrita pode passar pela função do servidor. */
+export const canPublishViaFunction = () => !!publishFunctionUrl() && !!sb.getSession();
+
+/** Como a escrita vai acontecer: `'token'`, `'funcao'` ou `''`. */
+export function writeMode() {
+  if (getToken()) return 'token';
+  if (canPublishViaFunction()) return 'funcao';
+  return '';
+}
+
+export const canWrite = () => !!writeMode();
+
+/** Chama a função de publicação. Erros voltam traduzidos pela própria função. */
+async function callPublishFunction(payload) {
+  const url = publishFunctionUrl();
+  const session = sb.getSession();
+  if (!url || !session) {
+    throw new GitHubError('Entre na sua conta para publicar, ou configure um token do GitHub.');
+  }
+
+  let response;
+  try {
+    response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${session.access_token}`,
+        apikey: CONFIG.supabase.anonKey,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
+  } catch (cause) {
+    throw new GitHubError('Falha de rede ao contatar a função de publicação.', { detail: String(cause) });
+  }
+
+  const data = await response.json().catch(() => null);
+  if (!response.ok) {
+    // 404 aqui quase sempre significa função não implantada, não arquivo ausente.
+    if (response.status === 404 && !data?.error) {
+      throw new GitHubError(
+        'A função de publicação não está implantada neste projeto do Supabase. '
+        + 'Veja docs/PUBLICACAO.md, ou cadastre um token do GitHub em Configurações.',
+        { status: 404 },
+      );
+    }
+    throw new GitHubError(data?.error || `Erro ${response.status} na função de publicação.`, {
+      status: response.status,
+    });
+  }
+  return data;
+}
 
 /* ---------- Base64 ---------- */
 
@@ -141,6 +216,11 @@ export async function getFileMeta(path) {
 /** Cria ou atualiza um arquivo. `content` aceita string (UTF-8) ou bytes. */
 export async function putFile({ path, content, message, sha }) {
   const base64 = typeof content === 'string' ? textToBase64(content) : bytesToBase64(content);
+
+  if (writeMode() === 'funcao') {
+    return callPublishFunction({ action: 'put', path, content: base64, message, sha });
+  }
+
   return request(`/repos/${repoSlug()}/contents/${encodePath(path)}`, {
     method: 'PUT',
     body: {
@@ -153,6 +233,10 @@ export async function putFile({ path, content, message, sha }) {
 }
 
 export async function deleteFile({ path, sha, message }) {
+  if (writeMode() === 'funcao') {
+    return callPublishFunction({ action: 'delete', path, sha, message });
+  }
+
   return request(`/repos/${repoSlug()}/contents/${encodePath(path)}`, {
     method: 'DELETE',
     body: { message, sha, branch: CONFIG.branch },

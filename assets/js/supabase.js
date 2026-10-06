@@ -63,6 +63,9 @@ export function setConnection(connection) {
 /** `true` quando o projeto está configurado; `false` mantém o modo local. */
 export const isConfigured = () => !!credentialSource();
 
+/** URL do projeto em uso, sem barra final. Vazio quando não configurado. */
+export const projectUrl = () => baseUrl();
+
 const baseUrl = () => String(override()?.url || CONFIG.supabase?.url || '').replace(/\/+$/, '');
 const anonKey = () => String(override()?.anonKey || CONFIG.supabase?.anonKey || '');
 

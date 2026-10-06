@@ -18,6 +18,59 @@ const TOKEN_HELP = `
   </ol>`;
 
 /**
+ * Explica qual credencial está em uso para gravar no repositório.
+ *
+ * São dois caminhos com propriedades bem diferentes, e a diferença importa:
+ * pela função, o token é segredo do servidor e ninguém o manuseia; pelo token
+ * pessoal, cada commit sai com a autoria real de quem publicou.
+ */
+function renderWritePanel(container) {
+  const slot = qs('#write-panel', container);
+  if (!slot) return;
+
+  const mode = gh.writeMode();
+  const funcaoDisponivel = gh.canPublishViaFunction();
+
+  const linha = (ativo, titulo, texto) => `
+    <div class="row" style="align-items:flex-start">
+      <span class="row__thumb" style="width:30px;height:30px;background:none;display:grid;place-items:center">
+        ${icon(ativo ? 'checkCircle' : 'x', 17)}
+      </span>
+      <span class="row__main">
+        <span class="row__title">${esc(titulo)}${ativo ? ' — em uso' : ''}</span>
+        <span class="row__sub">${texto}</span>
+      </span>
+    </div>`;
+
+  slot.innerHTML = `
+    ${mode === '' ? `
+      <div class="banner banner--warn" style="margin:0">${icon('alert', 18)}
+        <div class="small">Nenhuma credencial de escrita: é possível navegar e baixar, mas não
+          publicar nem remover modelos.</div>
+      </div>` : ''}
+
+    ${linha(
+      mode === 'funcao',
+      'Função de publicação no Supabase',
+      funcaoDisponivel
+        ? 'Disponível. O token do GitHub fica como segredo do servidor e não passa por este navegador; '
+          + 'o commit registra quem publicou.'
+        : (auth.isCloud()
+          ? 'Não implantada neste projeto, ou você não está autenticado. Passo a passo em '
+            + '<span class="mono">docs/PUBLICACAO.md</span>.'
+          : 'Exige o Supabase configurado. Veja <span class="mono">docs/SUPABASE.md</span>.'),
+    )}
+
+    ${linha(
+      mode === 'token',
+      'Token pessoal do GitHub',
+      auth.hasToken()
+        ? 'Cadastrado neste navegador. Tem precedência sobre a função: quem cadastrou um token quis usá-lo.'
+        : 'Não cadastrado. Dá autoria real em cada commit, ao custo de uma configuração por pessoa e por computador.',
+    )}`;
+}
+
+/**
  * Estado das contas e da sincronização.
  *
  * Em modo local, explica a limitação de frente: a conta não existe em outro
@@ -273,6 +326,11 @@ export default async function settingsView(container, ctx) {
       </div>
 
       <div class="panel">
+        <div class="panel__head">${icon('upload', 14)} Como a publicação acontece</div>
+        <div class="panel__body" id="write-panel"></div>
+      </div>
+
+      <div class="panel">
         <div class="panel__head">${icon('key', 14)} Token do GitHub</div>
         <div class="panel__body">
           <p class="small faint">
@@ -434,6 +492,7 @@ export default async function settingsView(container, ctx) {
     ctx.navigate('/entrar');
   });
 
+  renderWritePanel(container);
   renderCloudPanel(container);
 
   catalog.load().then(({ models }) => {

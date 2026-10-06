@@ -313,10 +313,11 @@ export default async function modelView(container, ctx) {
 
   qs('#delete', container)?.addEventListener('click', async (event) => {
     const button = event.currentTarget;
-    if (!auth.hasToken()) {
+    if (!gh.canWrite()) {
       const go = await confirmDialog({
-        title: 'Token necessário',
-        message: 'Para remover arquivos do repositório é preciso configurar um token do GitHub. Abrir as configurações?',
+        title: 'Falta credencial',
+        message: 'Remover arquivos do repositório exige a função de publicação no Supabase ou um '
+          + 'token do GitHub. Abrir as configurações?',
         confirmLabel: 'Abrir configurações',
       });
       if (go) ctx.navigate('/config');

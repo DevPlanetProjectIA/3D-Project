@@ -58,6 +58,27 @@ RLS do schema, que amarram cada linha ao seu dono. Nunca coloque a chave
 
 ## 3. Habilitar o envio de modelos
 
+Há dois caminhos, e eles resolvem problemas diferentes.
+
+| | Função no Supabase | Token por pessoa |
+|---|---|---|
+| Quem configura | só o dono, uma vez | cada pessoa, em cada PC |
+| Onde o token fica | segredo do servidor | `localStorage` do navegador |
+| Autoria no commit | e-mail na mensagem | identidade real no Git |
+| Instalação | exige a CLI do Supabase | nenhuma |
+
+**Equipe:** use a função — ninguém precisa de token. Passo a passo em
+**[docs/PUBLICACAO.md](docs/PUBLICACAO.md)**.
+
+**Uso individual:** o token pessoal é mais simples e tem precedência quando
+cadastrado. Siga abaixo.
+
+> Não existe uma terceira via: um token compartilhado dentro do `config.js` é
+> servido ao público junto com o site, e o secret scanning do GitHub o revoga
+> em minutos.
+
+### Token pessoal
+
 A leitura é pública e não exige nada. Para **publicar** ou **remover** modelos é preciso um token,
 porque essas ações criam commits via API do GitHub.
 
