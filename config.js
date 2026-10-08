@@ -46,6 +46,22 @@ export const CONFIG = {
   /** Permite navegar e baixar sem autenticação. */
   allowGuestBrowsing: true,
 
+  /**
+   * Formas de entrar.
+   *
+   * Desligar `emailPassword` esconde o formulário e o "Criar conta", deixando só
+   * o Google. Vale apenas no modo nuvem: sem projeto Supabase o e-mail e senha
+   * é o único caminho, e desligá-lo trancaria a porta.
+   *
+   * A tela ainda devolve o formulário se o Supabase informar que o provedor do
+   * Google está desligado — do contrário um Client Secret errado no painel
+   * deixaria todo mundo de fora, sem alternativa.
+   */
+  signIn: {
+    google: true,
+    emailPassword: false,
+  },
+
   /** Tamanho em px da miniatura gerada no upload. */
   thumbnailSize: 512,
 

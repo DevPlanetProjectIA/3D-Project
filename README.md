@@ -24,7 +24,7 @@ O site funciona em dois modos, escolhidos pelo `config.js`.
 
 | | Modo local (padrão) | Modo nuvem (Supabase) |
 |---|---|---|
-| Login | e-mail e senha, só neste navegador | Google ou e-mail e senha |
+| Login | e-mail e senha, só neste navegador | Google (padrão) |
 | Quem valida | ninguém — não há servidor | o Supabase, no servidor |
 | Mesma conta em outro PC | **não** | sim |
 | Estoque, orçamentos, clientes | presos a cada navegador | sincronizados |
@@ -198,3 +198,22 @@ python3 -m http.server 8080
 Chrome/Edge 103+, Firefox 113+, Safari 16.4+. Requer WebGL (visualizador) e
 `DecompressionStream` (arquivos 3MF comprimidos). STL funciona sem ambos — apenas sem a
 pré-visualização, se faltar WebGL.
+
+## Formas de entrar
+
+No modo nuvem o login é o do Google, e só ele: `config.js` traz
+
+```js
+signIn: { google: true, emailPassword: false },
+```
+
+Pôr `emailPassword: true` traz de volta o formulário de e-mail e senha e o
+"Criar conta", lado a lado com o Google.
+
+Duas garantias impedem que essa chave tranque a porta:
+
+- No **modo local** (sem projeto Supabase) o e-mail e senha é o único caminho,
+  então ele nunca é escondido — a chave só vale no modo nuvem.
+- Se o Supabase informar que o provedor do Google está desligado, a tela devolve
+  o formulário sozinha, com o aviso de que falta habilitar o provedor. Um Client
+  Secret errado no painel deixaria todo mundo de fora, sem alternativa.

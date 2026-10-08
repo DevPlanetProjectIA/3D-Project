@@ -21,6 +21,9 @@ export default async function profileView(container, ctx) {
 
   const { models } = await catalog.load();
   const mine = models.filter((m) => m.author === user.username);
+  // Quem entrou pelo Google não tem senha aqui para trocar: a autenticação é do
+  // provedor, e o painel só ofereceria um formulário que sempre recusa.
+  const temSenha = user.provider !== 'google';
   const favorites = models.filter((m) => (user.favorites || []).includes(m.id));
   const totalTriangles = mine.reduce((sum, m) => sum + m.triangles, 0);
   const totalBytes = mine.reduce((sum, m) => sum + m.size, 0);
@@ -69,6 +72,7 @@ export default async function profileView(container, ctx) {
         </div>
       </div>
 
+      ${temSenha ? `
       <div class="panel">
         <div class="panel__head">${icon('key', 14)} Senha</div>
         <div class="panel__body">
@@ -93,7 +97,7 @@ export default async function profileView(container, ctx) {
             </div>
           </form>
         </div>
-      </div>
+      </div>` : ''}
 
       ${mine.length ? `
       <div class="panel">
@@ -114,8 +118,12 @@ export default async function profileView(container, ctx) {
       <div class="panel">
         <div class="panel__head">${icon('alert', 14)} Encerrar conta</div>
         <div class="panel__body">
-          <p class="small faint">A conta existe apenas neste navegador. Apagá-la remove suas preferências
-            e favoritos, mas <strong>não</strong> remove os modelos já publicados no repositório.</p>
+          <p class="small faint">${auth.isCloud()
+            ? 'Apagar aqui encerra a sessão e remove seus dados deste navegador. A conta em si '
+              + 'continua no Supabase: para removê-la de vez, quem administra o projeto precisa '
+              + 'apagá-la no painel.'
+            : 'A conta existe apenas neste navegador. Apagá-la remove suas preferências e favoritos.'}
+            Em nenhum dos casos os modelos já publicados no acervo são removidos.</p>
           <button class="btn btn--danger" type="button" id="delete-account">
             ${icon('trash', 16)} Apagar minha conta
           </button>
@@ -153,7 +161,7 @@ export default async function profileView(container, ctx) {
   });
 
   const passwordForm = qs('#form-password', container);
-  passwordForm.addEventListener('submit', async (event) => {
+  passwordForm?.addEventListener('submit', async (event) => {
     event.preventDefault();
     const submit = qs('button[type="submit"]', passwordForm);
     setBusy(submit, true);

@@ -107,6 +107,23 @@ export const authSettings = (options) => sb.authSettings(options);
 export const cachedAuthSettings = () => sb.cachedAuthSettings();
 
 /**
+ * O formulário de e-mail e senha deve aparecer?
+ *
+ * Fora do modo nuvem, sempre: é o único caminho de entrada. Dentro dele,
+ * respeita `CONFIG.signIn.emailPassword` — mas volta a aparecer quando o
+ * Supabase informa que o Google está desligado, senão um Client Secret errado
+ * no painel trancaria todo mundo fora, sem alternativa na tela.
+ */
+export function emailPasswordEnabled(settings = cachedAuthSettings()) {
+  if (!isCloud()) return true;
+  if (CONFIG.signIn?.emailPassword !== false) return true;
+  return settings?.google === false;
+}
+
+/** O botão do Google deve aparecer? */
+export const googleEnabled = () => isCloud() && CONFIG.signIn?.google !== false;
+
+/**
  * Trata o retorno do provedor OAuth. Precisa rodar antes do roteador, porque os
  * tokens voltam no mesmo fragmento de URL que guarda a rota.
  */

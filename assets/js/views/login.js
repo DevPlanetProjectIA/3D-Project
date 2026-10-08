@@ -218,7 +218,7 @@ function signupMarkup() {
  * Com `null` (nada em cache ainda) mostra o botão — o caso normal é o provedor
  * estar ligado, e a correção chega em milissegundos se não estiver.
  */
-function googleSlotMarkup(settings) {
+function googleSlotMarkup(settings, { soGoogle = false } = {}) {
   if (settings && settings.google === false) {
     // Sem separador: o bloco seguinte já traz o seu, e dois "ou" seguidos ficam estranhos.
     return `
@@ -230,19 +230,25 @@ function googleSlotMarkup(settings) {
             <span class="mono">Authentication → Sign In / Providers → Google</span> no painel do
             Supabase, com o Client ID e o Client Secret do Google Cloud. O passo a passo está em
             <span class="mono">docs/SUPABASE.md</span>.</div>
-          <div style="margin-top:6px">Por enquanto, use e-mail e senha acima — funciona em
-            qualquer computador do mesmo jeito.</div>
+          <div style="margin-top:6px">${soGoogle
+            ? 'Enquanto isso o acesso por e-mail e senha volta a aparecer acima, para ninguém '
+              + 'ficar sem entrar.'
+            : 'Por enquanto, use e-mail e senha acima — funciona em qualquer computador do mesmo '
+              + 'jeito.'}</div>
         </div>
       </div>`;
   }
 
   return `
-    <div class="auth__divider">ou</div>
-    <button class="btn btn--block btn--lg" type="button" id="google">
+    ${soGoogle ? '' : '<div class="auth__divider">ou</div>'}
+    <button class="btn btn--primary btn--block btn--lg" type="button" id="google">
       ${GOOGLE_MARK} Entrar com Google
     </button>
     <p class="small faint center" style="margin-top:8px">
-      Sua conta abre em qualquer computador, com estoque e orçamentos sincronizados.
+      ${soGoogle
+        ? 'Sem senha para lembrar: a conta é a do seu Google, e abre em qualquer computador com '
+          + 'estoque e orçamentos sincronizados.'
+        : 'Sua conta abre em qualquer computador, com estoque e orçamentos sincronizados.'}
     </p>`;
 }
 
@@ -329,6 +335,31 @@ function mountArt(root) {
 /* ---------- Entrada da view ---------- */
 
 export default async function loginView(container, ctx) {
+  let atual = null;
+  await pintar(container, ctx, (viewer) => { atual = viewer; });
+  return () => atual?.dispose();
+}
+
+async function pintar(container, ctx, guardarViewer) {
+  // Em /criar-conta o cache vazio não serve: a decisão ali é mandar a pessoa
+  // embora, e fazer isso sem saber se o Google está ligado tiraria do ar a
+  // única entrada que resta quando ele está desligado.
+  const settings = ctx.route === '/criar-conta' && auth.isCloud() && !auth.cachedAuthSettings()
+    ? await auth.authSettings().catch(() => null)
+    : auth.cachedAuthSettings();
+
+  // Com o Google como única entrada não há conta para criar: o provedor cria a
+  // do usuário no primeiro acesso. A rota vira a de entrar.
+  const comFormulario = auth.emailPasswordEnabled(settings);
+  const comGoogle = auth.googleEnabled();
+  const soGoogle = comGoogle && !comFormulario;
+
+  if (soGoogle && ctx.route === '/criar-conta') {
+    ctx.navigate('/entrar');
+    return;
+  }
+
+
   const mode = ctx.route === '/criar-conta' ? 'signup' : 'login';
   const isSignup = mode === 'signup';
   const firstAccount = !auth.usersExist();
@@ -345,15 +376,19 @@ export default async function loginView(container, ctx) {
               ? (firstAccount
                 ? 'Esta será a primeira conta da biblioteca.'
                 : 'Preencha os dados para começar a usar a biblioteca.')
-              : 'Acesse a biblioteca compartilhada de modelos 3D.'}</p>
+              : soGoogle
+                ? 'Entre com sua conta do Google para usar a biblioteca compartilhada de modelos 3D.'
+                : 'Acesse a biblioteca compartilhada de modelos 3D.'}</p>
           </header>
-          ${isSignup ? signupMarkup() : loginMarkup()}
-          <p class="auth__switch">
-            ${isSignup
-              ? `Já tem uma conta? <a href="#/entrar">Entrar</a>`
-              : `Ainda não tem conta? <a href="#/criar-conta">Criar conta</a>`}
-          </p>
-          ${auth.isCloud() ? `<div id="google-slot">${googleSlotMarkup(auth.cachedAuthSettings())}</div>` : ''}
+          ${comFormulario ? (isSignup ? signupMarkup() : loginMarkup()) : ''}
+          ${comFormulario ? `
+            <p class="auth__switch">
+              ${isSignup
+                ? `Já tem uma conta? <a href="#/entrar">Entrar</a>`
+                : `Ainda não tem conta? <a href="#/criar-conta">Criar conta</a>`}
+            </p>` : ''}
+          ${comGoogle ? `<div id="google-slot">${
+            googleSlotMarkup(settings, { soGoogle })}</div>` : ''}
 
           ${CONFIG.allowGuestBrowsing ? `
             <div class="auth__divider">ou</div>
@@ -368,6 +403,7 @@ export default async function loginView(container, ctx) {
     </div>`;
 
   const viewer = mountArt(container);
+  guardarViewer(viewer);
   wirePasswordToggles(container);
   if (isSignup) wireStrengthMeter(container);
 
@@ -378,7 +414,7 @@ export default async function loginView(container, ctx) {
 
   // O botão do Google só vale se o provedor estiver habilitado no projeto.
   // A primeira pintura usa o cache; a confirmação chega da rede e corrige.
-  if (auth.isCloud()) {
+  if (comGoogle) {
     const slot = qs('#google-slot', container);
     const wireGoogle = () => {
       qs('#google', slot)?.addEventListener('click', async (event) => {
@@ -389,7 +425,7 @@ export default async function loginView(container, ctx) {
           await auth.signInWithGoogle();
         } catch (error) {
           setBusy(button, false);
-          slot.innerHTML = googleSlotMarkup({ google: false });
+          slot.innerHTML = googleSlotMarkup({ google: false }, { soGoogle });
           toast(error.message, { type: 'error', title: 'Google indisponível' });
         }
       });
@@ -398,7 +434,15 @@ export default async function loginView(container, ctx) {
 
     auth.authSettings().then((settings) => {
       if (!settings || !slot.isConnected) return;
-      slot.innerHTML = googleSlotMarkup(settings);
+      // A rede desmentiu o cache: o Google está desligado no projeto e a tela
+      // não tem formulário. Redesenha inteira, para o e-mail e senha voltar --
+      // um aviso sozinho deixaria a pessoa sem nenhuma forma de entrar.
+      if (soGoogle && auth.emailPasswordEnabled(settings)) {
+        viewer?.dispose();
+        pintar(container, ctx, guardarViewer);
+        return;
+      }
+      slot.innerHTML = googleSlotMarkup(settings, { soGoogle });
       wireGoogle();
     });
   }
@@ -465,5 +509,4 @@ export default async function loginView(container, ctx) {
     }
   });
 
-  return () => viewer?.dispose();
 }

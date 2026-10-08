@@ -164,7 +164,10 @@ function shellMarkup(user, activeRoute, counts, tags) {
             <div class="banner banner--info" style="margin:24px 12px 0">
               ${icon('info', 16)}
               <div class="small">Você está como visitante.
-                <a href="#/criar-conta">Crie uma conta</a> para enviar modelos e salvar favoritos.</div>
+                ${auth.emailPasswordEnabled()
+                  ? '<a href="#/criar-conta">Crie uma conta</a>'
+                  : '<a href="#/entrar">Entre com o Google</a>'}
+                para enviar modelos e salvar favoritos.</div>
             </div>` : ''}
         </aside>
         <main class="main" id="view"></main>
@@ -178,7 +181,8 @@ function accountMenuMarkup(user) {
       <div class="menu" role="menu">
         <div class="menu__head"><strong>Visitante</strong><small>sem conta ativa</small></div>
         <a class="menu__item" href="#/entrar" role="menuitem">${icon('login', 16)} Entrar</a>
-        <a class="menu__item" href="#/criar-conta" role="menuitem">${icon('user', 16)} Criar conta</a>
+        ${auth.emailPasswordEnabled() ? `
+          <a class="menu__item" href="#/criar-conta" role="menuitem">${icon('user', 16)} Criar conta</a>` : ''}
         <div class="menu__sep"></div>
         <a class="menu__item" href="#/config" role="menuitem">${icon('settings', 16)} Configurações</a>
       </div>`;
