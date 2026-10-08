@@ -419,11 +419,26 @@ export function remove(id) {
   if (item) pushCloud({ kind: 'remove', id, type: item.type });
 }
 
-/** Desconta gramas do saldo de um filamento após uma impressão. */
+/**
+ * Desconta gramas do saldo de um filamento após uma impressão.
+ *
+ * O desconto sai de `available()`, não do campo `remaining` cru. Quem cadastra
+ * um rolo deixa "saldo restante" em zero — é opcional — e o saldo real vem de
+ * rolos × peso por rolo. Subtrair de zero dava `max(0, 0 - gramas) = 0`: o
+ * estoque ficava intacto e a impressão não debitava nada, sem erro nenhum.
+ *
+ * Chegando a zero os rolos também zeram. Sem isso `available()` voltaria a
+ * contar os rolos fechados e o saldo ressuscitaria no primeiro recarregamento.
+ */
 export function consume(id, grams) {
   const item = getItem(id);
   if (!item || item.type !== 'filamento') return null;
-  return save({ ...item, remaining: Math.max(0, item.remaining - Math.max(0, num(grams))) });
+
+  const saida = Math.max(0, num(grams));
+  if (!saida) return item;
+
+  const saldo = Math.max(0, available(item) - saida);
+  return save({ ...item, remaining: saldo, spools: saldo > 0 ? item.spools : 0 });
 }
 
 /* ---------- Derivados ---------- */
