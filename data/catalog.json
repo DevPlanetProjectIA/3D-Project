@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-10-11T23:50:23.704Z",
+  "updated": "2026-10-11T23:51:49.614Z",
   "models": [
     {
       "id": "enfeite-de-arvore-de-natal-com-nomes-mv4gun708bq2",
@@ -417,49 +417,6 @@
         "notes": ""
       },
       "createdAt": "2026-10-11T23:39:50.227Z",
-      "printerId": "",
-      "weightGrams": 2.89,
-      "purgeGrams": 0,
-      "printSeconds": 0,
-      "costBRL": 0,
-      "priceBRL": 0,
-      "weightSource": "estimativa",
-      "filaments": [
-        {
-          "material": "PLA",
-          "color": "#3b82f6",
-          "grams": 2.89
-        }
-      ]
-    },
-    {
-      "id": "chaveiro-voce-faz-a-diferenca-mv4gtp23ptkz",
-      "storage": "storage",
-      "name": "Chaveiro Você Faz a Diferença",
-      "description": "Baixado automaticamente do WhatsApp (Importação Local)",
-      "format": "3mf",
-      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/chaveiro-voce-faz-a-diferenca-mv4gtp23ptkz/chaveiro-voce-faz-a-diferenca-mv4gtp23ptkz.3mf",
-      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/chaveiro-voce-faz-a-diferenca-mv4gtp23ptkz/thumb.png",
-      "size": 778287,
-      "tags": [
-        "whatsapp",
-        "importacao-local"
-      ],
-      "author": "Bruno T.",
-      "triangles": 10340,
-      "dimensions": {
-        "x": 60.4,
-        "y": 55.12,
-        "z": 2
-      },
-      "print": {
-        "material": "PLA",
-        "layerHeight": "0.2",
-        "infill": "15%",
-        "supports": false,
-        "notes": ""
-      },
-      "createdAt": "2026-10-11T23:39:48.263Z",
       "printerId": "",
       "weightGrams": 2.89,
       "purgeGrams": 0,
