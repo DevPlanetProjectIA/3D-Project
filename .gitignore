@@ -5,3 +5,6 @@ node_modules/
 # Segredos de função local — nunca versionar
 supabase/functions/.env.local
 supabase/.temp/
+
+# Arquivos 3D locais (armazenados no Supabase Storage)
+models/

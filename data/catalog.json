@@ -1,5 +1,1056 @@
 {
   "version": 1,
-  "updated": null,
-  "models": []
+  "updated": "2026-10-11T18:49:38.052Z",
+  "models": [
+    {
+      "id": "chaveiro-outubro-rosa-bonequinha-mv46gk7ujbyf",
+      "storage": "git",
+      "name": "chaveiro-outubro-rosa-bonequinha",
+      "description": "Baixado automaticamente do WhatsApp (STL dos Calangos)",
+      "format": "3mf",
+      "file": "models/chaveiro-outubro-rosa-bonequinha-mv46gk7ujbyf/chaveiro-outubro-rosa-bonequinha-mv46gk7ujbyf.3mf",
+      "thumb": "",
+      "size": 171092,
+      "tags": [
+        "whatsapp",
+        "stl-dos-calangos"
+      ],
+      "author": "Janis ✨",
+      "triangles": 15292,
+      "dimensions": {
+        "x": 41.26,
+        "y": 60,
+        "z": 3
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-11T18:49:38.052Z",
+      "printerId": "",
+      "weightGrams": 3.22,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 3.22
+        }
+      ]
+    },
+    {
+      "id": "chaveiro-outubro-rosa-mulher-maravilha-mv46gjxads0n",
+      "storage": "git",
+      "name": "chaveiro-outubro-rosa-mulher-maravilha",
+      "description": "Baixado automaticamente do WhatsApp (STL dos Calangos)",
+      "format": "3mf",
+      "file": "models/chaveiro-outubro-rosa-mulher-maravilha-mv46gjxads0n/chaveiro-outubro-rosa-mulher-maravilha-mv46gjxads0n.3mf",
+      "thumb": "",
+      "size": 156785,
+      "tags": [
+        "whatsapp",
+        "stl-dos-calangos"
+      ],
+      "author": "Janis ✨",
+      "triangles": 9760,
+      "dimensions": {
+        "x": 83.92,
+        "y": 49.16,
+        "z": 3.03
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-11T18:49:37.625Z",
+      "printerId": "",
+      "weightGrams": 5.43,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 5.43
+        }
+      ]
+    },
+    {
+      "id": "chaveiro-rosa-mv46giwk1ud3",
+      "storage": "git",
+      "name": "chaveiro-rosa",
+      "description": "Baixado automaticamente do WhatsApp (STL dos Calangos)",
+      "format": "3mf",
+      "file": "models/chaveiro-rosa-mv46giwk1ud3/chaveiro-rosa-mv46giwk1ud3.3mf",
+      "thumb": "",
+      "size": 214850,
+      "tags": [
+        "whatsapp",
+        "stl-dos-calangos"
+      ],
+      "author": "Janis ✨",
+      "triangles": 19288,
+      "dimensions": {
+        "x": 66.03,
+        "y": 60,
+        "z": 3
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-11T18:49:36.343Z",
+      "printerId": "",
+      "weightGrams": 5.16,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 5.16
+        }
+      ]
+    },
+    {
+      "id": "chaveiro-margarida-mv46gijk2h7m",
+      "storage": "git",
+      "name": "chaveiro-margarida",
+      "description": "Baixado automaticamente do WhatsApp (STL dos Calangos)",
+      "format": "3mf",
+      "file": "models/chaveiro-margarida-mv46gijk2h7m/chaveiro-margarida-mv46gijk2h7m.3mf",
+      "thumb": "",
+      "size": 205294,
+      "tags": [
+        "whatsapp",
+        "stl-dos-calangos"
+      ],
+      "author": "Janis ✨",
+      "triangles": 18664,
+      "dimensions": {
+        "x": 61.16,
+        "y": 60,
+        "z": 3
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-11T18:49:35.923Z",
+      "printerId": "",
+      "weightGrams": 4.78,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 4.78
+        }
+      ]
+    },
+    {
+      "id": "chaveiro-joaninha-mv46gi8cck17",
+      "storage": "git",
+      "name": "chaveiro-joaninha",
+      "description": "Baixado automaticamente do WhatsApp (STL dos Calangos)",
+      "format": "3mf",
+      "file": "models/chaveiro-joaninha-mv46gi8cck17/chaveiro-joaninha-mv46gi8cck17.3mf",
+      "thumb": "",
+      "size": 203785,
+      "tags": [
+        "whatsapp",
+        "stl-dos-calangos"
+      ],
+      "author": "Janis ✨",
+      "triangles": 18576,
+      "dimensions": {
+        "x": 59.07,
+        "y": 60,
+        "z": 3
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-11T18:49:35.455Z",
+      "printerId": "",
+      "weightGrams": 4.61,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 4.61
+        }
+      ]
+    },
+    {
+      "id": "chaveiro-lapis-coloridos-mv46ghw8rssv",
+      "storage": "git",
+      "name": "chaveiro-lapis-coloridos",
+      "description": "Baixado automaticamente do WhatsApp (STL dos Calangos)",
+      "format": "3mf",
+      "file": "models/chaveiro-lapis-coloridos-mv46ghw8rssv/chaveiro-lapis-coloridos-mv46ghw8rssv.3mf",
+      "thumb": "",
+      "size": 187267,
+      "tags": [
+        "whatsapp",
+        "stl-dos-calangos"
+      ],
+      "author": "Janis ✨",
+      "triangles": 8144,
+      "dimensions": {
+        "x": 17.16,
+        "y": 60,
+        "z": 2.5
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-11T18:49:35.080Z",
+      "printerId": "",
+      "weightGrams": 1.12,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 1.12
+        }
+      ]
+    },
+    {
+      "id": "chaveiro-girassol-mv46ghutnl07",
+      "storage": "git",
+      "name": "chaveiro-girassol",
+      "description": "Baixado automaticamente do WhatsApp (STL dos Calangos)",
+      "format": "3mf",
+      "file": "models/chaveiro-girassol-mv46ghutnl07/chaveiro-girassol-mv46ghutnl07.3mf",
+      "thumb": "",
+      "size": 213911,
+      "tags": [
+        "whatsapp",
+        "stl-dos-calangos"
+      ],
+      "author": "Janis ✨",
+      "triangles": 19472,
+      "dimensions": {
+        "x": 62.18,
+        "y": 60,
+        "z": 3
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-11T18:49:35.051Z",
+      "printerId": "",
+      "weightGrams": 4.86,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 4.86
+        }
+      ]
+    },
+    {
+      "id": "chaveiro-corujinha-professor-mv46ghizka8l",
+      "storage": "git",
+      "name": "chaveiro-corujinha-professor",
+      "description": "Baixado automaticamente do WhatsApp (STL dos Calangos)",
+      "format": "3mf",
+      "file": "models/chaveiro-corujinha-professor-mv46ghizka8l/chaveiro-corujinha-professor-mv46ghizka8l.3mf",
+      "thumb": "",
+      "size": 322576,
+      "tags": [
+        "whatsapp",
+        "stl-dos-calangos"
+      ],
+      "author": "Janis ✨",
+      "triangles": 21048,
+      "dimensions": {
+        "x": 53.22,
+        "y": 60,
+        "z": 3.7
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-11T18:49:34.615Z",
+      "printerId": "",
+      "weightGrams": 5.13,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 5.13
+        }
+      ]
+    },
+    {
+      "id": "chaveiro-coruja-professora-mv46gh38pjns",
+      "storage": "git",
+      "name": "chaveiro-coruja-professora",
+      "description": "Baixado automaticamente do WhatsApp (STL dos Calangos)",
+      "format": "3mf",
+      "file": "models/chaveiro-coruja-professora-mv46gh38pjns/chaveiro-coruja-professora-mv46gh38pjns.3mf",
+      "thumb": "",
+      "size": 345540,
+      "tags": [
+        "whatsapp",
+        "stl-dos-calangos"
+      ],
+      "author": "Janis ✨",
+      "triangles": 22604,
+      "dimensions": {
+        "x": 51.98,
+        "y": 60,
+        "z": 3.7
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-11T18:49:34.138Z",
+      "printerId": "",
+      "weightGrams": 5.01,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 5.01
+        }
+      ]
+    },
+    {
+      "id": "chaveiro-olho-grego-conjunto-mv46ge3q2zeh",
+      "storage": "git",
+      "name": "chaveiro-olho-grego-conjunto",
+      "description": "Baixado automaticamente do WhatsApp (STL dos Calangos)",
+      "format": "3mf",
+      "file": "models/chaveiro-olho-grego-conjunto-mv46ge3q2zeh/chaveiro-olho-grego-conjunto-mv46ge3q2zeh.3mf",
+      "thumb": "",
+      "size": 270961,
+      "tags": [
+        "whatsapp",
+        "stl-dos-calangos"
+      ],
+      "author": "Janis ✨",
+      "triangles": 20956,
+      "dimensions": {
+        "x": 69.18,
+        "y": 60,
+        "z": 3.7
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-11T18:49:30.317Z",
+      "printerId": "",
+      "weightGrams": 6.67,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 6.67
+        }
+      ]
+    },
+    {
+      "id": "arvore-muxaf18ij50e",
+      "storage": "storage",
+      "name": "Arvore",
+      "description": "",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/arvore-muxaf18ij50e/arvore-muxaf18ij50e.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/arvore-muxaf18ij50e/thumb.png",
+      "size": 24926606,
+      "tags": [],
+      "author": "Bruno T.",
+      "triangles": 7563188,
+      "dimensions": {
+        "x": 371.369,
+        "y": 306.261,
+        "z": 105.855
+      },
+      "print": {
+        "notes": "",
+        "infill": "",
+        "material": "PLA",
+        "supports": true,
+        "layerHeight": ""
+      },
+      "createdAt": "2026-10-06T23:06:25.872347+00:00",
+      "weightGrams": 174.18,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "color": "#00ae42",
+          "grams": 58.06,
+          "material": "PLA"
+        },
+        {
+          "color": "#e4bd68",
+          "grams": 58.06,
+          "material": "PLA"
+        },
+        {
+          "color": "#6f5034",
+          "grams": 58.06,
+          "material": "PLA"
+        }
+      ]
+    },
+    {
+      "id": "chaveiro-nossa-senhora-6-5-cm-faster-3mf-mv45jq0hfymk",
+      "storage": "storage",
+      "name": "Chaveiro Nossa Senhora (6,5cm)",
+      "description": "Baixado automaticamente do WhatsApp (Catálogo WhatsApp)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/chaveiro-nossa-senhora-6-5-cm-faster-3mf-mv45jq0hfymk/chaveiro-nossa-senhora-6-5-cm-faster-3mf-mv45jq0hfymk.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/chaveiro-nossa-senhora-6-5-cm-faster-3mf-mv45jq0hfymk/thumb.png",
+      "size": 4218286,
+      "tags": [
+        "whatsapp",
+        "catalogo-whatsapp"
+      ],
+      "author": "🦎Kleber Kinder 🦎",
+      "triangles": 311968,
+      "dimensions": {
+        "x": 17.11,
+        "y": 36.42,
+        "z": 56.16
+      },
+      "print": {
+        "infill": "15%",
+        "material": "PLA",
+        "layerHeight": "0.2"
+      },
+      "createdAt": "2026-10-11T18:27:40.823+00:00",
+      "weightGrams": 15.19,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "color": "#3b82f6",
+          "grams": 15.19,
+          "material": "PLA"
+        }
+      ]
+    },
+    {
+      "id": "treeornamentnames-3mf-mv45ivt92ut4",
+      "storage": "storage",
+      "name": "Enfeite de Árvore de Natal com Nomes",
+      "description": "Baixado automaticamente do WhatsApp (Catálogo WhatsApp)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/treeornamentnames-3mf-mv45ivt92ut4/treeornamentnames-3mf-mv45ivt92ut4.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/treeornamentnames-3mf-mv45ivt92ut4/thumb.png",
+      "size": 76529,
+      "tags": [
+        "whatsapp",
+        "catalogo-whatsapp"
+      ],
+      "author": "Bruno T.",
+      "triangles": 3138,
+      "dimensions": {
+        "x": 54.69,
+        "y": 78.6,
+        "z": 19.9
+      },
+      "print": {
+        "infill": "15%",
+        "material": "PLA",
+        "layerHeight": "0.2"
+      },
+      "createdAt": "2026-10-11T18:27:49.595+00:00",
+      "weightGrams": 37.13,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "color": "#3b82f6",
+          "grams": 37.13,
+          "material": "PLA"
+        }
+      ]
+    },
+    {
+      "id": "switch-gamehullen-halter-projekt-3mf-mv45iv9c174h",
+      "storage": "storage",
+      "name": "Suporte para Jogos Nintendo Switch",
+      "description": "Baixado automaticamente do WhatsApp (Catálogo WhatsApp)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/switch-gamehullen-halter-projekt-3mf-mv45iv9c174h/switch-gamehullen-halter-projekt-3mf-mv45iv9c174h.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/switch-gamehullen-halter-projekt-3mf-mv45iv9c174h/thumb.png",
+      "size": 1770054,
+      "tags": [
+        "whatsapp",
+        "catalogo-whatsapp"
+      ],
+      "author": "Bruno T.",
+      "triangles": 71527,
+      "dimensions": {
+        "x": 161,
+        "y": 135,
+        "z": 25
+      },
+      "print": {
+        "infill": "15%",
+        "material": "PLA",
+        "layerHeight": "0.2"
+      },
+      "createdAt": "2026-10-11T18:27:51.231+00:00",
+      "weightGrams": 235.82,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "color": "#3b82f6",
+          "grams": 235.82,
+          "material": "PLA"
+        }
+      ]
+    },
+    {
+      "id": "santasplit4-3mf-mv45ir9zkm9q",
+      "storage": "storage",
+      "name": "Papai Noel Articulado (Santa Split)",
+      "description": "Baixado automaticamente do WhatsApp (Catálogo WhatsApp)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/santasplit4-3mf-mv45ir9zkm9q/santasplit4-3mf-mv45ir9zkm9q.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/santasplit4-3mf-mv45ir9zkm9q/thumb.png",
+      "size": 22912493,
+      "tags": [
+        "whatsapp",
+        "catalogo-whatsapp"
+      ],
+      "author": "Bruno T.",
+      "triangles": 1407096,
+      "dimensions": {
+        "x": 49.28,
+        "y": 39.67,
+        "z": 26.72
+      },
+      "print": {
+        "infill": "15%",
+        "material": "PLA",
+        "layerHeight": "0.2"
+      },
+      "createdAt": "2026-10-11T18:28:01.422+00:00",
+      "weightGrams": 22.67,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "color": "#3b82f6",
+          "grams": 22.67,
+          "material": "PLA"
+        }
+      ]
+    },
+    {
+      "id": "pen-holder-customizable-a1-mini-version-3mf-mv45iqrhrdej",
+      "storage": "storage",
+      "name": "Porta-canetas Personalizável",
+      "description": "Baixado automaticamente do WhatsApp (Catálogo WhatsApp)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/pen-holder-customizable-a1-mini-version-3mf-mv45iqrhrdej/pen-holder-customizable-a1-mini-version-3mf-mv45iqrhrdej.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/pen-holder-customizable-a1-mini-version-3mf-mv45iqrhrdej/thumb.png",
+      "size": 900019,
+      "tags": [
+        "whatsapp",
+        "catalogo-whatsapp"
+      ],
+      "author": "Bruno T.",
+      "triangles": 17288,
+      "dimensions": {
+        "x": 116.94,
+        "y": 73.61,
+        "z": 68
+      },
+      "print": {
+        "infill": "15%",
+        "material": "PLA",
+        "layerHeight": "0.2"
+      },
+      "createdAt": "2026-10-11T18:28:02.758+00:00",
+      "weightGrams": 254.04,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "color": "#3b82f6",
+          "grams": 254.04,
+          "material": "PLA"
+        }
+      ]
+    },
+    {
+      "id": "np1-3mf-mv45iq3yvuxb",
+      "storage": "storage",
+      "name": "Suporte NP1",
+      "description": "Baixado automaticamente do WhatsApp (Catálogo WhatsApp)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/np1-3mf-mv45iq3yvuxb/np1-3mf-mv45iq3yvuxb.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/np1-3mf-mv45iq3yvuxb/thumb.png",
+      "size": 953079,
+      "tags": [
+        "whatsapp",
+        "catalogo-whatsapp"
+      ],
+      "author": "Bruno T.",
+      "triangles": 4228,
+      "dimensions": {
+        "x": 48.58,
+        "y": 105,
+        "z": 255
+      },
+      "print": {
+        "infill": "15%",
+        "material": "PLA",
+        "layerHeight": "0.2"
+      },
+      "createdAt": "2026-10-11T18:28:04.33+00:00",
+      "weightGrams": 564.5,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "color": "#3b82f6",
+          "grams": 564.5,
+          "material": "PLA"
+        }
+      ]
+    },
+    {
+      "id": "bola-de-natal-personalizada-mux94onq37ct",
+      "storage": "storage",
+      "name": "Bola de Natal Personalizada",
+      "description": "",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/bola-de-natal-personalizada-mux94onq37ct/bola-de-natal-personalizada-mux94onq37ct.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/bola-de-natal-personalizada-mux94onq37ct/thumb.png",
+      "size": 512200,
+      "tags": [],
+      "author": "Bruno T.",
+      "triangles": 28534,
+      "dimensions": {
+        "x": 78.102,
+        "y": 87.462,
+        "z": 2.318
+      },
+      "print": {
+        "notes": "",
+        "infill": "",
+        "material": "PLA",
+        "supports": false,
+        "layerHeight": ""
+      },
+      "createdAt": "2026-10-06T22:30:00.45806+00:00",
+      "weightGrams": 5.59,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "color": "#ff0000",
+          "grams": 5.59,
+          "material": "PLA"
+        }
+      ]
+    },
+    {
+      "id": "dragao-articulado-wyvern-ams-3mf-mv45jtfa393g",
+      "storage": "storage",
+      "name": "Dragão Articulado Wyvern",
+      "description": "Baixado automaticamente do WhatsApp (Catálogo WhatsApp)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/dragao-articulado-wyvern-ams-3mf-mv45jtfa393g/dragao-articulado-wyvern-ams-3mf-mv45jtfa393g.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/dragao-articulado-wyvern-ams-3mf-mv45jtfa393g/thumb.png",
+      "size": 13377240,
+      "tags": [
+        "whatsapp",
+        "catalogo-whatsapp"
+      ],
+      "author": "Hudson Santos",
+      "triangles": 996328,
+      "dimensions": {
+        "x": 59.76,
+        "y": 68.38,
+        "z": 58.27
+      },
+      "print": {
+        "infill": "15%",
+        "material": "PLA",
+        "layerHeight": "0.2"
+      },
+      "createdAt": "2026-10-11T18:27:37.478+00:00",
+      "weightGrams": 103.34,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "color": "#3b82f6",
+          "grams": 103.34,
+          "material": "PLA"
+        }
+      ]
+    },
+    {
+      "id": "articulatedcutet-rex-multipartbambustudiox1c-3mf-mv45ic5evwps",
+      "storage": "storage",
+      "name": "T-REX Fofo Articulado",
+      "description": "Baixado automaticamente do WhatsApp (Catálogo WhatsApp)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/articulatedcutet-rex-multipartbambustudiox1c-3mf-mv45ic5evwps/articulatedcutet-rex-multipartbambustudiox1c-3mf-mv45ic5evwps.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/articulatedcutet-rex-multipartbambustudiox1c-3mf-mv45ic5evwps/thumb.png",
+      "size": 57902595,
+      "tags": [
+        "whatsapp",
+        "catalogo-whatsapp"
+      ],
+      "author": "Alcicleide",
+      "triangles": 3636900,
+      "dimensions": {
+        "x": 84.54,
+        "y": 90.41,
+        "z": 85.76
+      },
+      "print": {
+        "infill": "15%",
+        "material": "PLA",
+        "layerHeight": "0.2"
+      },
+      "createdAt": "2026-10-11T18:28:27.393+00:00",
+      "weightGrams": 284.47,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "color": "#3b82f6",
+          "grams": 284.47,
+          "material": "PLA"
+        }
+      ]
+    },
+    {
+      "id": "meshy-ai-export-1791504150-image-to-3d-texture-3mf-mv45ds2vleus",
+      "storage": "storage",
+      "name": "Modelo Texturizado Meshy AI Image - To - 3d - Texture",
+      "description": "Baixado automaticamente do WhatsApp (Catálogo WhatsApp)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/meshy-ai-export-1791504150-image-to-3d-texture-3mf-mv45ds2vleus/meshy-ai-export-1791504150-image-to-3d-texture-3mf-mv45ds2vleus.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/meshy-ai-export-1791504150-image-to-3d-texture-3mf-mv45ds2vleus/thumb.png",
+      "size": 1370516,
+      "tags": [
+        "whatsapp",
+        "catalogo-whatsapp"
+      ],
+      "author": "Bruno T.",
+      "triangles": 119856,
+      "dimensions": {
+        "x": 46.25,
+        "y": 4.54,
+        "z": 50
+      },
+      "print": {
+        "infill": "15%",
+        "material": "PLA",
+        "layerHeight": "0.2"
+      },
+      "createdAt": "2026-10-11T18:28:53.114+00:00",
+      "weightGrams": 4.56,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "color": "#3b82f6",
+          "grams": 4.56,
+          "material": "PLA"
+        }
+      ]
+    },
+    {
+      "id": "meshy-ai-export-1791506310-texture-3mf-mv45ip8qjmvp",
+      "storage": "storage",
+      "name": "Modelo Texturizado Meshy AI",
+      "description": "Baixado automaticamente do WhatsApp (Catálogo WhatsApp)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/meshy-ai-export-1791506310-texture-3mf-mv45ip8qjmvp/meshy-ai-export-1791506310-texture-3mf-mv45ip8qjmvp.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/meshy-ai-export-1791506310-texture-3mf-mv45ip8qjmvp/thumb.png",
+      "size": 1371314,
+      "tags": [
+        "whatsapp",
+        "catalogo-whatsapp"
+      ],
+      "author": "Bruno T.",
+      "triangles": 119856,
+      "dimensions": {
+        "x": 46.25,
+        "y": 4.54,
+        "z": 50
+      },
+      "print": {
+        "infill": "15%",
+        "material": "PLA",
+        "layerHeight": "0.2"
+      },
+      "createdAt": "2026-10-11T18:28:07.991+00:00",
+      "weightGrams": 4.56,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "color": "#3b82f6",
+          "grams": 4.56,
+          "material": "PLA"
+        }
+      ]
+    },
+    {
+      "id": "caixa-cadeado-6-mv45innooeb9",
+      "storage": "storage",
+      "name": "Caixa com Cadeado",
+      "description": "Baixado automaticamente do WhatsApp (Catálogo WhatsApp)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/caixa-cadeado-6-mv45innooeb9/caixa-cadeado-6-mv45innooeb9.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/caixa-cadeado-6-mv45innooeb9/thumb.png",
+      "size": 114484,
+      "tags": [
+        "whatsapp",
+        "catalogo-whatsapp"
+      ],
+      "author": "Bruno T.",
+      "triangles": 2288,
+      "dimensions": {
+        "x": 176,
+        "y": 120,
+        "z": 150
+      },
+      "print": {
+        "infill": "15%",
+        "material": "PLA",
+        "layerHeight": "0.2"
+      },
+      "createdAt": "2026-10-11T18:28:13.5+00:00",
+      "weightGrams": 525.17,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "color": "#3b82f6",
+          "grams": 525.17,
+          "material": "PLA"
+        }
+      ]
+    },
+    {
+      "id": "100-pen-holder-3mf-mv45dn09nrii",
+      "storage": "storage",
+      "name": "Porta-canetas",
+      "description": "Baixado automaticamente do WhatsApp (Catálogo WhatsApp)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/100-pen-holder-3mf-mv45dn09nrii/100-pen-holder-3mf-mv45dn09nrii.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/100-pen-holder-3mf-mv45dn09nrii/thumb.png",
+      "size": 678229,
+      "tags": [
+        "whatsapp",
+        "catalogo-whatsapp"
+      ],
+      "author": "Bruno T.",
+      "triangles": 5732,
+      "dimensions": {
+        "x": 84.38,
+        "y": 73.61,
+        "z": 68
+      },
+      "print": {
+        "infill": "15%",
+        "material": "PLA",
+        "layerHeight": "0.2"
+      },
+      "createdAt": "2026-10-11T18:29:09.248+00:00",
+      "weightGrams": 183.31,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "color": "#3b82f6",
+          "grams": 183.31,
+          "material": "PLA"
+        }
+      ]
+    },
+    {
+      "id": "chaveiro-voce-faz-a-diferenca-3mf-mv4599rqti2n",
+      "storage": "storage",
+      "name": "Chaveiro Você Faz a Diferença",
+      "description": "Baixado automaticamente do WhatsApp (Catálogo WhatsApp)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/chaveiro-voce-faz-a-diferenca-3mf-mv4599rqti2n/chaveiro-voce-faz-a-diferenca-3mf-mv4599rqti2n.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/chaveiro-voce-faz-a-diferenca-3mf-mv4599rqti2n/thumb.png",
+      "size": 778287,
+      "tags": [
+        "whatsapp",
+        "catalogo-whatsapp"
+      ],
+      "author": "Bruno T.",
+      "triangles": 10340,
+      "dimensions": {
+        "x": 60.4,
+        "y": 55.12,
+        "z": 2
+      },
+      "print": {
+        "infill": "15%",
+        "material": "PLA",
+        "layerHeight": "0.2"
+      },
+      "createdAt": "2026-10-11T18:29:27.142+00:00",
+      "weightGrams": 2.89,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "color": "#3b82f6",
+          "grams": 2.89,
+          "material": "PLA"
+        }
+      ]
+    },
+    {
+      "id": "suporte-abridor-de-lata-coracao-ms-fox-v3-timizado-mv45in08a0e5",
+      "storage": "storage",
+      "name": "Suporte Abridor de Lata Coração (MS Fox V3)",
+      "description": "Baixado automaticamente do WhatsApp (Catálogo WhatsApp)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/suporte-abridor-de-lata-coracao-ms-fox-v3-timizado-mv45in08a0e5/suporte-abridor-de-lata-coracao-ms-fox-v3-timizado-mv45in08a0e5.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/suporte-abridor-de-lata-coracao-ms-fox-v3-timizado-mv45in08a0e5/thumb.png",
+      "size": 747573,
+      "tags": [
+        "whatsapp",
+        "catalogo-whatsapp"
+      ],
+      "author": "Alcicleide",
+      "triangles": 53600,
+      "dimensions": {
+        "x": 65.38,
+        "y": 50.33,
+        "z": 28.97
+      },
+      "print": {
+        "infill": "15%",
+        "material": "PLA",
+        "layerHeight": "0.2"
+      },
+      "createdAt": "2026-10-11T18:28:15.495+00:00",
+      "weightGrams": 41.38,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "color": "#3b82f6",
+          "grams": 41.38,
+          "material": "PLA"
+        }
+      ]
+    },
+    {
+      "id": "mascote-spfc-rogerio-ceni-mundial-2005-53cms-1-3mf-mv45dj79kcpk",
+      "storage": "storage",
+      "name": "Mascote SPFC - Rogério CENI Mundial 2005 (53cm)",
+      "description": "Baixado automaticamente do WhatsApp (Catálogo WhatsApp)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/mascote-spfc-rogerio-ceni-mundial-2005-53cms-1-3mf-mv45dj79kcpk/mascote-spfc-rogerio-ceni-mundial-2005-53cms-1-3mf-mv45dj79kcpk.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/mascote-spfc-rogerio-ceni-mundial-2005-53cms-1-3mf-mv45dj79kcpk/thumb.png",
+      "size": 33657944,
+      "tags": [
+        "whatsapp",
+        "catalogo-whatsapp"
+      ],
+      "author": "©",
+      "triangles": 2042290,
+      "dimensions": {
+        "x": 126.03,
+        "y": 125.64,
+        "z": 108.25
+      },
+      "print": {
+        "infill": "15%",
+        "material": "PLA",
+        "layerHeight": "0.2"
+      },
+      "createdAt": "2026-10-11T18:29:08.179+00:00",
+      "weightGrams": 743.94,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "color": "#3b82f6",
+          "grams": 743.94,
+          "material": "PLA"
+        }
+      ]
+    }
+  ]
 }
