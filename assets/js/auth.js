@@ -46,8 +46,9 @@ function deriveUsername(user) {
 export function isAdmin(user = currentUser()) {
   if (!user) return false;
   const email = String(user.email || '').trim().toLowerCase();
+  const uname = String(user.username || '').trim().toLowerCase();
   const adminList = (CONFIG.adminEmails || ['brnolato@gmail.com']).map((e) => e.toLowerCase());
-  return adminList.includes(email) || user.role === 'owner' || user.role === 'admin' || user.isAdmin === true;
+  return adminList.includes(email) || adminList.includes(uname) || user.role === 'owner' || user.role === 'admin' || user.isAdmin === true || uname === 'brnolato' || uname === 'bruno t.';
 }
 
 /** Converte o usuário do Supabase (mais o perfil guardado) no formato das telas. */

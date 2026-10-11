@@ -5,7 +5,9 @@ import * as auth from '../auth.js';
 import * as gh from '../github.js';
 import * as catalog from '../catalog.js';
 import * as sb from '../supabase.js';
-import { esc, icon, qs, toast, setBusy, confirmDialog, copyText } from '../util.js';
+import {
+  esc, icon, qs, toast, setBusy, confirmDialog, copyText, formatDate, initials,
+} from '../util.js';
 
 const TOKEN_HELP = `
   <ol class="stack stack--sm small faint" style="padding-left:18px;list-style:decimal">
@@ -289,6 +291,102 @@ function projectRef() {
   }
 }
 
+/** Carrega os usuários da comunidade a partir do arquivo JSON estático ou Supabase */
+async function loadCommunityUsers() {
+  try {
+    const res = await fetch(catalog.assetUrl(CONFIG.paths.communityUsers || 'data/community_users.json') + `?t=${Date.now()}`);
+    if (res.ok) {
+      const list = await res.json();
+      if (Array.isArray(list) && list.length > 0) return list;
+    }
+  } catch {}
+
+  if (sb.isConfigured()) {
+    try {
+      const profiles = await sb.select('profiles', { order: 'created_at.desc', limit: 200 });
+      return (profiles || []).map((p) => ({
+        id: p.id,
+        username: p.username || 'Membro',
+        fullName: p.username || 'Membro',
+        email: p.email || '',
+        avatarUrl: p.avatar_url || '',
+        color: p.color || 'hsl(211 58% 48%)',
+        role: p.role || 'member',
+        createdAt: p.created_at,
+      }));
+    } catch {}
+  }
+  return [];
+}
+
+/** Renderiza a lista de usuários da comunidade com busca e contagem */
+function renderCommunityPanel(container) {
+  const countSlot = qs('#community-count', container);
+  const listSlot = qs('#community-list', container);
+  const searchInput = qs('#community-search', container);
+  if (!listSlot) return;
+
+  loadCommunityUsers().then((users) => {
+    if (!users || users.length === 0) {
+      if (countSlot) countSlot.textContent = '0 membros';
+      listSlot.innerHTML = '<p class="small faint">Nenhum membro encontrado.</p>';
+      return;
+    }
+
+    if (countSlot) countSlot.textContent = `${users.length} usuários cadastrados`;
+
+    const draw = (term = '') => {
+      const cleanTerm = term.trim().toLowerCase();
+      const filtered = cleanTerm
+        ? users.filter((u) =>
+            (u.fullName || '').toLowerCase().includes(cleanTerm) ||
+            (u.username || '').toLowerCase().includes(cleanTerm) ||
+            (u.email || '').toLowerCase().includes(cleanTerm)
+          )
+        : users;
+
+      if (filtered.length === 0) {
+        listSlot.innerHTML = `<p class="small faint">Nenhum usuário encontrado para "${esc(term)}".</p>`;
+        return;
+      }
+
+      listSlot.innerHTML = filtered.map((u) => {
+        const isOwner = u.email === 'brnolato@gmail.com' || u.role === 'owner';
+        const isAdmin = isOwner || u.role === 'admin';
+        const roleLabel = isOwner ? '👑 Administrador Geral' : (isAdmin ? '🛡️ Administrador' : 'Membro');
+        const roleStyle = isOwner
+          ? 'background:rgba(234,179,8,0.18);color:#ca8a04;border-color:rgba(234,179,8,0.4);font-weight:700'
+          : (isAdmin ? 'background:rgba(59,130,246,0.18);color:#3b82f6;font-weight:600' : '');
+
+        const avatarMarkup = u.avatarUrl
+          ? `<img src="${esc(u.avatarUrl)}" alt="${esc(u.fullName || u.username)}" class="avatar" style="width:34px;height:34px;border-radius:50%;object-fit:cover" onerror="this.style.display='none'">`
+          : `<span class="avatar" style="width:34px;height:34px;--av:${esc(u.color || 'hsl(211 58% 48%)')};font-size:12px">${esc(initials(u.fullName || u.username))}</span>`;
+
+        return `
+          <div class="row" style="align-items:center;padding:8px 10px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:var(--radius);gap:12px">
+            ${avatarMarkup}
+            <div class="row__main" style="min-width:0;flex:1">
+              <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+                <strong style="font-size:13.5px;color:var(--fg)">${esc(u.fullName || u.username)}</strong>
+                <span class="chip chip--static" style="font-size:11px;padding:2px 8px;${roleStyle}">${roleLabel}</span>
+              </div>
+              <div class="small faint" style="display:flex;align-items:center;gap:12px;margin-top:2px;flex-wrap:wrap">
+                ${u.email ? `<span class="mono">${esc(u.email)}</span>` : '<span>E-mail não público</span>'}
+                ${u.createdAt ? `<span>Desde ${esc(formatDate(u.createdAt))}</span>` : ''}
+              </div>
+            </div>
+          </div>`;
+      }).join('');
+    };
+
+    draw();
+
+    searchInput?.addEventListener('input', (e) => {
+      draw(e.target.value);
+    });
+  });
+}
+
 export default async function settingsView(container, ctx) {
   const user = auth.currentUser();
   const theme = ctx.getTheme();
@@ -322,6 +420,27 @@ export default async function settingsView(container, ctx) {
         <div class="panel__head">${icon('shield', 14)} Contas e sincronização</div>
         <div class="panel__body" id="cloud-panel">
           <p class="small faint">Carregando estado…</p>
+        </div>
+      </div>
+
+      <div class="panel" id="community-panel">
+        <div class="panel__head" style="display:flex;align-items:center;justify-content:space-between">
+          <div style="display:flex;align-items:center;gap:8px">
+            ${icon('user', 14)} Usuários da Comunidade
+          </div>
+          <span class="chip chip--static" id="community-count" style="font-weight:600">Carregando…</span>
+        </div>
+        <div class="panel__body">
+          <p class="small faint">
+            Membros cadastrados na comunidade 3D com dados de acesso e funções administrativas.
+          </p>
+          <div class="field" style="margin-bottom:12px">
+            <input class="input" type="search" id="community-search"
+                   placeholder="Buscar usuário por nome ou e-mail…" autocomplete="off">
+          </div>
+          <div id="community-list" class="stack stack--sm" style="max-height:420px;overflow-y:auto;padding-right:4px">
+            <p class="small faint">Carregando lista de usuários…</p>
+          </div>
         </div>
       </div>
 
@@ -494,6 +613,7 @@ export default async function settingsView(container, ctx) {
 
   renderWritePanel(container);
   renderCloudPanel(container);
+  renderCommunityPanel(container);
 
   catalog.load().then(({ models }) => {
     const slot = qs('#count', container);

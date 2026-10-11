@@ -10,6 +10,7 @@ import CONFIG from '../../config.js';
 import * as gh from './github.js';
 import * as sb from './supabase.js';
 import * as storage from './storage.js';
+import * as store from './store.js';
 import { slugify } from './util.js';
 
 /** Base do site publicado — resolve corretamente em subdiretórios do Pages. */
@@ -122,6 +123,24 @@ function fromRow(row) {
   }, 0);
 }
 
+const TOMBSTONES_KEY = 'deleted_models_tombstones';
+
+export function getTombstones() {
+  try {
+    const list = store.get(TOMBSTONES_KEY, []);
+    return new Set(Array.isArray(list) ? list : []);
+  } catch {
+    return new Set();
+  }
+}
+
+export function recordTombstone(id) {
+  if (!id) return;
+  const stones = getTombstones();
+  stones.add(id);
+  store.set(TOMBSTONES_KEY, [...stones]);
+}
+
 /**
  * Modelos publicados no Storage.
  *
@@ -133,7 +152,9 @@ async function loadFromSupabase() {
   if (!sb.isConfigured()) return [];
   try {
     const rows = await sb.select('models', { order: 'created_at.desc', limit: 1000 });
-    return (rows || []).map(fromRow);
+    return (rows || [])
+      .filter((r) => r.description !== '__DELETED__' && !r.tags?.includes('deleted'))
+      .map(fromRow);
   } catch {
     return [];
   }
@@ -163,10 +184,20 @@ export async function load({ force = false } = {}) {
       loadFromSupabase(),
     ]);
 
+    const tombstones = getTombstones();
+
     // O Storage vence em caso de id repetido: é a publicação mais recente.
     const porId = new Map();
-    for (const model of doGit) porId.set(model.id, model);
-    for (const model of doStorage) porId.set(model.id, model);
+    for (const model of doGit) {
+      if (!tombstones.has(model.id) && model.description !== '__DELETED__') {
+        porId.set(model.id, model);
+      }
+    }
+    for (const model of doStorage) {
+      if (!tombstones.has(model.id) && model.description !== '__DELETED__') {
+        porId.set(model.id, model);
+      }
+    }
 
     cache = {
       version: 1,
@@ -195,6 +226,7 @@ export function primeLocal(model) {
 }
 
 export function dropLocal(id) {
+  recordTombstone(id);
   if (!cache) return;
   cache = { ...cache, models: cache.models.filter((m) => m.id !== id) };
 }
@@ -402,50 +434,59 @@ async function publishToGit({ entry, fileBytes, thumbBytes }, onStep = () => {})
   return record;
 }
 
-/** Remove um modelo do catálogo e apaga seus arquivos, na origem correta. */
+/** Remove um modelo do catálogo e apaga seus arquivos permanentemente. */
 export async function remove(model) {
-  // 1. Tenta remoção centralizada pelo backend (com chave service_role e Git integrados)
+  // 1. Marca tombstone local imediatamente para que o modelo nunca mais ressurja neste navegador
+  dropLocal(model.id);
+
+  // 2. Tenta remoção centralizada pelo backend Flow se estiver online
   try {
     const res = await fetch(`http://localhost:3000/api/models/${encodeURIComponent(model.id)}`, {
       method: 'DELETE',
-      signal: AbortSignal.timeout(4000),
+      signal: AbortSignal.timeout(3000),
     });
     if (res.ok) {
-      dropLocal(model.id);
       return;
     }
   } catch {
-    // Backend offline: segue para remoção no cliente
+    // Backend offline ou inacessível por Mixed Content
   }
 
-  if (model.storage === 'storage') {
-    await sb.remove('models', { eq: { id: model.id } });
+  // 3. Supabase: marca como __DELETED__ e remove registro e arquivos do Storage
+  if (sb.isConfigured()) {
+    try {
+      await sb.update('models', { description: '__DELETED__' }, { eq: { id: model.id } });
+    } catch {}
+    try {
+      await sb.remove('models', { eq: { id: model.id } });
+    } catch {}
     for (const path of [model.file, model.thumb].filter(Boolean)) {
       try { await storage.remove(path); } catch { /* arquivo já ausente */ }
     }
-    dropLocal(model.id);
-    return;
   }
 
-  await gh.putJsonWithRetry({
-    path: CONFIG.paths.catalog,
-    message: `chore(catalogo): remove ${model.name}`,
-    build: (current) => {
-      const base = normalizeCatalog(current);
-      return { version: 1, updated: new Date().toISOString(), models: base.models.filter((m) => m.id !== model.id) };
-    },
-  });
-
-  for (const path of [model.file, model.thumb].filter(Boolean)) {
+  // 4. Se tiver token do GitHub, remove do repositório Git
+  if (gh.canWrite()) {
     try {
-      const meta = await gh.getFileMeta(path);
-      if (meta?.sha) await gh.deleteFile({ path, sha: meta.sha, message: `chore(biblioteca): remove ${path}` });
-    } catch {
-      // Arquivo já ausente: nada a fazer.
+      await gh.putJsonWithRetry({
+        path: CONFIG.paths.catalog,
+        message: `chore(catalogo): remove ${model.name}`,
+        build: (current) => {
+          const base = normalizeCatalog(current);
+          return { version: 1, updated: new Date().toISOString(), models: base.models.filter((m) => m.id !== model.id) };
+        },
+      });
+
+      for (const path of [model.file, model.thumb].filter(Boolean)) {
+        try {
+          const meta = await gh.getFileMeta(path);
+          if (meta?.sha) await gh.deleteFile({ path, sha: meta.sha, message: `chore(biblioteca): remove ${path}` });
+        } catch {}
+      }
+    } catch (e) {
+      console.warn('Aviso ao remover via GitHub API:', e);
     }
   }
-
-  dropLocal(model.id);
 }
 
 /** Atualiza a imagem de capa do modelo (render 3D, foto da automação ou upload personalizado). */
