@@ -1,15 +1,15 @@
 {
   "version": 1,
-  "updated": "2026-10-11T18:59:36.831Z",
+  "updated": "2026-10-11T19:10:33.057Z",
   "models": [
     {
       "id": "chaveiro-outubro-rosa-bonequinha-mv46gk7ujbyf",
-      "storage": "git",
-      "name": "chaveiro-outubro-rosa-bonequinha",
+      "storage": "storage",
+      "name": "Chaveiro Outubro Rosa - Bonequinha",
       "description": "Baixado automaticamente do WhatsApp (STL dos Calangos)",
       "format": "3mf",
-      "file": "models/chaveiro-outubro-rosa-bonequinha-mv46gk7ujbyf/chaveiro-outubro-rosa-bonequinha-mv46gk7ujbyf.3mf",
-      "thumb": "",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/chaveiro-outubro-rosa-bonequinha-mv46gk7ujbyf/chaveiro-outubro-rosa-bonequinha-mv46gk7ujbyf.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/chaveiro-outubro-rosa-bonequinha-mv46gk7ujbyf/thumb.png",
       "size": 171092,
       "tags": [
         "whatsapp",
@@ -30,12 +30,7 @@
         "notes": ""
       },
       "createdAt": "2026-10-11T18:49:38.052Z",
-      "printerId": "",
       "weightGrams": 3.22,
-      "purgeGrams": 0,
-      "printSeconds": 0,
-      "costBRL": 0,
-      "priceBRL": 0,
       "weightSource": "estimativa",
       "filaments": [
         {
@@ -47,12 +42,12 @@
     },
     {
       "id": "chaveiro-outubro-rosa-mulher-maravilha-mv46gjxads0n",
-      "storage": "git",
-      "name": "chaveiro-outubro-rosa-mulher-maravilha",
+      "storage": "storage",
+      "name": "Chaveiro Outubro Rosa - Mulher-maravilha",
       "description": "Baixado automaticamente do WhatsApp (STL dos Calangos)",
       "format": "3mf",
-      "file": "models/chaveiro-outubro-rosa-mulher-maravilha-mv46gjxads0n/chaveiro-outubro-rosa-mulher-maravilha-mv46gjxads0n.3mf",
-      "thumb": "",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/chaveiro-outubro-rosa-mulher-maravilha-mv46gjxads0n/chaveiro-outubro-rosa-mulher-maravilha-mv46gjxads0n.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/chaveiro-outubro-rosa-mulher-maravilha-mv46gjxads0n/thumb.png",
       "size": 156785,
       "tags": [
         "whatsapp",
@@ -73,12 +68,7 @@
         "notes": ""
       },
       "createdAt": "2026-10-11T18:49:37.625Z",
-      "printerId": "",
       "weightGrams": 5.43,
-      "purgeGrams": 0,
-      "printSeconds": 0,
-      "costBRL": 0,
-      "priceBRL": 0,
       "weightSource": "estimativa",
       "filaments": [
         {
@@ -90,12 +80,12 @@
     },
     {
       "id": "chaveiro-rosa-mv46giwk1ud3",
-      "storage": "git",
-      "name": "chaveiro-rosa",
+      "storage": "storage",
+      "name": "Chaveiro Outubro Rosa",
       "description": "Baixado automaticamente do WhatsApp (STL dos Calangos)",
       "format": "3mf",
-      "file": "models/chaveiro-rosa-mv46giwk1ud3/chaveiro-rosa-mv46giwk1ud3.3mf",
-      "thumb": "",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/chaveiro-rosa-mv46giwk1ud3/chaveiro-rosa-mv46giwk1ud3.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/chaveiro-rosa-mv46giwk1ud3/thumb.png",
       "size": 214850,
       "tags": [
         "whatsapp",
@@ -116,12 +106,7 @@
         "notes": ""
       },
       "createdAt": "2026-10-11T18:49:36.343Z",
-      "printerId": "",
       "weightGrams": 5.16,
-      "purgeGrams": 0,
-      "printSeconds": 0,
-      "costBRL": 0,
-      "priceBRL": 0,
       "weightSource": "estimativa",
       "filaments": [
         {
@@ -133,12 +118,12 @@
     },
     {
       "id": "chaveiro-margarida-mv46gijk2h7m",
-      "storage": "git",
-      "name": "chaveiro-margarida",
+      "storage": "storage",
+      "name": "Chaveiro Margarida",
       "description": "Baixado automaticamente do WhatsApp (STL dos Calangos)",
       "format": "3mf",
-      "file": "models/chaveiro-margarida-mv46gijk2h7m/chaveiro-margarida-mv46gijk2h7m.3mf",
-      "thumb": "",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/chaveiro-margarida-mv46gijk2h7m/chaveiro-margarida-mv46gijk2h7m.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/chaveiro-margarida-mv46gijk2h7m/thumb.png",
       "size": 205294,
       "tags": [
         "whatsapp",
@@ -159,12 +144,7 @@
         "notes": ""
       },
       "createdAt": "2026-10-11T18:49:35.923Z",
-      "printerId": "",
       "weightGrams": 4.78,
-      "purgeGrams": 0,
-      "printSeconds": 0,
-      "costBRL": 0,
-      "priceBRL": 0,
       "weightSource": "estimativa",
       "filaments": [
         {
@@ -176,12 +156,12 @@
     },
     {
       "id": "chaveiro-joaninha-mv46gi8cck17",
-      "storage": "git",
-      "name": "chaveiro-joaninha",
+      "storage": "storage",
+      "name": "Chaveiro Joaninha",
       "description": "Baixado automaticamente do WhatsApp (STL dos Calangos)",
       "format": "3mf",
-      "file": "models/chaveiro-joaninha-mv46gi8cck17/chaveiro-joaninha-mv46gi8cck17.3mf",
-      "thumb": "",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/chaveiro-joaninha-mv46gi8cck17/chaveiro-joaninha-mv46gi8cck17.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/chaveiro-joaninha-mv46gi8cck17/thumb.png",
       "size": 203785,
       "tags": [
         "whatsapp",
@@ -202,12 +182,7 @@
         "notes": ""
       },
       "createdAt": "2026-10-11T18:49:35.455Z",
-      "printerId": "",
       "weightGrams": 4.61,
-      "purgeGrams": 0,
-      "printSeconds": 0,
-      "costBRL": 0,
-      "priceBRL": 0,
       "weightSource": "estimativa",
       "filaments": [
         {
@@ -219,12 +194,12 @@
     },
     {
       "id": "chaveiro-lapis-coloridos-mv46ghw8rssv",
-      "storage": "git",
-      "name": "chaveiro-lapis-coloridos",
+      "storage": "storage",
+      "name": "Chaveiro Lápis Coloridos",
       "description": "Baixado automaticamente do WhatsApp (STL dos Calangos)",
       "format": "3mf",
-      "file": "models/chaveiro-lapis-coloridos-mv46ghw8rssv/chaveiro-lapis-coloridos-mv46ghw8rssv.3mf",
-      "thumb": "",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/chaveiro-lapis-coloridos-mv46ghw8rssv/chaveiro-lapis-coloridos-mv46ghw8rssv.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/chaveiro-lapis-coloridos-mv46ghw8rssv/thumb.png",
       "size": 187267,
       "tags": [
         "whatsapp",
@@ -245,12 +220,7 @@
         "notes": ""
       },
       "createdAt": "2026-10-11T18:49:35.080Z",
-      "printerId": "",
       "weightGrams": 1.12,
-      "purgeGrams": 0,
-      "printSeconds": 0,
-      "costBRL": 0,
-      "priceBRL": 0,
       "weightSource": "estimativa",
       "filaments": [
         {
@@ -262,12 +232,12 @@
     },
     {
       "id": "chaveiro-girassol-mv46ghutnl07",
-      "storage": "git",
-      "name": "chaveiro-girassol",
+      "storage": "storage",
+      "name": "Chaveiro Girassol",
       "description": "Baixado automaticamente do WhatsApp (STL dos Calangos)",
       "format": "3mf",
-      "file": "models/chaveiro-girassol-mv46ghutnl07/chaveiro-girassol-mv46ghutnl07.3mf",
-      "thumb": "",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/chaveiro-girassol-mv46ghutnl07/chaveiro-girassol-mv46ghutnl07.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/chaveiro-girassol-mv46ghutnl07/thumb.png",
       "size": 213911,
       "tags": [
         "whatsapp",
@@ -288,12 +258,7 @@
         "notes": ""
       },
       "createdAt": "2026-10-11T18:49:35.051Z",
-      "printerId": "",
       "weightGrams": 4.86,
-      "purgeGrams": 0,
-      "printSeconds": 0,
-      "costBRL": 0,
-      "priceBRL": 0,
       "weightSource": "estimativa",
       "filaments": [
         {
@@ -305,12 +270,12 @@
     },
     {
       "id": "chaveiro-corujinha-professor-mv46ghizka8l",
-      "storage": "git",
-      "name": "chaveiro-corujinha-professor",
+      "storage": "storage",
+      "name": "Chaveiro Corujinha (Professor)",
       "description": "Baixado automaticamente do WhatsApp (STL dos Calangos)",
       "format": "3mf",
-      "file": "models/chaveiro-corujinha-professor-mv46ghizka8l/chaveiro-corujinha-professor-mv46ghizka8l.3mf",
-      "thumb": "",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/chaveiro-corujinha-professor-mv46ghizka8l/chaveiro-corujinha-professor-mv46ghizka8l.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/chaveiro-corujinha-professor-mv46ghizka8l/thumb.png",
       "size": 322576,
       "tags": [
         "whatsapp",
@@ -331,12 +296,7 @@
         "notes": ""
       },
       "createdAt": "2026-10-11T18:49:34.615Z",
-      "printerId": "",
       "weightGrams": 5.13,
-      "purgeGrams": 0,
-      "printSeconds": 0,
-      "costBRL": 0,
-      "priceBRL": 0,
       "weightSource": "estimativa",
       "filaments": [
         {
@@ -348,12 +308,12 @@
     },
     {
       "id": "chaveiro-coruja-professora-mv46gh38pjns",
-      "storage": "git",
-      "name": "chaveiro-coruja-professora",
+      "storage": "storage",
+      "name": "Chaveiro Coruja (Professora)",
       "description": "Baixado automaticamente do WhatsApp (STL dos Calangos)",
       "format": "3mf",
-      "file": "models/chaveiro-coruja-professora-mv46gh38pjns/chaveiro-coruja-professora-mv46gh38pjns.3mf",
-      "thumb": "",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/chaveiro-coruja-professora-mv46gh38pjns/chaveiro-coruja-professora-mv46gh38pjns.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/chaveiro-coruja-professora-mv46gh38pjns/thumb.png",
       "size": 345540,
       "tags": [
         "whatsapp",
@@ -374,12 +334,7 @@
         "notes": ""
       },
       "createdAt": "2026-10-11T18:49:34.138Z",
-      "printerId": "",
       "weightGrams": 5.01,
-      "purgeGrams": 0,
-      "printSeconds": 0,
-      "costBRL": 0,
-      "priceBRL": 0,
       "weightSource": "estimativa",
       "filaments": [
         {
@@ -391,12 +346,12 @@
     },
     {
       "id": "chaveiro-olho-grego-conjunto-mv46ge3q2zeh",
-      "storage": "git",
-      "name": "chaveiro-olho-grego-conjunto",
+      "storage": "storage",
+      "name": "Chaveiro Olho Grego (Conjunto)",
       "description": "Baixado automaticamente do WhatsApp (STL dos Calangos)",
       "format": "3mf",
-      "file": "models/chaveiro-olho-grego-conjunto-mv46ge3q2zeh/chaveiro-olho-grego-conjunto-mv46ge3q2zeh.3mf",
-      "thumb": "",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/chaveiro-olho-grego-conjunto-mv46ge3q2zeh/chaveiro-olho-grego-conjunto-mv46ge3q2zeh.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/chaveiro-olho-grego-conjunto-mv46ge3q2zeh/thumb.png",
       "size": 270961,
       "tags": [
         "whatsapp",
@@ -417,12 +372,7 @@
         "notes": ""
       },
       "createdAt": "2026-10-11T18:49:30.317Z",
-      "printerId": "",
       "weightGrams": 6.67,
-      "purgeGrams": 0,
-      "printSeconds": 0,
-      "costBRL": 0,
-      "priceBRL": 0,
       "weightSource": "estimativa",
       "filaments": [
         {
@@ -436,18 +386,18 @@
       "id": "arvore-muxaf18ij50e",
       "storage": "storage",
       "name": "Arvore",
-      "description": "",
+      "description": "Baixado automaticamente do WhatsApp (Catálogo WhatsApp)",
       "format": "3mf",
       "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/arvore-muxaf18ij50e/arvore-muxaf18ij50e.3mf",
       "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/arvore-muxaf18ij50e/thumb.png",
       "size": 24926606,
       "tags": [],
       "author": "Bruno T.",
-      "triangles": 7563188,
+      "triangles": 1937066,
       "dimensions": {
-        "x": 371.369,
-        "y": 306.261,
-        "z": 105.855
+        "x": 68.34,
+        "y": 74.31,
+        "z": 102.75
       },
       "print": {
         "notes": "",
@@ -457,7 +407,7 @@
         "layerHeight": ""
       },
       "createdAt": "2026-10-06T23:06:25.872347+00:00",
-      "weightGrams": 174.18,
+      "weightGrams": 226.47,
       "weightSource": "estimativa",
       "filaments": [
         {
@@ -624,7 +574,7 @@
     {
       "id": "pen-holder-customizable-a1-mini-version-3mf-mv45iqrhrdej",
       "storage": "storage",
-      "name": "Porta-canetas Personalizável",
+      "name": "Porta Canetas Personalizável",
       "description": "Baixado automaticamente do WhatsApp (Catálogo WhatsApp)",
       "format": "3mf",
       "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/pen-holder-customizable-a1-mini-version-3mf-mv45iqrhrdej/pen-holder-customizable-a1-mini-version-3mf-mv45iqrhrdej.3mf",
@@ -697,7 +647,7 @@
       "id": "bola-de-natal-personalizada-mux94onq37ct",
       "storage": "storage",
       "name": "Bola de Natal Personalizada",
-      "description": "",
+      "description": "Baixado automaticamente do WhatsApp (Catálogo WhatsApp)",
       "format": "3mf",
       "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/bola-de-natal-personalizada-mux94onq37ct/bola-de-natal-personalizada-mux94onq37ct.3mf",
       "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/bola-de-natal-personalizada-mux94onq37ct/thumb.png",
@@ -706,9 +656,9 @@
       "author": "Bruno T.",
       "triangles": 28534,
       "dimensions": {
-        "x": 78.102,
-        "y": 87.462,
-        "z": 2.318
+        "x": 115,
+        "y": 115,
+        "z": 3.49
       },
       "print": {
         "notes": "",
@@ -718,7 +668,7 @@
         "layerHeight": ""
       },
       "createdAt": "2026-10-06T22:30:00.45806+00:00",
-      "weightGrams": 5.59,
+      "weightGrams": 20,
       "weightSource": "estimativa",
       "filaments": [
         {
@@ -767,7 +717,7 @@
     {
       "id": "meshy-ai-export-1791504150-image-to-3d-texture-3mf-mv45ds2vleus",
       "storage": "storage",
-      "name": "Modelo Texturizado Meshy AI Image - To - 3d - Texture",
+      "name": "Modelo Texturizado Meshy AI Image To 3d Texture",
       "description": "Baixado automaticamente do WhatsApp (Catálogo WhatsApp)",
       "format": "3mf",
       "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/meshy-ai-export-1791504150-image-to-3d-texture-3mf-mv45ds2vleus/meshy-ai-export-1791504150-image-to-3d-texture-3mf-mv45ds2vleus.3mf",
@@ -875,7 +825,7 @@
     {
       "id": "100-pen-holder-3mf-mv45dn09nrii",
       "storage": "storage",
-      "name": "Porta-canetas",
+      "name": "Porta Canetas",
       "description": "Baixado automaticamente do WhatsApp (Catálogo WhatsApp)",
       "format": "3mf",
       "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/100-pen-holder-3mf-mv45dn09nrii/100-pen-holder-3mf-mv45dn09nrii.3mf",
