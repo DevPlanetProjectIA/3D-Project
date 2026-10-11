@@ -1,7 +1,695 @@
 {
   "version": 1,
-  "updated": "2026-10-11T22:08:42.658Z",
+  "updated": "2026-10-11T23:41:16.394Z",
   "models": [
+    {
+      "id": "enfeite-de-arvore-de-natal-com-nomes-mv4gun708bq2",
+      "storage": "storage",
+      "name": "Enfeite de Árvore de Natal com Nomes",
+      "description": "Baixado automaticamente do WhatsApp (Importação Local)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/enfeite-de-arvore-de-natal-com-nomes-mv4gun708bq2/enfeite-de-arvore-de-natal-com-nomes-mv4gun708bq2.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/enfeite-de-arvore-de-natal-com-nomes-mv4gun708bq2/thumb.png",
+      "size": 76529,
+      "tags": [
+        "whatsapp",
+        "importacao-local"
+      ],
+      "author": "Bruno T.",
+      "triangles": 3138,
+      "dimensions": {
+        "x": 54.69,
+        "y": 78.6,
+        "z": 19.9
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-11T23:40:31.645Z",
+      "printerId": "",
+      "weightGrams": 37.13,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 37.13
+        }
+      ]
+    },
+    {
+      "id": "suporte-para-jogos-nintendo-switch-mv4guluqjhwl",
+      "storage": "storage",
+      "name": "Suporte para Jogos Nintendo Switch",
+      "description": "Baixado automaticamente do WhatsApp (Importação Local)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/suporte-para-jogos-nintendo-switch-mv4guluqjhwl/suporte-para-jogos-nintendo-switch-mv4guluqjhwl.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/suporte-para-jogos-nintendo-switch-mv4guluqjhwl/thumb.png",
+      "size": 1770054,
+      "tags": [
+        "whatsapp",
+        "importacao-local"
+      ],
+      "author": "Bruno T.",
+      "triangles": 71527,
+      "dimensions": {
+        "x": 161,
+        "y": 135,
+        "z": 25
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-11T23:40:30.816Z",
+      "printerId": "",
+      "weightGrams": 235.82,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 235.82
+        }
+      ]
+    },
+    {
+      "id": "papai-noel-articulado-santa-split-mv4gu8eozon8",
+      "storage": "storage",
+      "name": "Papai Noel Articulado (Santa Split)",
+      "description": "Baixado automaticamente do WhatsApp (Importação Local)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/papai-noel-articulado-santa-split-mv4gu8eozon8/papai-noel-articulado-santa-split-mv4gu8eozon8.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/papai-noel-articulado-santa-split-mv4gu8eozon8/thumb.png",
+      "size": 22912493,
+      "tags": [
+        "whatsapp",
+        "importacao-local"
+      ],
+      "author": "Bruno T.",
+      "triangles": 1407096,
+      "dimensions": {
+        "x": 49.28,
+        "y": 39.67,
+        "z": 26.72
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-11T23:40:29.025Z",
+      "printerId": "",
+      "weightGrams": 22.67,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 22.67
+        }
+      ]
+    },
+    {
+      "id": "ponteira-de-lapis-mv4gu6551vmh",
+      "storage": "storage",
+      "name": "Ponteira de Lápis",
+      "description": "Baixado automaticamente do WhatsApp (Importação Local)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/ponteira-de-lapis-mv4gu6551vmh/ponteira-de-lapis-mv4gu6551vmh.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/ponteira-de-lapis-mv4gu6551vmh/thumb.png",
+      "size": 389174,
+      "tags": [
+        "whatsapp",
+        "importacao-local"
+      ],
+      "author": "Bruno T.",
+      "triangles": 3824,
+      "dimensions": {
+        "x": 49.89,
+        "y": 16.12,
+        "z": 13.4
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-11T23:40:10.229Z",
+      "printerId": "",
+      "weightGrams": 4.68,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 4.68
+        }
+      ]
+    },
+    {
+      "id": "porta-canetas-personalizavel-mv4gu4l7rdtj",
+      "storage": "storage",
+      "name": "Porta-canetas Personalizável",
+      "description": "Baixado automaticamente do WhatsApp (Importação Local)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/porta-canetas-personalizavel-mv4gu4l7rdtj/porta-canetas-personalizavel-mv4gu4l7rdtj.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/porta-canetas-personalizavel-mv4gu4l7rdtj/thumb.png",
+      "size": 900019,
+      "tags": [
+        "whatsapp",
+        "importacao-local"
+      ],
+      "author": "Bruno T.",
+      "triangles": 17288,
+      "dimensions": {
+        "x": 116.94,
+        "y": 73.61,
+        "z": 68
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-11T23:40:08.718Z",
+      "printerId": "",
+      "weightGrams": 254.04,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 254.04
+        }
+      ]
+    },
+    {
+      "id": "suporte-np1-mv4gu37z73za",
+      "storage": "storage",
+      "name": "Suporte NP1",
+      "description": "Baixado automaticamente do WhatsApp (Importação Local)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/suporte-np1-mv4gu37z73za/suporte-np1-mv4gu37z73za.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/suporte-np1-mv4gu37z73za/thumb.png",
+      "size": 953079,
+      "tags": [
+        "whatsapp",
+        "importacao-local"
+      ],
+      "author": "Bruno T.",
+      "triangles": 4228,
+      "dimensions": {
+        "x": 48.58,
+        "y": 105,
+        "z": 255
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-11T23:40:06.681Z",
+      "printerId": "",
+      "weightGrams": 564.5,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 564.5
+        }
+      ]
+    },
+    {
+      "id": "suporte-para-jogos-nintendo-switch-mv4gu1obgvp9",
+      "storage": "storage",
+      "name": "Suporte para Jogos Nintendo Switch",
+      "description": "Baixado automaticamente do WhatsApp (Importação Local)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/suporte-para-jogos-nintendo-switch-mv4gu1obgvp9/suporte-para-jogos-nintendo-switch-mv4gu1obgvp9.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/suporte-para-jogos-nintendo-switch-mv4gu1obgvp9/thumb.png",
+      "size": 846634,
+      "tags": [
+        "whatsapp",
+        "importacao-local"
+      ],
+      "author": "Bruno T.",
+      "triangles": 3068,
+      "dimensions": {
+        "x": 180.2,
+        "y": 98.6,
+        "z": 133.7
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-11T23:40:04.935Z",
+      "printerId": "",
+      "weightGrams": 1030.99,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 1030.99
+        }
+      ]
+    },
+    {
+      "id": "modelo-texturizado-meshy-ai-mv4gtx7xml2a",
+      "storage": "storage",
+      "name": "Modelo Texturizado Meshy AI",
+      "description": "Baixado automaticamente do WhatsApp (Importação Local)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/modelo-texturizado-meshy-ai-mv4gtx7xml2a/modelo-texturizado-meshy-ai-mv4gtx7xml2a.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/modelo-texturizado-meshy-ai-mv4gtx7xml2a/thumb.png",
+      "size": 1371314,
+      "tags": [
+        "whatsapp",
+        "importacao-local"
+      ],
+      "author": "Bruno T.",
+      "triangles": 119856,
+      "dimensions": {
+        "x": 46.25,
+        "y": 4.54,
+        "z": 50
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-11T23:40:02.930Z",
+      "printerId": "",
+      "weightGrams": 4.56,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 4.56
+        }
+      ]
+    },
+    {
+      "id": "modelo-texturizado-meshy-ai-mv4gtrzbz368",
+      "storage": "storage",
+      "name": "Modelo Texturizado Meshy AI",
+      "description": "Baixado automaticamente do WhatsApp (Importação Local)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/modelo-texturizado-meshy-ai-mv4gtrzbz368/modelo-texturizado-meshy-ai-mv4gtrzbz368.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/modelo-texturizado-meshy-ai-mv4gtrzbz368/thumb.png",
+      "size": 1370516,
+      "tags": [
+        "whatsapp",
+        "importacao-local"
+      ],
+      "author": "Bruno T.",
+      "triangles": 119856,
+      "dimensions": {
+        "x": 46.25,
+        "y": 4.54,
+        "z": 50
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-11T23:39:57.046Z",
+      "printerId": "",
+      "weightGrams": 4.56,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 4.56
+        }
+      ]
+    },
+    {
+      "id": "chaveiro-voce-faz-a-diferenca-mv4gtqd9pbex",
+      "storage": "storage",
+      "name": "Chaveiro Você Faz a Diferença",
+      "description": "Baixado automaticamente do WhatsApp (Importação Local)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/chaveiro-voce-faz-a-diferenca-mv4gtqd9pbex/chaveiro-voce-faz-a-diferenca-mv4gtqd9pbex.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/chaveiro-voce-faz-a-diferenca-mv4gtqd9pbex/thumb.png",
+      "size": 778287,
+      "tags": [
+        "whatsapp",
+        "importacao-local"
+      ],
+      "author": "Bruno T.",
+      "triangles": 10340,
+      "dimensions": {
+        "x": 60.4,
+        "y": 55.12,
+        "z": 2
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-11T23:39:50.227Z",
+      "printerId": "",
+      "weightGrams": 2.89,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 2.89
+        }
+      ]
+    },
+    {
+      "id": "chaveiro-voce-faz-a-diferenca-mv4gtp23ptkz",
+      "storage": "storage",
+      "name": "Chaveiro Você Faz a Diferença",
+      "description": "Baixado automaticamente do WhatsApp (Importação Local)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/chaveiro-voce-faz-a-diferenca-mv4gtp23ptkz/chaveiro-voce-faz-a-diferenca-mv4gtp23ptkz.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/chaveiro-voce-faz-a-diferenca-mv4gtp23ptkz/thumb.png",
+      "size": 778287,
+      "tags": [
+        "whatsapp",
+        "importacao-local"
+      ],
+      "author": "Bruno T.",
+      "triangles": 10340,
+      "dimensions": {
+        "x": 60.4,
+        "y": 55.12,
+        "z": 2
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-11T23:39:48.263Z",
+      "printerId": "",
+      "weightGrams": 2.89,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 2.89
+        }
+      ]
+    },
+    {
+      "id": "caixa-com-cadeado-mv4gtmufb5nw",
+      "storage": "storage",
+      "name": "Caixa com Cadeado",
+      "description": "Baixado automaticamente do WhatsApp (Importação Local)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/caixa-com-cadeado-mv4gtmufb5nw/caixa-com-cadeado-mv4gtmufb5nw.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/caixa-com-cadeado-mv4gtmufb5nw/thumb.png",
+      "size": 114484,
+      "tags": [
+        "whatsapp",
+        "importacao-local"
+      ],
+      "author": "Bruno T.",
+      "triangles": 2288,
+      "dimensions": {
+        "x": 176,
+        "y": 120,
+        "z": 150
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-11T23:39:46.566Z",
+      "printerId": "",
+      "weightGrams": 525.17,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 525.17
+        }
+      ]
+    },
+    {
+      "id": "caixa-com-cadeado-mv4gtlac1k85",
+      "storage": "storage",
+      "name": "Caixa com Cadeado",
+      "description": "Baixado automaticamente do WhatsApp (Importação Local)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/caixa-com-cadeado-mv4gtlac1k85/caixa-com-cadeado-mv4gtlac1k85.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/caixa-com-cadeado-mv4gtlac1k85/thumb.png",
+      "size": 106484,
+      "tags": [
+        "whatsapp",
+        "importacao-local"
+      ],
+      "author": "Bruno T.",
+      "triangles": 2128,
+      "dimensions": {
+        "x": 176,
+        "y": 120,
+        "z": 150
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-11T23:39:43.715Z",
+      "printerId": "",
+      "weightGrams": 338.88,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 338.88
+        }
+      ]
+    },
+    {
+      "id": "caixa-com-cadeado-mv4gtjvnxic9",
+      "storage": "storage",
+      "name": "Caixa com Cadeado",
+      "description": "Baixado automaticamente do WhatsApp (Importação Local)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/caixa-com-cadeado-mv4gtjvnxic9/caixa-com-cadeado-mv4gtjvnxic9.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/caixa-com-cadeado-mv4gtjvnxic9/thumb.png",
+      "size": 107284,
+      "tags": [
+        "whatsapp",
+        "importacao-local"
+      ],
+      "author": "Bruno T.",
+      "triangles": 2144,
+      "dimensions": {
+        "x": 190,
+        "y": 120,
+        "z": 150
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-11T23:39:41.696Z",
+      "printerId": "",
+      "weightGrams": 345.9,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 345.9
+        }
+      ]
+    },
+    {
+      "id": "caixa-com-cadeado-mv4gti2vq3ly",
+      "storage": "storage",
+      "name": "Caixa com Cadeado",
+      "description": "Baixado automaticamente do WhatsApp (Importação Local)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/caixa-com-cadeado-mv4gti2vq3ly/caixa-com-cadeado-mv4gti2vq3ly.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/caixa-com-cadeado-mv4gti2vq3ly/thumb.png",
+      "size": 118684,
+      "tags": [
+        "whatsapp",
+        "importacao-local"
+      ],
+      "author": "Bruno T.",
+      "triangles": 2372,
+      "dimensions": {
+        "x": 150,
+        "y": 161.6,
+        "z": 100
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-11T23:39:39.869Z",
+      "printerId": "",
+      "weightGrams": 373.59,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 373.59
+        }
+      ]
+    },
+    {
+      "id": "porta-canetas-mv4gtfunb0r2",
+      "storage": "storage",
+      "name": "Porta-canetas",
+      "description": "Baixado automaticamente do WhatsApp (Importação Local)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/porta-canetas-mv4gtfunb0r2/porta-canetas-mv4gtfunb0r2.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/porta-canetas-mv4gtfunb0r2/thumb.png",
+      "size": 678229,
+      "tags": [
+        "whatsapp",
+        "importacao-local"
+      ],
+      "author": "Bruno T.",
+      "triangles": 5732,
+      "dimensions": {
+        "x": 84.38,
+        "y": 73.61,
+        "z": 68
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-11T23:39:37.522Z",
+      "printerId": "",
+      "weightGrams": 183.31,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 183.31
+        }
+      ]
+    },
     {
       "id": "monster-energy-can-holder-com-alca-mv48wga8dtk3",
       "storage": "storage",
@@ -826,42 +1514,6 @@
         "layerHeight": "0.2"
       },
       "createdAt": "2026-10-11T18:28:53.114+00:00",
-      "weightGrams": 4.56,
-      "weightSource": "estimativa",
-      "filaments": [
-        {
-          "color": "#3b82f6",
-          "grams": 4.56,
-          "material": "PLA"
-        }
-      ]
-    },
-    {
-      "id": "meshy-ai-export-1791506310-texture-3mf-mv45ip8qjmvp",
-      "storage": "storage",
-      "name": "Modelo Texturizado Meshy AI",
-      "description": "Baixado automaticamente do WhatsApp (Catálogo WhatsApp)",
-      "format": "3mf",
-      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/meshy-ai-export-1791506310-texture-3mf-mv45ip8qjmvp/meshy-ai-export-1791506310-texture-3mf-mv45ip8qjmvp.3mf",
-      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/meshy-ai-export-1791506310-texture-3mf-mv45ip8qjmvp/thumb.png",
-      "size": 1371314,
-      "tags": [
-        "whatsapp",
-        "catalogo-whatsapp"
-      ],
-      "author": "Bruno T.",
-      "triangles": 119856,
-      "dimensions": {
-        "x": 46.25,
-        "y": 4.54,
-        "z": 50
-      },
-      "print": {
-        "infill": "15%",
-        "material": "PLA",
-        "layerHeight": "0.2"
-      },
-      "createdAt": "2026-10-11T18:28:07.991+00:00",
       "weightGrams": 4.56,
       "weightSource": "estimativa",
       "filaments": [

@@ -34,6 +34,7 @@ export const CONFIG = {
   /** Caminhos dentro do repositório. */
   paths: {
     catalog: 'data/catalog.json',
+    communityUsers: 'data/community_users.json',
     models: 'models',
   },
 

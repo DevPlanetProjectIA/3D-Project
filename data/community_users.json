@@ -1,0 +1,672 @@
+[
+  {
+    "id": "967a82f5-26fe-46c9-a67b-06dd8272640b",
+    "username": "Givaldo Rocha",
+    "fullName": "Givaldo Rocha",
+    "email": "rgivaldo6@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocIbwNoea5N7hpxZHFuI-JlpWhDGi86bDt3_poQqjZYqt4Zptoml=s96-c",
+    "color": "hsl(249 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-11T23:02:29.797164+00:00"
+  },
+  {
+    "id": "9a90b60d-3891-461d-8ad3-0746521af09f",
+    "username": "Carolina Gallego",
+    "fullName": "Carolina Gallego",
+    "email": "caroangallego@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocKge6oH4spuoEFXkWbMUmHkBCrzVz-OHmZIzPhxeR8DbhCuOFMO=s96-c",
+    "color": "hsl(223 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-11T22:13:02.930695+00:00"
+  },
+  {
+    "id": "5abb2647-d67c-4737-ac18-8bf96b01e672",
+    "username": "Ana Claudia Tempobono",
+    "fullName": "Ana Claudia Tempobono",
+    "email": "actbono@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocK43DDoAjzeND9xJss4-4MSLx74PYQcALky0CUOJLKlhJyZmjb_FQ=s96-c",
+    "color": "hsl(99 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-11T22:05:05.764998+00:00"
+  },
+  {
+    "id": "a3e55f30-d623-4915-9cec-d3c04bafb1b7",
+    "username": "Fernando Cadini",
+    "fullName": "Fernando Cadini",
+    "email": "cadinifernando@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocIZV4PErUDlXMFPFjHrTkGhQIT9KUSAm5C4qFCez6upgEcjNg=s96-c",
+    "color": "hsl(59 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-11T21:46:22.949014+00:00"
+  },
+  {
+    "id": "be0f14a8-c76a-4290-8ca4-a0a4686b7a16",
+    "username": "evelin cristina",
+    "fullName": "evelin cristina",
+    "email": "evelin.ramos.22@hotmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocJElBG18xGY4On4HJXenL3AxziY8MuXc5wx1JlClo-w8rJ4HQ=s96-c",
+    "color": "hsl(320 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-11T20:05:01.758674+00:00"
+  },
+  {
+    "id": "b8fc02e5-a044-48f8-acbc-b3b56336a961",
+    "username": "Bismarck BK",
+    "fullName": "Bismarck BK",
+    "email": "bkadesivo@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocL6j8v4ws6zp5pIRUvJODIWXA0Ivqo2dWLqQlfbYq3D6ApC_AzV=s96-c",
+    "color": "hsl(187 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-11T19:58:33.768613+00:00"
+  },
+  {
+    "id": "c7722e06-a493-44bf-aa6d-6f24a3272b4c",
+    "username": "Portal Pet",
+    "fullName": "Portal Pet",
+    "email": "rodrigoboreta@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocIwhulM0EZQX5AUfnJmWuU653n9fD6fbJ3V-3UUi9UKr9aXOtLO=s96-c",
+    "color": "hsl(117 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-11T19:35:04.807921+00:00"
+  },
+  {
+    "id": "20402615-7afe-4cd0-bfb7-9d8a46b757d9",
+    "username": "Iromar Américo",
+    "fullName": "Iromar Américo",
+    "email": "iromar.americo@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocKgmfg3mjRr40PNlniMKKo2oZpGm1SxQs4toeZgv-9u8bBJJA=s96-c",
+    "color": "hsl(33 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-11T19:32:51.671549+00:00"
+  },
+  {
+    "id": "58984403-ada0-4b81-93b4-5555dab61deb",
+    "username": "Clovis Scariot",
+    "fullName": "Clovis Scariot",
+    "email": "angelgrafclovis@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocJ4Gg2LaRsBKiFypQ09jDfF5oZ-HTIjhSP46kO1cD9ULXxHwg=s96-c",
+    "color": "hsl(106 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-11T19:08:08.268732+00:00"
+  },
+  {
+    "id": "984a40e6-028d-4b3b-8d16-e13c0a049f51",
+    "username": "Assistência E.M CELL",
+    "fullName": "Assistência E.M CELL",
+    "email": "khyell350z@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocKC3A6RAhMNyfGwCs2AbRVerf50Y45hIbONcVH7CTxhJdrXIhVa=s96-c",
+    "color": "hsl(62 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-11T18:59:46.26844+00:00"
+  },
+  {
+    "id": "029ba08c-42c3-4463-8df2-5145bb602fa6",
+    "username": "Jrmogi Violeiro",
+    "fullName": "Jrmogi Violeiro",
+    "email": "jrmogi@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocLYZz15q0m5_6Zs38imeAaRz-2GoaPONxvOvSN5PRUcqE46nv0=s96-c",
+    "color": "hsl(241 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-11T18:58:09.365824+00:00"
+  },
+  {
+    "id": "2eeb7387-2c6a-4ac2-a207-53815265c5c1",
+    "username": "Dionatan Nicola",
+    "fullName": "Dionatan Nicola",
+    "email": "dionatan.nicola@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocL5p_WunfCi2sjqgCA8i-7b-EVf594ivXKOnfNBCENJ5N5TqA=s96-c",
+    "color": "hsl(335 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-11T18:56:48.646571+00:00"
+  },
+  {
+    "id": "278c78ff-f378-471b-b91c-187643e72a89",
+    "username": "Redson da silva jadjiski",
+    "fullName": "Redson da silva jadjiski",
+    "email": "jadjiski.ia@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocIQl3Dnp8EQUX0qDV9JeLif5atwtYJH1mTO-GdHMMALI9NsJw=s96-c",
+    "color": "hsl(3 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-11T18:52:18.970326+00:00"
+  },
+  {
+    "id": "534a9341-db99-4599-a37a-0a7751ff5953",
+    "username": "Mara Helena Oliveira de Almeida",
+    "fullName": "Mara Helena Oliveira de Almeida",
+    "email": "maraphn@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocJ0DOR2Cn4QEkTuWGCclB-9a1CjhpXuVY8W0EAyzhoTlvVPc0PUVw=s96-c",
+    "color": "hsl(60 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-11T18:48:53.722036+00:00"
+  },
+  {
+    "id": "b2f49a7a-077d-4820-b843-0807a8e2d7c8",
+    "username": "Domingos lopes",
+    "fullName": "Domingos lopes",
+    "email": "junior09lopessp@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocJfdG2YTP3Nq_ysgXECjQjGJWXORaeWwkBA2wkra3zKwaj0zA=s96-c",
+    "color": "hsl(174 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-11T18:25:41.266602+00:00"
+  },
+  {
+    "id": "6869d83d-9531-4d28-bff2-eccb9fb18e15",
+    "username": "Matheus Firmo",
+    "fullName": "Matheus Firmo",
+    "email": "mfirmox@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocJjZb5gJRKfSJ7a4XEH-an2o24HPtp6rESP0-aIv32gy32Hpw=s96-c",
+    "color": "hsl(202 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-11T18:06:47.856523+00:00"
+  },
+  {
+    "id": "cacab34f-bf15-40ec-8ceb-9c567715a61a",
+    "username": "Alexandre de Moura Andrade",
+    "fullName": "Alexandre de Moura Andrade",
+    "email": "alexandre153@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocIKs6GCj0rBh0VUgv-w-J91UxtgUTqn2JjkjT7F2jrcISf6PNt2=s96-c",
+    "color": "hsl(250 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-11T17:57:12.397456+00:00"
+  },
+  {
+    "id": "0447fee5-3b98-437e-9481-492d3100443e",
+    "username": "Bruna Silva",
+    "fullName": "Bruna Silva",
+    "email": "consultoraimobiliariabs@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocIEFKa8Q3S5BrvdHZ5eWfNVfQKumzBQChm0JhH1qunPT2syYg=s96-c",
+    "color": "hsl(300 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-11T17:54:30.084702+00:00"
+  },
+  {
+    "id": "7f3b029e-ea9f-4991-aa1b-70fa4f128aa7",
+    "username": "Letícia Valzacchi Alves",
+    "fullName": "Letícia Valzacchi Alves",
+    "email": "leticiavalzacchi@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocJBj36ktLuAF1-fqlqzvajEoGXCy6gM6_9eiEbjEEZs73vlBR-s=s96-c",
+    "color": "hsl(204 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-11T17:52:59.373893+00:00"
+  },
+  {
+    "id": "0cb343ab-8576-4ff5-bf9d-09a84428d0fe",
+    "username": "Maracutaia Cell",
+    "fullName": "Maracutaia Cell",
+    "email": "maracutaiaemcell@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocKMdVdUbUzvZArFC38QybkiMNrO4jaokhfTIuBbYoMngvZOVA=s96-c",
+    "color": "hsl(348 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-11T17:49:51.250058+00:00"
+  },
+  {
+    "id": "ee94c6a1-8a47-4391-bfcc-a23d2e63cf7f",
+    "username": "Marcos Braido",
+    "fullName": "Marcos Braido",
+    "email": "braido.marcos@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocKdcVrq_WDIGmVU1VDZhMUUoFFcmZv7yirgJnBxdnjhMGz1AQ=s96-c",
+    "color": "hsl(228 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-11T17:36:16.020438+00:00"
+  },
+  {
+    "id": "4752497c-aa4e-410c-be81-bd4a8adba92d",
+    "username": "Marcelo Magalhães",
+    "fullName": "Marcelo Magalhães",
+    "email": "sereno.magalhaes@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocIPjymR0qi6Kv70D5qg5fThVkXxXBlzbKpB7oHv26cLcJA2Mg=s96-c",
+    "color": "hsl(340 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-11T16:38:45.813301+00:00"
+  },
+  {
+    "id": "eb529a3e-17b2-447a-be89-b4ae45902f00",
+    "username": "Alexandre Oliveira",
+    "fullName": "Alexandre Oliveira",
+    "email": "j7alexandreoliveira@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocIQNye9TnvfTdiYd3RvOhnnhaL2OPflH62UJwPfolx4iKsb9g=s96-c",
+    "color": "hsl(329 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-11T16:38:09.261658+00:00"
+  },
+  {
+    "id": "c07f546d-4fcb-4929-8375-acb3e66c20c9",
+    "username": "Marcelo de mattos",
+    "fullName": "Marcelo de mattos",
+    "email": "demattos.marcelo@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocITplmJ7T5il4aAkU5RcIdcOHTRnWm-xU1742ZHssQaw_ckfqE=s96-c",
+    "color": "hsl(326 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-10T13:14:25.254252+00:00"
+  },
+  {
+    "id": "d63fd0c2-45cb-4910-a971-918097ab85ef",
+    "username": "Jairo Padilha",
+    "fullName": "Jairo Padilha",
+    "email": "turminhayeshuakids@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocL9WLiRIYglQdt3Wne23VvEhoidDYa_Ogqv63PBnI1q5qURBCI=s96-c",
+    "color": "hsl(323 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-10T04:04:24.425758+00:00"
+  },
+  {
+    "id": "c541f9c1-6366-41b2-8645-7119330281d0",
+    "username": "Claudia Monteiro",
+    "fullName": "Claudia Monteiro",
+    "email": "claudiasedrez20@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocI61GznsxdwB_KO7dpYQ4lq7IdonEakyMCReJ3Hmtqek0QXPHEaJw=s96-c",
+    "color": "hsl(132 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-10T02:32:25.689913+00:00"
+  },
+  {
+    "id": "58a8e8e5-1377-4e63-aa88-5b4356e639e1",
+    "username": "Stanley wodson",
+    "fullName": "Stanley wodson",
+    "email": "robozinhodf01@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocI6Ic23lYoX5l8rHH50TfC6OyU9V-5cd_o2hfxBtNpOBXi4UsBp=s96-c",
+    "color": "hsl(261 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-10T02:02:51.251677+00:00"
+  },
+  {
+    "id": "e53b347d-c118-4fe6-84a3-72a5721fdcf0",
+    "username": "Sergio Ricardo",
+    "fullName": "Sergio Ricardo",
+    "email": "sergio62rbs@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocLpWYHE3c2dVX-QEqVViDgLxh55asUtCz40YfJtmoM6pal6xMwq=s96-c",
+    "color": "hsl(51 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-10T01:43:26.019375+00:00"
+  },
+  {
+    "id": "ddbd1540-0b8f-4479-b84d-3f012f835ed5",
+    "username": "Janaina Aparecida Ramos Da Silva",
+    "fullName": "Janaina Aparecida Ramos Da Silva",
+    "email": "aparecidaramosdasilvaj@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocKjqHXKeF2j5oEOmTDyuuHBRTac6t8f8Gv3UNnJPPK25RZvQw=s96-c",
+    "color": "hsl(0 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-10T00:57:07.217028+00:00"
+  },
+  {
+    "id": "ce8aaaaf-b443-4d6d-be24-5c098fc7949b",
+    "username": "JOSE DE OLIVEIRA TELES FILHO",
+    "fullName": "JOSE DE OLIVEIRA TELES FILHO",
+    "email": "telesfilho35@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocLalL2t3EsVYkp8RrlJvafUoGrumzQ4rtQu2Xxfi55d2exmUjAL=s96-c",
+    "color": "hsl(14 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-10T00:05:03.180493+00:00"
+  },
+  {
+    "id": "903c077d-7ce6-4982-936c-1001457a0eaa",
+    "username": "higor marques santos",
+    "fullName": "higor marques santos",
+    "email": "higor24031983@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocJrOgWkgwSaCB_F4sNGLn84x3t3slEwYBAfq1BkO8LtcRsF=s96-c",
+    "color": "hsl(176 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-09T23:44:42.415817+00:00"
+  },
+  {
+    "id": "625784b9-96e5-4ab4-8445-49e44f659403",
+    "username": "Alessandro Camilo",
+    "fullName": "Alessandro Camilo",
+    "email": "lelecamiloraposo2000@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocIB4kfE6RTYSO8hFSJ-JPoRTIQLy5FgXZ8YP5C1Ih1NFupHQ7jv=s96-c",
+    "color": "hsl(259 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-09T23:40:02.812284+00:00"
+  },
+  {
+    "id": "e5d2697a-8b1a-4147-a695-d85af57af6c6",
+    "username": "Jose Paulo De Oliveira",
+    "fullName": "Jose Paulo De Oliveira",
+    "email": "jose.nega0@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocJjqvtb6KjvgeCF0LN70jyoAHgi6KAx5I18YWjvpwJVPdzf1Ed-=s96-c",
+    "color": "hsl(222 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-09T23:38:12.583573+00:00"
+  },
+  {
+    "id": "d6ca2e9b-540b-4119-a932-231645098967",
+    "username": "Erimar Primo",
+    "fullName": "Erimar Primo",
+    "email": "erimarprimo@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocKEoOi-SnSLzRR-YAVB28ieN_-cQBnDhoZg2pq3hBKJfj2lTw=s96-c",
+    "color": "hsl(126 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-09T23:37:31.900727+00:00"
+  },
+  {
+    "id": "f91c7502-4e56-455a-a252-f97c46e3ad8e",
+    "username": "Rose Fabeny",
+    "fullName": "Rose Fabeny",
+    "email": "pretafabeny@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocJXwxgl8pRdDOtGkWSyW6ZMRVaaIpq9C9kYYJpEq1S-olkChRaX=s96-c",
+    "color": "hsl(316 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-09T23:37:14.131744+00:00"
+  },
+  {
+    "id": "7d73ec6d-2a81-47c5-b998-b670644a6e38",
+    "username": "Anderson Serapião (Anderson Serapiao)",
+    "fullName": "Anderson Serapião (Anderson Serapiao)",
+    "email": "andersonserapiao@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocIa_BfVF0lwUIxDSwiRiEXPB1s7XBHnWyyVCQBm-2oDawze9RjwOw=s96-c",
+    "color": "hsl(288 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-09T20:10:50.227345+00:00"
+  },
+  {
+    "id": "3e6a6527-b462-4c19-bea4-888ea828523f",
+    "username": "Daniel Douglas Ribeiro Cruz",
+    "fullName": "Daniel Douglas Ribeiro Cruz",
+    "email": "agronomodouglas@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocL8INsa8e4nv8paTXmoVAzdhV3Jd4P-VckQVzC7jX2lHDm_0ndK=s96-c",
+    "color": "hsl(303 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-08T10:45:41.023384+00:00"
+  },
+  {
+    "id": "a9adce12-c754-41c6-9019-0dc45220c21c",
+    "username": "Antonio Goulart",
+    "fullName": "Antonio Goulart",
+    "email": "jr.info23@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocKbAcSBSmSNfG1N0zBVfM9KoTskvrh_pcWsOJ2n4m89YrbyuBrqTg=s96-c",
+    "color": "hsl(358 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-08T00:12:01.276256+00:00"
+  },
+  {
+    "id": "2f73e6a6-86e4-4807-9df9-77f026ed83d7",
+    "username": "Thiago Machado",
+    "fullName": "Thiago Machado",
+    "email": "thiagomachados@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocJkCycvbOgZjEp_n6qqOkWnFmlre-UWk_nDXaD5si_d9F025eri=s96-c",
+    "color": "hsl(71 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-07T17:03:06.150415+00:00"
+  },
+  {
+    "id": "bbf28fc5-d4be-4f20-97f0-5253ee83b0ec",
+    "username": "José Felipe Corbon",
+    "fullName": "José Felipe Corbon",
+    "email": "felipe.corbon@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocIGxGh7pGEu1GYxZXf8g738LZmYamHhic8Y4p3e-bXPZgzhGQ=s96-c",
+    "color": "hsl(68 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-07T16:20:12.27853+00:00"
+  },
+  {
+    "id": "a2db8dc6-d7f8-4701-b975-2ae6914f5e15",
+    "username": "Leonardo Moura",
+    "fullName": "Leonardo Moura",
+    "email": "leo.kuruma@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocIUOy3KFr2mDXRwHcVw-tsp-yJ44m9sXoWl6A5PAVM2w_ScjQ=s96-c",
+    "color": "hsl(286 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-07T16:01:27.612485+00:00"
+  },
+  {
+    "id": "64edf9f4-808d-4033-9f9b-0576a4109d30",
+    "username": "AlineCosta",
+    "fullName": "",
+    "email": "doisas3d@gmail.com",
+    "avatarUrl": "",
+    "color": "hsl(288 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-07T15:48:55.442376+00:00"
+  },
+  {
+    "id": "8fd78153-799f-46ad-81ee-88a2d0323383",
+    "username": "Vincius Engler",
+    "fullName": "Vincius Engler",
+    "email": "viniciusengler@outlook.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocJpKQi3dDGIJTlG_tQq1W-6E_bRgUMcArk-L6ZLajTWrDEzKw=s96-c",
+    "color": "hsl(90 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-07T13:03:30.255052+00:00"
+  },
+  {
+    "id": "608e9b5b-6f89-4062-b04d-622a7a7ac535",
+    "username": "Luana V P",
+    "fullName": "Luana V P",
+    "email": "vitorinopimentaluana@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocKThmNeRbFQH82PE77e5rzx8enVLyMtNh77HjVHcXZPxirAg-bSeA=s96-c",
+    "color": "hsl(170 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-07T12:09:33.454613+00:00"
+  },
+  {
+    "id": "5c9ec8c4-4ada-4804-ad55-5fe3a59d2f72",
+    "username": "Jessica Mirelly Vieira",
+    "fullName": "Jessica Mirelly Vieira",
+    "email": "jessicamirelly1@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocJAcc8XwtE3cHNILO8WjeFaaGoFxfFWg09kEgfQ0uHGReME01d7WA=s96-c",
+    "color": "hsl(38 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-07T12:04:25.992143+00:00"
+  },
+  {
+    "id": "08d799c3-af88-4f1e-a42b-9e5f16e17e75",
+    "username": "Valeria A.",
+    "fullName": "Valeria A.",
+    "email": "valeriaals12@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocJ5OeIw-Ffksm5Pmk_iI65BNla62V7Pem7tz0oaVTN7jtmldJBY=s96-c",
+    "color": "hsl(21 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-07T11:07:38.884703+00:00"
+  },
+  {
+    "id": "4ce28c5a-5d07-465c-b0f9-d3d8f268246e",
+    "username": "paulovargas",
+    "fullName": "",
+    "email": "paulovargas720@gmail.com",
+    "avatarUrl": "",
+    "color": "hsl(104 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-07T11:00:19.673337+00:00"
+  },
+  {
+    "id": "a8fa8b29-79d6-4b06-90ea-188809ed914f",
+    "username": "Júnior Santos",
+    "fullName": "Júnior Santos",
+    "email": "josemsjrjunior@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocKZB1EJl5EfRL43Fxg0EG2INL1pCX5xUlFXj_S2FkmSs3XqBSWQyQ=s96-c",
+    "color": "hsl(116 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-07T08:59:44.876765+00:00"
+  },
+  {
+    "id": "b3fa04c2-98d8-454a-9695-de76ca15ad87",
+    "username": "Severyno",
+    "fullName": "",
+    "email": "flauzinojoaquim65@gmail.com",
+    "avatarUrl": "",
+    "color": "hsl(320 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-07T04:29:27.384037+00:00"
+  },
+  {
+    "id": "96babec4-4da4-40ef-b05a-cc1d2fcf161e",
+    "username": "GAaRAOne Games",
+    "fullName": "GAaRAOne Games",
+    "email": "michaelgomes91@hotmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocLkOA1LsAXh9lw9Oaw1iVoJZ54z9g72jSVXsDHjq_8SDGte8hvs=s96-c",
+    "color": "hsl(186 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-07T04:18:19.195137+00:00"
+  },
+  {
+    "id": "f1f6cea2-f7ef-40f3-8f59-d5fde6644d8c",
+    "username": "Douglas Araújo",
+    "fullName": "Douglas Araújo",
+    "email": "dougllass.araujo@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocIm3Q1X-8tx7PDGQy5nNLnFmseHewj-KtmKSqSPIOe6cH5O5jq-Bw=s96-c",
+    "color": "hsl(70 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-07T03:18:34.162702+00:00"
+  },
+  {
+    "id": "a94654c5-aeb3-4f09-923a-b7da9a917693",
+    "username": "Neiva Aparecida dos Santos",
+    "fullName": "Neiva Aparecida dos Santos",
+    "email": "anaclaraeralf@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocLUbXP_Q-YhzVWI-6SKBcvYBQ7L5Q4fJLVgykyklXiX1yDG7TdNAQ=s96-c",
+    "color": "hsl(145 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-07T01:56:14.288231+00:00"
+  },
+  {
+    "id": "5ecc5434-74bd-49cb-9e25-ac638dcfcea2",
+    "username": "Eduardo Dutra",
+    "fullName": "Eduardo Dutra",
+    "email": "eduardo.macieldutra@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocJgEQadCr8k-DnWgIgnzGdhQsnHdMprF0GsWEHYes7XAl3Khg=s96-c",
+    "color": "hsl(220 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-07T01:50:50.112278+00:00"
+  },
+  {
+    "id": "20d37ac4-a9bc-48cd-80ae-153081f2cdfc",
+    "username": "Dyaboloiro",
+    "fullName": "Dyaboloiro",
+    "email": "welinton.seguranca@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocISz-kDAXMlKc88LF0JTvSy2noI9H3fMNcknGyvl7DiGGSz1UFNsg=s96-c",
+    "color": "hsl(232 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-07T01:50:08.963906+00:00"
+  },
+  {
+    "id": "5262e37a-43fd-4b66-9fed-f6817fb9ea5a",
+    "username": "deise faria",
+    "fullName": "deise faria",
+    "email": "deise2411faria@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocLOg7FFvSVqI_F8B4E-FjoWw2jUC6cSLIiacxneWuvi9RPyn_w=s96-c",
+    "color": "hsl(186 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-07T01:37:12.639884+00:00"
+  },
+  {
+    "id": "ef926a78-8800-44c5-afb5-41c538b16777",
+    "username": "Kendy Alberini",
+    "fullName": "Kendy Alberini",
+    "email": "kendy.br@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocLlpi--4N0Widi6QZeGEHeSJF1od8oOFIebB-C9mxrx9HHqaKTh=s96-c",
+    "color": "hsl(206 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-07T01:14:02.85218+00:00"
+  },
+  {
+    "id": "872331c0-f9ff-496b-9306-6b7e4ab3d871",
+    "username": "kleber kinder",
+    "fullName": "kleber kinder",
+    "email": "kleberkinder@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocKI7MAx3WMVgO6g1hlveSAxMZgpF9WbsuoRBTNNJvMuuP1O7S8=s96-c",
+    "color": "hsl(316 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-07T01:11:19.501589+00:00"
+  },
+  {
+    "id": "f9e0b3e7-7873-41b0-bd49-6c3658590443",
+    "username": "Daniel Souza",
+    "fullName": "Daniel Souza",
+    "email": "danielsouza.sjn.07@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocKQoDJRZWFRkPnS6yIoBejSNakEEIYg2BqUEWfRA3B0nyZPxQ=s96-c",
+    "color": "hsl(57 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-07T01:07:09.176922+00:00"
+  },
+  {
+    "id": "5c582799-592f-49a7-bbdb-f5335ca6ba15",
+    "username": "LTXPersonalizados",
+    "fullName": "",
+    "email": "ltxpersonalizados@gmail.com",
+    "avatarUrl": "",
+    "color": "hsl(38 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-07T00:18:22.067929+00:00"
+  },
+  {
+    "id": "d1c38907-9d24-4411-bbcc-44208aa933ad",
+    "username": "Jean Melo",
+    "fullName": "Jean Melo",
+    "email": "jeansilvademelo@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocLCSQ2-J2bcmJrvuzGiDOmnYEFQL9Tt4hen3v7NYGmwMwm3SL4ekg=s96-c",
+    "color": "hsl(54 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-07T00:08:21.647506+00:00"
+  },
+  {
+    "id": "d104fa47-417f-45f7-a156-000dd606cfcf",
+    "username": "Breno",
+    "fullName": "",
+    "email": "brenorotam33@gmail.com",
+    "avatarUrl": "",
+    "color": "hsl(145 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-06T23:57:12.079561+00:00"
+  },
+  {
+    "id": "c6f46d4d-a160-47d1-b790-0581f0179f29",
+    "username": "Pedro Tavares",
+    "fullName": "Pedro Tavares",
+    "email": "pdrhtavares@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocJ0VPd17QnJePDGL_U0DWWG3VJTwfwOGQCZ5Oey58t_wwi-jrY=s96-c",
+    "color": "hsl(232 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-06T23:55:17.637108+00:00"
+  },
+  {
+    "id": "ef460b72-2b3c-42be-af89-aeff4b5e3ab6",
+    "username": "Cristiano Mazzola",
+    "fullName": "Cristiano Mazzola",
+    "email": "crismzzk@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocL_8FzCW9lDINs0NmfJ4kzaLqpU3QUP6KxA9cwhpuHrQx8-CVc=s96-c",
+    "color": "hsl(287 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-06T23:45:12.216502+00:00"
+  },
+  {
+    "id": "2a3be2e6-2e2c-475a-8d55-6969a67f3f19",
+    "username": "Viviane Morais",
+    "fullName": "Viviane Morais",
+    "email": "vivianemorais1995@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocLoAUF6q3dI5lcUZvb6tu6BaFC6NPGVFbAdXvgxM4aTCJCO8fkt=s96-c",
+    "color": "hsl(335 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-06T23:42:44.47204+00:00"
+  },
+  {
+    "id": "fcadcf7f-de40-4273-b90e-9a6a2f253e2e",
+    "username": "Luiz Felipe Hernandes",
+    "fullName": "Luiz Felipe Hernandes",
+    "email": "luizfelipehernandes7999@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocIu8QOH9tZ0jynbAe4EUJp-fxwV6E-ENK1seQnxRxLh4vY0zPPN=s96-c",
+    "color": "hsl(216 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-06T22:02:44.612096+00:00"
+  },
+  {
+    "id": "e4fb7f87-1de7-4266-9db3-a642036ea0ae",
+    "username": "Atto3D",
+    "fullName": "Atto3D",
+    "email": "atto3d.impressao@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocL80IqJ9Qge3CVhxMuown8JgoZmk-LCs7DtvsHyM-JZu6Mw7Q=s96-c",
+    "color": "hsl(89 58% 48%)",
+    "role": "member",
+    "createdAt": "2026-10-06T21:32:18.672766+00:00"
+  },
+  {
+    "id": "a25a3db7-e996-47c8-869f-3c167f26cf1e",
+    "username": "Bruno T.",
+    "fullName": "Bruno T.",
+    "email": "brnolato@gmail.com",
+    "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocLQ0-so0kRNOQTEydm6r12BFYXIgmVixY4wzFcxBVST-Jb_Sg=s96-c",
+    "color": "hsl(211 58% 48%)",
+    "role": "owner",
+    "createdAt": "2026-10-06T21:02:19.319925+00:00"
+  }
+]
