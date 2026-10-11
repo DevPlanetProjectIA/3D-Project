@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-11T19:54:45.315Z",
+  "updated": "2026-10-11T20:20:59.741Z",
   "models": [
+    {
+      "id": "monster-energy-can-holder-com-alca-mv48wga8dtk3",
+      "storage": "storage",
+      "name": "Monster Energy Can Holder com Alca",
+      "description": "Baixado automaticamente do WhatsApp (STL dos Calangos)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/monster-energy-can-holder-com-alca-mv48wga8dtk3/monster-energy-can-holder-com-alca-mv48wga8dtk3.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/monster-energy-can-holder-com-alca-mv48wga8dtk3/thumb.png",
+      "size": 40369256,
+      "tags": [
+        "whatsapp",
+        "stl-dos-calangos"
+      ],
+      "author": "🦎Kleber Kinder 🦎",
+      "triangles": 3291306,
+      "dimensions": {
+        "x": 76.99,
+        "y": 123.8,
+        "z": 173.38
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-11T19:58:22.128Z",
+      "printerId": "",
+      "weightGrams": 717.22,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 717.22
+        }
+      ]
+    },
     {
       "id": "jesus-mv48s9oq6hkl",
       "storage": "storage",
