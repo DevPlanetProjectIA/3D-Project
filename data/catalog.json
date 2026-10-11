@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-10-11T23:44:31.939Z",
+  "updated": "2026-10-11T23:50:23.704Z",
   "models": [
     {
       "id": "enfeite-de-arvore-de-natal-com-nomes-mv4gun708bq2",
@@ -1484,42 +1484,6 @@
         {
           "color": "#3b82f6",
           "grams": 103.34,
-          "material": "PLA"
-        }
-      ]
-    },
-    {
-      "id": "meshy-ai-export-1791504150-image-to-3d-texture-3mf-mv45ds2vleus",
-      "storage": "storage",
-      "name": "Modelo Texturizado Meshy AI Image To 3d Texture",
-      "description": "Baixado automaticamente do WhatsApp (Catálogo WhatsApp)",
-      "format": "3mf",
-      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/meshy-ai-export-1791504150-image-to-3d-texture-3mf-mv45ds2vleus/meshy-ai-export-1791504150-image-to-3d-texture-3mf-mv45ds2vleus.3mf",
-      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/meshy-ai-export-1791504150-image-to-3d-texture-3mf-mv45ds2vleus/thumb.png",
-      "size": 1370516,
-      "tags": [
-        "whatsapp",
-        "catalogo-whatsapp"
-      ],
-      "author": "Bruno T.",
-      "triangles": 119856,
-      "dimensions": {
-        "x": 46.25,
-        "y": 4.54,
-        "z": 50
-      },
-      "print": {
-        "infill": "15%",
-        "material": "PLA",
-        "layerHeight": "0.2"
-      },
-      "createdAt": "2026-10-11T18:28:53.114+00:00",
-      "weightGrams": 4.56,
-      "weightSource": "estimativa",
-      "filaments": [
-        {
-          "color": "#3b82f6",
-          "grams": 4.56,
           "material": "PLA"
         }
       ]
