@@ -42,21 +42,33 @@ function deriveUsername(user) {
   ).trim();
 }
 
+/** Verifica se um usuário possui privilégios de Administrador / Mantenedor. */
+export function isAdmin(user = currentUser()) {
+  if (!user) return false;
+  const email = String(user.email || '').trim().toLowerCase();
+  const adminList = (CONFIG.adminEmails || ['brnolato@gmail.com']).map((e) => e.toLowerCase());
+  return adminList.includes(email) || user.role === 'owner' || user.role === 'admin' || user.isAdmin === true;
+}
+
 /** Converte o usuário do Supabase (mais o perfil guardado) no formato das telas. */
 function cloudUser() {
   const user = sb.sessionUser();
   if (!user) return null;
   const profile = store.get(PROFILE_KEY, {}) || {};
   const username = profile.username || deriveUsername(user);
+  const email = user.email || '';
+  const adminList = (CONFIG.adminEmails || ['brnolato@gmail.com']).map((e) => e.toLowerCase());
+  const isAdm = adminList.includes(email.toLowerCase()) || profile.role === 'owner' || profile.role === 'admin';
   return {
     id: user.id,
     username,
-    email: user.email || '',
+    email,
     bio: profile.bio || '',
     color: profile.color || colorFor(username),
     avatarUrl: user.user_metadata?.avatar_url || user.user_metadata?.picture || '',
     favorites: Array.isArray(profile.favorites) ? profile.favorites : [],
-    role: profile.role || 'member',
+    role: isAdm ? 'owner' : (profile.role || 'member'),
+    isAdmin: isAdm,
     provider: user.app_metadata?.provider || 'email',
     createdAt: user.created_at || null,
   };
@@ -219,7 +231,14 @@ const writeUsers = (users) => store.set(USERS_KEY, users);
 function publicUser(user) {
   if (!user) return null;
   const { passHash, salt, iterations, ...rest } = user;
-  return rest;
+  const email = (user.email || '').toLowerCase();
+  const adminList = (CONFIG.adminEmails || ['brnolato@gmail.com']).map((e) => e.toLowerCase());
+  const isAdm = adminList.includes(email) || user.role === 'owner' || user.role === 'admin';
+  return {
+    ...rest,
+    role: isAdm ? 'owner' : (user.role || 'member'),
+    isAdmin: isAdm,
+  };
 }
 
 export function listUsers() {

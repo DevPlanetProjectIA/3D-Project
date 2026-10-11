@@ -16,6 +16,9 @@ const detected = (() => {
 })();
 
 export const CONFIG = {
+  /** Administradores do sistema com permissões globais. */
+  adminEmails: ['brnolato@gmail.com'],
+
   /** Nome exibido no cabeçalho. */
   siteName: '3D Library',
 

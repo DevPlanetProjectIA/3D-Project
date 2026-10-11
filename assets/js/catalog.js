@@ -404,6 +404,20 @@ async function publishToGit({ entry, fileBytes, thumbBytes }, onStep = () => {})
 
 /** Remove um modelo do catálogo e apaga seus arquivos, na origem correta. */
 export async function remove(model) {
+  // 1. Tenta remoção centralizada pelo backend (com chave service_role e Git integrados)
+  try {
+    const res = await fetch(`http://localhost:3000/api/models/${encodeURIComponent(model.id)}`, {
+      method: 'DELETE',
+      signal: AbortSignal.timeout(4000),
+    });
+    if (res.ok) {
+      dropLocal(model.id);
+      return;
+    }
+  } catch {
+    // Backend offline: segue para remoção no cliente
+  }
+
   if (model.storage === 'storage') {
     await sb.remove('models', { eq: { id: model.id } });
     for (const path of [model.file, model.thumb].filter(Boolean)) {
@@ -432,4 +446,68 @@ export async function remove(model) {
   }
 
   dropLocal(model.id);
+}
+
+/** Atualiza a imagem de capa do modelo (render 3D, foto da automação ou upload personalizado). */
+export async function updateCover(model, imageBytesOrDataUrl) {
+  let dataUrl = '';
+  let bytes = null;
+
+  if (typeof imageBytesOrDataUrl === 'string' && imageBytesOrDataUrl.startsWith('data:')) {
+    dataUrl = imageBytesOrDataUrl;
+    const base64 = dataUrl.split(',')[1];
+    const binStr = atob(base64);
+    bytes = new Uint8Array(binStr.length);
+    for (let i = 0; i < binStr.length; i++) bytes[i] = binStr.charCodeAt(i);
+  } else if (imageBytesOrDataUrl instanceof Uint8Array || imageBytesOrDataUrl instanceof ArrayBuffer) {
+    bytes = imageBytesOrDataUrl instanceof ArrayBuffer ? new Uint8Array(imageBytesOrDataUrl) : imageBytesOrDataUrl;
+    let binary = '';
+    for (let i = 0; i < bytes.length; i++) binary += String.fromCharCode(bytes[i]);
+    dataUrl = `data:image/png;base64,${btoa(binary)}`;
+  } else if (imageBytesOrDataUrl instanceof Blob) {
+    const ab = await imageBytesOrDataUrl.arrayBuffer();
+    bytes = new Uint8Array(ab);
+    let binary = '';
+    for (let i = 0; i < bytes.length; i++) binary += String.fromCharCode(bytes[i]);
+    dataUrl = `data:image/png;base64,${btoa(binary)}`;
+  }
+
+  // 1. Tenta sincronizar com o backend local caso esteja online
+  try {
+    const res = await fetch(`http://localhost:3000/api/models/${encodeURIComponent(model.id)}/update-cover`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ dataUrl }),
+      signal: AbortSignal.timeout(3000),
+    });
+    if (res.ok) {
+      const data = await res.json();
+      if (data.thumbPath) {
+        model.thumb = data.thumbPath;
+        primeLocal(model);
+        return data.thumbPath;
+      }
+    }
+  } catch {
+    // Backend local indisponível
+  }
+
+  // 2. Fallback direto para o Supabase Storage
+  const user = sb.sessionUser();
+  const folder = model.userId || user?.id || 'a25a3db7-e996-47c8-869f-3c167f26cf1e';
+  const stamp = Date.now();
+  const thumbPath = `${folder}/${model.id}/thumb_${stamp}.png`;
+
+  if (sb.isConfigured() && bytes) {
+    try {
+      await storage.upload({ path: thumbPath, bytes, contentType: 'image/png' });
+      await sb.update('models', { thumb_path: thumbPath }, { eq: { id: model.id } }).catch(() => {});
+    } catch (e) {
+      console.warn('Erro ao enviar capa direto para o Supabase:', e);
+    }
+  }
+
+  model.thumb = thumbPath;
+  primeLocal(model);
+  return thumbPath;
 }

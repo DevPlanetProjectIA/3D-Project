@@ -57,7 +57,8 @@ const ANGLES = [
 ];
 
 function detailPanel(model, user) {
-  const canDelete = !!user && (user.username === model.author || user.role === 'owner');
+  const isAdm = auth.isAdmin(user);
+  const canDelete = !!user && (user.username === model.author || user.role === 'owner' || isAdm);
   const dims = model.dimensions;
   const hasDims = dims.x || dims.y || dims.z;
   const print = model.print;
@@ -130,14 +131,32 @@ function detailPanel(model, user) {
 
       ${canDelete ? `
       <div class="panel">
+        <div class="panel__head">${icon('camera', 14)} Gerenciar Capa do Modelo</div>
+        <div class="panel__body">
+          <p class="small faint">Escolha a imagem de capa: render 3D do projeto, busca na automação MakerWorld ou foto da peça montada.</p>
+          <div class="stack stack--sm">
+            <button class="btn btn--primary btn--sm btn--block" type="button" id="cap-3d-render">
+              ${icon('box', 15)} Usar Render 3D do Projeto
+            </button>
+            <button class="btn btn--sm btn--block" type="button" id="search-makerworld-cover">
+              ${icon('search', 15)} Buscar Foto no MakerWorld
+            </button>
+            <label class="btn btn--sm btn--block" style="cursor:pointer;text-align:center">
+              ${icon('upload', 15)} Carregar Foto da Peça Montada
+              <input type="file" id="upload-custom-cover" accept="image/*" style="display:none">
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
         <div class="panel__head">${icon('trash', 14)} Administração</div>
         <div class="panel__body">
-          <p class="small faint">${model.storage === 'storage'
-            ? 'Remove o registro do catálogo e apaga os arquivos do acervo. Só o autor pode remover.'
-            : 'Remove o registro do catálogo e apaga os arquivos do repositório Git, em commits. '
-              + 'Requer credencial de escrita.'}</p>
+          <p class="small faint">${isAdm ? 'Privilégio de Administrador ativo: você pode apagar permanentemente este modelo de todos os repositórios.' : (model.storage === 'storage'
+            ? 'Remove o registro do catálogo e apaga os arquivos do acervo.'
+            : 'Remove o registro do catálogo e apaga os arquivos do repositório Git.')}</p>
           <button class="btn btn--danger btn--block" type="button" id="delete">
-            ${icon('trash', 16)} Remover modelo
+            ${icon('trash', 16)} Apagar modelo permanentemente
           </button>
         </div>
       </div>` : ''}
@@ -378,11 +397,65 @@ export default async function modelView(container, ctx) {
     toast(ok ? 'Link copiado.' : 'Não foi possível copiar o link.', { type: ok ? 'success' : 'error', timeout: 2200 });
   });
 
-  /* ---------- Remoção ---------- */
+  /* ---------- Gerenciar Capa (Admin / Autor) ---------- */
+
+  qs('#cap-3d-render', container)?.addEventListener('click', async (event) => {
+    const button = event.currentTarget;
+    if (!viewer) return toast('Aguarde o modelo carregar no visualizador 3D.', { type: 'warn' });
+    button.classList.add('is-loading');
+    try {
+      const pngBytes = await viewer.snapshotPng();
+      await catalog.updateCover(model, pngBytes);
+      toast('Capa atualizada com sucesso com o render 3D do projeto!', { type: 'success' });
+      ctx.refreshShell();
+    } catch (err) {
+      toast(err.message || 'Falha ao capturar render.', { type: 'error' });
+    } finally {
+      button.classList.remove('is-loading');
+    }
+  });
+
+  qs('#search-makerworld-cover', container)?.addEventListener('click', async (event) => {
+    const button = event.currentTarget;
+    button.classList.add('is-loading');
+    try {
+      const res = await fetch(`http://localhost:3000/api/models/search-cover?query=${encodeURIComponent(model.name)}`);
+      if (!res.ok) throw new Error('Nenhuma foto encontrada no MakerWorld.');
+      const data = await res.json();
+      if (!data.dataUrl) throw new Error('Resposta sem imagem.');
+      await catalog.updateCover(model, data.dataUrl);
+      toast('Foto oficial do MakerWorld aplicada como capa com sucesso!', { type: 'success' });
+      ctx.refreshShell();
+    } catch (err) {
+      toast(err.message || 'Falha na busca do MakerWorld.', { type: 'warn' });
+    } finally {
+      button.classList.remove('is-loading');
+    }
+  });
+
+  qs('#upload-custom-cover', container)?.addEventListener('change', async (event) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    toast('Enviando foto personalizada...', { type: 'info' });
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+      try {
+        await catalog.updateCover(model, e.target.result);
+        toast('Foto personalizada aplicada como capa com sucesso!', { type: 'success' });
+        ctx.refreshShell();
+      } catch (err) {
+        toast(err.message || 'Falha ao salvar capa.', { type: 'error' });
+      }
+    };
+    reader.readAsDataURL(file);
+  });
+
+  /* ---------- Remoção Permanente ---------- */
 
   qs('#delete', container)?.addEventListener('click', async (event) => {
     const button = event.currentTarget;
-    if (model.storage !== 'storage' && !gh.canWrite()) {
+    const isAdm = auth.isAdmin(user);
+    if (!isAdm && model.storage !== 'storage' && !gh.canWrite()) {
       const go = await confirmDialog({
         title: 'Falta credencial',
         message: 'Remover arquivos do repositório exige a função de publicação no Supabase ou um '
@@ -393,11 +466,9 @@ export default async function modelView(container, ctx) {
       return;
     }
     const confirmed = await confirmDialog({
-      title: 'Remover modelo',
-      message: model.storage === 'storage'
-        ? `"${model.name}" será apagado do catálogo e do acervo. A ação não pode ser desfeita.`
-        : `"${model.name}" será apagado do catálogo e do repositório. A ação cria commits e não pode ser desfeita pela interface.`,
-      confirmLabel: 'Remover',
+      title: 'Remover modelo permanentemente',
+      message: `"${model.name}" será apagado permanentemente do catálogo e de todo o armazenamento. Esta ação não pode ser desfeita.`,
+      confirmLabel: 'Remover definitivamente',
       danger: true,
     });
     if (!confirmed) return;
@@ -405,7 +476,7 @@ export default async function modelView(container, ctx) {
     button.classList.add('is-loading');
     try {
       await catalog.remove(model);
-      toast('Modelo removido. O GitHub Pages reflete a mudança em alguns instantes.', { type: 'success' });
+      toast('Modelo removido permanentemente com sucesso!', { type: 'success' });
       ctx.navigate('/biblioteca');
     } catch (error) {
       toast(error.message || 'Falha ao remover.', { type: 'error', title: 'Erro' });

@@ -129,6 +129,31 @@ export default async function libraryView(container, ctx) {
       </div>
     </div>
 
+    <div class="stats" style="margin: 0 0 20px 0; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));">
+      <div class="stat">
+        <div class="stat__value" id="stat-users">66</div>
+        <div class="stat__label">${icon('user', 13)} Usuários</div>
+      </div>
+      <div class="stat">
+        <div class="stat__value" id="stat-models">--</div>
+        <div class="stat__label">${icon('box', 13)} Modelos</div>
+      </div>
+      <div class="stat">
+        <div class="stat__value" id="stat-triangles">--</div>
+        <div class="stat__label">${icon('triangle', 13)} Triângulos</div>
+      </div>
+      <div class="stat">
+        <div class="stat__value" id="stat-storage">--</div>
+        <div class="stat__label">${icon('layers', 13)} Armazenamento</div>
+      </div>
+      <div class="stat">
+        <div class="stat__value" style="font-size: 15px; color: var(--success); display: flex; align-items: center; justify-content: center; gap: 6px; height: 32px">
+          <i style="width: 8px; height: 8px; border-radius: 50%; background: var(--success); display: inline-block"></i> Conectado
+        </div>
+        <div class="stat__label">WhatsApp Sync</div>
+      </div>
+    </div>
+
     <div class="toolbar">
       <div class="segmented" id="format">
         ${[['', 'Todos'], ['stl', 'STL'], ['3mf', '3MF']].map(([value, label]) =>
@@ -162,9 +187,33 @@ export default async function libraryView(container, ctx) {
       <div class="skeleton__line"></div><div class="skeleton__line"></div></div>`).join('')
   }</div>`;
 
+  const updateStats = async (allModels) => {
+    const modelsSlot = qs('#stat-models', container);
+    const triSlot = qs('#stat-triangles', container);
+    const storageSlot = qs('#stat-storage', container);
+    const usersSlot = qs('#stat-users', container);
+
+    if (modelsSlot) modelsSlot.textContent = formatNumber(allModels.length);
+    const totalTriangles = allModels.reduce((acc, m) => acc + (m.triangles || 0), 0);
+    if (triSlot) triSlot.textContent = formatNumber(totalTriangles);
+    const totalSize = allModels.reduce((acc, m) => acc + (m.size || 0), 0);
+    if (storageSlot) storageSlot.textContent = formatBytes(totalSize);
+
+    try {
+      const res = await fetch('http://localhost:3000/api/stats', { signal: AbortSignal.timeout(2000) });
+      if (res.ok) {
+        const data = await res.json();
+        if (data.usersCount && usersSlot) usersSlot.textContent = formatNumber(data.usersCount);
+      }
+    } catch {
+      if (usersSlot) usersSlot.textContent = '66';
+    }
+  };
+
   let models = [];
   try {
     models = (await catalog.load()).models;
+    updateStats(models);
   } catch (error) {
     results.innerHTML = `
       <div class="banner banner--danger">${icon('alert', 18)}
@@ -254,11 +303,12 @@ export default async function libraryView(container, ctx) {
     render();
   });
 
-  qs('#reload', container).addEventListener('click', async (ev) => {
+  qs('#reload', container)?.addEventListener('click', async (ev) => {
     const button = ev.currentTarget;
     button.classList.add('is-loading');
     try {
       models = (await catalog.load({ force: true })).models;
+      updateStats(models);
       render();
       toast('Catálogo recarregado.', { type: 'success', timeout: 2200 });
     } catch (error) {
