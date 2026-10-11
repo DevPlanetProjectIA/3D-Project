@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-11T19:54:34.577Z",
+  "updated": "2026-10-11T19:54:45.315Z",
   "models": [
+    {
+      "id": "jesus-mv48s9oq6hkl",
+      "storage": "storage",
+      "name": "Jesus",
+      "description": "Baixado automaticamente do WhatsApp (STL 🟠🦎)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/jesus-mv48s9oq6hkl/jesus-mv48s9oq6hkl.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/jesus-mv48s9oq6hkl/thumb.png",
+      "size": 930604,
+      "tags": [
+        "whatsapp",
+        "stl"
+      ],
+      "author": "Toledo",
+      "triangles": 63666,
+      "dimensions": {
+        "x": 11.13,
+        "y": 11.41,
+        "z": 24.66
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-11T19:54:45.315Z",
+      "printerId": "",
+      "weightGrams": 1.36,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 1.36
+        }
+      ]
+    },
     {
       "id": "chaveiro-outubro-rosa-bonequinha-mv46gk7ujbyf",
       "storage": "storage",
