@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-10-11T18:49:38.052Z",
+  "updated": "2026-10-11T18:59:36.831Z",
   "models": [
     {
       "id": "chaveiro-outubro-rosa-bonequinha-mv46gk7ujbyf",
@@ -760,42 +760,6 @@
         {
           "color": "#3b82f6",
           "grams": 103.34,
-          "material": "PLA"
-        }
-      ]
-    },
-    {
-      "id": "articulatedcutet-rex-multipartbambustudiox1c-3mf-mv45ic5evwps",
-      "storage": "storage",
-      "name": "T-REX Fofo Articulado",
-      "description": "Baixado automaticamente do WhatsApp (Catálogo WhatsApp)",
-      "format": "3mf",
-      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/articulatedcutet-rex-multipartbambustudiox1c-3mf-mv45ic5evwps/articulatedcutet-rex-multipartbambustudiox1c-3mf-mv45ic5evwps.3mf",
-      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/articulatedcutet-rex-multipartbambustudiox1c-3mf-mv45ic5evwps/thumb.png",
-      "size": 57902595,
-      "tags": [
-        "whatsapp",
-        "catalogo-whatsapp"
-      ],
-      "author": "Alcicleide",
-      "triangles": 3636900,
-      "dimensions": {
-        "x": 84.54,
-        "y": 90.41,
-        "z": 85.76
-      },
-      "print": {
-        "infill": "15%",
-        "material": "PLA",
-        "layerHeight": "0.2"
-      },
-      "createdAt": "2026-10-11T18:28:27.393+00:00",
-      "weightGrams": 284.47,
-      "weightSource": "estimativa",
-      "filaments": [
-        {
-          "color": "#3b82f6",
-          "grams": 284.47,
           "material": "PLA"
         }
       ]
