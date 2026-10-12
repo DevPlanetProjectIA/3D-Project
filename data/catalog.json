@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:50:20.653Z",
+  "updated": "2026-10-12T19:50:35.555Z",
   "models": [
+    {
+      "id": "manga-esquerda-branco-mv5o2r0ym8z1",
+      "storage": "storage",
+      "name": "Manga Esquerda Branco",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/manga-esquerda-branco-mv5o2r0ym8z1/manga-esquerda-branco-mv5o2r0ym8z1.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/manga-esquerda-branco-mv5o2r0ym8z1/thumb.png",
+      "size": 767084,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 15340,
+      "dimensions": {
+        "x": 33.94,
+        "y": 44.25,
+        "z": 49.99
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:50:35.555Z",
+      "printerId": "",
+      "weightGrams": 35.22,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 35.22
+        }
+      ]
+    },
     {
       "id": "manga-direita-branco-mv5o2g5rjome",
       "storage": "storage",
