@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:36:46.828Z",
+  "updated": "2026-10-12T19:37:14.722Z",
   "models": [
+    {
+      "id": "short-mv5nl9024gn0",
+      "storage": "storage",
+      "name": "Short",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/short-mv5nl9024gn0/short-mv5nl9024gn0.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/short-mv5nl9024gn0/thumb.png",
+      "size": 45625184,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 912502,
+      "dimensions": {
+        "x": 47.97,
+        "y": 69.82,
+        "z": 90.55
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:37:14.722Z",
+      "printerId": "",
+      "weightGrams": 60.62,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 60.62
+        }
+      ]
+    },
     {
       "id": "perna-esquerda-mv5nkvx92z5j",
       "storage": "storage",
