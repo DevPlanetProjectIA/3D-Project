@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:39:50.530Z",
+  "updated": "2026-10-12T19:40:03.204Z",
   "models": [
+    {
+      "id": "10-da-camisa-preto-mv5np76i6g8k",
+      "storage": "storage",
+      "name": "10 da Camisa Preto",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/10-da-camisa-preto-mv5np76i6g8k/10-da-camisa-preto-mv5np76i6g8k.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/10-da-camisa-preto-mv5np76i6g8k/thumb.png",
+      "size": 236984,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 4738,
+      "dimensions": {
+        "x": 37.16,
+        "y": 10.67,
+        "z": 38.74
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:40:03.203Z",
+      "printerId": "",
+      "weightGrams": 6.7,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 6.7
+        }
+      ]
+    },
     {
       "id": "branco-bege-preto-e-vermelho-mv5noow1ac9c",
       "storage": "storage",
