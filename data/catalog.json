@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:40:44.440Z",
+  "updated": "2026-10-12T19:41:00.569Z",
   "models": [
+    {
+      "id": "barba-direita-branco-mv5nqckjxfie",
+      "storage": "storage",
+      "name": "Barba Direita Branco",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/barba-direita-branco-mv5nqckjxfie/barba-direita-branco-mv5nqckjxfie.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/barba-direita-branco-mv5nqckjxfie/thumb.png",
+      "size": 3824784,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 76494,
+      "dimensions": {
+        "x": 23.11,
+        "y": 29.76,
+        "z": 37.18
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:41:00.569Z",
+      "printerId": "",
+      "weightGrams": 4.92,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 4.92
+        }
+      ]
+    },
     {
       "id": "aureola-amarelo-mv5nq2mqcg21",
       "storage": "storage",
