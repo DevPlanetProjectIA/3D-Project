@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:16:59.166Z",
+  "updated": "2026-10-12T19:17:13.836Z",
   "models": [
+    {
+      "id": "mascote-vasco-v4-mv5mvsm00yld",
+      "storage": "git",
+      "name": "Mascote Vasco V4",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "3mf",
+      "file": "models/mascote-vasco-v4-mv5mvsm00yld/mascote-vasco-v4-mv5mvsm00yld.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/mascote-vasco-v4-mv5mvsm00yld/thumb.png",
+      "size": 58561665,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 4644041,
+      "dimensions": {
+        "x": 136.44,
+        "y": 136.44,
+        "z": 50.17
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:17:13.836Z",
+      "printerId": "",
+      "weightGrams": 405.4,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 405.4
+        }
+      ]
+    },
     {
       "id": "mascote-santos-mv5mvffpspm1",
       "storage": "git",
