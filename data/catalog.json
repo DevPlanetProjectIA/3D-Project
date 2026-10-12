@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:21:26.941Z",
+  "updated": "2026-10-12T19:21:37.557Z",
   "models": [
+    {
+      "id": "camisa-metade-2-preto-mv5n1ge0nf4n",
+      "storage": "storage",
+      "name": "Camisa Metade 2 (Preto)",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/camisa-metade-2-preto-mv5n1ge0nf4n/camisa-metade-2-preto-mv5n1ge0nf4n.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/camisa-metade-2-preto-mv5n1ge0nf4n/thumb.png",
+      "size": 2027184,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 40542,
+      "dimensions": {
+        "x": 112.53,
+        "y": 29.27,
+        "z": 88.68
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:21:37.557Z",
+      "printerId": "",
+      "weightGrams": 79.48,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 79.48
+        }
+      ]
+    },
     {
       "id": "camisa-metade-1-preto-mv5n19dqv5fn",
       "storage": "storage",
