@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:47:44.227Z",
+  "updated": "2026-10-12T19:47:57.506Z",
   "models": [
+    {
+      "id": "faixa-3-da-manga-direita-preto-mv5nzd0ei2k0",
+      "storage": "storage",
+      "name": "Faixa 3 da Manga Direita Preto",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/faixa-3-da-manga-direita-preto-mv5nzd0ei2k0/faixa-3-da-manga-direita-preto-mv5nzd0ei2k0.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/faixa-3-da-manga-direita-preto-mv5nzd0ei2k0/thumb.png",
+      "size": 176484,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 3528,
+      "dimensions": {
+        "x": 28.91,
+        "y": 32.59,
+        "z": 31
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:47:57.506Z",
+      "printerId": "",
+      "weightGrams": 0.96,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 0.96
+        }
+      ]
+    },
     {
       "id": "faixa-2-da-manga-direita-branco-mv5nz2hu46r6",
       "storage": "storage",
