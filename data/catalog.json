@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:45:28.443Z",
+  "updated": "2026-10-12T19:45:41.855Z",
   "models": [
+    {
+      "id": "camisa-faixa-1-vermelho-mv5nwg9ql0z7",
+      "storage": "storage",
+      "name": "Camisa Faixa 1 Vermelho",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/camisa-faixa-1-vermelho-mv5nwg9ql0z7/camisa-faixa-1-vermelho-mv5nwg9ql0z7.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/camisa-faixa-1-vermelho-mv5nwg9ql0z7/thumb.png",
+      "size": 689684,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 13792,
+      "dimensions": {
+        "x": 79.46,
+        "y": 57.98,
+        "z": 28.98
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:45:41.855Z",
+      "printerId": "",
+      "weightGrams": 35.34,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 35.34
+        }
+      ]
+    },
     {
       "id": "camisa-banda-superior-branco-mv5nw5jya9gm",
       "storage": "storage",
