@@ -1,7 +1,136 @@
 {
   "version": 1,
-  "updated": "2026-10-12T18:34:41.673Z",
+  "updated": "2026-10-12T19:13:18.398Z",
   "models": [
+    {
+      "id": "follet-totuga-mv5mqqffd4td",
+      "storage": "git",
+      "name": "Follet Totuga",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "3mf",
+      "file": "models/follet-totuga-mv5mqqffd4td/follet-totuga-mv5mqqffd4td.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/follet-totuga-mv5mqqffd4td/thumb.png",
+      "size": 84329400,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 4228426,
+      "dimensions": {
+        "x": 115.21,
+        "y": 75.07,
+        "z": 58.64
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:13:18.398Z",
+      "printerId": "",
+      "weightGrams": 220.1,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 220.1
+        }
+      ]
+    },
+    {
+      "id": "mascote-aguia-usa-mv5mn3uq3uxo",
+      "storage": "git",
+      "name": "Mascote Aguia Usa",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "3mf",
+      "file": "models/mascote-aguia-usa-mv5mn3uq3uxo/mascote-aguia-usa-mv5mn3uq3uxo.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/mascote-aguia-usa-mv5mn3uq3uxo/thumb.png",
+      "size": 101178248,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 6305864,
+      "dimensions": {
+        "x": 120.19,
+        "y": 113.97,
+        "z": 94.27
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:12:02.407Z",
+      "printerId": "",
+      "weightGrams": 560.43,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 560.43
+        }
+      ]
+    },
+    {
+      "id": "mascote-aguia-usa-mv5mm5yh4rh5",
+      "storage": "git",
+      "name": "Mascote Aguia Usa",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "3mf",
+      "file": "models/mascote-aguia-usa-mv5mm5yh4rh5/mascote-aguia-usa-mv5mm5yh4rh5.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/mascote-aguia-usa-mv5mm5yh4rh5/thumb.png",
+      "size": 101178248,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 6305864,
+      "dimensions": {
+        "x": 120.19,
+        "y": 113.97,
+        "z": 94.27
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:11:58.387Z",
+      "printerId": "",
+      "weightGrams": 560.43,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 560.43
+        }
+      ]
+    },
     {
       "id": "copo-novo-corinthians-mv5lcrudx0l0",
       "storage": "storage",
