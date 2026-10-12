@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:45:14.800Z",
+  "updated": "2026-10-12T19:45:28.443Z",
   "models": [
+    {
+      "id": "camisa-banda-superior-branco-mv5nw5jya9gm",
+      "storage": "storage",
+      "name": "Camisa Banda Superior Branco",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/camisa-banda-superior-branco-mv5nw5jya9gm/camisa-banda-superior-branco-mv5nw5jya9gm.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/camisa-banda-superior-branco-mv5nw5jya9gm/thumb.png",
+      "size": 2084084,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 41680,
+      "dimensions": {
+        "x": 81.11,
+        "y": 54.87,
+        "z": 43.07
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:45:28.443Z",
+      "printerId": "",
+      "weightGrams": 64.24,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 64.24
+        }
+      ]
+    },
     {
       "id": "camisa-banda-inferior-branco-mv5nvv6dgu9n",
       "storage": "storage",
