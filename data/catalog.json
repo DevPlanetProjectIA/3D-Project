@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:37:35.795Z",
+  "updated": "2026-10-12T19:37:55.224Z",
   "models": [
+    {
+      "id": "cabe-a-mv5nmavx3z3q",
+      "storage": "storage",
+      "name": "Cabe�a",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/cabe-a-mv5nmavx3z3q/cabe-a-mv5nmavx3z3q.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/cabe-a-mv5nmavx3z3q/thumb.png",
+      "size": 21080684,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 421612,
+      "dimensions": {
+        "x": 131.68,
+        "y": 99.81,
+        "z": 93.21
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:37:55.224Z",
+      "printerId": "",
+      "weightGrams": 693.64,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 693.64
+        }
+      ]
+    },
     {
       "id": "bola-realista-mv5nlv0ujtcm",
       "storage": "storage",
