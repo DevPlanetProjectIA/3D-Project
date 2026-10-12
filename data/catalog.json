@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:39:24.921Z",
+  "updated": "2026-10-12T19:39:50.530Z",
   "models": [
+    {
+      "id": "branco-bege-preto-e-vermelho-mv5noow1ac9c",
+      "storage": "storage",
+      "name": "Branco, Bege, Preto e Vermelho",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/branco-bege-preto-e-vermelho-mv5noow1ac9c/branco-bege-preto-e-vermelho-mv5noow1ac9c.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/branco-bege-preto-e-vermelho-mv5noow1ac9c/thumb.png",
+      "size": 29650433,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 1920362,
+      "dimensions": {
+        "x": 126.03,
+        "y": 125.64,
+        "z": 108.25
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:39:50.530Z",
+      "printerId": "",
+      "weightGrams": 743.94,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 743.94
+        }
+      ]
+    },
     {
       "id": "amarelo-e-marrom-mv5noesi10p0",
       "storage": "storage",
