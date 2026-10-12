@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T20:01:03.074Z",
+  "updated": "2026-10-12T20:01:18.845Z",
   "models": [
+    {
+      "id": "olho-esquerdo-branco-mv5ogin5e3hd",
+      "storage": "storage",
+      "name": "Olho Esquerdo Branco",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/olho-esquerdo-branco-mv5ogin5e3hd/olho-esquerdo-branco-mv5ogin5e3hd.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/olho-esquerdo-branco-mv5ogin5e3hd/thumb.png",
+      "size": 715884,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 14316,
+      "dimensions": {
+        "x": 5.45,
+        "y": 3.23,
+        "z": 3.84
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T20:01:18.845Z",
+      "printerId": "",
+      "weightGrams": 0.03,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 0.03
+        }
+      ]
+    },
     {
       "id": "olho-direito-branco-mv5og6hlvae2",
       "storage": "storage",
