@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:44:31.776Z",
+  "updated": "2026-10-12T19:44:47.060Z",
   "models": [
+    {
+      "id": "cadarco-direito-branco-mv5nv8jebxhj",
+      "storage": "storage",
+      "name": "Cadarço Direito Branco",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/cadarco-direito-branco-mv5nv8jebxhj/cadarco-direito-branco-mv5nv8jebxhj.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/cadarco-direito-branco-mv5nv8jebxhj/thumb.png",
+      "size": 2479784,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 49594,
+      "dimensions": {
+        "x": 17.16,
+        "y": 21.35,
+        "z": 13.79
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:44:47.060Z",
+      "printerId": "",
+      "weightGrams": 1.39,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 1.39
+        }
+      ]
+    },
     {
       "id": "cabeca-bege-mv5nus90j7th",
       "storage": "storage",
