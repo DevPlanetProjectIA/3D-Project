@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:16:40.457Z",
+  "updated": "2026-10-12T19:16:59.166Z",
   "models": [
+    {
+      "id": "mascote-santos-mv5mvffpspm1",
+      "storage": "git",
+      "name": "Mascote Santos",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "3mf",
+      "file": "models/mascote-santos-mv5mvffpspm1/mascote-santos-mv5mvffpspm1.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/mascote-santos-mv5mvffpspm1/thumb.png",
+      "size": 97341710,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 5546134,
+      "dimensions": {
+        "x": 194.51,
+        "y": 190.59,
+        "z": 77.52
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:16:59.166Z",
+      "printerId": "",
+      "weightGrams": 1247.31,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 1247.31
+        }
+      ]
+    },
     {
       "id": "mascote-do-botafogo-mv5mv1s2qbw5",
       "storage": "git",
