@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:15:55.657Z",
+  "updated": "2026-10-12T19:16:08.826Z",
   "models": [
+    {
+      "id": "mascote-cruzeiro-adidas-mv5mubzklfm5",
+      "storage": "storage",
+      "name": "Mascote Cruzeiro Adidas",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/mascote-cruzeiro-adidas-mv5mubzklfm5/mascote-cruzeiro-adidas-mv5mubzklfm5.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/mascote-cruzeiro-adidas-mv5mubzklfm5/thumb.png",
+      "size": 11966406,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 718394,
+      "dimensions": {
+        "x": 125.83,
+        "y": 129.09,
+        "z": 93.52
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:16:08.826Z",
+      "printerId": "",
+      "weightGrams": 659.25,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 659.25
+        }
+      ]
+    },
     {
       "id": "mascote-fluminense-v2-mv5mtsa2hg56",
       "storage": "storage",
