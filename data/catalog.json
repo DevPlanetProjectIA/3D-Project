@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:49:26.978Z",
+  "updated": "2026-10-12T19:49:39.053Z",
   "models": [
+    {
+      "id": "gusset-esquerdo-do-short-preto-mv5o1kclbohc",
+      "storage": "storage",
+      "name": "Gusset Esquerdo do Short Preto",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/gusset-esquerdo-do-short-preto-mv5o1kclbohc/gusset-esquerdo-do-short-preto-mv5o1kclbohc.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/gusset-esquerdo-do-short-preto-mv5o1kclbohc/thumb.png",
+      "size": 34284,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 684,
+      "dimensions": {
+        "x": 5.56,
+        "y": 13.53,
+        "z": 9.57
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:49:39.053Z",
+      "printerId": "",
+      "weightGrams": 0.18,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 0.18
+        }
+      ]
+    },
     {
       "id": "gusset-esquerdo-da-camisa-preto-mv5o1alg95mh",
       "storage": "storage",
