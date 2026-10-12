@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T20:24:30.568Z",
+  "updated": "2026-10-12T20:25:44.697Z",
   "models": [
+    {
+      "id": "snowman-a-ms-mv5pbl3kqzf0",
+      "storage": "storage",
+      "name": "Snowman a MS",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/snowman-a-ms-mv5pbl3kqzf0/snowman-a-ms-mv5pbl3kqzf0.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/snowman-a-ms-mv5pbl3kqzf0/thumb.png",
+      "size": 17315747,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 988066,
+      "dimensions": {
+        "x": 46.4,
+        "y": 47.95,
+        "z": 64.9
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T20:25:44.697Z",
+      "printerId": "",
+      "weightGrams": 62.66,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 62.66
+        }
+      ]
+    },
     {
       "id": "gingerbread-split-mv5pa5fiimiv",
       "storage": "storage",
