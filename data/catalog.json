@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:15:19.013Z",
+  "updated": "2026-10-12T19:15:27.310Z",
   "models": [
+    {
+      "id": "mascote-do-palmeiras-modelo-4-mv5mtj8i35bu",
+      "storage": "storage",
+      "name": "Mascote do Palmeiras Modelo 4",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/mascote-do-palmeiras-modelo-4-mv5mtj8i35bu/mascote-do-palmeiras-modelo-4-mv5mtj8i35bu.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/mascote-do-palmeiras-modelo-4-mv5mtj8i35bu/thumb.png",
+      "size": 6456897,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 286708,
+      "dimensions": {
+        "x": 400.56,
+        "y": 311.55,
+        "z": 66.02
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:15:27.310Z",
+      "printerId": "",
+      "weightGrams": 3575.67,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 3575.67
+        }
+      ]
+    },
     {
       "id": "mascote-do-corinthians-multi-partes-mv5mtdmdi21t",
       "storage": "storage",
