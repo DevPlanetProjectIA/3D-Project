@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:51:33.218Z",
+  "updated": "2026-10-12T19:51:47.177Z",
   "models": [
+    {
+      "id": "short-branco-mv5o49ks26du",
+      "storage": "storage",
+      "name": "Short Branco",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/short-branco-mv5o49ks26du/short-branco-mv5o49ks26du.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/short-branco-mv5o49ks26du/thumb.png",
+      "size": 2505784,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 50114,
+      "dimensions": {
+        "x": 67.51,
+        "y": 41.33,
+        "z": 46.77
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:51:47.176Z",
+      "printerId": "",
+      "weightGrams": 83.14,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 83.14
+        }
+      ]
+    },
     {
       "id": "pupilas-preto-mv5o3yc95abr",
       "storage": "storage",
