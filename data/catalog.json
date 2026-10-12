@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:42:24.070Z",
+  "updated": "2026-10-12T19:42:36.272Z",
   "models": [
+    {
+      "id": "brasao-do-short-branco-mv5nshq77yrr",
+      "storage": "storage",
+      "name": "Brasão do Short Branco",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/brasao-do-short-branco-mv5nshq77yrr/brasao-do-short-branco-mv5nshq77yrr.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/brasao-do-short-branco-mv5nshq77yrr/thumb.png",
+      "size": 145484,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 2908,
+      "dimensions": {
+        "x": 14.26,
+        "y": 12.01,
+        "z": 15.03
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:42:36.272Z",
+      "printerId": "",
+      "weightGrams": 0.52,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 0.52
+        }
+      ]
+    },
     {
       "id": "brasao-da-camisa-vermelho-mv5ns6qnx74b",
       "storage": "storage",
