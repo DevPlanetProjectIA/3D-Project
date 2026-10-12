@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:22:01.034Z",
+  "updated": "2026-10-12T19:22:11.261Z",
   "models": [
+    {
+      "id": "dentes-branco-mv5n26tfy0gi",
+      "storage": "storage",
+      "name": "Dentes (Branco)",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/dentes-branco-mv5n26tfy0gi/dentes-branco-mv5n26tfy0gi.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/dentes-branco-mv5n26tfy0gi/thumb.png",
+      "size": 40084,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 800,
+      "dimensions": {
+        "x": 14.92,
+        "y": 22.08,
+        "z": 9.96
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:22:11.261Z",
+      "printerId": "",
+      "weightGrams": 0.35,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 0.35
+        }
+      ]
+    },
     {
       "id": "crista-vermelho-mv5n1zas90ni",
       "storage": "storage",
