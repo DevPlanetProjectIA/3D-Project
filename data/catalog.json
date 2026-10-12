@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:21:37.557Z",
+  "updated": "2026-10-12T19:21:50.248Z",
   "models": [
+    {
+      "id": "chuteiras-amarelo-mv5n1omw7s4s",
+      "storage": "storage",
+      "name": "Chuteiras (Amarelo)",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/chuteiras-amarelo-mv5n1omw7s4s/chuteiras-amarelo-mv5n1omw7s4s.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/chuteiras-amarelo-mv5n1omw7s4s/thumb.png",
+      "size": 852184,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 17042,
+      "dimensions": {
+        "x": 91.56,
+        "y": 57.47,
+        "z": 24.05
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:21:50.248Z",
+      "printerId": "",
+      "weightGrams": 37.33,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 37.33
+        }
+      ]
+    },
     {
       "id": "camisa-metade-2-preto-mv5n1ge0nf4n",
       "storage": "storage",
