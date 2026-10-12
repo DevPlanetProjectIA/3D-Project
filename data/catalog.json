@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T20:25:44.697Z",
+  "updated": "2026-10-12T20:26:45.771Z",
   "models": [
+    {
+      "id": "snowman-split-v2-mv5pd33lqxts",
+      "storage": "storage",
+      "name": "Snowman Split V2",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/snowman-split-v2-mv5pd33lqxts/snowman-split-v2-mv5pd33lqxts.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/snowman-split-v2-mv5pd33lqxts/thumb.png",
+      "size": 15859763,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 953590,
+      "dimensions": {
+        "x": 46.4,
+        "y": 38.46,
+        "z": 37.52
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T20:26:45.770Z",
+      "printerId": "",
+      "weightGrams": 29.06,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 29.06
+        }
+      ]
+    },
     {
       "id": "snowman-a-ms-mv5pbl3kqzf0",
       "storage": "storage",
