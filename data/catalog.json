@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:41:16.569Z",
+  "updated": "2026-10-12T19:41:31.192Z",
   "models": [
+    {
+      "id": "bigode-direito-branco-mv5nr1gjdtkd",
+      "storage": "storage",
+      "name": "Bigode Direito Branco",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/bigode-direito-branco-mv5nr1gjdtkd/bigode-direito-branco-mv5nr1gjdtkd.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/bigode-direito-branco-mv5nr1gjdtkd/thumb.png",
+      "size": 1730484,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 34608,
+      "dimensions": {
+        "x": 18.83,
+        "y": 17.96,
+        "z": 13.92
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:41:31.192Z",
+      "printerId": "",
+      "weightGrams": 1.01,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 1.01
+        }
+      ]
+    },
     {
       "id": "barba-esquerda-branco-mv5nqpafmhu8",
       "storage": "storage",
