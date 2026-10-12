@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:52:44.553Z",
+  "updated": "2026-10-12T19:53:01.264Z",
   "models": [
+    {
+      "id": "base-preto-mv5o5vz6zhlk",
+      "storage": "storage",
+      "name": "Base Preto",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/base-preto-mv5o5vz6zhlk/base-preto-mv5o5vz6zhlk.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/base-preto-mv5o5vz6zhlk/thumb.png",
+      "size": 232184,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 4642,
+      "dimensions": {
+        "x": 111.13,
+        "y": 137.89,
+        "z": 8
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:53:01.264Z",
+      "printerId": "",
+      "weightGrams": 70.83,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 70.83
+        }
+      ]
+    },
     {
       "id": "iris-marrom-mv5o5h17ilm6",
       "storage": "storage",
