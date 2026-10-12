@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:37:14.722Z",
+  "updated": "2026-10-12T19:37:35.795Z",
   "models": [
+    {
+      "id": "bola-realista-mv5nlv0ujtcm",
+      "storage": "storage",
+      "name": "Bola Realista",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/bola-realista-mv5nlv0ujtcm/bola-realista-mv5nlv0ujtcm.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/bola-realista-mv5nlv0ujtcm/thumb.png",
+      "size": 28728084,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 574560,
+      "dimensions": {
+        "x": 18.07,
+        "y": 18.18,
+        "z": 18.09
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:37:35.795Z",
+      "printerId": "",
+      "weightGrams": 3.86,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 3.86
+        }
+      ]
+    },
     {
       "id": "short-mv5nl9024gn0",
       "storage": "storage",
