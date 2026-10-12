@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:32:51.881Z",
+  "updated": "2026-10-12T19:33:05.596Z",
   "models": [
+    {
+      "id": "cabeca-mv5ng6gz18pi",
+      "storage": "storage",
+      "name": "Cabeça",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/cabeca-mv5ng6gz18pi/cabeca-mv5ng6gz18pi.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/cabeca-mv5ng6gz18pi/thumb.png",
+      "size": 11606084,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 232120,
+      "dimensions": {
+        "x": 29.56,
+        "y": 56.88,
+        "z": 52.55
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:33:05.596Z",
+      "printerId": "",
+      "weightGrams": 22.09,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 22.09
+        }
+      ]
+    },
     {
       "id": "braco-esquerdo-mv5nfv7xgt6t",
       "storage": "storage",
