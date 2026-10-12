@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:26:57.281Z",
+  "updated": "2026-10-12T19:27:12.479Z",
   "models": [
+    {
+      "id": "perna-esquerda-mv5n8k1ijjvt",
+      "storage": "storage",
+      "name": "Perna Esquerda",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/perna-esquerda-mv5n8k1ijjvt/perna-esquerda-mv5n8k1ijjvt.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/perna-esquerda-mv5n8k1ijjvt/thumb.png",
+      "size": 7062834,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 141255,
+      "dimensions": {
+        "x": 36.51,
+        "y": 82.92,
+        "z": 53.36
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:27:12.479Z",
+      "printerId": "",
+      "weightGrams": 26.67,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 26.67
+        }
+      ]
+    },
     {
       "id": "perna-direita-mv5n88u1ez90",
       "storage": "storage",
