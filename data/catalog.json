@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:13:18.398Z",
+  "updated": "2026-10-12T19:13:41.974Z",
   "models": [
+    {
+      "id": "rocky-mv5mqzr54zk2",
+      "storage": "storage",
+      "name": "Rocky",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/rocky-mv5mqzr54zk2/rocky-mv5mqzr54zk2.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/rocky-mv5mqzr54zk2/thumb.png",
+      "size": 44537075,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 3249606,
+      "dimensions": {
+        "x": 38.91,
+        "y": 33.81,
+        "z": 48.12
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:13:41.974Z",
+      "printerId": "",
+      "weightGrams": 27.48,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 27.48
+        }
+      ]
+    },
     {
       "id": "follet-totuga-mv5mqqffd4td",
       "storage": "git",
