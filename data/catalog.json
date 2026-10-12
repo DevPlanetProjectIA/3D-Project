@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T20:00:47.552Z",
+  "updated": "2026-10-12T20:01:03.074Z",
   "models": [
+    {
+      "id": "olho-direito-branco-mv5og6hlvae2",
+      "storage": "storage",
+      "name": "Olho Direito Branco",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/olho-direito-branco-mv5og6hlvae2/olho-direito-branco-mv5og6hlvae2.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/olho-direito-branco-mv5og6hlvae2/thumb.png",
+      "size": 554084,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 11080,
+      "dimensions": {
+        "x": 5.3,
+        "y": 3.21,
+        "z": 3.85
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T20:01:03.074Z",
+      "printerId": "",
+      "weightGrams": 0.03,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 0.03
+        }
+      ]
+    },
     {
       "id": "luva-esquerda-preto-mv5oftwdojef",
       "storage": "storage",
