@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:15:03.534Z",
+  "updated": "2026-10-12T19:15:12.047Z",
   "models": [
+    {
+      "id": "mascote-do-palmeiras-multi-partes-mv5mt773kptp",
+      "storage": "storage",
+      "name": "Mascote do Palmeiras Multi Partes",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/mascote-do-palmeiras-multi-partes-mv5mt773kptp/mascote-do-palmeiras-multi-partes-mv5mt773kptp.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/mascote-do-palmeiras-multi-partes-mv5mt773kptp/thumb.png",
+      "size": 6583567,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 295164,
+      "dimensions": {
+        "x": 400.56,
+        "y": 311.55,
+        "z": 66.02
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:15:12.047Z",
+      "printerId": "",
+      "weightGrams": 3575.67,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 3575.67
+        }
+      ]
+    },
     {
       "id": "mascote-fluminense-v1-mv5msxgthjjc",
       "storage": "git",
