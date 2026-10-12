@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:21:17.706Z",
+  "updated": "2026-10-12T19:21:26.941Z",
   "models": [
+    {
+      "id": "camisa-metade-1-preto-mv5n19dqv5fn",
+      "storage": "storage",
+      "name": "Camisa Metade 1 (Preto)",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/camisa-metade-1-preto-mv5n19dqv5fn/camisa-metade-1-preto-mv5n19dqv5fn.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/camisa-metade-1-preto-mv5n19dqv5fn/thumb.png",
+      "size": 1813434,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 36267,
+      "dimensions": {
+        "x": 112.59,
+        "y": 30.49,
+        "z": 87.74
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:21:26.941Z",
+      "printerId": "",
+      "weightGrams": 77.52,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 77.52
+        }
+      ]
+    },
     {
       "id": "cadarcos-preto-mv5n12w28j84",
       "storage": "storage",
