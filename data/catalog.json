@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:49:01.026Z",
+  "updated": "2026-10-12T19:49:14.336Z",
   "models": [
+    {
+      "id": "gusset-direito-do-short-vermelho-mv5o10chg1oo",
+      "storage": "storage",
+      "name": "Gusset Direito do Short Vermelho",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/gusset-direito-do-short-vermelho-mv5o10chg1oo/gusset-direito-do-short-vermelho-mv5o10chg1oo.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/gusset-direito-do-short-vermelho-mv5o10chg1oo/thumb.png",
+      "size": 35484,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 708,
+      "dimensions": {
+        "x": 5.54,
+        "y": 13.57,
+        "z": 9.67
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:49:14.336Z",
+      "printerId": "",
+      "weightGrams": 0.19,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 0.19
+        }
+      ]
+    },
     {
       "id": "gusset-direito-da-camisa-vermelho-mv5o0qo6asxz",
       "storage": "storage",
