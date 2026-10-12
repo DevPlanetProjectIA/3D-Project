@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:44:47.060Z",
+  "updated": "2026-10-12T19:45:01.185Z",
   "models": [
+    {
+      "id": "cadarco-esquerdo-branco-mv5nvk9fxrr0",
+      "storage": "storage",
+      "name": "Cadarço Esquerdo Branco",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/cadarco-esquerdo-branco-mv5nvk9fxrr0/cadarco-esquerdo-branco-mv5nvk9fxrr0.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/cadarco-esquerdo-branco-mv5nvk9fxrr0/thumb.png",
+      "size": 2479984,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 49598,
+      "dimensions": {
+        "x": 17.16,
+        "y": 21.35,
+        "z": 13.79
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:45:01.185Z",
+      "printerId": "",
+      "weightGrams": 1.39,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 1.39
+        }
+      ]
+    },
     {
       "id": "cadarco-direito-branco-mv5nv8jebxhj",
       "storage": "storage",
