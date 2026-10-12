@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:59:19.278Z",
+  "updated": "2026-10-12T19:59:37.213Z",
   "models": [
+    {
+      "id": "chifres-direito-e-esquerdo-branco-mv5oeakv1fob",
+      "storage": "storage",
+      "name": "Chifres Direito e Esquerdo Branco",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/chifres-direito-e-esquerdo-branco-mv5oeakv1fob/chifres-direito-e-esquerdo-branco-mv5oeakv1fob.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/chifres-direito-e-esquerdo-branco-mv5oeakv1fob/thumb.png",
+      "size": 5136084,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 102720,
+      "dimensions": {
+        "x": 33.49,
+        "y": 6.95,
+        "z": 9.76
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:59:37.213Z",
+      "printerId": "",
+      "weightGrams": 0.32,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 0.32
+        }
+      ]
+    },
     {
       "id": "camisa-branco-mv5odbve3t1d",
       "storage": "storage",
