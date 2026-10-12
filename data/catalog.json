@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T20:04:03.702Z",
+  "updated": "2026-10-12T20:04:52.338Z",
   "models": [
+    {
+      "id": "10-sem-asas-preto-mv5ol1gd6vcz",
+      "storage": "storage",
+      "name": "10 Sem Asas Preto",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/10-sem-asas-preto-mv5ol1gd6vcz/10-sem-asas-preto-mv5ol1gd6vcz.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/10-sem-asas-preto-mv5ol1gd6vcz/thumb.png",
+      "size": 3696184,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 73922,
+      "dimensions": {
+        "x": 38.41,
+        "y": 36.69,
+        "z": 7.38
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T20:04:52.338Z",
+      "printerId": "",
+      "weightGrams": 4.09,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 4.09
+        }
+      ]
+    },
     {
       "id": "almirante-chapeu-mv5ojty2sg68",
       "storage": "storage",
