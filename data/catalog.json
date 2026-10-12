@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:20:22.367Z",
+  "updated": "2026-10-12T19:20:30.985Z",
   "models": [
+    {
+      "id": "brasao-da-camisa-branco-mv5n02m78xkn",
+      "storage": "storage",
+      "name": "Brasão da Camisa (Branco)",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/brasao-da-camisa-branco-mv5n02m78xkn/brasao-da-camisa-branco-mv5n02m78xkn.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/brasao-da-camisa-branco-mv5n02m78xkn/thumb.png",
+      "size": 213284,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 4264,
+      "dimensions": {
+        "x": 19.35,
+        "y": 6.25,
+        "z": 23.04
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:20:30.985Z",
+      "printerId": "",
+      "weightGrams": 0.34,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 0.34
+        }
+      ]
+    },
     {
       "id": "bico-amarelo-mv5mzwby98la",
       "storage": "storage",
