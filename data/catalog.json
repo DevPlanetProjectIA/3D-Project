@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:28:03.956Z",
+  "updated": "2026-10-12T19:28:27.645Z",
   "models": [
+    {
+      "id": "bola-mv5n9zi5z6qy",
+      "storage": "storage",
+      "name": "Bola",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/bola-mv5n9zi5z6qy/bola-mv5n9zi5z6qy.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/bola-mv5n9zi5z6qy/thumb.png",
+      "size": 16896084,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 337920,
+      "dimensions": {
+        "x": 44.18,
+        "y": 44.25,
+        "z": 42.37
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:28:27.645Z",
+      "printerId": "",
+      "weightGrams": 16.53,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 16.53
+        }
+      ]
+    },
     {
       "id": "base-mv5n9bw0ne95",
       "storage": "storage",
