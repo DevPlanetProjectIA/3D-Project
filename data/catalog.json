@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:55:59.164Z",
+  "updated": "2026-10-12T19:56:18.703Z",
   "models": [
+    {
+      "id": "rabo-verde-mv5o9zm3k0q1",
+      "storage": "storage",
+      "name": "Rabo Verde",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/rabo-verde-mv5o9zm3k0q1/rabo-verde-mv5o9zm3k0q1.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/rabo-verde-mv5o9zm3k0q1/thumb.png",
+      "size": 1227784,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 24554,
+      "dimensions": {
+        "x": 9.49,
+        "y": 16.3,
+        "z": 12.17
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:56:18.703Z",
+      "printerId": "",
+      "weightGrams": 0.69,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 0.69
+        }
+      ]
+    },
     {
       "id": "p-verde-mv5o9onit1q0",
       "storage": "storage",
