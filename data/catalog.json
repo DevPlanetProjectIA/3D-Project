@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:13:41.974Z",
+  "updated": "2026-10-12T19:13:49.177Z",
   "models": [
+    {
+      "id": "modelo-texturizado-meshy-ai-generate-mv5mrfmlpiam",
+      "storage": "storage",
+      "name": "Modelo Texturizado Meshy AI Generate",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/modelo-texturizado-meshy-ai-generate-mv5mrfmlpiam/modelo-texturizado-meshy-ai-generate-mv5mrfmlpiam.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/modelo-texturizado-meshy-ai-generate-mv5mrfmlpiam/thumb.png",
+      "size": 623820,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 44808,
+      "dimensions": {
+        "x": 14.9,
+        "y": 1.79,
+        "z": 50
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:13:49.176Z",
+      "printerId": "",
+      "weightGrams": 0.58,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 0.58
+        }
+      ]
+    },
     {
       "id": "rocky-mv5mqzr54zk2",
       "storage": "storage",
