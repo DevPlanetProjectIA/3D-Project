@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:21:50.248Z",
+  "updated": "2026-10-12T19:22:01.034Z",
   "models": [
+    {
+      "id": "crista-vermelho-mv5n1zas90ni",
+      "storage": "storage",
+      "name": "Crista (Vermelho)",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/crista-vermelho-mv5n1zas90ni/crista-vermelho-mv5n1zas90ni.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/crista-vermelho-mv5n1zas90ni/thumb.png",
+      "size": 669084,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 13380,
+      "dimensions": {
+        "x": 22.24,
+        "y": 63.31,
+        "z": 51.46
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:22:01.034Z",
+      "printerId": "",
+      "weightGrams": 26.78,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 26.78
+        }
+      ]
+    },
     {
       "id": "chuteiras-amarelo-mv5n1omw7s4s",
       "storage": "storage",
