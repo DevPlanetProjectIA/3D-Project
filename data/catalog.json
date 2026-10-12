@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:58:11.169Z",
+  "updated": "2026-10-12T19:58:34.505Z",
   "models": [
+    {
+      "id": "camisa-com-p-modificado-mv5ocul3l22h",
+      "storage": "storage",
+      "name": "Camisa com ''P'' Modificado",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/camisa-com-p-modificado-mv5ocul3l22h/camisa-com-p-modificado-mv5ocul3l22h.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/camisa-com-p-modificado-mv5ocul3l22h/thumb.png",
+      "size": 16538768,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 1003142,
+      "dimensions": {
+        "x": 112.63,
+        "y": 54.1,
+        "z": 87.18
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:58:34.505Z",
+      "printerId": "",
+      "weightGrams": 230.55,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 230.55
+        }
+      ]
+    },
     {
       "id": "cabeca-verde-mv5oc2ph7b4f",
       "storage": "storage",
