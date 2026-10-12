@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T10:43:29.031Z",
+  "updated": "2026-10-12T16:14:36.883Z",
   "models": [
+    {
+      "id": "suporte-celular-dia-dos-professores-maca-mv5gcw743pxm",
+      "storage": "storage",
+      "name": "Suporte Celular Dia dos Professores Maçã",
+      "description": "Baixado automaticamente do WhatsApp (Calangaiada 3D)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/suporte-celular-dia-dos-professores-maca-mv5gcw743pxm/suporte-celular-dia-dos-professores-maca-mv5gcw743pxm.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/suporte-celular-dia-dos-professores-maca-mv5gcw743pxm/thumb.png",
+      "size": 3761449,
+      "tags": [
+        "whatsapp",
+        "calangaiada-3d"
+      ],
+      "author": "Larissa dos Santos Barreto",
+      "triangles": 230460,
+      "dimensions": {
+        "x": 123.54,
+        "y": 107.93,
+        "z": 33.56
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T16:14:36.883Z",
+      "printerId": "",
+      "weightGrams": 194.18,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 194.18
+        }
+      ]
+    },
     {
       "id": "gta-6-mv4nd1bmvr06",
       "storage": "storage",
