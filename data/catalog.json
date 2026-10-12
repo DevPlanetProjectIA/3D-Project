@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:46:21.332Z",
+  "updated": "2026-10-12T19:46:36.843Z",
   "models": [
+    {
+      "id": "chuteira-esquerda-preto-mv5nxl0dma2m",
+      "storage": "storage",
+      "name": "Chuteira Esquerda Preto",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/chuteira-esquerda-preto-mv5nxl0dma2m/chuteira-esquerda-preto-mv5nxl0dma2m.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/chuteira-esquerda-preto-mv5nxl0dma2m/thumb.png",
+      "size": 4819284,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 96384,
+      "dimensions": {
+        "x": 31.89,
+        "y": 60.36,
+        "z": 24.34
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:46:36.843Z",
+      "printerId": "",
+      "weightGrams": 21.03,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 21.03
+        }
+      ]
+    },
     {
       "id": "chuteira-direita-preto-mv5nx9phlwml",
       "storage": "storage",
