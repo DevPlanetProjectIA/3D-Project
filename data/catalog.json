@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:56:48.698Z",
+  "updated": "2026-10-12T19:57:14.435Z",
   "models": [
+    {
+      "id": "braco-direito-verde-mv5ob1zd37ni",
+      "storage": "storage",
+      "name": "Braço Direito Verde",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/braco-direito-verde-mv5ob1zd37ni/braco-direito-verde-mv5ob1zd37ni.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/braco-direito-verde-mv5ob1zd37ni/thumb.png",
+      "size": 9148284,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 182964,
+      "dimensions": {
+        "x": 38.44,
+        "y": 37.92,
+        "z": 55.78
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:57:14.435Z",
+      "printerId": "",
+      "weightGrams": 32.29,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 32.29
+        }
+      ]
+    },
     {
       "id": "short-branco-mv5oaepyjsxc",
       "storage": "storage",
