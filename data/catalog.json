@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:15:12.047Z",
+  "updated": "2026-10-12T19:15:19.013Z",
   "models": [
+    {
+      "id": "mascote-do-corinthians-multi-partes-mv5mtdmdi21t",
+      "storage": "storage",
+      "name": "Mascote do Corinthians Multi Partes",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/mascote-do-corinthians-multi-partes-mv5mtdmdi21t/mascote-do-corinthians-multi-partes-mv5mtdmdi21t.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/mascote-do-corinthians-multi-partes-mv5mtdmdi21t/thumb.png",
+      "size": 3737325,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 148778,
+      "dimensions": {
+        "x": 264.5,
+        "y": 100.79,
+        "z": 47.71
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:15:19.013Z",
+      "printerId": "",
+      "weightGrams": 552.04,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 552.04
+        }
+      ]
+    },
     {
       "id": "mascote-do-palmeiras-multi-partes-mv5mt773kptp",
       "storage": "storage",
