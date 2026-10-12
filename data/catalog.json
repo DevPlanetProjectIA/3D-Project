@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:39:12.909Z",
+  "updated": "2026-10-12T19:39:24.921Z",
   "models": [
+    {
+      "id": "amarelo-e-marrom-mv5noesi10p0",
+      "storage": "storage",
+      "name": "Amarelo e Marrom",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/amarelo-e-marrom-mv5noesi10p0/amarelo-e-marrom-mv5noesi10p0.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/amarelo-e-marrom-mv5noesi10p0/thumb.png",
+      "size": 389001,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 21980,
+      "dimensions": {
+        "x": 31.38,
+        "y": 30.24,
+        "z": 16.22
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:39:24.921Z",
+      "printerId": "",
+      "weightGrams": 6.68,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 6.68
+        }
+      ]
+    },
     {
       "id": "mascote-vasco-almirante-vertice-criativo-3d-mv5no2j4wxch",
       "storage": "storage",
