@@ -1,7 +1,93 @@
 {
   "version": 1,
-  "updated": "2026-10-12T00:45:10.512Z",
+  "updated": "2026-10-12T02:42:49.620Z",
   "models": [
+    {
+      "id": "gta-6-mv4nd1bmvr06",
+      "storage": "storage",
+      "name": "Gta 6",
+      "description": "Baixado automaticamente do WhatsApp (STL dos Calangos)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/gta-6-mv4nd1bmvr06/gta-6-mv4nd1bmvr06.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/gta-6-mv4nd1bmvr06/thumb.png",
+      "size": 4182616,
+      "tags": [
+        "whatsapp",
+        "stl-dos-calangos"
+      ],
+      "author": "🦎Kleber Kinder 🦎",
+      "triangles": 255420,
+      "dimensions": {
+        "x": 245,
+        "y": 165.07,
+        "z": 256.81
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T02:42:49.620Z",
+      "printerId": "",
+      "weightGrams": 4507.28,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 4507.28
+        }
+      ]
+    },
+    {
+      "id": "gta-6-mv4ncy5r59q5",
+      "storage": "storage",
+      "name": "Gta 6",
+      "description": "Baixado automaticamente do WhatsApp (STL 🟠🦎)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/gta-6-mv4ncy5r59q5/gta-6-mv4ncy5r59q5.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/gta-6-mv4ncy5r59q5/thumb.png",
+      "size": 4182616,
+      "tags": [
+        "whatsapp",
+        "stl"
+      ],
+      "author": "🦎Kleber Kinder 🦎",
+      "triangles": 255420,
+      "dimensions": {
+        "x": 245,
+        "y": 165.07,
+        "z": 256.81
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T02:42:48.459Z",
+      "printerId": "",
+      "weightGrams": 4507.28,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 4507.28
+        }
+      ]
+    },
     {
       "id": "enfeite-de-arvore-de-natal-com-nomes-mv4gun708bq2",
       "storage": "storage",
