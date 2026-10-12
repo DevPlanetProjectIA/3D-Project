@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:38:11.748Z",
+  "updated": "2026-10-12T19:38:26.675Z",
   "models": [
+    {
+      "id": "campo-realista-p-mv5nn3zu2b79",
+      "storage": "storage",
+      "name": "Campo Realista P",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/campo-realista-p-mv5nn3zu2b79/campo-realista-p-mv5nn3zu2b79.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/campo-realista-p-mv5nn3zu2b79/thumb.png",
+      "size": 1750584,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 35010,
+      "dimensions": {
+        "x": 101.63,
+        "y": 7.01,
+        "z": 101.9
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:38:26.675Z",
+      "printerId": "",
+      "weightGrams": 70.01,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 70.01
+        }
+      ]
+    },
     {
       "id": "cal-a-mv5nmpx8h4il",
       "storage": "storage",
