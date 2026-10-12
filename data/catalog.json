@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T20:02:24.852Z",
+  "updated": "2026-10-12T20:02:39.043Z",
   "models": [
+    {
+      "id": "pino-do-braco-esquerdo-mv5oi9tbkqoq",
+      "storage": "storage",
+      "name": "Pino do Braço Esquerdo",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/pino-do-braco-esquerdo-mv5oi9tbkqoq/pino-do-braco-esquerdo-mv5oi9tbkqoq.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/pino-do-braco-esquerdo-mv5oi9tbkqoq/thumb.png",
+      "size": 21684,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 432,
+      "dimensions": {
+        "x": 12.03,
+        "y": 15.7,
+        "z": 14.82
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T20:02:39.043Z",
+      "printerId": "",
+      "weightGrams": 1.41,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 1.41
+        }
+      ]
+    },
     {
       "id": "pino-do-braco-direito-mv5ohxp7buba",
       "storage": "storage",
