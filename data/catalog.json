@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T16:14:36.883Z",
+  "updated": "2026-10-12T16:14:58.852Z",
   "models": [
+    {
+      "id": "atletico-mineiro-mv5gd5pr7iyo",
+      "storage": "storage",
+      "name": "Atletico Mineiro",
+      "description": "Baixado automaticamente do WhatsApp (STL dos Calangos)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/atletico-mineiro-mv5gd5pr7iyo/atletico-mineiro-mv5gd5pr7iyo.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/atletico-mineiro-mv5gd5pr7iyo/thumb.png",
+      "size": 26774268,
+      "tags": [
+        "whatsapp",
+        "stl-dos-calangos"
+      ],
+      "author": "Hudson Santos",
+      "triangles": 2255842,
+      "dimensions": {
+        "x": 140.65,
+        "y": 134.76,
+        "z": 339.95
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T16:14:58.852Z",
+      "printerId": "",
+      "weightGrams": 2796.36,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 2796.36
+        }
+      ]
+    },
     {
       "id": "suporte-celular-dia-dos-professores-maca-mv5gcw743pxm",
       "storage": "storage",
