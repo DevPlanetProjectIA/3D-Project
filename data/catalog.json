@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:49:39.053Z",
+  "updated": "2026-10-12T19:49:52.758Z",
   "models": [
+    {
+      "id": "joelho-direito-bege-mv5o1tqr8ta8",
+      "storage": "storage",
+      "name": "Joelho Direito Bege",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/joelho-direito-bege-mv5o1tqr8ta8/joelho-direito-bege-mv5o1tqr8ta8.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/joelho-direito-bege-mv5o1tqr8ta8/thumb.png",
+      "size": 1147284,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 22944,
+      "dimensions": {
+        "x": 29.16,
+        "y": 30.51,
+        "z": 26.78
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:49:52.758Z",
+      "printerId": "",
+      "weightGrams": 9.99,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 9.99
+        }
+      ]
+    },
     {
       "id": "gusset-esquerdo-do-short-preto-mv5o1kclbohc",
       "storage": "storage",
