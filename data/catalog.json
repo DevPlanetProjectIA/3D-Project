@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:46:50.207Z",
+  "updated": "2026-10-12T19:47:02.279Z",
   "models": [
+    {
+      "id": "conectores-joelho-meia-branco-mv5ny7avkcz1",
+      "storage": "storage",
+      "name": "Conectores Joelho Meia Branco",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/conectores-joelho-meia-branco-mv5ny7avkcz1/conectores-joelho-meia-branco-mv5ny7avkcz1.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/conectores-joelho-meia-branco-mv5ny7avkcz1/thumb.png",
+      "size": 2884,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 56,
+      "dimensions": {
+        "x": 57.73,
+        "y": 9.28,
+        "z": 13.65
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:47:02.279Z",
+      "printerId": "",
+      "weightGrams": 1.61,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 1.61
+        }
+      ]
+    },
     {
       "id": "conector-da-camisa-branco-mv5nxx0totcd",
       "storage": "storage",
