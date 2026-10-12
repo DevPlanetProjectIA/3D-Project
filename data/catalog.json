@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T20:02:39.043Z",
+  "updated": "2026-10-12T20:03:04.017Z",
   "models": [
+    {
+      "id": "almirante-base-mv5oiorpk7ke",
+      "storage": "storage",
+      "name": "Almirante Base",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/almirante-base-mv5oiorpk7ke/almirante-base-mv5oiorpk7ke.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/almirante-base-mv5oiorpk7ke/thumb.png",
+      "size": 3270284,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 65404,
+      "dimensions": {
+        "x": 0.14,
+        "y": 0.14,
+        "z": 0.02
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T20:03:04.017Z",
+      "printerId": "",
+      "weightGrams": 0,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 0
+        }
+      ]
+    },
     {
       "id": "pino-do-braco-esquerdo-mv5oi9tbkqoq",
       "storage": "storage",
