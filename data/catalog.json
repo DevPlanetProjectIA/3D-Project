@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:14:02.305Z",
+  "updated": "2026-10-12T19:14:20.095Z",
   "models": [
+    {
+      "id": "mascote-do-flamengo-1-mv5mrwi8k47p",
+      "storage": "storage",
+      "name": "Mascote do Flamengo 1",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/mascote-do-flamengo-1-mv5mrwi8k47p/mascote-do-flamengo-1-mv5mrwi8k47p.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/mascote-do-flamengo-1-mv5mrwi8k47p/thumb.png",
+      "size": 27686707,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 1764000,
+      "dimensions": {
+        "x": 132.07,
+        "y": 63.38,
+        "z": 90.15
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:14:20.095Z",
+      "printerId": "",
+      "weightGrams": 327.5,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 327.5
+        }
+      ]
+    },
     {
       "id": "feliz-professor-mv5mrlieuyib",
       "storage": "storage",
