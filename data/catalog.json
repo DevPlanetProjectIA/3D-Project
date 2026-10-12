@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:14:44.056Z",
+  "updated": "2026-10-12T19:15:03.534Z",
   "models": [
+    {
+      "id": "mascote-fluminense-v1-mv5msxgthjjc",
+      "storage": "git",
+      "name": "Mascote Fluminense V1",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "3mf",
+      "file": "models/mascote-fluminense-v1-mv5msxgthjjc/mascote-fluminense-v1-mv5msxgthjjc.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/mascote-fluminense-v1-mv5msxgthjjc/thumb.png",
+      "size": 96750852,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 7946710,
+      "dimensions": {
+        "x": 115.08,
+        "y": 120.16,
+        "z": 100
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:15:03.534Z",
+      "printerId": "",
+      "weightGrams": 600.14,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 600.14
+        }
+      ]
+    },
     {
       "id": "mascote-do-corinthians-mosqueteiro-27-cm-mv5mske35q89",
       "storage": "storage",
