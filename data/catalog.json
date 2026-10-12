@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:45:41.855Z",
+  "updated": "2026-10-12T19:45:54.242Z",
   "models": [
+    {
+      "id": "camisa-faixa-3-preto-mv5nwqka7lyy",
+      "storage": "storage",
+      "name": "Camisa Faixa 3 Preto",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/camisa-faixa-3-preto-mv5nwqka7lyy/camisa-faixa-3-preto-mv5nwqka7lyy.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/camisa-faixa-3-preto-mv5nwqka7lyy/thumb.png",
+      "size": 471384,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 9426,
+      "dimensions": {
+        "x": 79.68,
+        "y": 57.22,
+        "z": 27.38
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:45:54.242Z",
+      "printerId": "",
+      "weightGrams": 31.96,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 31.96
+        }
+      ]
+    },
     {
       "id": "camisa-faixa-1-vermelho-mv5nwg9ql0z7",
       "storage": "storage",
