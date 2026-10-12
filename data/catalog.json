@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:35:57.528Z",
+  "updated": "2026-10-12T19:36:14.798Z",
   "models": [
+    {
+      "id": "camisa-mv5nk6kz7fh2",
+      "storage": "storage",
+      "name": "Camisa",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/camisa-mv5nk6kz7fh2/camisa-mv5nk6kz7fh2.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/camisa-mv5nk6kz7fh2/thumb.png",
+      "size": 26442184,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 528842,
+      "dimensions": {
+        "x": 53.19,
+        "y": 57.31,
+        "z": 77.34
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:36:14.798Z",
+      "printerId": "",
+      "weightGrams": 50.68,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 50.68
+        }
+      ]
+    },
     {
       "id": "cabeca-mv5njv37nwn9",
       "storage": "storage",
