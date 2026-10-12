@@ -1,7 +1,93 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:30:28.734Z",
+  "updated": "2026-10-12T19:32:11.121Z",
   "models": [
+    {
+      "id": "base-mv5nf18n2rpl",
+      "storage": "storage",
+      "name": "Base",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/base-mv5nf18n2rpl/base-mv5nf18n2rpl.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/base-mv5nf18n2rpl/thumb.png",
+      "size": 7897884,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 157956,
+      "dimensions": {
+        "x": 133.98,
+        "y": 21.99,
+        "z": 133.98
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:32:11.120Z",
+      "printerId": "",
+      "weightGrams": 350.56,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 350.56
+        }
+      ]
+    },
+    {
+      "id": "shorrts-mv5nd3zy1xo9",
+      "storage": "storage",
+      "name": "Shorrts",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/shorrts-mv5nd3zy1xo9/shorrts-mv5nd3zy1xo9.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/shorrts-mv5nd3zy1xo9/thumb.png",
+      "size": 20822684,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 416452,
+      "dimensions": {
+        "x": 51.84,
+        "y": 83.03,
+        "z": 89.47
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:30:54.944Z",
+      "printerId": "",
+      "weightGrams": 63.64,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 63.64
+        }
+      ]
+    },
     {
       "id": "perna-esquerda-mv5ncsg892zy",
       "storage": "storage",
