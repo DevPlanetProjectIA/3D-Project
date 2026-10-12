@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:43:02.139Z",
+  "updated": "2026-10-12T19:43:17.400Z",
   "models": [
+    {
+      "id": "braco-direito-bege-mv5ntb2ylhcw",
+      "storage": "storage",
+      "name": "Braço Direito Bege",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/braco-direito-bege-mv5ntb2ylhcw/braco-direito-bege-mv5ntb2ylhcw.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/braco-direito-bege-mv5ntb2ylhcw/thumb.png",
+      "size": 6481184,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 129622,
+      "dimensions": {
+        "x": 43.08,
+        "y": 46.53,
+        "z": 108.25
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:43:17.400Z",
+      "printerId": "",
+      "weightGrams": 47.02,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 47.02
+        }
+      ]
+    },
     {
       "id": "brasao-do-short-vermelho-mv5nt1pvio8r",
       "storage": "storage",
