@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T20:05:17.177Z",
+  "updated": "2026-10-12T20:24:30.568Z",
   "models": [
+    {
+      "id": "gingerbread-split-mv5pa5fiimiv",
+      "storage": "storage",
+      "name": "Gingerbread Split",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/gingerbread-split-mv5pa5fiimiv/gingerbread-split-mv5pa5fiimiv.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/gingerbread-split-mv5pa5fiimiv/thumb.png",
+      "size": 17725127,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 1018546,
+      "dimensions": {
+        "x": 56.24,
+        "y": 49.3,
+        "z": 63
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T20:24:30.568Z",
+      "printerId": "",
+      "weightGrams": 75.81,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 75.81
+        }
+      ]
+    },
     {
       "id": "base-escudo-preto-vermelho-branco-mv5olfxwl8jv",
       "storage": "storage",
