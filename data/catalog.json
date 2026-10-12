@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T20:01:55.037Z",
+  "updated": "2026-10-12T20:02:09.091Z",
   "models": [
+    {
+      "id": "pino-da-cabeca-mv5ohmwmfqrs",
+      "storage": "storage",
+      "name": "Pino da Cabeça",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/pino-da-cabeca-mv5ohmwmfqrs/pino-da-cabeca-mv5ohmwmfqrs.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/pino-da-cabeca-mv5ohmwmfqrs/thumb.png",
+      "size": 21684,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 432,
+      "dimensions": {
+        "x": 15.18,
+        "y": 19.74,
+        "z": 20.02
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T20:02:09.091Z",
+      "printerId": "",
+      "weightGrams": 3.81,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 3.81
+        }
+      ]
+    },
     {
       "id": "perna-direita-e-esquerda-verde-mv5oh6lv9vq0",
       "storage": "storage",
