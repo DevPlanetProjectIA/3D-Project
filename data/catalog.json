@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:40:31.443Z",
+  "updated": "2026-10-12T19:40:44.440Z",
   "models": [
+    {
+      "id": "aureola-amarelo-mv5nq2mqcg21",
+      "storage": "storage",
+      "name": "Auréola Amarelo",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/aureola-amarelo-mv5nq2mqcg21/aureola-amarelo-mv5nq2mqcg21.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/aureola-amarelo-mv5nq2mqcg21/thumb.png",
+      "size": 916584,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 18330,
+      "dimensions": {
+        "x": 31.38,
+        "y": 30.24,
+        "z": 16.22
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:40:44.440Z",
+      "printerId": "",
+      "weightGrams": 1.69,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 1.69
+        }
+      ]
+    },
     {
       "id": "10-do-short-preto-mv5nps9zq8f6",
       "storage": "storage",
