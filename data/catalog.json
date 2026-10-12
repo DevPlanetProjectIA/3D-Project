@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T18:34:30.799Z",
+  "updated": "2026-10-12T18:34:41.673Z",
   "models": [
+    {
+      "id": "copo-novo-corinthians-mv5lcrudx0l0",
+      "storage": "storage",
+      "name": "Copo Novo Corinthians",
+      "description": "Baixado automaticamente do WhatsApp (STL dos Calangos)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/copo-novo-corinthians-mv5lcrudx0l0/copo-novo-corinthians-mv5lcrudx0l0.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/copo-novo-corinthians-mv5lcrudx0l0/thumb.png",
+      "size": 23335492,
+      "tags": [
+        "whatsapp",
+        "stl-dos-calangos"
+      ],
+      "author": "🦎Kleber Kinder 🦎",
+      "triangles": 1625256,
+      "dimensions": {
+        "x": 367.35,
+        "y": 417.9,
+        "z": 153.95
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T18:34:41.673Z",
+      "printerId": "",
+      "weightGrams": 10257.26,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 10257.26
+        }
+      ]
+    },
     {
       "id": "copo-novo-corinthians-mv5lcccem54l",
       "storage": "storage",
