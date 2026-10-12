@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:56:18.703Z",
+  "updated": "2026-10-12T19:56:48.698Z",
   "models": [
+    {
+      "id": "short-branco-mv5oaepyjsxc",
+      "storage": "storage",
+      "name": "Short Branco",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/short-branco-mv5oaepyjsxc/short-branco-mv5oaepyjsxc.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/short-branco-mv5oaepyjsxc/thumb.png",
+      "size": 14535584,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 290710,
+      "dimensions": {
+        "x": 86.25,
+        "y": 45.29,
+        "z": 40.11
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:56:48.698Z",
+      "printerId": "",
+      "weightGrams": 75.56,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 75.56
+        }
+      ]
+    },
     {
       "id": "rabo-verde-mv5o9zm3k0q1",
       "storage": "storage",
