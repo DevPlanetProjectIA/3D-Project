@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:47:15.392Z",
+  "updated": "2026-10-12T19:47:30.467Z",
   "models": [
+    {
+      "id": "faixa-1-da-manga-direita-vermelho-mv5nyqy4cj0s",
+      "storage": "storage",
+      "name": "Faixa 1 da Manga Direita Vermelho",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/faixa-1-da-manga-direita-vermelho-mv5nyqy4cj0s/faixa-1-da-manga-direita-vermelho-mv5nyqy4cj0s.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/faixa-1-da-manga-direita-vermelho-mv5nyqy4cj0s/thumb.png",
+      "size": 162384,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 3246,
+      "dimensions": {
+        "x": 27.5,
+        "y": 35.81,
+        "z": 29.83
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:47:30.467Z",
+      "printerId": "",
+      "weightGrams": 3.74,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 3.74
+        }
+      ]
+    },
     {
       "id": "dentes-branco-mv5nygmkz1q8",
       "storage": "storage",
