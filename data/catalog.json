@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:18:36.723Z",
+  "updated": "2026-10-12T19:18:58.508Z",
   "models": [
+    {
+      "id": "mascote-palmeiras-m3-mv5mxypx4m3a",
+      "storage": "git",
+      "name": "Mascote Palmeiras M3",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "3mf",
+      "file": "models/mascote-palmeiras-m3-mv5mxypx4m3a/mascote-palmeiras-m3-mv5mxypx4m3a.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/mascote-palmeiras-m3-mv5mxypx4m3a/thumb.png",
+      "size": 85279193,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 7885714,
+      "dimensions": {
+        "x": 127.71,
+        "y": 66.7,
+        "z": 77.3
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:18:58.508Z",
+      "printerId": "",
+      "weightGrams": 285.76,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 285.76
+        }
+      ]
+    },
     {
       "id": "mascote-palmeiras-porco-m2-mv5mxlsa3hoi",
       "storage": "storage",
