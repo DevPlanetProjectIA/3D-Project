@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:34:15.413Z",
+  "updated": "2026-10-12T19:34:36.338Z",
   "models": [
+    {
+      "id": "warriors-mv5ni1bo0sft",
+      "storage": "git",
+      "name": "Warriors",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "models/warriors-mv5ni1bo0sft/warriors-mv5ni1bo0sft.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/warriors-mv5ni1bo0sft/thumb.png",
+      "size": 102380984,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 2047618,
+      "dimensions": {
+        "x": 79.42,
+        "y": 42.07,
+        "z": 19.23
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:34:36.338Z",
+      "printerId": "",
+      "weightGrams": 27.77,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 27.77
+        }
+      ]
+    },
     {
       "id": "short-mv5nh6619tfx",
       "storage": "storage",
