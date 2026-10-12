@@ -35,4 +35,9 @@ export const store = {
   },
 };
 
+export const get = (key, fallback = null) => store.get(key, fallback);
+export const set = (key, value) => store.set(key, value);
+export const remove = (key) => store.remove(key);
+export const session = store.session;
+
 export default store;

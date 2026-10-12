@@ -11,7 +11,7 @@ import { formatMoney, formatHours } from '../costing.js';
 import { Viewer } from '../viewer.js';
 import {
   esc, icon, qs, qsa, on, toast, formatBytes, formatNumber, formatDate, formatMm,
-  confirmDialog, copyText,
+  confirmDialog, copyText, openModal,
 } from '../util.js';
 
 /** Baixa o arquivo reportando progresso quando o servidor informa o tamanho. */
@@ -320,6 +320,141 @@ function renderProduction(geometry, model, container, estado = {}) {
   });
 }
 
+/** Modal interativo para escolher foto de capa do MakerWorld com múltiplas opções */
+async function openCoverPickerModal(model, ctx) {
+  let selectedCandidate = null;
+  let currentTerm = model.name;
+
+  return openModal(
+    (close) => `
+      <div class="modal__head" style="display:flex;align-items:center;justify-content:space-between">
+        <h3 style="margin:0;display:flex;align-items:center;gap:8px">
+          ${icon('camera', 18)} Escolher Foto de Capa (MakerWorld)
+        </h3>
+        <button class="btn btn--sm" type="button" data-close style="border:none;background:none;padding:4px;cursor:pointer">
+          ${icon('x', 18)}
+        </button>
+      </div>
+
+      <div class="modal__body stack" style="margin-top:14px">
+        <p class="small faint">
+          Escolha abaixo a foto real do projeto montado que preferir para ilustrar a capa deste modelo.
+        </p>
+
+        <form class="inline" id="picker-search-form" style="gap:8px" onsubmit="return false;">
+          <input class="input" type="search" id="picker-query" value="${esc(currentTerm)}"
+                 placeholder="Digite termos de busca..." style="flex:1">
+          <button class="btn btn--primary" type="button" id="picker-btn-search">
+            ${icon('search', 16)} Buscar
+          </button>
+        </form>
+
+        <div id="picker-results" style="display:grid;grid-template-columns:repeat(auto-fill, minmax(130px, 1fr));gap:10px;min-height:160px;max-height:360px;overflow-y:auto;padding:6px;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius)">
+          <div style="grid-column:1/-1;text-align:center;padding:32px 0;color:var(--faint)">
+            ${icon('rotate', 20)} Buscando opções de fotos...
+          </div>
+        </div>
+      </div>
+
+      <div class="modal__foot btn-row" style="margin-top:16px;justify-content:space-between">
+        <button class="btn" type="button" data-close>Cancelar</button>
+        <button class="btn btn--primary" type="button" id="picker-confirm" disabled>
+          ${icon('check', 16)} Aplicar como Capa
+        </button>
+      </div>
+    `,
+    {
+      wide: true,
+      ready(box, close) {
+        const queryInput = qs('#picker-query', box);
+        const searchBtn = qs('#picker-btn-search', box);
+        const resultsGrid = qs('#picker-results', box);
+        const confirmBtn = qs('#picker-confirm', box);
+
+        async function doSearch(term) {
+          if (!term) return;
+          resultsGrid.innerHTML = `
+            <div style="grid-column:1/-1;text-align:center;padding:32px 0;color:var(--faint)">
+              Carregando opções para "${esc(term)}"...
+            </div>`;
+          confirmBtn.disabled = true;
+          selectedCandidate = null;
+
+          try {
+            const res = await fetch(`http://localhost:3000/api/models/search-cover?query=${encodeURIComponent(term)}`);
+            if (!res.ok) throw new Error('Não foi possível obter fotos.');
+            const data = await res.json();
+            const list = data.candidates || [];
+
+            if (list.length === 0) {
+              resultsGrid.innerHTML = `
+                <div style="grid-column:1/-1;text-align:center;padding:24px 0;color:var(--faint)">
+                  Nenhuma foto encontrada para "${esc(term)}". Tente alterar a busca.
+                </div>`;
+              return;
+            }
+
+            resultsGrid.innerHTML = list.map((item, idx) => `
+              <div class="picker-item" data-idx="${idx}" style="position:relative;cursor:pointer;border:3px solid transparent;border-radius:6px;overflow:hidden;background:#000;aspect-ratio:1;display:flex;align-items:center;justify-content:center;transition:all .15s">
+                <img src="${esc(item.thumbUrl || item.url)}" alt="${esc(item.title || '')}" loading="lazy"
+                     style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.parentElement.remove()">
+                <div style="position:absolute;bottom:4px;left:4px;right:4px;font-size:9.5px;background:rgba(0,0,0,0.75);color:#fff;padding:2px 4px;border-radius:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">
+                  ${esc(item.source || 'MakerWorld')}
+                </div>
+              </div>
+            `).join('');
+
+            qsa('.picker-item', resultsGrid).forEach((el) => {
+              el.addEventListener('click', () => {
+                qsa('.picker-item', resultsGrid).forEach((other) => {
+                  other.style.borderColor = 'transparent';
+                  other.style.boxShadow = 'none';
+                });
+                el.style.borderColor = 'var(--accent, #3b82f6)';
+                el.style.boxShadow = '0 0 0 2px var(--accent, #3b82f6)';
+                const idx = Number(el.dataset.idx);
+                selectedCandidate = list[idx];
+                confirmBtn.disabled = false;
+              });
+            });
+          } catch (err) {
+            resultsGrid.innerHTML = `
+              <div style="grid-column:1/-1;text-align:center;padding:24px 0;color:var(--danger)">
+                ${esc(err.message || 'Falha na busca.')}
+              </div>`;
+          }
+        }
+
+        searchBtn?.addEventListener('click', () => doSearch(queryInput.value.trim()));
+        queryInput?.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            doSearch(queryInput.value.trim());
+          }
+        });
+
+        confirmBtn?.addEventListener('click', async () => {
+          if (!selectedCandidate) return;
+          confirmBtn.classList.add('is-loading');
+          confirmBtn.disabled = true;
+          try {
+            await catalog.updateCover(model, selectedCandidate.url);
+            toast('Foto selecionada aplicada como capa com sucesso!', { type: 'success' });
+            close(true);
+            ctx.refreshShell();
+          } catch (err) {
+            toast(err.message || 'Falha ao aplicar capa.', { type: 'error' });
+            confirmBtn.classList.remove('is-loading');
+            confirmBtn.disabled = false;
+          }
+        });
+
+        doSearch(currentTerm);
+      }
+    }
+  );
+}
+
 export default async function modelView(container, ctx) {
   const id = decodeURIComponent(ctx.params.id || '');
   const model = await catalog.getById(id);
@@ -415,22 +550,8 @@ export default async function modelView(container, ctx) {
     }
   });
 
-  qs('#search-makerworld-cover', container)?.addEventListener('click', async (event) => {
-    const button = event.currentTarget;
-    button.classList.add('is-loading');
-    try {
-      const res = await fetch(`http://localhost:3000/api/models/search-cover?query=${encodeURIComponent(model.name)}`);
-      if (!res.ok) throw new Error('Nenhuma foto encontrada no MakerWorld.');
-      const data = await res.json();
-      if (!data.dataUrl) throw new Error('Resposta sem imagem.');
-      await catalog.updateCover(model, data.dataUrl);
-      toast('Foto oficial do MakerWorld aplicada como capa com sucesso!', { type: 'success' });
-      ctx.refreshShell();
-    } catch (err) {
-      toast(err.message || 'Falha na busca do MakerWorld.', { type: 'warn' });
-    } finally {
-      button.classList.remove('is-loading');
-    }
+  qs('#search-makerworld-cover', container)?.addEventListener('click', () => {
+    openCoverPickerModal(model, ctx);
   });
 
   qs('#upload-custom-cover', container)?.addEventListener('change', async (event) => {

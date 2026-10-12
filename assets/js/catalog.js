@@ -10,7 +10,7 @@ import CONFIG from '../../config.js';
 import * as gh from './github.js';
 import * as sb from './supabase.js';
 import * as storage from './storage.js';
-import * as store from './store.js';
+import store from './store.js';
 import { slugify } from './util.js';
 
 /** Base do site publicado — resolve corretamente em subdiretórios do Pages. */
@@ -492,9 +492,12 @@ export async function remove(model) {
 /** Atualiza a imagem de capa do modelo (render 3D, foto da automação ou upload personalizado). */
 export async function updateCover(model, imageBytesOrDataUrl) {
   let dataUrl = '';
+  let imageUrl = '';
   let bytes = null;
 
-  if (typeof imageBytesOrDataUrl === 'string' && imageBytesOrDataUrl.startsWith('data:')) {
+  if (typeof imageBytesOrDataUrl === 'string' && (imageBytesOrDataUrl.startsWith('http://') || imageBytesOrDataUrl.startsWith('https://'))) {
+    imageUrl = imageBytesOrDataUrl;
+  } else if (typeof imageBytesOrDataUrl === 'string' && imageBytesOrDataUrl.startsWith('data:')) {
     dataUrl = imageBytesOrDataUrl;
     const base64 = dataUrl.split(',')[1];
     const binStr = atob(base64);
@@ -518,8 +521,8 @@ export async function updateCover(model, imageBytesOrDataUrl) {
     const res = await fetch(`http://localhost:3000/api/models/${encodeURIComponent(model.id)}/update-cover`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ dataUrl }),
-      signal: AbortSignal.timeout(3000),
+      body: JSON.stringify({ dataUrl, imageUrl }),
+      signal: AbortSignal.timeout(5000),
     });
     if (res.ok) {
       const data = await res.json();
