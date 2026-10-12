@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:37:55.224Z",
+  "updated": "2026-10-12T19:38:11.748Z",
   "models": [
+    {
+      "id": "cal-a-mv5nmpx8h4il",
+      "storage": "storage",
+      "name": "Cal�a",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/cal-a-mv5nmpx8h4il/cal-a-mv5nmpx8h4il.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/cal-a-mv5nmpx8h4il/thumb.png",
+      "size": 13263184,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 265262,
+      "dimensions": {
+        "x": 74.98,
+        "y": 54.12,
+        "z": 65.5
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:38:11.748Z",
+      "printerId": "",
+      "weightGrams": 60.54,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 60.54
+        }
+      ]
+    },
     {
       "id": "cabe-a-mv5nmavx3z3q",
       "storage": "storage",
