@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:16:23.747Z",
+  "updated": "2026-10-12T19:16:40.457Z",
   "models": [
+    {
+      "id": "mascote-do-botafogo-mv5mv1s2qbw5",
+      "storage": "git",
+      "name": "Mascote do Botafogo",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "3mf",
+      "file": "models/mascote-do-botafogo-mv5mv1s2qbw5/mascote-do-botafogo-mv5mv1s2qbw5.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/mascote-do-botafogo-mv5mv1s2qbw5/thumb.png",
+      "size": 89515564,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 5844744,
+      "dimensions": {
+        "x": 459.79,
+        "y": 516.91,
+        "z": 74.59
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:16:40.457Z",
+      "printerId": "",
+      "weightGrams": 7693.7,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 7693.7
+        }
+      ]
+    },
     {
       "id": "saci-internaci0nal-mv5mupdubu4p",
       "storage": "git",
