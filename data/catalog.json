@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:14:34.451Z",
+  "updated": "2026-10-12T19:14:44.056Z",
   "models": [
+    {
+      "id": "mascote-do-corinthians-mosqueteiro-27-cm-mv5mske35q89",
+      "storage": "storage",
+      "name": "Mascote do Corinthians Mosqueteiro 27 CM",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/mascote-do-corinthians-mosqueteiro-27-cm-mv5mske35q89/mascote-do-corinthians-mosqueteiro-27-cm-mv5mske35q89.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/mascote-do-corinthians-mosqueteiro-27-cm-mv5mske35q89/thumb.png",
+      "size": 6426014,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 324000,
+      "dimensions": {
+        "x": 264.5,
+        "y": 94.26,
+        "z": 72.06
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:14:44.056Z",
+      "printerId": "",
+      "weightGrams": 779.71,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 779.71
+        }
+      ]
+    },
     {
       "id": "mascote-fortaleza-mv5msa7z6rr4",
       "storage": "storage",
