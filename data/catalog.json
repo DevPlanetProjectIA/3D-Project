@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:40:17.767Z",
+  "updated": "2026-10-12T19:40:31.443Z",
   "models": [
+    {
+      "id": "10-do-short-preto-mv5nps9zq8f6",
+      "storage": "storage",
+      "name": "10 do Short Preto",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/10-do-short-preto-mv5nps9zq8f6/10-do-short-preto-mv5nps9zq8f6.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/10-do-short-preto-mv5nps9zq8f6/thumb.png",
+      "size": 117084,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 2340,
+      "dimensions": {
+        "x": 15.34,
+        "y": 13.85,
+        "z": 16.69
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:40:31.443Z",
+      "printerId": "",
+      "weightGrams": 0.96,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 0.96
+        }
+      ]
+    },
     {
       "id": "10-da-camisa-vermelho-mv5npgxzh7lz",
       "storage": "storage",
