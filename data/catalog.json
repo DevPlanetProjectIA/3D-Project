@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T16:14:58.852Z",
+  "updated": "2026-10-12T16:15:15.133Z",
   "models": [
+    {
+      "id": "cruzeiro-gold-mv5gdmpjo0p7",
+      "storage": "storage",
+      "name": "Cruzeiro Gold",
+      "description": "Baixado automaticamente do WhatsApp (STL dos Calangos)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/cruzeiro-gold-mv5gdmpjo0p7/cruzeiro-gold-mv5gdmpjo0p7.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/cruzeiro-gold-mv5gdmpjo0p7/thumb.png",
+      "size": 27234546,
+      "tags": [
+        "whatsapp",
+        "stl-dos-calangos"
+      ],
+      "author": "Hudson Santos",
+      "triangles": 2286230,
+      "dimensions": {
+        "x": 140.65,
+        "y": 179.21,
+        "z": 287.49
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T16:15:15.133Z",
+      "printerId": "",
+      "weightGrams": 3144.94,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 3144.94
+        }
+      ]
+    },
     {
       "id": "atletico-mineiro-mv5gd5pr7iyo",
       "storage": "storage",
