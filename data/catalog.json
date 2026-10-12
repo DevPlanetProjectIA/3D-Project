@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:21:09.333Z",
+  "updated": "2026-10-12T19:21:17.706Z",
   "models": [
+    {
+      "id": "cadarcos-preto-mv5n12w28j84",
+      "storage": "storage",
+      "name": "Cadarços (Preto)",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/cadarcos-preto-mv5n12w28j84/cadarcos-preto-mv5n12w28j84.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/cadarcos-preto-mv5n12w28j84/thumb.png",
+      "size": 202884,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 4056,
+      "dimensions": {
+        "x": 79.77,
+        "y": 28.09,
+        "z": 8.77
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:21:17.706Z",
+      "printerId": "",
+      "weightGrams": 0.89,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 0.89
+        }
+      ]
+    },
     {
       "id": "cabeca-branco-mv5n0vil0qcc",
       "storage": "storage",
