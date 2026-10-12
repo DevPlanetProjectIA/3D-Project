@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:14:20.095Z",
+  "updated": "2026-10-12T19:14:34.451Z",
   "models": [
+    {
+      "id": "mascote-fortaleza-mv5msa7z6rr4",
+      "storage": "storage",
+      "name": "Mascote Fortaleza",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/mascote-fortaleza-mv5msa7z6rr4/mascote-fortaleza-mv5msa7z6rr4.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/mascote-fortaleza-mv5msa7z6rr4/thumb.png",
+      "size": 21823401,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 1583863,
+      "dimensions": {
+        "x": 155.4,
+        "y": 159.92,
+        "z": 74.63
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:14:34.451Z",
+      "printerId": "",
+      "weightGrams": 804.91,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 804.91
+        }
+      ]
+    },
     {
       "id": "mascote-do-flamengo-1-mv5mrwi8k47p",
       "storage": "storage",
