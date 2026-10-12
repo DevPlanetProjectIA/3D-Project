@@ -29,7 +29,7 @@ function writeBanner() {
     return `
       <div class="banner banner--info">${icon('shield', 18)}
         <div class="small">Publicação no acervo do Supabase: sem token, sem espera. O arquivo vai
-          direto do seu navegador para o projeto, na sua conta.</div>
+          direto do seu navegador para a nuvem da biblioteca.</div>
       </div>`;
   }
   if (mode === 'funcao') {
@@ -39,7 +39,15 @@ function writeBanner() {
           navegador. O commit registra o seu e-mail como autor da publicação.</div>
       </div>`;
   }
-  if (mode === 'token') return '';
+  if (mode === 'token') {
+    if (auth.isUniversalToken?.()) {
+      return `
+        <div class="banner banner--info">${icon('check', 18)}
+          <div class="small">Token universal ativo: qualquer usuário ou visitante pode publicar modelos diretamente para o repositório.</div>
+        </div>`;
+    }
+    return '';
+  }
 
   return `
     <div class="banner banner--warn">${icon('key', 18)}
@@ -57,7 +65,7 @@ function writeBanner() {
 
 export default async function uploadView(container, ctx) {
   const user = auth.currentUser();
-  if (!user) {
+  if (!user && !CONFIG.allowGuestUpload && !CONFIG.universalToken) {
     container.innerHTML = `
       <div class="empty">${icon('login', 40)}
         <h3>Entre para enviar modelos</h3>
@@ -160,6 +168,14 @@ export default async function uploadView(container, ctx) {
           <input class="input" type="text" id="name" name="name" maxlength="90" required
                  placeholder="ex.: Suporte de bancada para chave Allen">
           <p class="field__error" hidden></p>
+        </div>
+
+        <div class="field" data-field="author">
+          <label for="author">Autor / Criador</label>
+          <input class="input" type="text" id="author" name="author" maxlength="60"
+                 placeholder="ex.: Seu nome, @perfil ou MakerWorld"
+                 value="${esc(user ? user.username : 'Comunidade')}">
+          <p class="field__hint">Nome creditado como autor deste modelo na biblioteca.</p>
         </div>
 
         <div class="field">
@@ -732,7 +748,7 @@ export default async function uploadView(container, ctx) {
         format: state.format,
         size: state.file.size,
         tags: state.tags,
-        author: user.username,
+        author: qs('#author', container)?.value.trim() || user?.username || 'Comunidade',
         triangles: state.geometry.triangles,
         dimensions: {
           x: Number(state.metrics.size.x.toFixed(3)),

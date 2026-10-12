@@ -111,7 +111,7 @@ function shellMarkup(user, activeRoute, counts, tags) {
           <kbd>/</kbd>
         </div>
         <div class="topbar__actions">
-          ${user ? `<a class="btn btn--primary btn--sm" href="#/enviar">${icon('upload', 15)}
+          ${(user || CONFIG.universalToken || CONFIG.allowGuestUpload) ? `<a class="btn btn--primary btn--sm" href="#/enviar">${icon('upload', 15)}
             <span class="nowrap" style="display:none">Enviar</span></a>` : ''}
           <div class="menu-wrap" id="account">
             <button class="btn btn--ghost btn--icon" type="button" id="account-btn"
@@ -132,7 +132,7 @@ function shellMarkup(user, activeRoute, counts, tags) {
                 ${icon(item.icon, 17)}<span>${esc(item.label)}</span>
                 <span class="count">${counts[item.count] ?? ''}</span>
               </a>`).join('')}
-            ${user ? `
+            ${(user || CONFIG.universalToken || CONFIG.allowGuestUpload) ? `
               <a class="nav__item${activeRoute === '/enviar' ? ' is-active' : ''}" href="#/enviar">
                 ${icon('plus', 17)}<span>Enviar modelo</span></a>` : ''}
 

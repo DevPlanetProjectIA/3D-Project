@@ -1,5 +1,6 @@
 /* Biblioteca: grade de modelos com busca, filtros, ordenação e favoritos. */
 
+import CONFIG from '../../../config.js';
 import * as catalog from '../catalog.js';
 import * as auth from '../auth.js';
 import { esc, icon, qs, qsa, formatBytes, formatNumber, formatRelative, toast, on, debounce } from '../util.js';
@@ -125,7 +126,7 @@ export default async function libraryView(container, ctx) {
       </div>
       <div class="btn-row">
         <button class="btn" type="button" id="reload">${icon('refresh', 17)} Atualizar</button>
-        ${user ? `<a class="btn btn--primary" href="#/enviar">${icon('upload', 17)} Enviar modelo</a>` : ''}
+        ${(user || CONFIG.universalToken || CONFIG.allowGuestUpload) ? `<a class="btn btn--primary" href="#/enviar">${icon('upload', 17)} Enviar modelo</a>` : ''}
       </div>
     </div>
 

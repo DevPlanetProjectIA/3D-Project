@@ -384,7 +384,17 @@ async function publishToStorage({ entry, fileBytes, thumbBytes }, onStep) {
 }
 
 export async function publish(payload, onStep = () => {}) {
-  if (publishMode() === 'storage') return publishToStorage(payload, onStep);
+  if (publishMode() === 'storage') {
+    try {
+      return await publishToStorage(payload, onStep);
+    } catch (err) {
+      if (gh.canWrite()) {
+        console.warn('Falha no upload para Supabase Storage, tentando fallback para Git...', err);
+        return await publishToGit(payload, onStep);
+      }
+      throw err;
+    }
+  }
   return publishToGit(payload, onStep);
 }
 

@@ -539,13 +539,21 @@ export function isFavorite(modelId) {
 
 /* ---------- Token do GitHub ---------- */
 /*
- * Necessário apenas para gravar (upload/remoção), porque a escrita usa a
- * API de conteúdo do GitHub. Fica no `localStorage` deste navegador e nunca
- * é enviado para outro destino além de api.github.com.
+ * Necessário para gravar via Git (upload/remoção).
+ * Usa o token pessoal cadastrado no navegador se houver, ou cai no token
+ * universal configurado em config.js para permitir que qualquer usuário contribua.
  */
 
 export function getToken() {
+  return store.get(TOKEN_KEY) || CONFIG.universalToken || CONFIG.githubToken || '';
+}
+
+export function getPersonalToken() {
   return store.get(TOKEN_KEY) || '';
+}
+
+export function isUniversalToken() {
+  return !store.get(TOKEN_KEY) && !!(CONFIG.universalToken || CONFIG.githubToken);
 }
 
 export function setToken(token) {

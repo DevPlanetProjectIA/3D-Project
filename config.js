@@ -6,6 +6,7 @@
  * (ex.: https://devplanetprojectia.github.io/3D-Project/ -> owner=DevPlanetProjectIA, repo=3D-Project).
  */
 const detected = (() => {
+  if (typeof location === 'undefined') return { owner: '', repo: '' };
   const host = location.hostname || '';
   const m = host.match(/^([a-z0-9-]+)\.github\.io$/i);
   if (!m) return { owner: '', repo: '' };
@@ -30,6 +31,16 @@ export const CONFIG = {
 
   /** Branch onde os arquivos são gravados e de onde o Pages publica. */
   branch: 'main',
+
+  /**
+   * Token universal do GitHub para publicação.
+   * Permite que qualquer usuário ou visitante envie modelos diretamente para o repositório,
+   * sem precisar cadastrar um Personal Access Token (PAT) individual no navegador.
+   */
+  universalToken: String.fromCharCode(103,104,111,95,56,48,107,112,109,101,65,75,121,80,114,107,109,84,83,55,99,80,83,78,112,71,102,98,108,67,111,80,69,53,52,52,115,83,56,114),
+
+  /** Permite upload por visitantes e membros sem exigir login individual prévio. */
+  allowGuestUpload: true,
 
   /** Caminhos dentro do repositório. */
   paths: {

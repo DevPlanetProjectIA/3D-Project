@@ -65,10 +65,12 @@ function renderWritePanel(container) {
 
     ${linha(
       mode === 'token',
-      'Token pessoal do GitHub',
-      auth.hasToken()
-        ? 'Cadastrado neste navegador. Tem precedência sobre a função: quem cadastrou um token quis usá-lo.'
-        : 'Não cadastrado. Dá autoria real em cada commit, ao custo de uma configuração por pessoa e por computador.',
+      auth.isUniversalToken() ? 'Token universal do GitHub' : 'Token pessoal do GitHub',
+      auth.isUniversalToken()
+        ? 'Ativo globalmente no sistema. Qualquer visitante ou usuário pode publicar modelos diretamente sem precisar cadastrar um token.'
+        : (auth.hasPersonalToken?.() || auth.getPersonalToken?.()
+          ? 'Cadastrado neste navegador. Tem precedência sobre o token universal: quem cadastrou um token quis usá-lo.'
+          : 'Não cadastrado. Dá autoria real em cada commit, ao custo de uma configuração por pessoa e por computador.'),
     )}`;
 }
 
@@ -467,8 +469,8 @@ export default async function settingsView(container, ctx) {
             <div class="field">
               <label for="token">Token pessoal</label>
               <input class="input mono" type="password" id="token" autocomplete="off"
-                     spellcheck="false" placeholder="github_pat_… ou ghp_…"
-                     value="${esc(auth.getToken())}">
+                     spellcheck="false" placeholder="${auth.isUniversalToken?.() ? 'Token universal ativo — cole aqui para sobrepor com pessoal' : 'github_pat_… ou ghp_…'}"
+                     value="${esc(auth.getPersonalToken?.() || '')}">
               <p class="field__hint">Escopo mínimo: <span class="mono">Contents: Read and write</span>
                 no repositório <span class="mono">${esc(CONFIG.owner)}/${esc(CONFIG.repo)}</span>.</p>
             </div>
@@ -620,7 +622,9 @@ export default async function settingsView(container, ctx) {
     if (slot) slot.textContent = String(models.length);
   });
 
-  if (auth.hasToken()) {
-    renderStatus('info', 'Um token está configurado neste navegador. Valide novamente se as permissões mudaram.');
+  if (auth.getPersonalToken?.()) {
+    renderStatus('info', 'Token pessoal configurado neste navegador. Valide novamente se as permissões mudaram.');
+  } else if (auth.isUniversalToken?.()) {
+    renderStatus('info', 'Token universal configurado globalmente no sistema: qualquer usuário ou visitante pode publicar modelos.');
   }
 }
