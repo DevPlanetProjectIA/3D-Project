@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:43:53.032Z",
+  "updated": "2026-10-12T19:44:10.841Z",
   "models": [
+    {
+      "id": "cabelo-esquerdo-branco-mv5nuekbu7lk",
+      "storage": "storage",
+      "name": "Cabelo Esquerdo Branco",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/cabelo-esquerdo-branco-mv5nuekbu7lk/cabelo-esquerdo-branco-mv5nuekbu7lk.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/cabelo-esquerdo-branco-mv5nuekbu7lk/thumb.png",
+      "size": 8510484,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 170208,
+      "dimensions": {
+        "x": 18.93,
+        "y": 26.93,
+        "z": 25.88
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:44:10.841Z",
+      "printerId": "",
+      "weightGrams": 3.96,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 3.96
+        }
+      ]
+    },
     {
       "id": "cabelo-direito-branco-mv5ntzzurify",
       "storage": "storage",
