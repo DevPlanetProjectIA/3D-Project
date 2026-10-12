@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:57:36.151Z",
+  "updated": "2026-10-12T19:58:11.169Z",
   "models": [
+    {
+      "id": "cabeca-verde-mv5oc2ph7b4f",
+      "storage": "storage",
+      "name": "Cabeça Verde",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/cabeca-verde-mv5oc2ph7b4f/cabeca-verde-mv5oc2ph7b4f.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/cabeca-verde-mv5oc2ph7b4f/thumb.png",
+      "size": 26719984,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 534398,
+      "dimensions": {
+        "x": 66.12,
+        "y": 50.25,
+        "z": 52.51
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:58:11.168Z",
+      "printerId": "",
+      "weightGrams": 74.21,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 74.21
+        }
+      ]
+    },
     {
       "id": "braco-esquerdo-verde-mv5obluovsmb",
       "storage": "storage",
