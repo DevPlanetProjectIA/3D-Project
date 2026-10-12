@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T20:04:52.338Z",
+  "updated": "2026-10-12T20:05:17.177Z",
   "models": [
+    {
+      "id": "base-escudo-preto-vermelho-branco-mv5olfxwl8jv",
+      "storage": "storage",
+      "name": "Base Escudo Preto Vermelho Branco",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/base-escudo-preto-vermelho-branco-mv5olfxwl8jv/base-escudo-preto-vermelho-branco-mv5olfxwl8jv.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/base-escudo-preto-vermelho-branco-mv5olfxwl8jv/thumb.png",
+      "size": 20834984,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 416698,
+      "dimensions": {
+        "x": 160,
+        "y": 199.16,
+        "z": 3.12
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T20:05:17.177Z",
+      "printerId": "",
+      "weightGrams": 123.98,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 123.98
+        }
+      ]
+    },
     {
       "id": "10-sem-asas-preto-mv5ol1gd6vcz",
       "storage": "storage",
