@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:55:44.977Z",
+  "updated": "2026-10-12T19:55:59.164Z",
   "models": [
+    {
+      "id": "p-verde-mv5o9onit1q0",
+      "storage": "storage",
+      "name": "P Verde",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/p-verde-mv5o9onit1q0/p-verde-mv5o9onit1q0.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/p-verde-mv5o9onit1q0/thumb.png",
+      "size": 217184,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 4342,
+      "dimensions": {
+        "x": 8.78,
+        "y": 8.89,
+        "z": 10.6
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:55:59.164Z",
+      "printerId": "",
+      "weightGrams": 0.2,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 0.2
+        }
+      ]
+    },
     {
       "id": "pino-do-short-mv5o9dj7xyn8",
       "storage": "storage",
