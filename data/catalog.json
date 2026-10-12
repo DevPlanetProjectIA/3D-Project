@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:24:24.462Z",
+  "updated": "2026-10-12T19:24:37.258Z",
   "models": [
+    {
+      "id": "galo-doido-mv5n59ra7ux9",
+      "storage": "storage",
+      "name": "Galo Doido",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/galo-doido-mv5n59ra7ux9/galo-doido-mv5n59ra7ux9.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/galo-doido-mv5n59ra7ux9/thumb.png",
+      "size": 5937423,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 331570,
+      "dimensions": {
+        "x": 114.29,
+        "y": 138.21,
+        "z": 88.68
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:24:37.258Z",
+      "printerId": "",
+      "weightGrams": 607.97,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 607.97
+        }
+      ]
+    },
     {
       "id": "galo-doido-inteiro-mv5n4ronqg2r",
       "storage": "storage",
