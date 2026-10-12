@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:45:01.185Z",
+  "updated": "2026-10-12T19:45:14.800Z",
   "models": [
+    {
+      "id": "camisa-banda-inferior-branco-mv5nvv6dgu9n",
+      "storage": "storage",
+      "name": "Camisa Banda Inferior Branco",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/camisa-banda-inferior-branco-mv5nvv6dgu9n/camisa-banda-inferior-branco-mv5nvv6dgu9n.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/camisa-banda-inferior-branco-mv5nvv6dgu9n/thumb.png",
+      "size": 2086484,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 41728,
+      "dimensions": {
+        "x": 69.72,
+        "y": 50.81,
+        "z": 57.67
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:45:14.800Z",
+      "printerId": "",
+      "weightGrams": 90.45,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 90.45
+        }
+      ]
+    },
     {
       "id": "cadarco-esquerdo-branco-mv5nvk9fxrr0",
       "storage": "storage",
