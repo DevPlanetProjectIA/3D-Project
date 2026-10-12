@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:22:19.734Z",
+  "updated": "2026-10-12T19:22:28.805Z",
   "models": [
+    {
+      "id": "joelhos-branco-mv5n2llnr19q",
+      "storage": "storage",
+      "name": "Joelhos (Branco)",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/joelhos-branco-mv5n2llnr19q/joelhos-branco-mv5n2llnr19q.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/joelhos-branco-mv5n2llnr19q/thumb.png",
+      "size": 301884,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 6036,
+      "dimensions": {
+        "x": 75.71,
+        "y": 31.46,
+        "z": 32.96
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:22:28.805Z",
+      "printerId": "",
+      "weightGrams": 28.44,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 28.44
+        }
+      ]
+    },
     {
       "id": "encaixes-da-camisa-branco-mv5n2f1oh35h",
       "storage": "storage",
