@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T20:03:04.017Z",
+  "updated": "2026-10-12T20:03:37.528Z",
   "models": [
+    {
+      "id": "almirante-cabeza-mv5oj43kt3ix",
+      "storage": "storage",
+      "name": "Almirante Cabeza",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/almirante-cabeza-mv5oj43kt3ix/almirante-cabeza-mv5oj43kt3ix.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/almirante-cabeza-mv5oj43kt3ix/thumb.png",
+      "size": 19655884,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 393116,
+      "dimensions": {
+        "x": 0.04,
+        "y": 0.04,
+        "z": 0.04
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T20:03:37.528Z",
+      "printerId": "",
+      "weightGrams": 0,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 0
+        }
+      ]
+    },
     {
       "id": "almirante-base-mv5oiorpk7ke",
       "storage": "storage",
