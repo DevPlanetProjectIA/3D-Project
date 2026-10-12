@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:23:18.291Z",
+  "updated": "2026-10-12T19:23:28.041Z",
   "models": [
+    {
+      "id": "sobrancelhas-preto-mv5n3ujiof2n",
+      "storage": "storage",
+      "name": "Sobrancelhas (Preto)",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/sobrancelhas-preto-mv5n3ujiof2n/sobrancelhas-preto-mv5n3ujiof2n.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/sobrancelhas-preto-mv5n3ujiof2n/thumb.png",
+      "size": 212484,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 4248,
+      "dimensions": {
+        "x": 34.23,
+        "y": 10.86,
+        "z": 13.82
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:23:28.041Z",
+      "printerId": "",
+      "weightGrams": 0.71,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 0.71
+        }
+      ]
+    },
     {
       "id": "short-preto-mv5n3mu7hjnv",
       "storage": "storage",
