@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:17:13.836Z",
+  "updated": "2026-10-12T19:18:14.485Z",
   "models": [
+    {
+      "id": "mascote-cruzeiro-mv5mwxihy5qz",
+      "storage": "storage",
+      "name": "Mascote Cruzeiro",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/mascote-cruzeiro-mv5mwxihy5qz/mascote-cruzeiro-mv5mwxihy5qz.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/mascote-cruzeiro-mv5mwxihy5qz/thumb.png",
+      "size": 27024645,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 1713552,
+      "dimensions": {
+        "x": 125.83,
+        "y": 129.09,
+        "z": 63.53
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:18:14.485Z",
+      "printerId": "",
+      "weightGrams": 447.82,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 447.82
+        }
+      ]
+    },
     {
       "id": "mascote-vasco-v4-mv5mvsm00yld",
       "storage": "git",
