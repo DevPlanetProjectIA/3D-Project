@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:27:33.282Z",
+  "updated": "2026-10-12T19:28:03.956Z",
   "models": [
+    {
+      "id": "base-mv5n9bw0ne95",
+      "storage": "storage",
+      "name": "Base",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/base-mv5n9bw0ne95/base-mv5n9bw0ne95.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/base-mv5n9bw0ne95/thumb.png",
+      "size": 29643284,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 592864,
+      "dimensions": {
+        "x": 120.2,
+        "y": 86.14,
+        "z": 104.08
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:28:03.956Z",
+      "printerId": "",
+      "weightGrams": 113.7,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 113.7
+        }
+      ]
+    },
     {
       "id": "short-mv5n8vlsbitq",
       "storage": "storage",
