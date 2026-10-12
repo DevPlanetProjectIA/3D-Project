@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:19:45.586Z",
+  "updated": "2026-10-12T19:19:54.439Z",
   "models": [
+    {
+      "id": "barbela-vermelho-mv5mza6o3bp1",
+      "storage": "storage",
+      "name": "Barbela (Vermelho)",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/barbela-vermelho-mv5mza6o3bp1/barbela-vermelho-mv5mza6o3bp1.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/barbela-vermelho-mv5mza6o3bp1/thumb.png",
+      "size": 173684,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 3472,
+      "dimensions": {
+        "x": 21.89,
+        "y": 12.82,
+        "z": 18.27
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:19:54.439Z",
+      "printerId": "",
+      "weightGrams": 3.46,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 3.46
+        }
+      ]
+    },
     {
       "id": "10-da-camisa-vermelho-mv5mz2o7m859",
       "storage": "storage",
