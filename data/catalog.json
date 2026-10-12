@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:22:28.805Z",
+  "updated": "2026-10-12T19:22:38.834Z",
   "models": [
+    {
+      "id": "listras-da-camisa-metade-1-branco-mv5n2s8co7k0",
+      "storage": "storage",
+      "name": "Listras da Camisa Metade 1 (Branco)",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/listras-da-camisa-metade-1-branco-mv5n2s8co7k0/listras-da-camisa-metade-1-branco-mv5n2s8co7k0.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/listras-da-camisa-metade-1-branco-mv5n2s8co7k0/thumb.png",
+      "size": 659384,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 13186,
+      "dimensions": {
+        "x": 61.49,
+        "y": 27.4,
+        "z": 68.34
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:22:38.834Z",
+      "printerId": "",
+      "weightGrams": 14.42,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 14.42
+        }
+      ]
+    },
     {
       "id": "joelhos-branco-mv5n2llnr19q",
       "storage": "storage",
