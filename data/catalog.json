@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:38:57.140Z",
+  "updated": "2026-10-12T19:39:12.909Z",
   "models": [
+    {
+      "id": "mascote-vasco-almirante-vertice-criativo-3d-mv5no2j4wxch",
+      "storage": "storage",
+      "name": "Mascote Vasco Almirante Vertice Criativo 3d",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/mascote-vasco-almirante-vertice-criativo-3d-mv5no2j4wxch/mascote-vasco-almirante-vertice-criativo-3d-mv5no2j4wxch.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/mascote-vasco-almirante-vertice-criativo-3d-mv5no2j4wxch/thumb.png",
+      "size": 13339835,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 1048568,
+      "dimensions": {
+        "x": 100,
+        "y": 110.26,
+        "z": 61.79
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:39:12.909Z",
+      "printerId": "",
+      "weightGrams": 295.69,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 295.69
+        }
+      ]
+    },
     {
       "id": "corpo-mv5nnpyrs8xa",
       "storage": "storage",
