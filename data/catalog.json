@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T20:01:34.213Z",
+  "updated": "2026-10-12T20:01:55.037Z",
   "models": [
+    {
+      "id": "perna-direita-e-esquerda-verde-mv5oh6lv9vq0",
+      "storage": "storage",
+      "name": "Perna Direita e Esquerda Verde",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/perna-direita-e-esquerda-verde-mv5oh6lv9vq0/perna-direita-e-esquerda-verde-mv5oh6lv9vq0.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/perna-direita-e-esquerda-verde-mv5oh6lv9vq0/thumb.png",
+      "size": 10819284,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 216384,
+      "dimensions": {
+        "x": 90.37,
+        "y": 33.81,
+        "z": 46.6
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T20:01:55.037Z",
+      "printerId": "",
+      "weightGrams": 32.56,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 32.56
+        }
+      ]
+    },
     {
       "id": "orelhas-direito-e-esquerdo-bege-mv5ogurbkdn6",
       "storage": "storage",
