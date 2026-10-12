@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:25:19.505Z",
+  "updated": "2026-10-12T19:25:37.809Z",
   "models": [
+    {
+      "id": "braco-direito-mv5n6g6hnx7b",
+      "storage": "storage",
+      "name": "Braço Direito",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/braco-direito-mv5n6g6hnx7b/braco-direito-mv5n6g6hnx7b.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/braco-direito-mv5n6g6hnx7b/thumb.png",
+      "size": 24811434,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 496227,
+      "dimensions": {
+        "x": 60.12,
+        "y": 84.91,
+        "z": 63.53
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:25:37.809Z",
+      "printerId": "",
+      "weightGrams": 40.27,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 40.27
+        }
+      ]
+    },
     {
       "id": "bola-mv5n63dmd4uh",
       "storage": "storage",
