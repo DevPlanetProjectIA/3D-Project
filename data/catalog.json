@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-10-12T00:36:59.236Z",
+  "updated": "2026-10-12T00:37:03.426Z",
   "models": [
     {
       "id": "enfeite-de-arvore-de-natal-com-nomes-mv4gun708bq2",
@@ -343,49 +343,6 @@
           "material": "PLA",
           "color": "#3b82f6",
           "grams": 2.89
-        }
-      ]
-    },
-    {
-      "id": "caixa-com-cadeado-mv4gtjvnxic9",
-      "storage": "storage",
-      "name": "Caixa com Cadeado",
-      "description": "Baixado automaticamente do WhatsApp (Importação Local)",
-      "format": "stl",
-      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/caixa-com-cadeado-mv4gtjvnxic9/caixa-com-cadeado-mv4gtjvnxic9.stl",
-      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/caixa-com-cadeado-mv4gtjvnxic9/thumb.png",
-      "size": 107284,
-      "tags": [
-        "whatsapp",
-        "importacao-local"
-      ],
-      "author": "Bruno T.",
-      "triangles": 2144,
-      "dimensions": {
-        "x": 190,
-        "y": 120,
-        "z": 150
-      },
-      "print": {
-        "material": "PLA",
-        "layerHeight": "0.2",
-        "infill": "15%",
-        "supports": false,
-        "notes": ""
-      },
-      "createdAt": "2026-10-11T23:39:41.696Z",
-      "printerId": "",
-      "weightGrams": 345.9,
-      "purgeGrams": 0,
-      "printSeconds": 0,
-      "costBRL": 0,
-      "priceBRL": 0,
-      "weightSource": "estimativa",
-      "filaments": [
-        {
-          "material": "PLA",
-          "color": "#3b82f6",
-          "grams": 345.9
         }
       ]
     },
