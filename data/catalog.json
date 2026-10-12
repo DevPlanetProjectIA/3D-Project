@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:24:01.250Z",
+  "updated": "2026-10-12T19:24:24.462Z",
   "models": [
+    {
+      "id": "galo-doido-inteiro-mv5n4ronqg2r",
+      "storage": "storage",
+      "name": "Galo Doido Inteiro",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/galo-doido-inteiro-mv5n4ronqg2r/galo-doido-inteiro-mv5n4ronqg2r.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/galo-doido-inteiro-mv5n4ronqg2r/thumb.png",
+      "size": 17576384,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 351526,
+      "dimensions": {
+        "x": 156.1,
+        "y": 90.98,
+        "z": 249.53
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:24:24.462Z",
+      "printerId": "",
+      "weightGrams": 587.52,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 587.52
+        }
+      ]
+    },
     {
       "id": "base-preto-mv5n4kos9yzv",
       "storage": "storage",
