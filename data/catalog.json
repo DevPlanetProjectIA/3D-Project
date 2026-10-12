@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:13:49.177Z",
+  "updated": "2026-10-12T19:14:02.305Z",
   "models": [
+    {
+      "id": "feliz-professor-mv5mrlieuyib",
+      "storage": "storage",
+      "name": "Feliz Professor",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/feliz-professor-mv5mrlieuyib/feliz-professor-mv5mrlieuyib.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/feliz-professor-mv5mrlieuyib/thumb.png",
+      "size": 9140268,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 571698,
+      "dimensions": {
+        "x": 16.69,
+        "y": 2.06,
+        "z": 50
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:14:02.305Z",
+      "printerId": "",
+      "weightGrams": 0.74,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 0.74
+        }
+      ]
+    },
     {
       "id": "modelo-texturizado-meshy-ai-generate-mv5mrfmlpiam",
       "storage": "storage",
