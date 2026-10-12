@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:24:37.258Z",
+  "updated": "2026-10-12T19:25:02.943Z",
   "models": [
+    {
+      "id": "base-mv5n5pnhr5n3",
+      "storage": "storage",
+      "name": "Base",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/base-mv5n5pnhr5n3/base-mv5n5pnhr5n3.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/base-mv5n5pnhr5n3/thumb.png",
+      "size": 13503234,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 270063,
+      "dimensions": {
+        "x": 119.13,
+        "y": 16.98,
+        "z": 119.13
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:25:02.943Z",
+      "printerId": "",
+      "weightGrams": 218.82,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 218.82
+        }
+      ]
+    },
     {
       "id": "galo-doido-mv5n59ra7ux9",
       "storage": "storage",
