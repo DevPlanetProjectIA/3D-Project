@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:23:08.253Z",
+  "updated": "2026-10-12T19:23:18.291Z",
   "models": [
+    {
+      "id": "short-preto-mv5n3mu7hjnv",
+      "storage": "storage",
+      "name": "Short (Preto)",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/short-preto-mv5n3mu7hjnv/short-preto-mv5n3mu7hjnv.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/short-preto-mv5n3mu7hjnv/thumb.png",
+      "size": 611484,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 12228,
+      "dimensions": {
+        "x": 75.42,
+        "y": 44.47,
+        "z": 40.52
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:23:18.291Z",
+      "printerId": "",
+      "weightGrams": 75.36,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 75.36
+        }
+      ]
+    },
     {
       "id": "pupilas-dos-olhos-preto-mv5n3eqwjljs",
       "storage": "storage",
