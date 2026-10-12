@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:18:58.508Z",
+  "updated": "2026-10-12T19:19:45.586Z",
   "models": [
+    {
+      "id": "10-da-camisa-vermelho-mv5mz2o7m859",
+      "storage": "storage",
+      "name": "10 da Camisa (Vermelho)",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/10-da-camisa-vermelho-mv5mz2o7m859/10-da-camisa-vermelho-mv5mz2o7m859.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/10-da-camisa-vermelho-mv5mz2o7m859/thumb.png",
+      "size": 178384,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 3566,
+      "dimensions": {
+        "x": 38.27,
+        "y": 7.47,
+        "z": 35.67
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:19:45.586Z",
+      "printerId": "",
+      "weightGrams": 2.37,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 2.37
+        }
+      ]
+    },
     {
       "id": "mascote-palmeiras-m3-mv5mxypx4m3a",
       "storage": "git",
