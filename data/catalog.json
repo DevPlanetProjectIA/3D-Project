@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:19:54.439Z",
+  "updated": "2026-10-12T19:20:05.317Z",
   "models": [
+    {
+      "id": "base-branco-mv5mzh4ep9wq",
+      "storage": "storage",
+      "name": "Base (Branco)",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/base-branco-mv5mzh4ep9wq/base-branco-mv5mzh4ep9wq.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/base-branco-mv5mzh4ep9wq/thumb.png",
+      "size": 175984,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 3518,
+      "dimensions": {
+        "x": 105.82,
+        "y": 125.47,
+        "z": 4.63
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:20:05.317Z",
+      "printerId": "",
+      "weightGrams": 15.27,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 15.27
+        }
+      ]
+    },
     {
       "id": "barbela-vermelho-mv5mza6o3bp1",
       "storage": "storage",
