@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:50:08.237Z",
+  "updated": "2026-10-12T19:50:20.653Z",
   "models": [
+    {
+      "id": "manga-direita-branco-mv5o2g5rjome",
+      "storage": "storage",
+      "name": "Manga Direita Branco",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/manga-direita-branco-mv5o2g5rjome/manga-direita-branco-mv5o2g5rjome.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/manga-direita-branco-mv5o2g5rjome/thumb.png",
+      "size": 397384,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 7946,
+      "dimensions": {
+        "x": 31.61,
+        "y": 37.37,
+        "z": 39.4
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:50:20.653Z",
+      "printerId": "",
+      "weightGrams": 19.22,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 19.22
+        }
+      ]
+    },
     {
       "id": "joelho-esquerdo-bege-mv5o243c0g64",
       "storage": "storage",
