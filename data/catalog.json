@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:48:48.423Z",
+  "updated": "2026-10-12T19:49:01.026Z",
   "models": [
+    {
+      "id": "gusset-direito-da-camisa-vermelho-mv5o0qo6asxz",
+      "storage": "storage",
+      "name": "Gusset Direito da Camisa Vermelho",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/gusset-direito-da-camisa-vermelho-mv5o0qo6asxz/gusset-direito-da-camisa-vermelho-mv5o0qo6asxz.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/gusset-direito-da-camisa-vermelho-mv5o0qo6asxz/thumb.png",
+      "size": 89684,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 1792,
+      "dimensions": {
+        "x": 7.42,
+        "y": 17.44,
+        "z": 14.92
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:49:01.026Z",
+      "printerId": "",
+      "weightGrams": 0.71,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 0.71
+        }
+      ]
+    },
     {
       "id": "faixa-da-meia-esquerda-vermelho-mv5o0gesoguv",
       "storage": "storage",
