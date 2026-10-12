@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:22:47.799Z",
+  "updated": "2026-10-12T19:22:57.897Z",
   "models": [
+    {
+      "id": "meias-preto-mv5n36xhr1f4",
+      "storage": "storage",
+      "name": "Meias (Preto)",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/meias-preto-mv5n36xhr1f4/meias-preto-mv5n36xhr1f4.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/meias-preto-mv5n36xhr1f4/thumb.png",
+      "size": 384284,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 7684,
+      "dimensions": {
+        "x": 78.81,
+        "y": 30.06,
+        "z": 41.52
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:22:57.897Z",
+      "printerId": "",
+      "weightGrams": 37.49,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 37.49
+        }
+      ]
+    },
     {
       "id": "listras-da-camisa-metade-2-branco-mv5n304rerjr",
       "storage": "storage",
