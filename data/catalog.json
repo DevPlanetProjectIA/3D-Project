@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:15:27.310Z",
+  "updated": "2026-10-12T19:15:55.657Z",
   "models": [
+    {
+      "id": "mascote-fluminense-v2-mv5mtsa2hg56",
+      "storage": "storage",
+      "name": "Mascote Fluminense V2",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/mascote-fluminense-v2-mv5mtsa2hg56/mascote-fluminense-v2-mv5mtsa2hg56.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/mascote-fluminense-v2-mv5mtsa2hg56/thumb.png",
+      "size": 50170677,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 3714744,
+      "dimensions": {
+        "x": 138.1,
+        "y": 168.33,
+        "z": 102.81
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:15:55.657Z",
+      "printerId": "",
+      "weightGrams": 1037.23,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 1037.23
+        }
+      ]
+    },
     {
       "id": "mascote-do-palmeiras-modelo-4-mv5mtj8i35bu",
       "storage": "storage",
