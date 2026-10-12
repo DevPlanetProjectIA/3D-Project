@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T19:22:11.261Z",
+  "updated": "2026-10-12T19:22:19.734Z",
   "models": [
+    {
+      "id": "encaixes-da-camisa-branco-mv5n2f1oh35h",
+      "storage": "storage",
+      "name": "Encaixes da Camisa (Branco)",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/encaixes-da-camisa-branco-mv5n2f1oh35h/encaixes-da-camisa-branco-mv5n2f1oh35h.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/encaixes-da-camisa-branco-mv5n2f1oh35h/thumb.png",
+      "size": 11284,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 224,
+      "dimensions": {
+        "x": 82.58,
+        "y": 28.78,
+        "z": 62.25
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-12T19:22:19.734Z",
+      "printerId": "",
+      "weightGrams": 11.33,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 11.33
+        }
+      ]
+    },
     {
       "id": "dentes-branco-mv5n26tfy0gi",
       "storage": "storage",
