@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-13T19:07:50.838Z",
+  "updated": "2026-10-13T19:08:00.657Z",
   "models": [
+    {
+      "id": "open-folder-cover-back-mv71zt60hh0s",
+      "storage": "storage",
+      "name": "Open Folder Cover Back",
+      "description": "Baixado automaticamente do WhatsApp (STL dos Calangos)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/open-folder-cover-back-mv71zt60hh0s/open-folder-cover-back-mv71zt60hh0s.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/open-folder-cover-back-mv71zt60hh0s/thumb.png",
+      "size": 903484,
+      "tags": [
+        "whatsapp",
+        "stl-dos-calangos"
+      ],
+      "author": "Alcicleide",
+      "triangles": 18068,
+      "dimensions": {
+        "x": 84.2,
+        "y": 94.8,
+        "z": 6
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-13T19:08:00.657Z",
+      "printerId": "",
+      "weightGrams": 19.07,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 19.07
+        }
+      ]
+    },
     {
       "id": "open-folder-base-start-mv71zlvm0cy7",
       "storage": "storage",
