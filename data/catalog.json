@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-13T19:09:39.957Z",
+  "updated": "2026-10-13T19:09:47.847Z",
   "models": [
+    {
+      "id": "open-folder-with-less-tolerance-instax-mini-mv7225buprfm",
+      "storage": "storage",
+      "name": "Open Folder With Less Tolerance Instax Mini",
+      "description": "Baixado automaticamente do WhatsApp (STL dos Calangos)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/open-folder-with-less-tolerance-instax-mini-mv7225buprfm/open-folder-with-less-tolerance-instax-mini-mv7225buprfm.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/open-folder-with-less-tolerance-instax-mini-mv7225buprfm/thumb.png",
+      "size": 890884,
+      "tags": [
+        "whatsapp",
+        "stl-dos-calangos"
+      ],
+      "author": "Alcicleide",
+      "triangles": 17816,
+      "dimensions": {
+        "x": 64.4,
+        "y": 88.8,
+        "z": 3.6
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-13T19:09:47.847Z",
+      "printerId": "",
+      "weightGrams": 2.6,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 2.6
+        }
+      ]
+    },
     {
       "id": "open-folder-with-less-tolerance-instax-mini-union-mv721yavgvlb",
       "storage": "storage",
