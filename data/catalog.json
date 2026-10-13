@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-13T19:09:22.512Z",
+  "updated": "2026-10-13T19:09:30.727Z",
   "models": [
+    {
+      "id": "open-folder-with-less-tolerance-instax-mini-end-mv721rwf1bqk",
+      "storage": "storage",
+      "name": "Open Folder With Less Tolerance Instax Mini End",
+      "description": "Baixado automaticamente do WhatsApp (STL dos Calangos)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/open-folder-with-less-tolerance-instax-mini-end-mv721rwf1bqk/open-folder-with-less-tolerance-instax-mini-end-mv721rwf1bqk.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/open-folder-with-less-tolerance-instax-mini-end-mv721rwf1bqk/thumb.png",
+      "size": 285484,
+      "tags": [
+        "whatsapp",
+        "stl-dos-calangos"
+      ],
+      "author": "Alcicleide",
+      "triangles": 5708,
+      "dimensions": {
+        "x": 3.6,
+        "y": 3.6,
+        "z": 49.8
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-13T19:09:30.727Z",
+      "printerId": "",
+      "weightGrams": 0.62,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 0.62
+        }
+      ]
+    },
     {
       "id": "open-folder-with-less-tolerance-cover-print-in-place-mv721jz908dv",
       "storage": "storage",
