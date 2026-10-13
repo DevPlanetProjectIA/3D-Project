@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-13T15:06:02.875Z",
+  "updated": "2026-10-13T17:18:43.553Z",
   "models": [
+    {
+      "id": "lagartinho-maluco-mv6y2xf6k9vq",
+      "storage": "storage",
+      "name": "Lagartinho Maluco",
+      "description": "Baixado automaticamente do WhatsApp (STL 🟠🦎)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/lagartinho-maluco-mv6y2xf6k9vq/lagartinho-maluco-mv6y2xf6k9vq.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/lagartinho-maluco-mv6y2xf6k9vq/thumb.png",
+      "size": 25528741,
+      "tags": [
+        "whatsapp",
+        "stl"
+      ],
+      "author": "Elena Vidaletti Rebetchuk",
+      "triangles": 1915370,
+      "dimensions": {
+        "x": 87.22,
+        "y": 86.59,
+        "z": 79.31
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-13T17:18:43.553Z",
+      "printerId": "",
+      "weightGrams": 259.95,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 259.95
+        }
+      ]
+    },
     {
       "id": "grupo-mini-jesus-micla-3d-pescoco-reforcado-mv6tcm7qfadw",
       "storage": "storage",
