@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-13T19:08:53.347Z",
+  "updated": "2026-10-13T19:09:02.665Z",
   "models": [
+    {
+      "id": "open-folder-print-me-bambulab-mv7215o0zih2",
+      "storage": "storage",
+      "name": "Open Folder Print Me! (Bambulab)",
+      "description": "Baixado automaticamente do WhatsApp (STL dos Calangos)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/open-folder-print-me-bambulab-mv7215o0zih2/open-folder-print-me-bambulab-mv7215o0zih2.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/open-folder-print-me-bambulab-mv7215o0zih2/thumb.png",
+      "size": 2838120,
+      "tags": [
+        "whatsapp",
+        "stl-dos-calangos"
+      ],
+      "author": "Alcicleide",
+      "triangles": 266816,
+      "dimensions": {
+        "x": 175.4,
+        "y": 94.8,
+        "z": 94.8
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-13T19:09:02.665Z",
+      "printerId": "",
+      "weightGrams": 684.13,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 684.13
+        }
+      ]
+    },
     {
       "id": "open-folder-instax-mini-mv720ycm0kxb",
       "storage": "storage",
