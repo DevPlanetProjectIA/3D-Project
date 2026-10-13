@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-13T19:08:35.567Z",
+  "updated": "2026-10-13T19:08:44.408Z",
   "models": [
+    {
+      "id": "open-folder-instax-mini-union-mv720rlfd5py",
+      "storage": "storage",
+      "name": "Open Folder Instax Mini Union",
+      "description": "Baixado automaticamente do WhatsApp (STL dos Calangos)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/open-folder-instax-mini-union-mv720rlfd5py/open-folder-instax-mini-union-mv720rlfd5py.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/open-folder-instax-mini-union-mv720rlfd5py/thumb.png",
+      "size": 559484,
+      "tags": [
+        "whatsapp",
+        "stl-dos-calangos"
+      ],
+      "author": "Alcicleide",
+      "triangles": 11188,
+      "dimensions": {
+        "x": 3.6,
+        "y": 49.4,
+        "z": 7.4
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-13T19:08:44.408Z",
+      "printerId": "",
+      "weightGrams": 1.44,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 1.44
+        }
+      ]
+    },
     {
       "id": "open-folder-instax-mini-end-mv720kt9i24g",
       "storage": "storage",
