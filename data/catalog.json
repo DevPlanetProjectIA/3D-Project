@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-13T19:08:09.710Z",
+  "updated": "2026-10-13T19:08:17.851Z",
   "models": [
+    {
+      "id": "open-folder-cover-spine-mv7207ngw2yj",
+      "storage": "storage",
+      "name": "Open Folder Cover Spine",
+      "description": "Baixado automaticamente do WhatsApp (STL dos Calangos)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/open-folder-cover-spine-mv7207ngw2yj/open-folder-cover-spine-mv7207ngw2yj.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/open-folder-cover-spine-mv7207ngw2yj/thumb.png",
+      "size": 1212684,
+      "tags": [
+        "whatsapp",
+        "stl-dos-calangos"
+      ],
+      "author": "Alcicleide",
+      "triangles": 24252,
+      "dimensions": {
+        "x": 3.6,
+        "y": 91.95,
+        "z": 27.2
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-13T19:08:17.851Z",
+      "printerId": "",
+      "weightGrams": 6.99,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 6.99
+        }
+      ]
+    },
     {
       "id": "open-folder-cover-print-in-place-mv7200pcsq3y",
       "storage": "storage",
