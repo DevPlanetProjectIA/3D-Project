@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-13T19:09:02.665Z",
+  "updated": "2026-10-13T19:09:12.111Z",
   "models": [
+    {
+      "id": "open-folder-with-less-tolerance-cover-back-mv721clduzam",
+      "storage": "storage",
+      "name": "Open Folder With Less Tolerance Cover Back",
+      "description": "Baixado automaticamente do WhatsApp (STL dos Calangos)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/open-folder-with-less-tolerance-cover-back-mv721clduzam/open-folder-with-less-tolerance-cover-back-mv721clduzam.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/open-folder-with-less-tolerance-cover-back-mv721clduzam/thumb.png",
+      "size": 903484,
+      "tags": [
+        "whatsapp",
+        "stl-dos-calangos"
+      ],
+      "author": "Alcicleide",
+      "triangles": 18068,
+      "dimensions": {
+        "x": 84.2,
+        "y": 6,
+        "z": 94.8
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-13T19:09:12.111Z",
+      "printerId": "",
+      "weightGrams": 19.07,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 19.07
+        }
+      ]
+    },
     {
       "id": "open-folder-print-me-bambulab-mv7215o0zih2",
       "storage": "storage",
