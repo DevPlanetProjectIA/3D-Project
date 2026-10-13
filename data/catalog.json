@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-13T15:05:31.765Z",
+  "updated": "2026-10-13T15:06:02.875Z",
   "models": [
+    {
+      "id": "grupo-mini-jesus-micla-3d-pescoco-reforcado-mv6tcm7qfadw",
+      "storage": "storage",
+      "name": "Grupo Mini Jesus Micla 3d Pescoco Reforcado",
+      "description": "Baixado automaticamente do WhatsApp (STL 🟠🦎)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/grupo-mini-jesus-micla-3d-pescoco-reforcado-mv6tcm7qfadw/grupo-mini-jesus-micla-3d-pescoco-reforcado-mv6tcm7qfadw.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/grupo-mini-jesus-micla-3d-pescoco-reforcado-mv6tcm7qfadw/thumb.png",
+      "size": 4904133,
+      "tags": [
+        "whatsapp",
+        "stl"
+      ],
+      "author": "Edgar",
+      "triangles": 284230,
+      "dimensions": {
+        "x": 11.13,
+        "y": 11.4,
+        "z": 24.66
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-13T15:06:02.875Z",
+      "printerId": "",
+      "weightGrams": 1.36,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 1.36
+        }
+      ]
+    },
     {
       "id": "schlauchmagen-mv6tc0aybp9v",
       "storage": "storage",
