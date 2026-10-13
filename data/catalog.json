@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-13T17:18:43.553Z",
+  "updated": "2026-10-13T19:07:24.172Z",
   "models": [
+    {
+      "id": "open-folder-base-center-mv71yzp9j55j",
+      "storage": "storage",
+      "name": "Open Folder Base Center",
+      "description": "Baixado automaticamente do WhatsApp (STL dos Calangos)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/open-folder-base-center-mv71yzp9j55j/open-folder-base-center-mv71yzp9j55j.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/open-folder-base-center-mv71yzp9j55j/thumb.png",
+      "size": 161084,
+      "tags": [
+        "whatsapp",
+        "stl-dos-calangos"
+      ],
+      "author": "Alcicleide",
+      "triangles": 3220,
+      "dimensions": {
+        "x": 19,
+        "y": 70,
+        "z": 37.8
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-13T19:07:24.172Z",
+      "printerId": "",
+      "weightGrams": 24.24,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 24.24
+        }
+      ]
+    },
     {
       "id": "lagartinho-maluco-mv6y2xf6k9vq",
       "storage": "storage",
