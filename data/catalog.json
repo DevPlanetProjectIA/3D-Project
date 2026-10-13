@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-13T19:07:24.172Z",
+  "updated": "2026-10-13T19:07:32.806Z",
   "models": [
+    {
+      "id": "open-folder-base-connecting-piece-mv71z8qdxgfv",
+      "storage": "storage",
+      "name": "Open Folder Base Connecting Piece",
+      "description": "Baixado automaticamente do WhatsApp (STL dos Calangos)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/open-folder-base-connecting-piece-mv71z8qdxgfv/open-folder-base-connecting-piece-mv71z8qdxgfv.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/open-folder-base-connecting-piece-mv71z8qdxgfv/thumb.png",
+      "size": 61084,
+      "tags": [
+        "whatsapp",
+        "stl-dos-calangos"
+      ],
+      "author": "Alcicleide",
+      "triangles": 1220,
+      "dimensions": {
+        "x": 1.8,
+        "y": 11.2,
+        "z": 16
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-13T19:07:32.805Z",
+      "printerId": "",
+      "weightGrams": 0.2,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 0.2
+        }
+      ]
+    },
     {
       "id": "open-folder-base-center-mv71yzp9j55j",
       "storage": "storage",
