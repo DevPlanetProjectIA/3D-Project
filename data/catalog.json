@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-13T19:09:12.111Z",
+  "updated": "2026-10-13T19:09:22.512Z",
   "models": [
+    {
+      "id": "open-folder-with-less-tolerance-cover-print-in-place-mv721jz908dv",
+      "storage": "storage",
+      "name": "Open Folder With Less Tolerance Cover Print In Place",
+      "description": "Baixado automaticamente do WhatsApp (STL dos Calangos)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/open-folder-with-less-tolerance-cover-print-in-place-mv721jz908dv/open-folder-with-less-tolerance-cover-print-in-place-mv721jz908dv.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/open-folder-with-less-tolerance-cover-print-in-place-mv721jz908dv/thumb.png",
+      "size": 2779684,
+      "tags": [
+        "whatsapp",
+        "stl-dos-calangos"
+      ],
+      "author": "Alcicleide",
+      "triangles": 55592,
+      "dimensions": {
+        "x": 175.4,
+        "y": 6,
+        "z": 94.8
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-13T19:09:22.512Z",
+      "printerId": "",
+      "weightGrams": 42.52,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 42.52
+        }
+      ]
+    },
     {
       "id": "open-folder-with-less-tolerance-cover-back-mv721clduzam",
       "storage": "storage",
