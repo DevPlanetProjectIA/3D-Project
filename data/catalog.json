@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-12T21:12:33.521Z",
+  "updated": "2026-10-13T15:05:31.765Z",
   "models": [
+    {
+      "id": "schlauchmagen-mv6tc0aybp9v",
+      "storage": "storage",
+      "name": "Schlauchmagen",
+      "description": "Baixado automaticamente do WhatsApp (Calangaiada 3D)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/schlauchmagen-mv6tc0aybp9v/schlauchmagen-mv6tc0aybp9v.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/schlauchmagen-mv6tc0aybp9v/thumb.png",
+      "size": 4414426,
+      "tags": [
+        "whatsapp",
+        "calangaiada-3d"
+      ],
+      "author": "Kelma",
+      "triangles": 366134,
+      "dimensions": {
+        "x": 61.18,
+        "y": 48.93,
+        "z": 68.91
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-13T15:05:31.765Z",
+      "printerId": "",
+      "weightGrams": 89.53,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 89.53
+        }
+      ]
+    },
     {
       "id": "snowman-split-v2-mv5pd33lqxts",
       "storage": "storage",
