@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-14T10:51:42.746Z",
+  "updated": "2026-10-14T14:29:25.321Z",
   "models": [
+    {
+      "id": "frei-gilson-sentado-mv87h71wvig7",
+      "storage": "storage",
+      "name": "Frei Gilson–sentado",
+      "description": "Baixado automaticamente do WhatsApp (STL dos Calangos)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/frei-gilson-sentado-mv87h71wvig7/frei-gilson-sentado-mv87h71wvig7.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/frei-gilson-sentado-mv87h71wvig7/thumb.png",
+      "size": 17803480,
+      "tags": [
+        "whatsapp",
+        "stl-dos-calangos"
+      ],
+      "author": "Alexandre",
+      "triangles": 1563632,
+      "dimensions": {
+        "x": 22,
+        "y": 22,
+        "z": 25.47
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-14T14:29:25.321Z",
+      "printerId": "",
+      "weightGrams": 5.35,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 5.35
+        }
+      ]
+    },
     {
       "id": "lula-sentado-projeto-bambu-lab-a1-mv7zpcmffych",
       "storage": "storage",
