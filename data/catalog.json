@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-14T10:50:18.181Z",
+  "updated": "2026-10-14T10:51:21.624Z",
   "models": [
+    {
+      "id": "bolsonaro-sentado-projeto-bambu-lab-a1-mv7zoqpyrn10",
+      "storage": "storage",
+      "name": "Bolsonaro Sentado Projeto Bambu Lab A1",
+      "description": "Baixado automaticamente do WhatsApp (STL dos Calangos)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/bolsonaro-sentado-projeto-bambu-lab-a1-mv7zoqpyrn10/bolsonaro-sentado-projeto-bambu-lab-a1-mv7zoqpyrn10.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/bolsonaro-sentado-projeto-bambu-lab-a1-mv7zoqpyrn10/thumb.png",
+      "size": 21071040,
+      "tags": [
+        "whatsapp",
+        "stl-dos-calangos"
+      ],
+      "author": "Juninho Piovesan",
+      "triangles": 1997076,
+      "dimensions": {
+        "x": 27,
+        "y": 27,
+        "z": 27
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-14T10:51:21.624Z",
+      "printerId": "",
+      "weightGrams": 8.54,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 8.54
+        }
+      ]
+    },
     {
       "id": "lula-sentado-mv7znjmvilzz",
       "storage": "storage",
