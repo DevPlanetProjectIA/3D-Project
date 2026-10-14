@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-14T10:51:21.624Z",
+  "updated": "2026-10-14T10:51:38.654Z",
   "models": [
+    {
+      "id": "santa-teresinha-mv7zogepmi90",
+      "storage": "storage",
+      "name": "Santa Teresinha",
+      "description": "Baixado automaticamente do WhatsApp (STL dos Calangos)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/santa-teresinha-mv7zogepmi90/santa-teresinha-mv7zogepmi90.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/santa-teresinha-mv7zogepmi90/thumb.png",
+      "size": 36289095,
+      "tags": [
+        "whatsapp",
+        "stl-dos-calangos"
+      ],
+      "author": "Gabrielly Galli",
+      "triangles": 2425546,
+      "dimensions": {
+        "x": 62.58,
+        "y": 38.28,
+        "z": 98.45
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-14T10:51:38.654Z",
+      "printerId": "",
+      "weightGrams": 102.35,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 102.35
+        }
+      ]
+    },
     {
       "id": "bolsonaro-sentado-projeto-bambu-lab-a1-mv7zoqpyrn10",
       "storage": "storage",
