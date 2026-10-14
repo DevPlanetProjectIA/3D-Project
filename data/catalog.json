@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-14T10:51:38.654Z",
+  "updated": "2026-10-14T10:51:42.746Z",
   "models": [
+    {
+      "id": "lula-sentado-projeto-bambu-lab-a1-mv7zpcmffych",
+      "storage": "storage",
+      "name": "Lula Sentado Projeto Bambu Lab A1",
+      "description": "Baixado automaticamente do WhatsApp (STL dos Calangos)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/lula-sentado-projeto-bambu-lab-a1-mv7zpcmffych/lula-sentado-projeto-bambu-lab-a1-mv7zpcmffych.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/lula-sentado-projeto-bambu-lab-a1-mv7zpcmffych/thumb.png",
+      "size": 20351752,
+      "tags": [
+        "whatsapp",
+        "stl-dos-calangos"
+      ],
+      "author": "Juninho Piovesan",
+      "triangles": 1955878,
+      "dimensions": {
+        "x": 27,
+        "y": 27,
+        "z": 27
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-14T10:51:42.746Z",
+      "printerId": "",
+      "weightGrams": 8.54,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 8.54
+        }
+      ]
+    },
     {
       "id": "santa-teresinha-mv7zogepmi90",
       "storage": "storage",
