@@ -1,7 +1,93 @@
 {
   "version": 1,
-  "updated": "2026-10-14T14:29:25.321Z",
+  "updated": "2026-10-14T15:07:19.264Z",
   "models": [
+    {
+      "id": "fluminense-mv88tpp97cov",
+      "storage": "storage",
+      "name": "Fluminense",
+      "description": "Baixado automaticamente do WhatsApp (STL dos Calangos)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/fluminense-mv88tpp97cov/fluminense-mv88tpp97cov.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/fluminense-mv88tpp97cov/thumb.png",
+      "size": 18128224,
+      "tags": [
+        "whatsapp",
+        "stl-dos-calangos"
+      ],
+      "author": "Alexandre",
+      "triangles": 1388686,
+      "dimensions": {
+        "x": 139.54,
+        "y": 103.36,
+        "z": 158.16
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-14T15:07:19.264Z",
+      "printerId": "",
+      "weightGrams": 989.99,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 989.99
+        }
+      ]
+    },
+    {
+      "id": "caneca-santos-mv88tuz4evil",
+      "storage": "storage",
+      "name": "Caneca Santos",
+      "description": "Baixado automaticamente do WhatsApp (STL dos Calangos)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/caneca-santos-mv88tuz4evil/caneca-santos-mv88tuz4evil.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/caneca-santos-mv88tuz4evil/thumb.png",
+      "size": 13519967,
+      "tags": [
+        "whatsapp",
+        "stl-dos-calangos"
+      ],
+      "author": "Alexandre",
+      "triangles": 1170438,
+      "dimensions": {
+        "x": 140.65,
+        "y": 103.36,
+        "z": 125.93
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-14T15:07:17.553Z",
+      "printerId": "",
+      "weightGrams": 794.55,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 794.55
+        }
+      ]
+    },
     {
       "id": "frei-gilson-sentado-mv87h71wvig7",
       "storage": "storage",
