@@ -1,7 +1,93 @@
 {
   "version": 1,
-  "updated": "2026-10-15T11:00:56.558Z",
+  "updated": "2026-10-15T11:45:15.230Z",
   "models": [
+    {
+      "id": "mini-jesus-multipartes-7-5-cm-mv9h23u7a4e6",
+      "storage": "git",
+      "name": "Mini Jesus Multipartes 7,5 CM",
+      "description": "Baixado automaticamente do WhatsApp (STL 🟠🦎)",
+      "format": "3mf",
+      "file": "models/mini-jesus-multipartes-7-5-cm-mv9h23u7a4e6/mini-jesus-multipartes-7-5-cm-mv9h23u7a4e6.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/mini-jesus-multipartes-7-5-cm-mv9h23u7a4e6/thumb.png",
+      "size": 60762808,
+      "tags": [
+        "whatsapp",
+        "stl"
+      ],
+      "author": "🦎Kleber Kinder 🦎",
+      "triangles": 3970012,
+      "dimensions": {
+        "x": 33.96,
+        "y": 31.41,
+        "z": 41.13
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-15T11:45:15.230Z",
+      "printerId": "",
+      "weightGrams": 19.03,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 19.03
+        }
+      ]
+    },
+    {
+      "id": "mini-jesus-multipartes-7-5-cm-mv9h1t0eyngo",
+      "storage": "git",
+      "name": "Mini Jesus Multipartes 7,5 CM",
+      "description": "Baixado automaticamente do WhatsApp (STL dos Calangos)",
+      "format": "3mf",
+      "file": "models/mini-jesus-multipartes-7-5-cm-mv9h1t0eyngo/mini-jesus-multipartes-7-5-cm-mv9h1t0eyngo.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/mini-jesus-multipartes-7-5-cm-mv9h1t0eyngo/thumb.png",
+      "size": 60762808,
+      "tags": [
+        "whatsapp",
+        "stl-dos-calangos"
+      ],
+      "author": "🦎Kleber Kinder 🦎",
+      "triangles": 3970012,
+      "dimensions": {
+        "x": 33.96,
+        "y": 31.41,
+        "z": 41.13
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-15T11:45:14.837Z",
+      "printerId": "",
+      "weightGrams": 19.03,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 19.03
+        }
+      ]
+    },
     {
       "id": "sao-paulo-mv9fh0f337tf",
       "storage": "storage",
