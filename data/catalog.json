@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-15T19:13:42.218Z",
+  "updated": "2026-10-15T19:13:54.038Z",
   "models": [
+    {
+      "id": "thermoformed-stich-back-mv9x32nqielx",
+      "storage": "storage",
+      "name": "Thermoformed Stich Back",
+      "description": "Baixado automaticamente do WhatsApp (STL dos Calangos)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/thermoformed-stich-back-mv9x32nqielx/thermoformed-stich-back-mv9x32nqielx.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/thermoformed-stich-back-mv9x32nqielx/thumb.png",
+      "size": 331884,
+      "tags": [
+        "whatsapp",
+        "stl-dos-calangos"
+      ],
+      "author": "Alcicleide",
+      "triangles": 6636,
+      "dimensions": {
+        "x": 170.6,
+        "y": 4.48,
+        "z": 112.64
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-15T19:13:54.038Z",
+      "printerId": "",
+      "weightGrams": 16.14,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 16.14
+        }
+      ]
+    },
     {
       "id": "shape-connector-mv9x2up3cmxd",
       "storage": "storage",
