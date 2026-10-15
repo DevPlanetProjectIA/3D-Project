@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-15T00:54:06.855Z",
+  "updated": "2026-10-15T11:00:56.558Z",
   "models": [
+    {
+      "id": "sao-paulo-mv9fh0f337tf",
+      "storage": "storage",
+      "name": "Sao Paulo.",
+      "description": "Baixado automaticamente do WhatsApp (Calangaiada 3D)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/sao-paulo-mv9fh0f337tf/sao-paulo-mv9fh0f337tf.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/sao-paulo-mv9fh0f337tf/thumb.png",
+      "size": 25407345,
+      "tags": [
+        "whatsapp",
+        "calangaiada-3d"
+      ],
+      "author": "~KC",
+      "triangles": 2159338,
+      "dimensions": {
+        "x": 140.65,
+        "y": 132.28,
+        "z": 158.32
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-15T11:00:56.558Z",
+      "printerId": "",
+      "weightGrams": 1278.34,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 1278.34
+        }
+      ]
+    },
     {
       "id": "flower-1-mv8tspry0j9d",
       "storage": "storage",
