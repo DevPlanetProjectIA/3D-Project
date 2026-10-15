@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-15T19:15:20.416Z",
+  "updated": "2026-10-15T19:15:32.838Z",
   "models": [
+    {
+      "id": "thermoformed-stich-top-mold-mv9x569vb06y",
+      "storage": "storage",
+      "name": "Thermoformed Stich Top Mold",
+      "description": "Baixado automaticamente do WhatsApp (STL dos Calangos)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/thermoformed-stich-top-mold-mv9x569vb06y/thermoformed-stich-top-mold-mv9x569vb06y.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/thermoformed-stich-top-mold-mv9x569vb06y/thumb.png",
+      "size": 2379784,
+      "tags": [
+        "whatsapp",
+        "stl-dos-calangos"
+      ],
+      "author": "Alcicleide",
+      "triangles": 47594,
+      "dimensions": {
+        "x": 183,
+        "y": 19.95,
+        "z": 125.05
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-15T19:15:32.838Z",
+      "printerId": "",
+      "weightGrams": 202.12,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 202.12
+        }
+      ]
+    },
     {
       "id": "thermoformed-stich-pupils-mv9x4yno0j7n",
       "storage": "storage",
