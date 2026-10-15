@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-15T19:15:10.464Z",
+  "updated": "2026-10-15T19:15:20.416Z",
   "models": [
+    {
+      "id": "thermoformed-stich-pupils-mv9x4yno0j7n",
+      "storage": "storage",
+      "name": "Thermoformed Stich Pupils",
+      "description": "Baixado automaticamente do WhatsApp (STL dos Calangos)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/thermoformed-stich-pupils-mv9x4yno0j7n/thermoformed-stich-pupils-mv9x4yno0j7n.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/thermoformed-stich-pupils-mv9x4yno0j7n/thumb.png",
+      "size": 76884,
+      "tags": [
+        "whatsapp",
+        "stl-dos-calangos"
+      ],
+      "author": "Alcicleide",
+      "triangles": 1536,
+      "dimensions": {
+        "x": 63.41,
+        "y": 0.8,
+        "z": 8.56
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-15T19:15:20.416Z",
+      "printerId": "",
+      "weightGrams": 0.09,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 0.09
+        }
+      ]
+    },
     {
       "id": "thermoformed-stich-nose-mv9x4qqqmjn4",
       "storage": "storage",
