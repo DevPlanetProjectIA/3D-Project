@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-15T19:14:49.531Z",
+  "updated": "2026-10-15T19:15:00.296Z",
   "models": [
+    {
+      "id": "thermoformed-stich-frontal-shape-mv9x4ihok0qe",
+      "storage": "storage",
+      "name": "Thermoformed Stich Frontal Shape",
+      "description": "Baixado automaticamente do WhatsApp (STL dos Calangos)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/thermoformed-stich-frontal-shape-mv9x4ihok0qe/thermoformed-stich-frontal-shape-mv9x4ihok0qe.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/thermoformed-stich-frontal-shape-mv9x4ihok0qe/thumb.png",
+      "size": 312384,
+      "tags": [
+        "whatsapp",
+        "stl-dos-calangos"
+      ],
+      "author": "Alcicleide",
+      "triangles": 6246,
+      "dimensions": {
+        "x": 170.6,
+        "y": 4.48,
+        "z": 112.64
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-15T19:15:00.296Z",
+      "printerId": "",
+      "weightGrams": 16.13,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 16.13
+        }
+      ]
+    },
     {
       "id": "thermoformed-stich-frontal-shape-contours-mv9x49jyc0mh",
       "storage": "storage",
