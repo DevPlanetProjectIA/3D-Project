@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-15T19:14:16.363Z",
+  "updated": "2026-10-15T19:14:27.606Z",
   "models": [
+    {
+      "id": "thermoformed-stich-eyes-mv9x3suasysm",
+      "storage": "storage",
+      "name": "Thermoformed Stich Eyes",
+      "description": "Baixado automaticamente do WhatsApp (STL dos Calangos)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/thermoformed-stich-eyes-mv9x3suasysm/thermoformed-stich-eyes-mv9x3suasysm.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/thermoformed-stich-eyes-mv9x3suasysm/thumb.png",
+      "size": 119684,
+      "tags": [
+        "whatsapp",
+        "stl-dos-calangos"
+      ],
+      "author": "Alcicleide",
+      "triangles": 2392,
+      "dimensions": {
+        "x": 82.17,
+        "y": 0.8,
+        "z": 29.67
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-15T19:14:27.606Z",
+      "printerId": "",
+      "weightGrams": 0.92,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 0.92
+        }
+      ]
+    },
     {
       "id": "thermoformed-stich-ears-mv9x3lbs7um8",
       "storage": "storage",
