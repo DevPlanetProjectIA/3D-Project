@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-15T19:14:27.606Z",
+  "updated": "2026-10-15T19:14:37.918Z",
   "models": [
+    {
+      "id": "thermoformed-stich-frontal-cyan-parts-mv9x41i9zpl1",
+      "storage": "storage",
+      "name": "Thermoformed Stich Frontal Cyan Parts",
+      "description": "Baixado automaticamente do WhatsApp (STL dos Calangos)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/thermoformed-stich-frontal-cyan-parts-mv9x41i9zpl1/thermoformed-stich-frontal-cyan-parts-mv9x41i9zpl1.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/thermoformed-stich-frontal-cyan-parts-mv9x41i9zpl1/thumb.png",
+      "size": 154884,
+      "tags": [
+        "whatsapp",
+        "stl-dos-calangos"
+      ],
+      "author": "Alcicleide",
+      "triangles": 3096,
+      "dimensions": {
+        "x": 93.61,
+        "y": 0.8,
+        "z": 65.5
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-15T19:14:37.918Z",
+      "printerId": "",
+      "weightGrams": 1.93,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 1.93
+        }
+      ]
+    },
     {
       "id": "thermoformed-stich-eyes-mv9x3suasysm",
       "storage": "storage",
