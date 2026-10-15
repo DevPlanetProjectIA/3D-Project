@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-14T18:24:33.701Z",
+  "updated": "2026-10-15T00:12:59.809Z",
   "models": [
+    {
+      "id": "stifthalter-mv8sbw2avhee",
+      "storage": "storage",
+      "name": "Stifthalter",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/stifthalter-mv8sbw2avhee/stifthalter-mv8sbw2avhee.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/stifthalter-mv8sbw2avhee/thumb.png",
+      "size": 899529,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 1724,
+      "dimensions": {
+        "x": 74.27,
+        "y": 17.2,
+        "z": 30
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-15T00:12:59.808Z",
+      "printerId": "",
+      "weightGrams": 16.63,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 16.63
+        }
+      ]
+    },
     {
       "id": "lalaland-scrooge-mc-duck-mv8fvq9jczvf",
       "storage": "git",
