@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-15T16:29:15.242Z",
+  "updated": "2026-10-15T18:57:47.409Z",
   "models": [
+    {
+      "id": "carimbos-de-brigadeiro-halloween-mv9wicjzktyr",
+      "storage": "storage",
+      "name": "Carimbos de Brigadeiro Halloween",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/carimbos-de-brigadeiro-halloween-mv9wicjzktyr/carimbos-de-brigadeiro-halloween-mv9wicjzktyr.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/carimbos-de-brigadeiro-halloween-mv9wicjzktyr/thumb.png",
+      "size": 1984745,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 51398,
+      "dimensions": {
+        "x": 613.96,
+        "y": 585.76,
+        "z": 32.94
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-15T18:57:47.409Z",
+      "printerId": "",
+      "weightGrams": 5141.71,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 5141.71
+        }
+      ]
+    },
     {
       "id": "bmcuz-metric-m3-mv9r7czw5ptm",
       "storage": "storage",
