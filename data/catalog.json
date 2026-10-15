@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-15T19:13:54.038Z",
+  "updated": "2026-10-15T19:14:06.595Z",
   "models": [
+    {
+      "id": "thermoformed-stich-bottom-mold-mv9x3bujr76r",
+      "storage": "storage",
+      "name": "Thermoformed Stich Bottom Mold",
+      "description": "Baixado automaticamente do WhatsApp (STL dos Calangos)",
+      "format": "stl",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/thermoformed-stich-bottom-mold-mv9x3bujr76r/thermoformed-stich-bottom-mold-mv9x3bujr76r.stl",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/thermoformed-stich-bottom-mold-mv9x3bujr76r/thumb.png",
+      "size": 3301784,
+      "tags": [
+        "whatsapp",
+        "stl-dos-calangos"
+      ],
+      "author": "Alcicleide",
+      "triangles": 66034,
+      "dimensions": {
+        "x": 183,
+        "y": 18.8,
+        "z": 125.05
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-15T19:14:06.595Z",
+      "printerId": "",
+      "weightGrams": 203.32,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 203.32
+        }
+      ]
+    },
     {
       "id": "thermoformed-stich-back-mv9x32nqielx",
       "storage": "storage",
