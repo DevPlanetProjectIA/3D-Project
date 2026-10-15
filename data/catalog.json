@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-15T18:57:47.409Z",
+  "updated": "2026-10-15T19:04:08.137Z",
   "models": [
+    {
+      "id": "kit-ejetor-halloween-mv9wqj5v5v2f",
+      "storage": "storage",
+      "name": "Kit Ejetor Halloween",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/kit-ejetor-halloween-mv9wqj5v5v2f/kit-ejetor-halloween-mv9wqj5v5v2f.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/kit-ejetor-halloween-mv9wqj5v5v2f/thumb.png",
+      "size": 1690264,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 48380,
+      "dimensions": {
+        "x": 38,
+        "y": 46.66,
+        "z": 32
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-15T19:04:08.137Z",
+      "printerId": "",
+      "weightGrams": 24.62,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 24.62
+        }
+      ]
+    },
     {
       "id": "carimbos-de-brigadeiro-halloween-mv9wicjzktyr",
       "storage": "storage",
