@@ -1,7 +1,50 @@
 {
   "version": 1,
-  "updated": "2026-10-15T11:45:15.230Z",
+  "updated": "2026-10-15T16:14:32.692Z",
   "models": [
+    {
+      "id": "bmcu-mv9qof4cuv1b",
+      "storage": "storage",
+      "name": "Bmcu 支架",
+      "description": "Baixado automaticamente do WhatsApp (Downloads PC)",
+      "format": "3mf",
+      "file": "a25a3db7-e996-47c8-869f-3c167f26cf1e/bmcu-mv9qof4cuv1b/bmcu-mv9qof4cuv1b.3mf",
+      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/bmcu-mv9qof4cuv1b/thumb.png",
+      "size": 2250560,
+      "tags": [
+        "whatsapp",
+        "downloads-pc"
+      ],
+      "author": "Bruno T.",
+      "triangles": 116664,
+      "dimensions": {
+        "x": 49.12,
+        "y": 64.85,
+        "z": 52.6
+      },
+      "print": {
+        "material": "PLA",
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
+      },
+      "createdAt": "2026-10-15T16:14:32.692Z",
+      "printerId": "",
+      "weightGrams": 72.72,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
+      "weightSource": "estimativa",
+      "filaments": [
+        {
+          "material": "PLA",
+          "color": "#3b82f6",
+          "grams": 72.72
+        }
+      ]
+    },
     {
       "id": "mini-jesus-multipartes-7-5-cm-mv9h23u7a4e6",
       "storage": "git",
