@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-10-15T19:15:32.838Z",
+  "updated": "2026-10-16T00:20:22.911Z",
   "models": [
     {
       "id": "thermoformed-stich-top-mold-mv9x569vb06y",
@@ -718,49 +718,6 @@
         "notes": ""
       },
       "createdAt": "2026-10-15T11:45:15.230Z",
-      "printerId": "",
-      "weightGrams": 19.03,
-      "purgeGrams": 0,
-      "printSeconds": 0,
-      "costBRL": 0,
-      "priceBRL": 0,
-      "weightSource": "estimativa",
-      "filaments": [
-        {
-          "material": "PLA",
-          "color": "#3b82f6",
-          "grams": 19.03
-        }
-      ]
-    },
-    {
-      "id": "mini-jesus-multipartes-7-5-cm-mv9h1t0eyngo",
-      "storage": "git",
-      "name": "Mini Jesus Multipartes 7,5 CM",
-      "description": "Baixado automaticamente do WhatsApp (STL dos Calangos)",
-      "format": "3mf",
-      "file": "models/mini-jesus-multipartes-7-5-cm-mv9h1t0eyngo/mini-jesus-multipartes-7-5-cm-mv9h1t0eyngo.3mf",
-      "thumb": "a25a3db7-e996-47c8-869f-3c167f26cf1e/mini-jesus-multipartes-7-5-cm-mv9h1t0eyngo/thumb.png",
-      "size": 60762808,
-      "tags": [
-        "whatsapp",
-        "stl-dos-calangos"
-      ],
-      "author": "🦎Kleber Kinder 🦎",
-      "triangles": 3970012,
-      "dimensions": {
-        "x": 33.96,
-        "y": 31.41,
-        "z": 41.13
-      },
-      "print": {
-        "material": "PLA",
-        "layerHeight": "0.2",
-        "infill": "15%",
-        "supports": false,
-        "notes": ""
-      },
-      "createdAt": "2026-10-15T11:45:14.837Z",
       "printerId": "",
       "weightGrams": 19.03,
       "purgeGrams": 0,
@@ -3986,7 +3943,12 @@
         "notes": ""
       },
       "createdAt": "2026-10-11T18:49:38.052Z",
+      "printerId": "",
       "weightGrams": 3.22,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
       "weightSource": "estimativa",
       "filaments": [
         {
@@ -4024,7 +3986,12 @@
         "notes": ""
       },
       "createdAt": "2026-10-11T18:49:37.625Z",
+      "printerId": "",
       "weightGrams": 5.43,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
       "weightSource": "estimativa",
       "filaments": [
         {
@@ -4062,7 +4029,12 @@
         "notes": ""
       },
       "createdAt": "2026-10-11T18:49:36.343Z",
+      "printerId": "",
       "weightGrams": 5.16,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
       "weightSource": "estimativa",
       "filaments": [
         {
@@ -4100,7 +4072,12 @@
         "notes": ""
       },
       "createdAt": "2026-10-11T18:49:35.923Z",
+      "printerId": "",
       "weightGrams": 4.78,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
       "weightSource": "estimativa",
       "filaments": [
         {
@@ -4138,7 +4115,12 @@
         "notes": ""
       },
       "createdAt": "2026-10-11T18:49:35.455Z",
+      "printerId": "",
       "weightGrams": 4.61,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
       "weightSource": "estimativa",
       "filaments": [
         {
@@ -4176,7 +4158,12 @@
         "notes": ""
       },
       "createdAt": "2026-10-11T18:49:35.080Z",
+      "printerId": "",
       "weightGrams": 1.12,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
       "weightSource": "estimativa",
       "filaments": [
         {
@@ -4214,7 +4201,12 @@
         "notes": ""
       },
       "createdAt": "2026-10-11T18:49:35.051Z",
+      "printerId": "",
       "weightGrams": 4.86,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
       "weightSource": "estimativa",
       "filaments": [
         {
@@ -4252,7 +4244,12 @@
         "notes": ""
       },
       "createdAt": "2026-10-11T18:49:34.615Z",
+      "printerId": "",
       "weightGrams": 5.13,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
       "weightSource": "estimativa",
       "filaments": [
         {
@@ -4290,7 +4287,12 @@
         "notes": ""
       },
       "createdAt": "2026-10-11T18:49:34.138Z",
+      "printerId": "",
       "weightGrams": 5.01,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
       "weightSource": "estimativa",
       "filaments": [
         {
@@ -4328,7 +4330,12 @@
         "notes": ""
       },
       "createdAt": "2026-10-11T18:49:30.317Z",
+      "printerId": "",
       "weightGrams": 6.67,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
       "weightSource": "estimativa",
       "filaments": [
         {
@@ -4356,30 +4363,35 @@
         "z": 102.75
       },
       "print": {
-        "notes": "",
-        "infill": "",
         "material": "PLA",
+        "layerHeight": "",
+        "infill": "",
         "supports": true,
-        "layerHeight": ""
+        "notes": ""
       },
       "createdAt": "2026-10-06T23:06:25.872347+00:00",
+      "printerId": "",
       "weightGrams": 226.47,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
       "weightSource": "estimativa",
       "filaments": [
         {
+          "material": "PLA",
           "color": "#00ae42",
-          "grams": 58.06,
-          "material": "PLA"
+          "grams": 58.06
         },
         {
+          "material": "PLA",
           "color": "#e4bd68",
-          "grams": 58.06,
-          "material": "PLA"
+          "grams": 58.06
         },
         {
+          "material": "PLA",
           "color": "#6f5034",
-          "grams": 58.06,
-          "material": "PLA"
+          "grams": 58.06
         }
       ]
     },
@@ -4404,18 +4416,25 @@
         "z": 56.16
       },
       "print": {
-        "infill": "15%",
         "material": "PLA",
-        "layerHeight": "0.2"
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
       },
       "createdAt": "2026-10-11T18:27:40.823+00:00",
+      "printerId": "",
       "weightGrams": 15.19,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
       "weightSource": "estimativa",
       "filaments": [
         {
+          "material": "PLA",
           "color": "#3b82f6",
-          "grams": 15.19,
-          "material": "PLA"
+          "grams": 15.19
         }
       ]
     },
@@ -4440,18 +4459,25 @@
         "z": 19.9
       },
       "print": {
-        "infill": "15%",
         "material": "PLA",
-        "layerHeight": "0.2"
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
       },
       "createdAt": "2026-10-11T18:27:49.595+00:00",
+      "printerId": "",
       "weightGrams": 37.13,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
       "weightSource": "estimativa",
       "filaments": [
         {
+          "material": "PLA",
           "color": "#3b82f6",
-          "grams": 37.13,
-          "material": "PLA"
+          "grams": 37.13
         }
       ]
     },
@@ -4476,18 +4502,25 @@
         "z": 25
       },
       "print": {
-        "infill": "15%",
         "material": "PLA",
-        "layerHeight": "0.2"
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
       },
       "createdAt": "2026-10-11T18:27:51.231+00:00",
+      "printerId": "",
       "weightGrams": 235.82,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
       "weightSource": "estimativa",
       "filaments": [
         {
+          "material": "PLA",
           "color": "#3b82f6",
-          "grams": 235.82,
-          "material": "PLA"
+          "grams": 235.82
         }
       ]
     },
@@ -4512,18 +4545,25 @@
         "z": 26.72
       },
       "print": {
-        "infill": "15%",
         "material": "PLA",
-        "layerHeight": "0.2"
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
       },
       "createdAt": "2026-10-11T18:28:01.422+00:00",
+      "printerId": "",
       "weightGrams": 22.67,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
       "weightSource": "estimativa",
       "filaments": [
         {
+          "material": "PLA",
           "color": "#3b82f6",
-          "grams": 22.67,
-          "material": "PLA"
+          "grams": 22.67
         }
       ]
     },
@@ -4548,18 +4588,25 @@
         "z": 68
       },
       "print": {
-        "infill": "15%",
         "material": "PLA",
-        "layerHeight": "0.2"
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
       },
       "createdAt": "2026-10-11T18:28:02.758+00:00",
+      "printerId": "",
       "weightGrams": 254.04,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
       "weightSource": "estimativa",
       "filaments": [
         {
+          "material": "PLA",
           "color": "#3b82f6",
-          "grams": 254.04,
-          "material": "PLA"
+          "grams": 254.04
         }
       ]
     },
@@ -4584,18 +4631,25 @@
         "z": 255
       },
       "print": {
-        "infill": "15%",
         "material": "PLA",
-        "layerHeight": "0.2"
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
       },
       "createdAt": "2026-10-11T18:28:04.33+00:00",
+      "printerId": "",
       "weightGrams": 564.5,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
       "weightSource": "estimativa",
       "filaments": [
         {
+          "material": "PLA",
           "color": "#3b82f6",
-          "grams": 564.5,
-          "material": "PLA"
+          "grams": 564.5
         }
       ]
     },
@@ -4617,20 +4671,25 @@
         "z": 3.49
       },
       "print": {
-        "notes": "",
-        "infill": "",
         "material": "PLA",
+        "layerHeight": "",
+        "infill": "",
         "supports": false,
-        "layerHeight": ""
+        "notes": ""
       },
       "createdAt": "2026-10-06T22:30:00.45806+00:00",
+      "printerId": "",
       "weightGrams": 20,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
       "weightSource": "estimativa",
       "filaments": [
         {
+          "material": "PLA",
           "color": "#ff0000",
-          "grams": 5.59,
-          "material": "PLA"
+          "grams": 5.59
         }
       ]
     },
@@ -4655,18 +4714,25 @@
         "z": 58.27
       },
       "print": {
-        "infill": "15%",
         "material": "PLA",
-        "layerHeight": "0.2"
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
       },
       "createdAt": "2026-10-11T18:27:37.478+00:00",
+      "printerId": "",
       "weightGrams": 103.34,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
       "weightSource": "estimativa",
       "filaments": [
         {
+          "material": "PLA",
           "color": "#3b82f6",
-          "grams": 103.34,
-          "material": "PLA"
+          "grams": 103.34
         }
       ]
     },
@@ -4691,18 +4757,25 @@
         "z": 150
       },
       "print": {
-        "infill": "15%",
         "material": "PLA",
-        "layerHeight": "0.2"
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
       },
       "createdAt": "2026-10-11T18:28:13.5+00:00",
+      "printerId": "",
       "weightGrams": 525.17,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
       "weightSource": "estimativa",
       "filaments": [
         {
+          "material": "PLA",
           "color": "#3b82f6",
-          "grams": 525.17,
-          "material": "PLA"
+          "grams": 525.17
         }
       ]
     },
@@ -4727,18 +4800,25 @@
         "z": 68
       },
       "print": {
-        "infill": "15%",
         "material": "PLA",
-        "layerHeight": "0.2"
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
       },
       "createdAt": "2026-10-11T18:29:09.248+00:00",
+      "printerId": "",
       "weightGrams": 183.31,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
       "weightSource": "estimativa",
       "filaments": [
         {
+          "material": "PLA",
           "color": "#3b82f6",
-          "grams": 183.31,
-          "material": "PLA"
+          "grams": 183.31
         }
       ]
     },
@@ -4763,18 +4843,25 @@
         "z": 2
       },
       "print": {
-        "infill": "15%",
         "material": "PLA",
-        "layerHeight": "0.2"
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
       },
       "createdAt": "2026-10-11T18:29:27.142+00:00",
+      "printerId": "",
       "weightGrams": 2.89,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
       "weightSource": "estimativa",
       "filaments": [
         {
+          "material": "PLA",
           "color": "#3b82f6",
-          "grams": 2.89,
-          "material": "PLA"
+          "grams": 2.89
         }
       ]
     },
@@ -4799,18 +4886,25 @@
         "z": 28.97
       },
       "print": {
-        "infill": "15%",
         "material": "PLA",
-        "layerHeight": "0.2"
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
       },
       "createdAt": "2026-10-11T18:28:15.495+00:00",
+      "printerId": "",
       "weightGrams": 41.38,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
       "weightSource": "estimativa",
       "filaments": [
         {
+          "material": "PLA",
           "color": "#3b82f6",
-          "grams": 41.38,
-          "material": "PLA"
+          "grams": 41.38
         }
       ]
     },
@@ -4835,18 +4929,25 @@
         "z": 108.25
       },
       "print": {
-        "infill": "15%",
         "material": "PLA",
-        "layerHeight": "0.2"
+        "layerHeight": "0.2",
+        "infill": "15%",
+        "supports": false,
+        "notes": ""
       },
       "createdAt": "2026-10-11T18:29:08.179+00:00",
+      "printerId": "",
       "weightGrams": 743.94,
+      "purgeGrams": 0,
+      "printSeconds": 0,
+      "costBRL": 0,
+      "priceBRL": 0,
       "weightSource": "estimativa",
       "filaments": [
         {
+          "material": "PLA",
           "color": "#3b82f6",
-          "grams": 743.94,
-          "material": "PLA"
+          "grams": 743.94
         }
       ]
     }
